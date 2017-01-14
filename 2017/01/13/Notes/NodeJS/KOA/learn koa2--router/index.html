@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Table of Contents  generated with DocToc
+
+learn koa2–router
+给Koa2增加路由功能
+扩展：koa-router的使用
+基本使用
+路由的get|put|post|patch|delete方法
+动态路由
+使用middleware
+路由嵌套
+指定前缀
+
+
+
+
+
+
+learn koa2–router给Koa2增加路由功能鉴于Koa的轻量级设计">
+<meta property="og:type" content="article">
+<meta property="og:title" content="learn koa2--router">
+<meta property="og:url" content="http://ecmadao.com/2017/01/13/Notes/NodeJS/KOA/learn koa2--router/index.html">
+<meta property="og:site_name" content="ecmadao">
+<meta property="og:description" content="Table of Contents  generated with DocToc
+
+learn koa2–router
+给Koa2增加路由功能
+扩展：koa-router的使用
+基本使用
+路由的get|put|post|patch|delete方法
+动态路由
+使用middleware
+路由嵌套
+指定前缀
+
+
+
+
+
+
+learn koa2–router给Koa2增加路由功能鉴于Koa的轻量级设计">
+<meta property="og:updated_time" content="2017-01-14T12:11:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="learn koa2--router">
+<meta name="twitter:description" content="Table of Contents  generated with DocToc
+
+learn koa2–router
+给Koa2增加路由功能
+扩展：koa-router的使用
+基本使用
+路由的get|put|post|patch|delete方法
+动态路由
+使用middleware
+路由嵌套
+指定前缀
+
+
+
+
+
+
+learn koa2–router给Koa2增加路由功能鉴于Koa的轻量级设计">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>learn koa2--router</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+    <link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    <script src="/lib/jquery/jquery.min.js"></script>
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/01/13/Notes/NodeJS/KOA/learn koa2--认证/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/01/13/Notes/NodeJS/KOA/learn koa2--tools/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ecmadao.com/2017/01/13/Notes/NodeJS/KOA/learn koa2--router/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/KOA/learn koa2--router/&text=learn koa2--router"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/KOA/learn koa2--router/&title=learn koa2--router"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/KOA/learn koa2--router/&is_video=false&description=learn koa2--router"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=learn koa2--router&body=Check out this article: http://ecmadao.com/2017/01/13/Notes/NodeJS/KOA/learn koa2--router/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/KOA/learn koa2--router/&title=learn koa2--router"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/KOA/learn koa2--router/&title=learn koa2--router"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/KOA/learn koa2--router/&title=learn koa2--router"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/KOA/learn koa2--router/&title=learn koa2--router"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/KOA/learn koa2--router/&name=learn koa2--router&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#learn-koa2–router"><span class="toc-number">1.</span> <span class="toc-text">learn koa2–router</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#给Koa2增加路由功能"><span class="toc-number">1.1.</span> <span class="toc-text">给Koa2增加路由功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#扩展：koa-router的使用"><span class="toc-number">1.2.</span> <span class="toc-text">扩展：koa-router的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本使用"><span class="toc-number">1.2.1.</span> <span class="toc-text">基本使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#路由的get-put-post-patch-delete方法"><span class="toc-number">1.2.2.</span> <span class="toc-text">路由的get|put|post|patch|delete方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#动态路由"><span class="toc-number">1.2.3.</span> <span class="toc-text">动态路由</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用middleware"><span class="toc-number">1.2.4.</span> <span class="toc-text">使用middleware</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#路由嵌套"><span class="toc-number">1.2.5.</span> <span class="toc-text">路由嵌套</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#指定前缀"><span class="toc-number">1.2.6.</span> <span class="toc-text">指定前缀</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        learn koa2--router
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">ecmadao</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-01-13T05:58:37.000Z" itemprop="datePublished">2017-01-13</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/KOA/">KOA</a>, <a class="tag-link" href="/tags/NodeJS/">NodeJS</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<p><strong>Table of Contents</strong>  <em>generated with <a href="https://github.com/thlorenz/doctoc" target="_blank" rel="external">DocToc</a></em></p>
+<ul>
+<li><a href="#learn-koa2--router">learn koa2–router</a><ul>
+<li><a href="#%E7%BB%99koa2%E5%A2%9E%E5%8A%A0%E8%B7%AF%E7%94%B1%E5%8A%9F%E8%83%BD">给Koa2增加路由功能</a></li>
+<li><a href="#%E6%89%A9%E5%B1%95%EF%BC%9Akoa-router%E7%9A%84%E4%BD%BF%E7%94%A8">扩展：<code>koa-router</code>的使用</a><ul>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8">基本使用</a></li>
+<li><a href="#%E8%B7%AF%E7%94%B1%E7%9A%84getputpostpatchdelete%E6%96%B9%E6%B3%95">路由的<code>get|put|post|patch|delete</code>方法</a></li>
+<li><a href="#%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1">动态路由</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8middleware">使用middleware</a></li>
+<li><a href="#%E8%B7%AF%E7%94%B1%E5%B5%8C%E5%A5%97">路由嵌套</a></li>
+<li><a href="#%E6%8C%87%E5%AE%9A%E5%89%8D%E7%BC%80">指定前缀</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<h2 id="learn-koa2–router"><a href="#learn-koa2–router" class="headerlink" title="learn koa2–router"></a>learn koa2–router</h2><h3 id="给Koa2增加路由功能"><a href="#给Koa2增加路由功能" class="headerlink" title="给Koa2增加路由功能"></a>给Koa2增加路由功能</h3><p>鉴于Koa的轻量级设计，其自身并没有提供route的功能，而需要我们自己去安装<a href="https://github.com/alexmingoia/koa-router" target="_blank" rel="external">koa-router</a>组件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 针对Koa2</span></div><div class="line">$ npm install koa-router@next --save</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// app/app.js</span></div><div class="line"><span class="keyword">import</span> Koa <span class="keyword">from</span> <span class="string">'koa'</span>;</div><div class="line"><span class="keyword">import</span> koaRouter <span class="keyword">from</span> <span class="string">'koa-router'</span>;</div><div class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa();</div><div class="line"><span class="keyword">const</span> router = koaRouter();</div><div class="line"></div><div class="line">router.get(<span class="string">'/about'</span>, (ctx, next) =&gt; &#123;</div><div class="line">    ctx.body = <span class="string">"this is the about page"</span>;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">app</div><div class="line">  .use(router.routes())</div><div class="line">  .use(router.allowedMethods());</div><div class="line"></div><div class="line">app.listen(<span class="number">7000</span>);</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> app;</div></pre></td></tr></table></figure>
+<p>然后正常启动项目，进入<code>localhost:7000/about</code>，就能看见也页面上加载的<code>this is the about page</code>了。</p>
+<p><code>koa-router</code>的更多使用方法，可以参考<a href="https://github.com/alexmingoia/koa-router/tree/master/" target="_blank" rel="external"><code>官方文档</code></a></p>
+<p>当路由增多的时候，我们不可能把它们全部放在<code>app.js</code>这个文件中，而是应该新建一个<code>router.js</code>文件或者<code>routes</code>文件夹。我更推荐使用文件夹的形式，那样的话，不同的路由可以根据各个文件来进行分类，更加便于管理：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">- app</div><div class="line">    - routes</div><div class="line">        home.js</div><div class="line">        articles.js</div><div class="line">        <span class="comment"># ...</span></div><div class="line">        index.js</div></pre></td></tr></table></figure>
+<p>编写<code>home.js</code>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// app/routes/home.js</span></div><div class="line"><span class="keyword">import</span> koaRouter <span class="keyword">from</span> <span class="string">'koa-router'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> router = koaRouter(&#123;</div><div class="line">  <span class="attr">prefix</span>: <span class="string">'/'</span></div><div class="line">&#125;);</div><div class="line">router.get(<span class="string">'about'</span>, (ctx, next) =&gt; &#123;</div><div class="line">  ctx.body = <span class="string">'about page'</span>;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = router;</div></pre></td></tr></table></figure>
+<p>解释下<code>prefix</code>：</p>
+<p>路由的前缀。在这个文件里使用的router，在生成时带有参数<code>{prefix: &#39;/&#39;}</code>，说明该文件里定义的路由都必须是以<code>/</code>开头的，例如说<code>/</code>，<code>/about</code>，<code>/articles</code>等。因为一个文件里只定义一个<code>prefix</code>，所以便于之后进行管理。</p>
+<p>而对于<code>articles.js</code>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// app/routes/articles.js</span></div><div class="line"><span class="keyword">import</span> koaRouter <span class="keyword">from</span> <span class="string">'koa-router'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> router = koaRouter(&#123;</div><div class="line">  <span class="attr">prefix</span>: <span class="string">'/articles'</span></div><div class="line">&#125;);</div><div class="line"><span class="comment">// 路由/articles必须定义在含有&#123;prefix: '/articles'&#125;的路由文件里</span></div><div class="line"></div><div class="line">router.get(<span class="string">'/:id/author'</span>, (ctx, next) =&gt; &#123;</div><div class="line">  ctx.body = <span class="string">'article author page'</span>;</div><div class="line">&#125;);</div><div class="line">router.get(<span class="string">'/:id/info'</span>, (ctx, next) =&gt; &#123;</div><div class="line">  ctx.body = <span class="string">'article info page'</span>;</div><div class="line">&#125;);</div><div class="line"><span class="comment">// 要注意的是，需要把/路由，也就是/articles路由放在最后</span></div><div class="line"><span class="comment">// 因为路由是个中间件，会从上到下取第一个匹配的。</span></div><div class="line"><span class="comment">// 如果/articles在上面的话，则/:id/info会正常匹配，但/:id/info/会匹配到/articles</span></div><div class="line">router.get(<span class="string">'/'</span>, (ctx, next) =&gt; &#123;</div><div class="line">  ctx.body = <span class="string">'articles page'</span>;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = router;</div></pre></td></tr></table></figure>
+<p>上面文件里定义的路由有：</p>
+<ul>
+<li><code>/articles</code></li>
+<li><code>/articles/</code></li>
+<li><code>/articles/:id/author</code></li>
+<li><code>/articles/:id/info</code></li>
+</ul>
+<p>此时进入<code>localhost:7000/articles</code>页面，可以看见<code>articles page</code>，并且进入类似<code>localhost:7000/articles/1/author</code>这样的页面则也能获取到对应的<code>article author page</code></p>
+<p>最后，来看一下如何在<code>index.js</code>便捷的获取到所有路由：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// app/routes/index.js</span></div><div class="line"><span class="keyword">import</span> fs <span class="keyword">from</span> <span class="string">'fs'</span>;</div><div class="line"><span class="keyword">import</span> path <span class="keyword">from</span> <span class="string">'path'</span>;</div><div class="line"><span class="keyword">import</span> koaRouter <span class="keyword">from</span> <span class="string">'koa-router'</span>;</div><div class="line"><span class="keyword">const</span> router = koaRouter();</div><div class="line"></div><div class="line">fs</div><div class="line">  .readdirSync(__dirname)</div><div class="line">  .filter(<span class="function"><span class="params">file</span> =&gt;</span></div><div class="line">    (file.indexOf(<span class="string">'.'</span>) !== <span class="number">0</span>) &amp;&amp; (file.split(<span class="string">'.'</span>).slice(<span class="number">-1</span>)[<span class="number">0</span>] === <span class="string">'js'</span>) &amp;&amp; file !== <span class="string">'index.js'</span></div><div class="line">  )</div><div class="line">  .forEach(<span class="function"><span class="params">file</span> =&gt;</span> &#123;</div><div class="line">    <span class="built_in">console</span>.log(file);</div><div class="line">    <span class="keyword">const</span> route = <span class="built_in">require</span>(path.join(__dirname, file));</div><div class="line">    router.use(route.routes(), route.allowedMethods());</div><div class="line">  &#125;);</div><div class="line"></div><div class="line"><span class="comment">// 把根路由/放在最后，以免当其他路由后面带有/时匹配到根路由</span></div><div class="line">router.get(<span class="string">'/'</span>, (ctx, next) =&gt; &#123;</div><div class="line">  ctx.body = <span class="string">'home page'</span>;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> router;</div></pre></td></tr></table></figure>
+<h3 id="扩展：koa-router的使用"><a href="#扩展：koa-router的使用" class="headerlink" title="扩展：koa-router的使用"></a>扩展：<code>koa-router</code>的使用</h3><h4 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 基本使用</span></div><div class="line"><span class="keyword">import</span> Koa <span class="keyword">from</span> <span class="string">'koa'</span>;</div><div class="line"><span class="keyword">import</span> koaRouter <span class="keyword">from</span> <span class="string">'koa-router'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> router = koaRouter();</div><div class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa();</div><div class="line"></div><div class="line">router.get(<span class="string">'/'</span>, (ctx, next) =&gt; &#123;</div><div class="line">  <span class="comment">// ...</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line">app</div><div class="line">  .use(router.routes())</div><div class="line">  .use(router.allowedMethods());</div></pre></td></tr></table></figure>
+<h4 id="路由的get-put-post-patch-delete方法"><a href="#路由的get-put-post-patch-delete方法" class="headerlink" title="路由的get|put|post|patch|delete方法"></a>路由的<code>get|put|post|patch|delete</code>方法</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 直接通过router.xxx方法即可，可以线性链接各方法</span></div><div class="line">router</div><div class="line">  .get(<span class="string">'/'</span>, (ctx, next) =&gt; &#123;</div><div class="line">    ctx.body = <span class="string">'Hello Koa'</span>;</div><div class="line">  &#125;)</div><div class="line">  .post(<span class="string">'/users'</span>, (ctx, next) =&gt; &#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">  &#125;)</div><div class="line">  .put(<span class="string">'/users/:id'</span>, (ctx, next) =&gt; &#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">  &#125;)</div><div class="line">  .del(<span class="string">'/users/:id'</span>, (ctx, next) =&gt; &#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">  &#125;);</div></pre></td></tr></table></figure>
+<h4 id="动态路由"><a href="#动态路由" class="headerlink" title="动态路由"></a>动态路由</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">router.get(<span class="string">'/:category/:title'</span>, (ctx, next) =&gt; &#123;</div><div class="line">  <span class="built_in">console</span>.log(ctx.params);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// get: /programming/how-to-node</span></div><div class="line"><span class="comment">// --&gt;</span></div><div class="line"><span class="comment">// log: &#123; category: 'programming', title: 'how-to-node' &#125;</span></div></pre></td></tr></table></figure>
+<h4 id="使用middleware"><a href="#使用middleware" class="headerlink" title="使用middleware"></a>使用middleware</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">router.get(</div><div class="line">  <span class="string">'/users/:id'</span>,</div><div class="line">  (ctx, next) =&gt; &#123;</div><div class="line">    <span class="keyword">return</span> User.findOne(ctx.params.id).then(<span class="function">(<span class="params">user</span>) =&gt;</span> &#123;</div><div class="line">      ctx.user = user;</div><div class="line">      <span class="keyword">return</span> next();</div><div class="line">    &#125;);</div><div class="line">  &#125;,</div><div class="line">  (ctx) =&gt; &#123;</div><div class="line">    <span class="built_in">console</span>.log(ctx.user);</div><div class="line">    <span class="comment">// =&gt; &#123; id: 17, name: "Alex" &#125;</span></div><div class="line">  &#125;</div><div class="line">);</div></pre></td></tr></table></figure>
+<h4 id="路由嵌套"><a href="#路由嵌套" class="headerlink" title="路由嵌套"></a>路由嵌套</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> forums = <span class="keyword">new</span> Router();</div><div class="line"><span class="keyword">const</span> posts = <span class="keyword">new</span> Router();</div><div class="line"></div><div class="line">posts.get(<span class="string">'/'</span>, (ctx, next) =&gt; &#123;...&#125;);</div><div class="line">posts.get(<span class="string">'/:pid'</span>, (ctx, next) =&gt; &#123;...&#125;);</div><div class="line">forums.use(<span class="string">'/forums/:fid/posts'</span>, posts.routes(), posts.allowedMethods());</div><div class="line"></div><div class="line"><span class="comment">// 相当于posts接收的`/`和`/:pid`都嵌套到forums内</span></div><div class="line"><span class="comment">// 这样处理之后，app可以相应类似"/forums/123/posts"或者"/forums/123/posts/123"</span></div><div class="line">app.use(forums.routes());</div></pre></td></tr></table></figure>
+<h4 id="指定前缀"><a href="#指定前缀" class="headerlink" title="指定前缀"></a>指定前缀</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> router = <span class="keyword">new</span> Router(&#123;</div><div class="line">  <span class="attr">prefix</span>: <span class="string">'/users'</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line">router.get(<span class="string">'/'</span>, ...); <span class="comment">// responds to "/users"</span></div><div class="line">router.get(<span class="string">'/:id'</span>, ...); <span class="comment">// responds to "/users/:id"</span></div></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#learn-koa2–router"><span class="toc-number">1.</span> <span class="toc-text">learn koa2–router</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#给Koa2增加路由功能"><span class="toc-number">1.1.</span> <span class="toc-text">给Koa2增加路由功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#扩展：koa-router的使用"><span class="toc-number">1.2.</span> <span class="toc-text">扩展：koa-router的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本使用"><span class="toc-number">1.2.1.</span> <span class="toc-text">基本使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#路由的get-put-post-patch-delete方法"><span class="toc-number">1.2.2.</span> <span class="toc-text">路由的get|put|post|patch|delete方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#动态路由"><span class="toc-number">1.2.3.</span> <span class="toc-text">动态路由</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用middleware"><span class="toc-number">1.2.4.</span> <span class="toc-text">使用middleware</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#路由嵌套"><span class="toc-number">1.2.5.</span> <span class="toc-text">路由嵌套</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#指定前缀"><span class="toc-number">1.2.6.</span> <span class="toc-text">指定前缀</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ecmadao.com/2017/01/13/Notes/NodeJS/KOA/learn koa2--router/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/KOA/learn koa2--router/&text=learn koa2--router"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/KOA/learn koa2--router/&title=learn koa2--router"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/KOA/learn koa2--router/&is_video=false&description=learn koa2--router"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=learn koa2--router&body=Check out this article: http://ecmadao.com/2017/01/13/Notes/NodeJS/KOA/learn koa2--router/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/KOA/learn koa2--router/&title=learn koa2--router"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/KOA/learn koa2--router/&title=learn koa2--router"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/KOA/learn koa2--router/&title=learn koa2--router"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/KOA/learn koa2--router/&title=learn koa2--router"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/KOA/learn koa2--router/&name=learn koa2--router&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2017 ecmadao
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    <script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'ecmadao-blog';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Table of Contents  generated with DocToc
+
+组件化
+又一个大坑：
+
+
+
+title: ReactNative Android 踩坑date: 2016-03-03 08:49:55
+tags: React-Native123456&amp;lt;TouchableHighlight&amp;gt;  &amp;lt;View&amp;gt;    &amp;lt;Image/&amp;gt;  &amp;lt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ReactNative-Android-踩坑">
+<meta property="og:url" content="http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative-Android-踩坑/index.html">
+<meta property="og:site_name" content="ecmadao">
+<meta property="og:description" content="Table of Contents  generated with DocToc
+
+组件化
+又一个大坑：
+
+
+
+title: ReactNative Android 踩坑date: 2016-03-03 08:49:55
+tags: React-Native123456&amp;lt;TouchableHighlight&amp;gt;  &amp;lt;View&amp;gt;    &amp;lt;Image/&amp;gt;  &amp;lt">
+<meta property="og:updated_time" content="2017-01-14T12:11:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ReactNative-Android-踩坑">
+<meta name="twitter:description" content="Table of Contents  generated with DocToc
+
+组件化
+又一个大坑：
+
+
+
+title: ReactNative Android 踩坑date: 2016-03-03 08:49:55
+tags: React-Native123456&amp;lt;TouchableHighlight&amp;gt;  &amp;lt;View&amp;gt;    &amp;lt;Image/&amp;gt;  &amp;lt">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>ReactNative-Android-踩坑</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+    <link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    <script src="/lib/jquery/jquery.min.js"></script>
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/01/13/Notes/React/ReactNative/使用ReactNative&Redux构建移动端App/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/01/13/Notes/React/ReactNative/ReactNative入坑笔记-ThinkInReactNative/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative-Android-踩坑/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative-Android-踩坑/&text=ReactNative-Android-踩坑"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative-Android-踩坑/&title=ReactNative-Android-踩坑"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative-Android-踩坑/&is_video=false&description=ReactNative-Android-踩坑"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=ReactNative-Android-踩坑&body=Check out this article: http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative-Android-踩坑/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative-Android-踩坑/&title=ReactNative-Android-踩坑"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative-Android-踩坑/&title=ReactNative-Android-踩坑"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative-Android-踩坑/&title=ReactNative-Android-踩坑"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative-Android-踩坑/&title=ReactNative-Android-踩坑"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative-Android-踩坑/&name=ReactNative-Android-踩坑&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#tags-React-Native"><span class="toc-number">1.</span> <span class="toc-text">tags: React-Native</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#组件化"><span class="toc-number">1.1.</span> <span class="toc-text">组件化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#又一个大坑："><span class="toc-number">1.2.</span> <span class="toc-text">又一个大坑：</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        ReactNative-Android-踩坑
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">ecmadao</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-01-13T05:58:37.000Z" itemprop="datePublished">2017-01-13</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/React/">React</a>, <a class="tag-link" href="/tags/ReactNative/">ReactNative</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<p><strong>Table of Contents</strong>  <em>generated with <a href="https://github.com/thlorenz/doctoc" target="_blank" rel="external">DocToc</a></em></p>
+<ul>
+<li><a href="#%E7%BB%84%E4%BB%B6%E5%8C%96">组件化</a></li>
+<li><a href="#%E5%8F%88%E4%B8%80%E4%B8%AA%E5%A4%A7%E5%9D%91%EF%BC%9A">又一个大坑：</a></li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<hr>
+<p>title: ReactNative Android 踩坑<br>date: 2016-03-03 08:49:55</p>
+<h2 id="tags-React-Native"><a href="#tags-React-Native" class="headerlink" title="tags: React-Native"></a>tags: React-Native</h2><figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;TouchableHighlight&gt;</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">View</span>&gt;</span></span></div><div class="line">    <span class="tag">&lt;<span class="name">Image</span>/&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">View</span>&gt;</span></div><div class="line">  <span class="comment">//内部不能直接嵌套&lt;Image/&gt;组件</span></div><div class="line">&lt;<span class="regexp">/TouchableHighlight&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">//WRONG!</div><div class="line">&lt;View&gt;</div><div class="line">  DEMO TEST  //&lt;View&gt;内部不能直接放文字</div><div class="line">&lt;/View&gt;</div><div class="line"></div><div class="line">//Good</div><div class="line">&lt;View&gt;</div><div class="line">  &lt;Text&gt;</div><div class="line">    THIS IS A DEMO</div><div class="line">  &lt;Text&gt;</div><div class="line">&lt;/View&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//在组件中写函数的时候，很有可能会混乱 this 作用域</span></div><div class="line"><span class="comment">//所以极度建议使用 ES6 箭头函数</span></div><div class="line">showDrawer()&#123;</div><div class="line">  <span class="keyword">this</span>.props.showDrawer();</div><div class="line">&#125;</div><div class="line">render()&#123;</div><div class="line">  <span class="keyword">return</span> (</div><div class="line">    <span class="xml"><span class="tag">&lt;<span class="name">ToolbarAndroid</span></span></span></div><div class="line">      <span class="attr">onIconClicked</span>=<span class="string">&#123;()</span>=&gt;this.showDrawer()&#125;</div><div class="line">      //若使用：</div><div class="line">      //onIconClicked=&#123;this.showDrawer&#125;</div><div class="line">      //则会报错：undefined is  not a function</div><div class="line">      navIcon=&#123;require('./icon/iconfont_menu.png')&#125;</div><div class="line">      title="ReactDemo"</div><div class="line">      style=&#123;styles.toolBar&#125;</div><div class="line">    /&gt;</div><div class="line">  )</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;ListView&gt;<span class="xml"><span class="tag">&lt;/<span class="name">ListView</span>&gt;</span></span></div><div class="line">被嵌套以后的滚动问题:</div><div class="line">被其他&lt;View&gt;<span class="xml"><span class="tag">&lt;/<span class="name">View</span>&gt;</span></span>嵌套以后，若外层&lt;View&gt;不设置高度，那么&lt;ListView&gt;无法滚动，但设定具体高度的话无法滚动到完全展示</div><div class="line"></div><div class="line">**解决方案**</div><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">ListView</span>&gt;</span><span class="tag">&lt;/<span class="name">ListView</span>&gt;</span></span>外层的&lt;View&gt;<span class="xml"><span class="tag">&lt;/<span class="name">View</span>&gt;</span></span>设置：</div><div class="line">flex:<span class="number">1</span></div></pre></td></tr></table></figure>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//点击 &lt;Toolbar&gt; 的icon打开/关闭&lt;DrawerLayoutAndroid&gt;</span></div><div class="line"><span class="keyword">var</span> DRAWER_REF = <span class="string">'drawer'</span>;</div><div class="line"></div><div class="line">showDrawer()&#123;</div><div class="line">  <span class="keyword">this</span>.refs[DRAWER_REF].openDrawer();</div><div class="line">  <span class="keyword">this</span>.setState(&#123;</div><div class="line">    <span class="attr">drawerOpen</span>: <span class="literal">true</span></div><div class="line">  &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">unShowDrawer()&#123;</div><div class="line">  <span class="keyword">this</span>.refs[DRAWER_REF].closeDrawer();</div><div class="line">  <span class="keyword">this</span>.setState(&#123;</div><div class="line">    <span class="attr">drawerOpen</span>: <span class="literal">false</span></div><div class="line">  &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">render()&#123;</div><div class="line">  </div><div class="line">  <span class="keyword">var</span> navigationView = (</div><div class="line">    <span class="xml"><span class="tag">&lt;<span class="name">View</span> <span class="attr">style</span>=<span class="string">&#123;&#123;flex:</span> <span class="attr">1</span>, <span class="attr">backgroundColor:</span> '#<span class="attr">fff</span>'&#125;&#125;&gt;</span></span></div><div class="line">      <span class="tag">&lt;<span class="name">Text</span> <span class="attr">style</span>=<span class="string">&#123;&#123;margin:</span> <span class="attr">10</span>, <span class="attr">fontSize:</span> <span class="attr">15</span>, <span class="attr">textAlign:</span> '<span class="attr">left</span>'&#125;&#125;&gt;</span>I'm in the Drawer!<span class="tag">&lt;/<span class="name">Text</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">View</span>&gt;</span></div><div class="line">  );</div><div class="line">  </div><div class="line">  <span class="keyword">return</span> (</div><div class="line">    </div><div class="line">    <span class="xml"><span class="tag">&lt;<span class="name">DrawerLayoutAndroid</span></span></span></div><div class="line">      <span class="attr">ref</span>=<span class="string">&#123;DRAWER_REF&#125;</span></div><div class="line">      <span class="attr">keyboardDismissMode</span>=<span class="string">'on-drag'</span></div><div class="line">      <span class="attr">drawerWidth</span>=<span class="string">&#123;300&#125;</span></div><div class="line">      <span class="attr">drawerPosition</span>=<span class="string">&#123;DrawerLayoutAndroid.positions.Left&#125;</span></div><div class="line">      <span class="attr">renderNavigationView</span>=<span class="string">&#123;()</span> =&gt; navigationView&#125;&gt;</div><div class="line">      </div><div class="line">      <span class="tag">&lt;<span class="name">ToolbarAndroid</span></span></div><div class="line">        <span class="attr">onIconClicked</span>=<span class="string">&#123;()</span>=&gt;&#123;</div><div class="line">          if(this.state.drawerOpen)&#123;</div><div class="line">            this.unShowDrawer();</div><div class="line">          &#125;else&#123;</div><div class="line">            this.showDrawer();</div><div class="line">          &#125;</div><div class="line">        &#125;&#125;</div><div class="line">        navIcon=&#123;require('./icon/iconfont_menu.png')&#125;</div><div class="line">        title="ReactDemo"</div><div class="line">        style=&#123;styles.toolBar&#125;</div><div class="line">      /&gt;</div><div class="line">      </div><div class="line">    <span class="tag">&lt;/<span class="name">DrawerLayoutAndroid</span>&gt;</span></div><div class="line">    </div><div class="line">  )</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//修改 &lt;Toolbar&gt;字体颜色：</span></div><div class="line">&lt;Toolbar</div><div class="line">  titleColor = <span class="string">'#ffffff'</span> <span class="comment">//标题颜色</span></div><div class="line">  subtitleColor = <span class="string">'#ffffff'</span> <span class="comment">//子标题颜色</span></div><div class="line">&gt;</div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">Toolbar</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//在同一个样式名称中，写相同的属性的话会报错</span></div><div class="line">textStyle: &#123;</div><div class="line">  <span class="attr">color</span>: <span class="string">'#343434'</span>,</div><div class="line">  <span class="attr">textAlign</span>: <span class="string">'center'</span>,</div><div class="line">  <span class="attr">fontSize</span>: <span class="number">16</span>,</div><div class="line">  <span class="attr">color</span>: <span class="string">'#ffffff'</span>, <span class="comment">//报错</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//picker</span></div><div class="line">&lt;Picker</div><div class="line">  selectedValue=&#123;<span class="keyword">this</span>.state.language&#125;</div><div class="line">  onValueChange=&#123;(lang) =&gt; <span class="keyword">this</span>.setState(&#123;<span class="attr">language</span>: lang&#125;)&#125;&gt;</div><div class="line">  &lt;Picker.Item label="Java" value="java" /&gt;</div><div class="line">  &lt;Picker.Item label="JavaScript" value="js" /&gt;</div><div class="line">&lt;/Picker&gt;</div><div class="line">//onValueChange函数，会在picker初次加载的时候调用一次</div><div class="line">&lt;Picker&gt;要设置在&lt;View&gt;中，否则加载Picker上的样式（flex）无效</div></pre></td></tr></table></figure>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;PullToRefreshViewAndroid&gt;<span class="xml"><span class="tag">&lt;/<span class="name">PullToRefreshViewAndroid</span>&gt;</span></span></div><div class="line">中只放一个直接关系子&lt;View&gt;</div></pre></td></tr></table></figure>
+<h3 id="组件化"><a href="#组件化" class="headerlink" title="组件化"></a>组件化</h3><p>ReactNative-Android目前还没有像原生Android那样顶部点击切换pager的button，所以我们就来自己搭建一个。为了未来复用组件考虑，就将它独立封装一个新的组件</p>
+<p>结构：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;View style=&#123;styles.viewPagerContainer&#125;&gt;</div><div class="line"></div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">ViewPagerToolbar</span></span></span></div><div class="line">    <span class="attr">title</span>=<span class="string">&#123;MESSAGE_PAGE&#125;</span></div><div class="line">    <span class="attr">navigator</span>=<span class="string">&#123;navigator&#125;</span></div><div class="line">  /&gt;</div><div class="line">  </div><div class="line">  <span class="tag">&lt;<span class="name">ViewPagerAndroid</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">ViewPagerContent</span> /&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">ViewPagerAndroid</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">View</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>其中，<code>ViewPagerToolbar</code>和<code>ViewPagerContent</code>是我们封装的组件</p>
+<p>已知的坑：<br>把自定义组件<code>ViewPagerContent</code>代入进<code>ViewPagerAndroid</code>的时候，自定义组件最外层和向内的第一层会作为一个pager。如果第二层之后包裹了多层，则每个<code>View</code>会被作为一个pager而加载。</p>
+<p>比如，我们的<code>ViewPagerContent</code>在有数据的时候，返回：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;View style=&#123;styles.dataContainer&#125;&gt;</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">ListView</span> /&gt;</span></span></div><div class="line"><span class="tag">&lt;/<span class="name">View</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>那样的话会产生一个pager</p>
+<p>在没有数据的时候，返回：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;View style=&#123;styles.emptyContainer&#125;&gt;</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">View</span> <span class="attr">style</span>=<span class="string">&#123;styles.defaultView&#125;</span>&gt;</span></span></div><div class="line">    <span class="tag">&lt;<span class="name">Image</span> <span class="attr">resizeMode</span>=<span class="string">'contain'</span> <span class="attr">source</span>=<span class="string">&#123;require(/images/logo.jpg</span>')&#125; <span class="attr">style</span>=<span class="string">&#123;styles.defaultImage&#125;/</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">Text</span>&gt;</span>哎呦我去没有数据..<span class="tag">&lt;/<span class="name">Text</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">Text</span>&gt;</span>下拉可刷新哦<span class="tag">&lt;/<span class="name">Text</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">View</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">View</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>则会产生3个pager。。</p>
+<p><strong>解决方案</strong></p>
+<p><strong>不要返回View组成的DefaultComponent，返回一个空的ViewPager</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> dataSource = <span class="keyword">new</span> ListView.DataSource(&#123;<span class="attr">rowHasChanged</span>: <span class="function">(<span class="params">r1, r2</span>) =&gt;</span> r1 !== r2&#125;);</div><div class="line"><span class="keyword">let</span> listData = dataSource.cloneWithRows([<span class="number">1</span>]);</div><div class="line"></div><div class="line">  &lt;View style=&#123;styles.emptyContainer&#125;&gt;</div><div class="line">  &lt;ListView</div><div class="line">    enableEmptySections=&#123;true&#125;</div><div class="line">    style=&#123;styles.emptyListView&#125;</div><div class="line">    dataSource=&#123;listData&#125;</div><div class="line">    renderRow=&#123;(data) =&gt; &#123;</div><div class="line">      return (</div><div class="line">        &lt;View style=&#123;styles.defaultViewContainer&#125;&gt;</div><div class="line">          &lt;View style=&#123;styles.defaultView&#125;&gt;</div><div class="line">            &lt;Image resizeMode='contain' source=&#123;require(/images/logo.jpg')&#125; style=&#123;styles.defaultImage&#125;/&gt;</div><div class="line">            &lt;Text&gt;哎呦我去没有数据..&lt;/Text&gt;</div><div class="line">            &lt;Text&gt;下拉可刷新哦&lt;/Text&gt;</div><div class="line">          &lt;/View&gt;</div><div class="line">        &lt;/View&gt;</div><div class="line">      )</div><div class="line">    &#125;&#125;</div><div class="line">  /&gt;</div><div class="line">&lt;/View&gt;</div><div class="line"></div><div class="line">const styles = StyleSheet.create(&#123;</div><div class="line">  emptyContainer: &#123;</div><div class="line">    flex: 1,</div><div class="line">  &#125;,</div><div class="line">  emptyListView: &#123;</div><div class="line">    flex: 1</div><div class="line">  &#125;,</div><div class="line">  defaultViewContainer: &#123;</div><div class="line">    flex: 1,</div><div class="line">    height: 400,</div><div class="line">    justifyContent: 'center',</div><div class="line">    alignItems: 'center'</div><div class="line">  &#125;,</div><div class="line">  defaultView: &#123;</div><div class="line">    height: 100,</div><div class="line">    flex: 1,</div><div class="line">    justifyContent: 'center',</div><div class="line">    alignItems: 'center'</div><div class="line">  &#125;,</div><div class="line">  defaultImage: &#123;</div><div class="line">    height: 60</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="又一个大坑："><a href="#又一个大坑：" class="headerlink" title="又一个大坑："></a>又一个大坑：</h3><p>ReactNative自带的ListView，有几个便利的函数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">onEndReached=&#123;()=&gt;&#123;&#125;&#125;</div><div class="line"><span class="comment">// 当所有的数据都已经渲染过，并且列表被滚动到距离最底部不足onEndReachedThreshold个像素的距离时调用。原生的滚动事件会被作为参数传递。</span></div><div class="line"></div><div class="line">onEndReachedThreshold=&#123;number&#125;</div><div class="line"><span class="comment">// 调用onEndReached之前的临界值，单位是像素。</span></div></pre></td></tr></table></figure>
+<p>因此，我们可以在列表滚动到底部的时候，发送请求fetch下一页的数据，之后更新到state中，就可以轻松的实现如同原生分页般的顺滑体验</p>
+<p>但是，当它和上面的自定义ViewPager配合的时候，就会出现诡异的现象：<br>当ViewPager滚动到底部触发fetch事件，并获取到数据更新了state之后，ListView会被压缩至原来的一半高，下半部的ListView中的内容没有被渲染（但ListView依旧全部占满屏幕）！</p>
+<p>坑爹玩意！</p>
+<p>目前解决方案：</p>
+<p>ListView中其实还有一个不起眼的方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">renderScrollComponent=&#123;<span class="function"><span class="keyword">function</span>&#125;</span></div><div class="line">// 指定一个函数，在其中返回一个可以滚动的组件。<span class="title">ListView</span>将会在该组件内部进行渲染。默认情况下会返回一个包含指定属性的<span class="title">ScrollView</span>。</div></pre></td></tr></table></figure>
+<p>文档里没有详细介绍，但在最新版英文文档ListView的例子里却有它：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> React = <span class="built_in">require</span>(<span class="string">'react-native'</span>);</div><div class="line"><span class="keyword">var</span> &#123;</div><div class="line">  ListView,</div><div class="line">  RecyclerViewBackedScrollView,</div><div class="line">  View,</div><div class="line">&#125; = React;</div><div class="line"></div><div class="line">&lt;ListView</div><div class="line">  dataSource=&#123;this.state.dataSource&#125;</div><div class="line">  renderRow=&#123;this._renderRow&#125;</div><div class="line">  renderScrollComponent=&#123;props =&gt; &lt;RecyclerViewBackedScrollView &#123;...props&#125; /&gt;&#125;</div><div class="line">  renderSeparator=&#123;(sectionID, rowID) =&gt; &lt;View key=&#123;`$&#123;sectionID&#125;-$&#123;rowID&#125;`&#125; style=&#123;styles.separator&#125; /&gt;&#125;</div><div class="line">/&gt;</div></pre></td></tr></table></figure>
+<p>然后就OK了。。。==</p>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#tags-React-Native"><span class="toc-number">1.</span> <span class="toc-text">tags: React-Native</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#组件化"><span class="toc-number">1.1.</span> <span class="toc-text">组件化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#又一个大坑："><span class="toc-number">1.2.</span> <span class="toc-text">又一个大坑：</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative-Android-踩坑/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative-Android-踩坑/&text=ReactNative-Android-踩坑"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative-Android-踩坑/&title=ReactNative-Android-踩坑"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative-Android-踩坑/&is_video=false&description=ReactNative-Android-踩坑"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=ReactNative-Android-踩坑&body=Check out this article: http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative-Android-踩坑/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative-Android-踩坑/&title=ReactNative-Android-踩坑"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative-Android-踩坑/&title=ReactNative-Android-踩坑"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative-Android-踩坑/&title=ReactNative-Android-踩坑"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative-Android-踩坑/&title=ReactNative-Android-踩坑"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative-Android-踩坑/&name=ReactNative-Android-踩坑&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2017 ecmadao
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    <script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'ecmadao-blog';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
+</body>
+</html>

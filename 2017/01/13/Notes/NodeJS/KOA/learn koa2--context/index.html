@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Table of Contents  generated with DocToc
+
+learn koa2–context
+handle error
+context.request
+context.response
+context.cookies
+context.throw
+
+
+
+
+learn koa2–context
+Koa context
+
+Koa里的context，即上下文，是一个封装了r">
+<meta property="og:type" content="article">
+<meta property="og:title" content="learn koa2--context">
+<meta property="og:url" content="http://ecmadao.com/2017/01/13/Notes/NodeJS/KOA/learn koa2--context/index.html">
+<meta property="og:site_name" content="ecmadao">
+<meta property="og:description" content="Table of Contents  generated with DocToc
+
+learn koa2–context
+handle error
+context.request
+context.response
+context.cookies
+context.throw
+
+
+
+
+learn koa2–context
+Koa context
+
+Koa里的context，即上下文，是一个封装了r">
+<meta property="og:updated_time" content="2017-01-14T12:11:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="learn koa2--context">
+<meta name="twitter:description" content="Table of Contents  generated with DocToc
+
+learn koa2–context
+handle error
+context.request
+context.response
+context.cookies
+context.throw
+
+
+
+
+learn koa2–context
+Koa context
+
+Koa里的context，即上下文，是一个封装了r">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>learn koa2--context</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+    <link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    <script src="/lib/jquery/jquery.min.js"></script>
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/01/13/Notes/译文/【译文】网页设计中隐藏在色彩之后的情感和心理学/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/01/13/Notes/NodeJS/KOA/learn koa2--controller & template/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ecmadao.com/2017/01/13/Notes/NodeJS/KOA/learn koa2--context/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/KOA/learn koa2--context/&text=learn koa2--context"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/KOA/learn koa2--context/&title=learn koa2--context"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/KOA/learn koa2--context/&is_video=false&description=learn koa2--context"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=learn koa2--context&body=Check out this article: http://ecmadao.com/2017/01/13/Notes/NodeJS/KOA/learn koa2--context/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/KOA/learn koa2--context/&title=learn koa2--context"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/KOA/learn koa2--context/&title=learn koa2--context"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/KOA/learn koa2--context/&title=learn koa2--context"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/KOA/learn koa2--context/&title=learn koa2--context"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/KOA/learn koa2--context/&name=learn koa2--context&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#learn-koa2–context"><span class="toc-number">1.</span> <span class="toc-text">learn koa2–context</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#handle-error"><span class="toc-number">1.1.</span> <span class="toc-text">handle error</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#context-request"><span class="toc-number">1.2.</span> <span class="toc-text">context.request</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#context-response"><span class="toc-number">1.3.</span> <span class="toc-text">context.response</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#context-cookies"><span class="toc-number">1.4.</span> <span class="toc-text">context.cookies</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#context-throw"><span class="toc-number">1.5.</span> <span class="toc-text">context.throw</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        learn koa2--context
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">ecmadao</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-01-13T05:58:37.000Z" itemprop="datePublished">2017-01-13</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/KOA/">KOA</a>, <a class="tag-link" href="/tags/NodeJS/">NodeJS</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<p><strong>Table of Contents</strong>  <em>generated with <a href="https://github.com/thlorenz/doctoc" target="_blank" rel="external">DocToc</a></em></p>
+<ul>
+<li><a href="#learn-koa2--context">learn koa2–context</a><ul>
+<li><a href="#handle-error">handle error</a></li>
+<li><a href="#contextrequest">context.request</a></li>
+<li><a href="#contextresponse">context.response</a></li>
+<li><a href="#contextcookies">context.cookies</a></li>
+<li><a href="#contextthrow">context.throw</a></li>
+</ul>
+</li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<h2 id="learn-koa2–context"><a href="#learn-koa2–context" class="headerlink" title="learn koa2–context"></a>learn koa2–context</h2><blockquote>
+<p><a href="https://github.com/koajs/koa/blob/master/docs/api/context.md" target="_blank" rel="external">Koa context</a></p>
+</blockquote>
+<p>Koa里的<code>context</code>，即上下文，是一个封装了<code>response</code>，<code>request</code>等属性和方法的对象。每一次请求都会生产一个新的<code>context</code>。</p>
+<p>在Koa1中，每个请求func中的<code>this</code>即使一个<code>context</code>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">app.use(<span class="function"><span class="keyword">function</span> *(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">this</span>; <span class="comment">// Context</span></div><div class="line">    <span class="keyword">this</span>.request; <span class="comment">// koa Request</span></div><div class="line">    <span class="keyword">this</span>.response; <span class="comment">// koa Response</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>而在Koa2中，<code>context</code>对象直接就在回调函数里：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">app.use(<span class="function">(<span class="params">ctx, next</span>) =&gt;</span> &#123;</div><div class="line">    ctx; <span class="comment">// Context</span></div><div class="line">    ctx.request; <span class="comment">// koa Request</span></div><div class="line">    ctx.response; <span class="comment">// koa Response</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h3 id="handle-error"><a href="#handle-error" class="headerlink" title="handle error"></a>handle error</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 监听error，自定义错误处理逻辑</span></div><div class="line">app.on(<span class="string">'error'</span>, (err) =&gt; &#123;</div><div class="line">  log.error(<span class="string">'server error'</span>, err);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>当 request/response 中出现任何错误且无法响应客户端时，Koa 会把 ctx 实例作为第二个参数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">app.on(<span class="string">'error'</span>, (err, ctx) =&gt; &#123;</div><div class="line">  log.error(<span class="string">'server error'</span>, err, ctx);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="context-request"><a href="#context-request" class="headerlink" title="context.request"></a>context.request</h3><blockquote>
+<p><a href="https://github.com/koajs/koa/blob/master/docs/api/request.md" target="_blank" rel="external">Koa request</a></p>
+</blockquote>
+<ul>
+<li><p><code>request.header</code>/<code>request.headers</code> 请求头对象</p>
+</li>
+<li><p><code>request.length</code> 以数字（或<code>undefined</code>）的形式返回<code>Content-Length</code></p>
+</li>
+<li><p><code>request.type</code> 获取请求的<code>Content-Type</code></p>
+</li>
+<li><p><code>request.is(type)</code> 判断<code>Content-Type</code>是否是<code>is</code>中期待的值。如果没有 request body，返回 undefined； 如果没有 content type，或者匹配失败，返回 false； 否则返回匹配的 content-type</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// With Content-Type: text/html; charset=utf-8</span></div><div class="line">request.is(<span class="string">'html'</span>); <span class="comment">// =&gt; 'html'</span></div><div class="line">request.is(<span class="string">'text/html'</span>); <span class="comment">// =&gt; 'text/html'</span></div><div class="line">request.is(<span class="string">'text/*'</span>, <span class="string">'text/html'</span>); <span class="comment">// =&gt; 'text/html'</span></div><div class="line"></div><div class="line"><span class="comment">// When Content-Type is application/json</span></div><div class="line">request.is(<span class="string">'json'</span>, <span class="string">'urlencoded'</span>); <span class="comment">// =&gt; 'json'</span></div><div class="line">request.is(<span class="string">'application/json'</span>); <span class="comment">// =&gt; 'application/json'</span></div><div class="line">request.is(<span class="string">'html'</span>, <span class="string">'application/*'</span>); <span class="comment">// =&gt; 'application/json'</span></div><div class="line"></div><div class="line">request.is(<span class="string">'html'</span>); <span class="comment">// =&gt; false</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// usage</span></div><div class="line"><span class="keyword">if</span> (request.is(<span class="string">'image/*'</span>)) &#123;</div><div class="line">  <span class="comment">// process</span></div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">  ctx.throw(<span class="number">415</span>, <span class="string">'images only!'</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><code>request.accepts(types)</code>  检查给定的类型 types(s) 是否可被接受，当为 true 时返回最佳匹配，否则返回 false。参数可以是字符串或者数组</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Accept: text/html</span></div><div class="line"><span class="keyword">this</span>.accepts(<span class="string">'html'</span>);</div><div class="line"><span class="comment">// =&gt; "html"</span></div><div class="line"></div><div class="line"><span class="comment">// Accept: text/*, application/json</span></div><div class="line"><span class="keyword">this</span>.accepts(<span class="string">'html'</span>);</div><div class="line"><span class="comment">// =&gt; "html"</span></div><div class="line"><span class="keyword">this</span>.accepts(<span class="string">'text/html'</span>);</div><div class="line"><span class="comment">// =&gt; "text/html"</span></div><div class="line"><span class="keyword">this</span>.accepts(<span class="string">'json'</span>, <span class="string">'text'</span>);</div><div class="line"><span class="comment">// =&gt; "json"</span></div><div class="line"><span class="keyword">this</span>.accepts(<span class="string">'application/json'</span>);</div><div class="line"><span class="comment">// =&gt; "application/json"</span></div><div class="line"></div><div class="line"><span class="comment">// Accept: text/*, application/json</span></div><div class="line"><span class="keyword">this</span>.accepts(<span class="string">'image/png'</span>);</div><div class="line"><span class="keyword">this</span>.accepts(<span class="string">'png'</span>);</div><div class="line"><span class="comment">// =&gt; false</span></div><div class="line"></div><div class="line"><span class="comment">// Accept: text/*;q=.5, application/json</span></div><div class="line"><span class="keyword">this</span>.accepts([<span class="string">'html'</span>, <span class="string">'json'</span>]);</div><div class="line"><span class="keyword">this</span>.accepts(<span class="string">'html'</span>, <span class="string">'json'</span>);</div><div class="line"><span class="comment">// =&gt; "json"</span></div><div class="line"></div><div class="line"><span class="comment">// No Accept header</span></div><div class="line"><span class="keyword">this</span>.accepts(<span class="string">'html'</span>, <span class="string">'json'</span>);</div><div class="line"><span class="comment">// =&gt; "html"</span></div><div class="line"><span class="keyword">this</span>.accepts(<span class="string">'json'</span>, <span class="string">'html'</span>);</div><div class="line"><span class="comment">// =&gt; "json"</span></div></pre></td></tr></table></figure>
+<ul>
+<li><code>request.method</code> 请求方法</li>
+<li><p><code>request.method=</code> 设置请求的方法</p>
+</li>
+<li><p><code>request.url</code> 请求的URL</p>
+</li>
+<li><code>request.url=</code> 设置请求的URL</li>
+<li><code>request.path</code> 获取请求路径</li>
+<li><p><code>request.path=</code> 设置请求路径（保留请求参数）</p>
+</li>
+<li><p><code>request.search</code> 获取请求的查询参数字符串，包含<code>?</code></p>
+</li>
+<li><code>request.search=</code> 设置请求的查询参数字符串，不需要加<code>?</code></li>
+<li><code>request.querystring</code> 获取请求的查询参数字符串，不包含<code>?</code></li>
+<li><p><code>request.querystring=</code> 设置请求的查询参数字符串，需要加上<code>?</code></p>
+</li>
+<li><p><code>request.query</code> 以对象的形式获取请求参数，不支持嵌套对象</p>
+</li>
+<li><code>request.query=</code> 以对象的形式设置请求参数，不支持嵌套对象</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// example</span></div><div class="line"><span class="keyword">const</span> about = <span class="keyword">async</span> (ctx, next) =&gt; &#123;</div><div class="line">    <span class="keyword">const</span> request = ctx.request;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'request query'</span>);</div><div class="line">    <span class="built_in">console</span>.log(request.query);</div><div class="line">    <span class="keyword">await</span> ctx.render(<span class="string">'home/about'</span>, &#123;</div><div class="line">        <span class="attr">title</span>: <span class="string">'about page'</span>,</div><div class="line">        <span class="attr">content</span>: <span class="string">'this is about page'</span></div><div class="line">    &#125;);</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// visit /about?a=1&amp;b=2</span></div><div class="line"><span class="comment">// result:</span></div><div class="line"><span class="comment">// &#123;a: 1, b: 2&#125;</span></div></pre></td></tr></table></figure>
+<h3 id="context-response"><a href="#context-response" class="headerlink" title="context.response"></a>context.response</h3><blockquote>
+<p><a href="https://github.com/koajs/koa/blob/master/docs/api/response.md" target="_blank" rel="external">Koa response</a></p>
+</blockquote>
+<ul>
+<li><code>response.status</code> 响应的状态值，没有默认值</li>
+<li><code>response.status=</code> 设置响应的状态值</li>
+<li><code>response.message</code> 获取响应消息。默认情况下和<code>response.status</code>相关联</li>
+<li><p><code>response.message=</code></p>
+</li>
+<li><p><code>response.body</code> 获取响应体</p>
+</li>
+<li><p><code>response.body=</code></p>
+<ul>
+<li><code>string</code> written</li>
+<li><code>Buffer</code> written</li>
+<li><code>Stream</code> piped</li>
+<li><code>Object</code> json-stringified</li>
+<li><code>null</code> no content response</li>
+</ul>
+</li>
+<li><p><code>response.get(field)</code> 获取 response header 中某字段的值</p>
+</li>
+<li><code>response.set(field, value)</code> 设置 response header 中某字段的值</li>
+<li><p><code>response.set(fields)</code> 设置 response header 中字段的值，参数为Object</p>
+</li>
+<li><p><code>response.is(types...)</code></p>
+</li>
+<li><p><code>response.redirect(url, [alt])</code></p>
+</li>
+</ul>
+<h3 id="context-cookies"><a href="#context-cookies" class="headerlink" title="context.cookies"></a>context.cookies</h3><p>Koa的<code>cookie</code>处理底层是通过<a href="https://github.com/pillarjs/cookies" target="_blank" rel="external"><code>cookies</code></a>模块来实现的。</p>
+<ul>
+<li><code>ctx.cookies.set</code></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">ctx.cookies.set(name, value, [options])</div><div class="line"></div><div class="line"><span class="comment">// options</span></div><div class="line">&#123;</div><div class="line">    maxAge, <span class="comment">// 从 Date.now() 开始的过期时间，以毫秒作为单位</span></div><div class="line">    signed, <span class="comment">// 是否签名</span></div><div class="line">    expires, <span class="comment">// 通过 Date 表示的 cookie 过期日期</span></div><div class="line">    path: <span class="string">"/"</span>, <span class="comment">// cookie path</span></div><div class="line">    domain, <span class="comment">// cookie 的域</span></div><div class="line">    secure, <span class="comment">// cookie 发送方式。false 表示 cookie 通过 HTTP 协议发送，true 表示 cookie 通过 HTTPS 发送</span></div><div class="line">    httpOnly: <span class="literal">true</span>, <span class="comment">//  true 表示 cookie 只能通过 HTTP 协议发送</span></div><div class="line">    overwrite: <span class="literal">false</span> <span class="comment">// 对于重名的 cookie 是否覆盖</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><code>ctx.cookies.get</code></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">ctx.cookies.get(name, [options])</div><div class="line"></div><div class="line"><span class="comment">// options</span></div><div class="line">&#123;</div><div class="line">    signed <span class="comment">// 是否签名</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// example</span></div><div class="line">router.get(<span class="string">'/'</span>, <span class="keyword">async</span> (ctx, next) =&gt; &#123;</div><div class="line">    ctx.cookies.set(<span class="string">'username'</span>, <span class="string">'ecmadao'</span>);</div><div class="line">    <span class="keyword">await</span> ctx.render(<span class="string">'home/index'</span>, &#123;</div><div class="line">        <span class="attr">title</span>: <span class="string">'home page'</span>,</div><div class="line">        <span class="attr">content</span>: <span class="string">'this is home page'</span></div><div class="line">    &#125;);</div><div class="line">&#125;);</div><div class="line">router.get(<span class="string">'about'</span>, <span class="keyword">async</span> (ctx, next) =&gt; &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'ctx cookies'</span>);</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">`log: <span class="subst">$&#123;ctx.cookies.get(<span class="string">'username'</span>)&#125;</span>`</span>);</div><div class="line">    <span class="keyword">await</span> ctx.render(<span class="string">'home/about'</span>, &#123;</div><div class="line">        <span class="attr">title</span>: <span class="string">'about page'</span>,</div><div class="line">        <span class="attr">content</span>: <span class="string">'this is about page'</span></div><div class="line">    &#125;);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// visit /</span></div><div class="line"><span class="comment">// then visit /about</span></div><div class="line"><span class="comment">// result:</span></div><div class="line"><span class="comment">// log: ecmadao</span></div></pre></td></tr></table></figure>
+<h3 id="context-throw"><a href="#context-throw" class="headerlink" title="context.throw"></a>context.throw</h3><p>Koa是封装了<a href="https://github.com/jshttp/http-assert" target="_blank" rel="external"><code>http-assert</code></a>模块，来进行错误的抛出。</p>
+<p>通过<code>throw</code>抛出一个包含<code>status</code>属性的<code>Error</code>对象。默认情况下这个<code>Error</code>的<code>status</code>为<code>500</code>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">ctx.throw([msg], [status], [properties])</div><div class="line"></div><div class="line"><span class="comment">// examples</span></div><div class="line">ctx.throw(<span class="number">403</span>);</div><div class="line">ctx.throw(<span class="string">'name required'</span>, <span class="number">400</span>);</div><div class="line">ctx.throw(<span class="number">400</span>, <span class="string">'name required'</span>);</div><div class="line">ctx.throw(<span class="string">'something exploded'</span>);</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ctx.throw(<span class="string">'something exploded'</span>);</div><div class="line"><span class="comment">// 相当于</span></div><div class="line"><span class="keyword">var</span> err = <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'something exploded'</span>);</div><div class="line">err.status = <span class="number">400</span>;</div><div class="line"><span class="keyword">throw</span> err;</div></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#learn-koa2–context"><span class="toc-number">1.</span> <span class="toc-text">learn koa2–context</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#handle-error"><span class="toc-number">1.1.</span> <span class="toc-text">handle error</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#context-request"><span class="toc-number">1.2.</span> <span class="toc-text">context.request</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#context-response"><span class="toc-number">1.3.</span> <span class="toc-text">context.response</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#context-cookies"><span class="toc-number">1.4.</span> <span class="toc-text">context.cookies</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#context-throw"><span class="toc-number">1.5.</span> <span class="toc-text">context.throw</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ecmadao.com/2017/01/13/Notes/NodeJS/KOA/learn koa2--context/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/KOA/learn koa2--context/&text=learn koa2--context"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/KOA/learn koa2--context/&title=learn koa2--context"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/KOA/learn koa2--context/&is_video=false&description=learn koa2--context"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=learn koa2--context&body=Check out this article: http://ecmadao.com/2017/01/13/Notes/NodeJS/KOA/learn koa2--context/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/KOA/learn koa2--context/&title=learn koa2--context"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/KOA/learn koa2--context/&title=learn koa2--context"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/KOA/learn koa2--context/&title=learn koa2--context"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/KOA/learn koa2--context/&title=learn koa2--context"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/KOA/learn koa2--context/&name=learn koa2--context&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2017 ecmadao
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    <script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'ecmadao-blog';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
+</body>
+</html>

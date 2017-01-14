@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Table of Contents  generated with DocToc
+
+JavaScript的this
+独立函数调用
+绑定规则
+隐式绑定
+显式绑定
+new绑定
+
+
+判断this（绑定优先级）
+空绑定
+箭头函数
+
+
+
+
+JavaScript的thisthis不指向自身，也不指向函数的作用域
+this是在运行中绑定的，并不是在编写时绑定。它的上下文取决于函数调用时的各种条件。this的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《你不知道的JavaScript》-this解析">
+<meta property="og:url" content="http://ecmadao.com/2017/01/13/Notes/JavaScript/你不知道的JavaScript/《你不知道的JavaScript》-this解析/index.html">
+<meta property="og:site_name" content="ecmadao">
+<meta property="og:description" content="Table of Contents  generated with DocToc
+
+JavaScript的this
+独立函数调用
+绑定规则
+隐式绑定
+显式绑定
+new绑定
+
+
+判断this（绑定优先级）
+空绑定
+箭头函数
+
+
+
+
+JavaScript的thisthis不指向自身，也不指向函数的作用域
+this是在运行中绑定的，并不是在编写时绑定。它的上下文取决于函数调用时的各种条件。this的">
+<meta property="og:updated_time" content="2017-01-14T12:11:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《你不知道的JavaScript》-this解析">
+<meta name="twitter:description" content="Table of Contents  generated with DocToc
+
+JavaScript的this
+独立函数调用
+绑定规则
+隐式绑定
+显式绑定
+new绑定
+
+
+判断this（绑定优先级）
+空绑定
+箭头函数
+
+
+
+
+JavaScript的thisthis不指向自身，也不指向函数的作用域
+this是在运行中绑定的，并不是在编写时绑定。它的上下文取决于函数调用时的各种条件。this的">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>《你不知道的JavaScript》-this解析</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+    <link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    <script src="/lib/jquery/jquery.min.js"></script>
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/01/13/Notes/NodeJS/Express/Express实战-入坑记录/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/01/13/Notes/JavaScript/你不知道的JavaScript/《你不知道的JavaScript》-作用域和闭包/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ecmadao.com/2017/01/13/Notes/JavaScript/你不知道的JavaScript/《你不知道的JavaScript》-this解析/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ecmadao.com/2017/01/13/Notes/JavaScript/你不知道的JavaScript/《你不知道的JavaScript》-this解析/&text=《你不知道的JavaScript》-this解析"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ecmadao.com/2017/01/13/Notes/JavaScript/你不知道的JavaScript/《你不知道的JavaScript》-this解析/&title=《你不知道的JavaScript》-this解析"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ecmadao.com/2017/01/13/Notes/JavaScript/你不知道的JavaScript/《你不知道的JavaScript》-this解析/&is_video=false&description=《你不知道的JavaScript》-this解析"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=《你不知道的JavaScript》-this解析&body=Check out this article: http://ecmadao.com/2017/01/13/Notes/JavaScript/你不知道的JavaScript/《你不知道的JavaScript》-this解析/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ecmadao.com/2017/01/13/Notes/JavaScript/你不知道的JavaScript/《你不知道的JavaScript》-this解析/&title=《你不知道的JavaScript》-this解析"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ecmadao.com/2017/01/13/Notes/JavaScript/你不知道的JavaScript/《你不知道的JavaScript》-this解析/&title=《你不知道的JavaScript》-this解析"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ecmadao.com/2017/01/13/Notes/JavaScript/你不知道的JavaScript/《你不知道的JavaScript》-this解析/&title=《你不知道的JavaScript》-this解析"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ecmadao.com/2017/01/13/Notes/JavaScript/你不知道的JavaScript/《你不知道的JavaScript》-this解析/&title=《你不知道的JavaScript》-this解析"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ecmadao.com/2017/01/13/Notes/JavaScript/你不知道的JavaScript/《你不知道的JavaScript》-this解析/&name=《你不知道的JavaScript》-this解析&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript的this"><span class="toc-number">1.</span> <span class="toc-text">JavaScript的this</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#独立函数调用"><span class="toc-number">1.1.</span> <span class="toc-text">独立函数调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#绑定规则"><span class="toc-number">1.2.</span> <span class="toc-text">绑定规则</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#隐式绑定"><span class="toc-number">1.2.1.</span> <span class="toc-text">隐式绑定</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#显式绑定"><span class="toc-number">1.2.2.</span> <span class="toc-text">显式绑定</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#new绑定"><span class="toc-number">1.2.3.</span> <span class="toc-text">new绑定</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#判断this（绑定优先级）"><span class="toc-number">1.3.</span> <span class="toc-text">判断this（绑定优先级）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#空绑定"><span class="toc-number">1.4.</span> <span class="toc-text">空绑定</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#箭头函数"><span class="toc-number">1.5.</span> <span class="toc-text">箭头函数</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        《你不知道的JavaScript》-this解析
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">ecmadao</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-01-13T05:58:37.000Z" itemprop="datePublished">2017-01-13</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/JavaScript/">JavaScript</a>, <a class="tag-link" href="/tags/你不知道的JavaScript/">你不知道的JavaScript</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<p><strong>Table of Contents</strong>  <em>generated with <a href="https://github.com/thlorenz/doctoc" target="_blank" rel="external">DocToc</a></em></p>
+<ul>
+<li><a href="#javascript%E7%9A%84this">JavaScript的this</a><ul>
+<li><a href="#%E7%8B%AC%E7%AB%8B%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8">独立函数调用</a></li>
+<li><a href="#%E7%BB%91%E5%AE%9A%E8%A7%84%E5%88%99">绑定规则</a><ul>
+<li><a href="#%E9%9A%90%E5%BC%8F%E7%BB%91%E5%AE%9A">隐式绑定</a></li>
+<li><a href="#%E6%98%BE%E5%BC%8F%E7%BB%91%E5%AE%9A">显式绑定</a></li>
+<li><a href="#new%E7%BB%91%E5%AE%9A">new绑定</a></li>
+</ul>
+</li>
+<li><a href="#%E5%88%A4%E6%96%ADthis%EF%BC%88%E7%BB%91%E5%AE%9A%E4%BC%98%E5%85%88%E7%BA%A7%EF%BC%89">判断this（绑定优先级）</a></li>
+<li><a href="#%E7%A9%BA%E7%BB%91%E5%AE%9A">空绑定</a></li>
+<li><a href="#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0">箭头函数</a></li>
+</ul>
+</li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<h2 id="JavaScript的this"><a href="#JavaScript的this" class="headerlink" title="JavaScript的this"></a>JavaScript的this</h2><p><strong><code>this</code>不指向自身，也不指向函数的作用域</strong></p>
+<p><code>this</code>是在运行中绑定的，并不是在编写时绑定。它的上下文取决于函数调用时的各种条件。<code>this</code>的绑定和函数声明的位置没有任何关系，只取决于函数的调用方式。</p>
+<p>当一个函数被调用时，会创建一个活动记录（执行上下文）。这个记录会包含函数在哪里被调用（调用栈）、函数的调用方式、传入的参数等信息。<code>this</code>就是这样一个属性，<strong>它指向什么完全取决于在哪里被调用。</strong></p>
+<ul>
+<li>调用位置：函数在代码中被调用的位置</li>
+<li>调用栈：为了达到当前执行位置所调用的所有函数</li>
+<li>绑定规则：默认绑定</li>
+</ul>
+<h3 id="独立函数调用"><a href="#独立函数调用" class="headerlink" title="独立函数调用"></a>独立函数调用</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.a);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> a = <span class="number">2</span>;</div><div class="line"></div><div class="line">foo(); <span class="comment">// 2</span></div></pre></td></tr></table></figure>
+<p><code>this</code>的绑定规则完全取决于调用位置</p>
+<h3 id="绑定规则"><a href="#绑定规则" class="headerlink" title="绑定规则"></a>绑定规则</h3><h4 id="隐式绑定"><a href="#隐式绑定" class="headerlink" title="隐式绑定"></a>隐式绑定</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.a);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">	<span class="attr">a</span>: <span class="number">2</span>,</div><div class="line">	<span class="attr">foo</span>: foo</div><div class="line">&#125;;</div><div class="line"></div><div class="line">obj.foo(); <span class="comment">// 2</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>当函数引用有上下文对象时，隐式绑定规则会把函数调用中的<code>this</code>绑定到这个上下文对象</p>
+<p>对象属性引用链中只有上一层或者说最后一层在调用位置中起作用</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.a);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">	<span class="attr">a</span>: <span class="number">2</span>,</div><div class="line">	<span class="attr">foo</span>: foo</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> a = <span class="string">'I am global'</span>; <span class="comment">//全局对象的属性</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">doFoo</span>(<span class="params">fn</span>)</span>&#123;</div><div class="line">	<span class="comment">// fn实际上引用的是foo</span></div><div class="line">	fn(); <span class="comment">// &lt;---调用位置</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">doFoo(obj.foo); <span class="comment">// I am global</span></div></pre></td></tr></table></figure>
+<h4 id="显式绑定"><a href="#显式绑定" class="headerlink" title="显式绑定"></a>显式绑定</h4><ul>
+<li><code>call(...)</code></li>
+<li><code>apply(...)</code></li>
+<li><code>bind(...)</code></li>
+<li>第一个参数是一个对象（为this准备），在调用函数时将它绑定到this</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.a);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">	<span class="attr">a</span> : <span class="number">2</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line">foo.call(obj); <span class="comment">// 2</span></div><div class="line"></div><div class="line"><span class="comment">// 通过 foo.call(..)，可以在调用 foo 时强制把它的 this 绑定到 obj 上</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">something</span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.a, something);</div><div class="line">	<span class="keyword">return</span> <span class="keyword">this</span>.a + something;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">	<span class="attr">a</span> : <span class="number">2</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> bar = foo.bind(obj);</div><div class="line"></div><div class="line"><span class="keyword">var</span> b = bar(<span class="number">3</span>); <span class="comment">// 2 3</span></div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(b); <span class="comment">// 5</span></div><div class="line"></div><div class="line"><span class="comment">// bind() 会返回一个硬编码的新函数，它会把你所指定的参数设置为this的上下文并调用原始函数</span></div></pre></td></tr></table></figure>
+<h4 id="new绑定"><a href="#new绑定" class="headerlink" title="new绑定"></a>new绑定</h4><p>使用<code>new</code>来调用函数，或者说发生构造函数调用时，会自动执行下面的操作：</p>
+<ol>
+<li>创建（构造）一个全新的对象</li>
+<li>这个新对象会被执行<code>[[Prototype]]</code>连接</li>
+<li>这个新对象会被绑定到函数调用的<code>this</code></li>
+<li>如果函数没有返回其他对象，那么<code>new</code>表达式中的函数调用会自动返回这个新对象</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">a</span>) </span>&#123;</div><div class="line">	<span class="keyword">this</span>.a = a;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> bar = <span class="keyword">new</span> foo(<span class="number">2</span>);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(bar.a); <span class="comment">//2</span></div><div class="line"></div><div class="line"><span class="comment">//使用 new 来调用 foo(..) 时，我们会构造一个新对象并把它绑定到 foo(..) 调用中的 this 上</span></div></pre></td></tr></table></figure>
+<h3 id="判断this（绑定优先级）"><a href="#判断this（绑定优先级）" class="headerlink" title="判断this（绑定优先级）"></a>判断this（绑定优先级）</h3><ul>
+<li>函数是否在<code>new</code>中被调用（<code>new</code>绑定）？如果是的话<code>this</code>绑定的是新创建的对象</li>
+<li>函数是否通过<code>call</code>、<code>apply</code>（显式绑定）或者<code>bind</code>（硬绑定）调用？如果是的话<code>this</code>绑定的是指定的对象</li>
+<li>函数是否在某个上下文对象中调用（隐式绑定）？如果是的话<code>this</code>绑定的是那个上下文对象</li>
+<li>如果都不是的话，使用默认绑定。如果在严格模式下，就绑定到<code>undefined</code>，否则绑定到全局对象</li>
+</ul>
+<h3 id="空绑定"><a href="#空绑定" class="headerlink" title="空绑定"></a>空绑定</h3><ul>
+<li>如果把<code>null</code>、<code>undefined</code>作为<code>this</code>的绑定对象传入<code>call</code>、<code>apply</code>或者<code>bind</code>，这些值在调用时会被忽略，实际应用的是默认绑定规则</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//显式绑定到 null 的应用</span></div><div class="line"></div><div class="line"><span class="comment">//使用 apply(..) 来展开一个数组，并当做参数传入一个函数</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">a, b</span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="string">"a : "</span> + a + <span class="string">", b : "</span> + b);</div><div class="line">&#125;</div><div class="line"></div><div class="line">foo.apply(<span class="literal">null</span>, [<span class="number">2</span>, <span class="number">3</span>]); <span class="comment">// a : 2, b : 3</span></div><div class="line"></div><div class="line"><span class="comment">//使用 bind(..) 对参数进行柯里化（预先设置一些参数）</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> bar = foo.bind(<span class="literal">null</span>, <span class="number">2</span>);</div><div class="line"></div><div class="line">bar(<span class="number">3</span>); <span class="comment">// a : 2, b : 3</span></div></pre></td></tr></table></figure>
+<p>更安全的做法 — 创建一个空对象进行绑定：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">a, b</span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="string">"a : "</span> + a + <span class="string">", b : "</span> + b);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> EMPTY = <span class="built_in">Object</span>.create(<span class="literal">null</span>);</div><div class="line"></div><div class="line">foo.apply(EMPTY, [<span class="number">2</span>, <span class="number">3</span>]); <span class="comment">//a : 2, b : 3</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> bar = foo.bind(EMPTY, <span class="number">2</span>);</div><div class="line">bar(<span class="number">3</span>); <span class="comment">// a : 2, b : 3</span></div></pre></td></tr></table></figure>
+<h3 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h3><p>箭头函数不适用<code>this</code>的四种标准规则，而是根据外层（函数或者全局）作用域来决定<code>this</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</div><div class="line"><span class="comment">//返回一个箭头函数</span></div><div class="line">	<span class="keyword">return</span> <span class="function">(<span class="params">a</span>) =&gt;</span> &#123;</div><div class="line">		<span class="comment">//this继承自foo()</span></div><div class="line">		<span class="built_in">console</span>.log(<span class="keyword">this</span>.a);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> obj1 = &#123;</div><div class="line">	<span class="attr">a</span>: <span class="number">2</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> obj2 = &#123;</div><div class="line">	<span class="attr">a</span>: <span class="number">3</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> bar = foo.call(obj1);</div><div class="line"></div><div class="line">bar.call(obj2); <span class="comment">// 2，不是3！</span></div></pre></td></tr></table></figure>
+<p><code>foo()</code>内部创建的箭头函数会捕获调用时<code>foo()</code>的<code>this</code>。由于<code>foo()</code>的<code>this</code>绑定到<code>obj1</code>，<code>bar</code>的<code>this</code>也会绑定到<code>obj1</code>，箭头函数的绑定无法被修改（<code>new</code>也不行）</p>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript的this"><span class="toc-number">1.</span> <span class="toc-text">JavaScript的this</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#独立函数调用"><span class="toc-number">1.1.</span> <span class="toc-text">独立函数调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#绑定规则"><span class="toc-number">1.2.</span> <span class="toc-text">绑定规则</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#隐式绑定"><span class="toc-number">1.2.1.</span> <span class="toc-text">隐式绑定</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#显式绑定"><span class="toc-number">1.2.2.</span> <span class="toc-text">显式绑定</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#new绑定"><span class="toc-number">1.2.3.</span> <span class="toc-text">new绑定</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#判断this（绑定优先级）"><span class="toc-number">1.3.</span> <span class="toc-text">判断this（绑定优先级）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#空绑定"><span class="toc-number">1.4.</span> <span class="toc-text">空绑定</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#箭头函数"><span class="toc-number">1.5.</span> <span class="toc-text">箭头函数</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ecmadao.com/2017/01/13/Notes/JavaScript/你不知道的JavaScript/《你不知道的JavaScript》-this解析/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ecmadao.com/2017/01/13/Notes/JavaScript/你不知道的JavaScript/《你不知道的JavaScript》-this解析/&text=《你不知道的JavaScript》-this解析"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ecmadao.com/2017/01/13/Notes/JavaScript/你不知道的JavaScript/《你不知道的JavaScript》-this解析/&title=《你不知道的JavaScript》-this解析"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ecmadao.com/2017/01/13/Notes/JavaScript/你不知道的JavaScript/《你不知道的JavaScript》-this解析/&is_video=false&description=《你不知道的JavaScript》-this解析"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=《你不知道的JavaScript》-this解析&body=Check out this article: http://ecmadao.com/2017/01/13/Notes/JavaScript/你不知道的JavaScript/《你不知道的JavaScript》-this解析/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ecmadao.com/2017/01/13/Notes/JavaScript/你不知道的JavaScript/《你不知道的JavaScript》-this解析/&title=《你不知道的JavaScript》-this解析"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ecmadao.com/2017/01/13/Notes/JavaScript/你不知道的JavaScript/《你不知道的JavaScript》-this解析/&title=《你不知道的JavaScript》-this解析"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ecmadao.com/2017/01/13/Notes/JavaScript/你不知道的JavaScript/《你不知道的JavaScript》-this解析/&title=《你不知道的JavaScript》-this解析"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ecmadao.com/2017/01/13/Notes/JavaScript/你不知道的JavaScript/《你不知道的JavaScript》-this解析/&title=《你不知道的JavaScript》-this解析"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ecmadao.com/2017/01/13/Notes/JavaScript/你不知道的JavaScript/《你不知道的JavaScript》-this解析/&name=《你不知道的JavaScript》-this解析&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2017 ecmadao
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    <script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'ecmadao-blog';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
+</body>
+</html>

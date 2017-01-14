@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Table of Contents  generated with DocToc
+
+Django-01-setup&amp;amp;unittest
+setup
+unittest
+功能测试
+单元测试
+
+
+bash
+
+
+
+
+Django-01-setup&amp;amp;unittestsetup123456789101112131415# install$ pip3 install django# setup">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django-01-setup&unittest">
+<meta property="og:url" content="http://ecmadao.com/2017/01/13/Notes/Python/Django/Django-01-setup&unittest/index.html">
+<meta property="og:site_name" content="ecmadao">
+<meta property="og:description" content="Table of Contents  generated with DocToc
+
+Django-01-setup&amp;amp;unittest
+setup
+unittest
+功能测试
+单元测试
+
+
+bash
+
+
+
+
+Django-01-setup&amp;amp;unittestsetup123456789101112131415# install$ pip3 install django# setup">
+<meta property="og:updated_time" content="2017-01-14T12:11:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Django-01-setup&unittest">
+<meta name="twitter:description" content="Table of Contents  generated with DocToc
+
+Django-01-setup&amp;amp;unittest
+setup
+unittest
+功能测试
+单元测试
+
+
+bash
+
+
+
+
+Django-01-setup&amp;amp;unittestsetup123456789101112131415# install$ pip3 install django# setup">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Django-01-setup&amp;unittest</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+    <link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    <script src="/lib/jquery/jquery.min.js"></script>
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/01/13/Notes/React/Redux/Redux入坑笔记-ThinkInRedux/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/01/13/Notes/React/Redux/Redux入坑进阶-源码解析/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ecmadao.com/2017/01/13/Notes/Python/Django/Django-01-setup&amp;unittest/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ecmadao.com/2017/01/13/Notes/Python/Django/Django-01-setup&amp;unittest/&text=Django-01-setup&amp;unittest"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ecmadao.com/2017/01/13/Notes/Python/Django/Django-01-setup&amp;unittest/&title=Django-01-setup&amp;unittest"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ecmadao.com/2017/01/13/Notes/Python/Django/Django-01-setup&amp;unittest/&is_video=false&description=Django-01-setup&amp;unittest"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Django-01-setup&amp;unittest&body=Check out this article: http://ecmadao.com/2017/01/13/Notes/Python/Django/Django-01-setup&amp;unittest/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ecmadao.com/2017/01/13/Notes/Python/Django/Django-01-setup&amp;unittest/&title=Django-01-setup&amp;unittest"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ecmadao.com/2017/01/13/Notes/Python/Django/Django-01-setup&amp;unittest/&title=Django-01-setup&amp;unittest"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ecmadao.com/2017/01/13/Notes/Python/Django/Django-01-setup&amp;unittest/&title=Django-01-setup&amp;unittest"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ecmadao.com/2017/01/13/Notes/Python/Django/Django-01-setup&amp;unittest/&title=Django-01-setup&amp;unittest"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ecmadao.com/2017/01/13/Notes/Python/Django/Django-01-setup&amp;unittest/&name=Django-01-setup&amp;unittest&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Django-01-setup-amp-unittest"><span class="toc-number">1.</span> <span class="toc-text">Django-01-setup&unittest</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#setup"><span class="toc-number">1.1.</span> <span class="toc-text">setup</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#unittest"><span class="toc-number">1.2.</span> <span class="toc-text">unittest</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#功能测试"><span class="toc-number">1.2.1.</span> <span class="toc-text">功能测试</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#单元测试"><span class="toc-number">1.2.2.</span> <span class="toc-text">单元测试</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bash"><span class="toc-number">1.3.</span> <span class="toc-text">bash</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Django-01-setup&amp;unittest
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">ecmadao</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-01-13T05:58:37.000Z" itemprop="datePublished">2017-01-13</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Django/">Django</a>, <a class="tag-link" href="/tags/Python/">Python</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<p><strong>Table of Contents</strong>  <em>generated with <a href="https://github.com/thlorenz/doctoc" target="_blank" rel="external">DocToc</a></em></p>
+<ul>
+<li><a href="#django-01-setup&amp;unittest">Django-01-setup&amp;unittest</a><ul>
+<li><a href="#setup">setup</a></li>
+<li><a href="#unittest">unittest</a><ul>
+<li><a href="#%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95">功能测试</a></li>
+<li><a href="#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95">单元测试</a></li>
+</ul>
+</li>
+<li><a href="#bash">bash</a></li>
+</ul>
+</li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<h2 id="Django-01-setup-amp-unittest"><a href="#Django-01-setup-amp-unittest" class="headerlink" title="Django-01-setup&amp;unittest"></a>Django-01-setup&amp;unittest</h2><h3 id="setup"><a href="#setup" class="headerlink" title="setup"></a>setup</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># install</span></div><div class="line">$ pip3 install django</div><div class="line"></div><div class="line"><span class="comment"># setup</span></div><div class="line"><span class="comment"># 新建项目</span></div><div class="line">$ django-admin.py startproject my_django_app</div><div class="line">$ <span class="built_in">cd</span> my_django_app</div><div class="line"><span class="comment"># $ python3 manage.py migrate</span></div><div class="line"><span class="comment"># 开跑</span></div><div class="line"><span class="comment"># my_django_app/</span></div><div class="line">$ python3 manage.py runserver</div><div class="line"></div><div class="line"><span class="comment"># 新建一个模块</span></div><div class="line"><span class="comment"># my_django_app/</span></div><div class="line">$ python3 manage.py startapp articles</div></pre></td></tr></table></figure>
+<p>新建模块之后，需要在<code>settings.py</code>内注册：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># my_django_app/my_django_app/settings.py</span></div><div class="line">INSTALLED_APPS = [</div><div class="line">  <span class="comment"># ....</span></div><div class="line">  <span class="string">'articles'</span></div><div class="line">]</div></pre></td></tr></table></figure>
+<h3 id="unittest"><a href="#unittest" class="headerlink" title="unittest"></a><a href="https://docs.python.org/3.5/library/unittest.html" target="_blank" rel="external">unittest</a></h3><p>本着测试先行的TDD原则，配置好Django中的单元测试/功能测试</p>
+<ul>
+<li>功能测试往往从用户的角度出发，利用selenium进行UI/交互上的测试</li>
+<li>单元测试则是从程序内部走起，测试函数内部逻辑</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip3 install nose</div></pre></td></tr></table></figure>
+<h4 id="功能测试"><a href="#功能测试" class="headerlink" title="功能测试"></a>功能测试</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># my_django_app/test/test_app.py</span></div><div class="line"><span class="keyword">import</span> unittest</div><div class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestSetup</span><span class="params">(unittest.TestCase)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">setUp</span><span class="params">(self)</span>:</span></div><div class="line">        self.browser = webdriver.Chrome()</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">tearDown</span><span class="params">(self)</span>:</span></div><div class="line">        self.browser.quit()</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_setup</span><span class="params">(self)</span>:</span></div><div class="line">        self.browser.get(<span class="string">'http://localhost:8000'</span>)</div><div class="line">        self.assertIn(<span class="string">'Django'</span>, self.browser.title)</div></pre></td></tr></table></figure>
+<h4 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># my_django_app/articles/tests.py</span></div><div class="line"><span class="keyword">from</span> django.test <span class="keyword">import</span> TestCase</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestArticles</span><span class="params">(TestCase)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_math</span><span class="params">(self)</span>:</span></div><div class="line">        self.assertEqual(<span class="number">1</span> + <span class="number">1</span>, <span class="number">2</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># nose单元测试如果不配合django-nose总是会报错</span></div><div class="line">$ pip3 install django-nose</div></pre></td></tr></table></figure>
+<p>by the way，如果不安装django-nose也可以，只需要每次运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># my_django_app/</span></div><div class="line">$ python3 manage.py <span class="built_in">test</span></div></pre></td></tr></table></figure>
+<p>就可以运行模块内的单元测试。但是无法调用到外部的功能测试。为了能够一行命令运行两种测试，则需要安装<a href="https://django-nose.readthedocs.io/en/latest/" target="_blank" rel="external"><code>django-nose</code></a>，然后进行一些配置：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># my_django_app/my_django_app/settings.py</span></div><div class="line">INSTALLED_APPS = [</div><div class="line">  <span class="comment"># ...</span></div><div class="line">  <span class="string">'django_nose'</span></div><div class="line">]</div><div class="line"></div><div class="line">TEST_RUNNER = <span class="string">'django_nose.NoseTestSuiteRunner'</span></div></pre></td></tr></table></figure>
+<p>然后跑个测试：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># my_django_app/</span></div><div class="line">$ python3 manage.py <span class="built_in">test</span></div></pre></td></tr></table></figure>
+<p>bingo!</p>
+<h3 id="bash"><a href="#bash" class="headerlink" title="bash"></a>bash</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 新建项目</span></div><div class="line">$ django-admin.py startproject my_django_app</div><div class="line"><span class="comment"># 新建模块</span></div><div class="line">$ python3 manage.py startapp articles</div><div class="line"><span class="comment"># 启动服务器</span></div><div class="line">$ python3 manage.py runserver</div><div class="line"><span class="comment"># 更新数据库</span></div><div class="line">$ python3 manage.py makemigrations</div><div class="line">$ python3 manage.py migrate</div><div class="line"><span class="comment"># 跑测试</span></div><div class="line">$ python3 manage.py <span class="built_in">test</span></div><div class="line"><span class="comment"># 在shell内进行交互式操作</span></div><div class="line">$ python3 manage.py shell</div></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Django-01-setup-amp-unittest"><span class="toc-number">1.</span> <span class="toc-text">Django-01-setup&unittest</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#setup"><span class="toc-number">1.1.</span> <span class="toc-text">setup</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#unittest"><span class="toc-number">1.2.</span> <span class="toc-text">unittest</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#功能测试"><span class="toc-number">1.2.1.</span> <span class="toc-text">功能测试</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#单元测试"><span class="toc-number">1.2.2.</span> <span class="toc-text">单元测试</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bash"><span class="toc-number">1.3.</span> <span class="toc-text">bash</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ecmadao.com/2017/01/13/Notes/Python/Django/Django-01-setup&amp;unittest/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ecmadao.com/2017/01/13/Notes/Python/Django/Django-01-setup&amp;unittest/&text=Django-01-setup&amp;unittest"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ecmadao.com/2017/01/13/Notes/Python/Django/Django-01-setup&amp;unittest/&title=Django-01-setup&amp;unittest"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ecmadao.com/2017/01/13/Notes/Python/Django/Django-01-setup&amp;unittest/&is_video=false&description=Django-01-setup&amp;unittest"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Django-01-setup&amp;unittest&body=Check out this article: http://ecmadao.com/2017/01/13/Notes/Python/Django/Django-01-setup&amp;unittest/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ecmadao.com/2017/01/13/Notes/Python/Django/Django-01-setup&amp;unittest/&title=Django-01-setup&amp;unittest"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ecmadao.com/2017/01/13/Notes/Python/Django/Django-01-setup&amp;unittest/&title=Django-01-setup&amp;unittest"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ecmadao.com/2017/01/13/Notes/Python/Django/Django-01-setup&amp;unittest/&title=Django-01-setup&amp;unittest"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ecmadao.com/2017/01/13/Notes/Python/Django/Django-01-setup&amp;unittest/&title=Django-01-setup&amp;unittest"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ecmadao.com/2017/01/13/Notes/Python/Django/Django-01-setup&amp;unittest/&name=Django-01-setup&amp;unittest&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2017 ecmadao
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    <script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'ecmadao-blog';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
+</body>
+</html>

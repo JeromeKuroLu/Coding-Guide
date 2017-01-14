@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Table of Contents  generated with DocToc
+
+Node.js初步 - API - Process
+Process API
+cwd
+chdir
+stdout &amp;amp; stderr &amp;amp; stdin
+exit
+memoryUsage
+nextTick
+
+
+
+
+
+
+Node.js初步 - API - Process
+The process object">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node.js初步-API-Process">
+<meta property="og:url" content="http://ecmadao.com/2017/01/13/Notes/NodeJS/Node基础/Node.js初步-API-Process/index.html">
+<meta property="og:site_name" content="ecmadao">
+<meta property="og:description" content="Table of Contents  generated with DocToc
+
+Node.js初步 - API - Process
+Process API
+cwd
+chdir
+stdout &amp;amp; stderr &amp;amp; stdin
+exit
+memoryUsage
+nextTick
+
+
+
+
+
+
+Node.js初步 - API - Process
+The process object">
+<meta property="og:updated_time" content="2017-01-14T12:11:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Node.js初步-API-Process">
+<meta name="twitter:description" content="Table of Contents  generated with DocToc
+
+Node.js初步 - API - Process
+Process API
+cwd
+chdir
+stdout &amp;amp; stderr &amp;amp; stdin
+exit
+memoryUsage
+nextTick
+
+
+
+
+
+
+Node.js初步 - API - Process
+The process object">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Node.js初步-API-Process</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+    <link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    <script src="/lib/jquery/jquery.min.js"></script>
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/01/13/Notes/NodeJS/Node基础/Node.js初步-API-Path/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/01/13/Notes/NodeJS/Node基础/Node.js初步-API-URL/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ecmadao.com/2017/01/13/Notes/NodeJS/Node基础/Node.js初步-API-Process/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/Node基础/Node.js初步-API-Process/&text=Node.js初步-API-Process"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/Node基础/Node.js初步-API-Process/&title=Node.js初步-API-Process"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/Node基础/Node.js初步-API-Process/&is_video=false&description=Node.js初步-API-Process"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Node.js初步-API-Process&body=Check out this article: http://ecmadao.com/2017/01/13/Notes/NodeJS/Node基础/Node.js初步-API-Process/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/Node基础/Node.js初步-API-Process/&title=Node.js初步-API-Process"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/Node基础/Node.js初步-API-Process/&title=Node.js初步-API-Process"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/Node基础/Node.js初步-API-Process/&title=Node.js初步-API-Process"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/Node基础/Node.js初步-API-Process/&title=Node.js初步-API-Process"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/Node基础/Node.js初步-API-Process/&name=Node.js初步-API-Process&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Node-js初步-API-Process"><span class="toc-number">1.</span> <span class="toc-text">Node.js初步 - API - Process</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Process-API"><span class="toc-number">1.1.</span> <span class="toc-text">Process API</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#cwd"><span class="toc-number">1.1.1.</span> <span class="toc-text">cwd</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#chdir"><span class="toc-number">1.1.2.</span> <span class="toc-text">chdir</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#stdout-amp-stderr-amp-stdin"><span class="toc-number">1.1.3.</span> <span class="toc-text">stdout & stderr & stdin</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#exit"><span class="toc-number">1.1.4.</span> <span class="toc-text">exit</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#memoryUsage"><span class="toc-number">1.1.5.</span> <span class="toc-text">memoryUsage</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#nextTick"><span class="toc-number">1.1.6.</span> <span class="toc-text">nextTick</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Node.js初步-API-Process
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">ecmadao</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-01-13T05:58:37.000Z" itemprop="datePublished">2017-01-13</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/NodeJS/">NodeJS</a>, <a class="tag-link" href="/tags/Node基础/">Node基础</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<p><strong>Table of Contents</strong>  <em>generated with <a href="https://github.com/thlorenz/doctoc" target="_blank" rel="external">DocToc</a></em></p>
+<ul>
+<li><a href="#nodejs%E5%88%9D%E6%AD%A5---api---process">Node.js初步 - API - Process</a><ul>
+<li><a href="#process-api">Process API</a><ul>
+<li><a href="#cwd">cwd</a></li>
+<li><a href="#chdir">chdir</a></li>
+<li><a href="#stdout-&amp;-stderr-&amp;-stdin">stdout &amp; stderr &amp; stdin</a></li>
+<li><a href="#exit">exit</a></li>
+<li><a href="#memoryusage">memoryUsage</a></li>
+<li><a href="#nexttick">nextTick</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<h2 id="Node-js初步-API-Process"><a href="#Node-js初步-API-Process" class="headerlink" title="Node.js初步 - API - Process"></a>Node.js初步 - API - Process</h2><blockquote>
+<p>The process object is a global object and can be accessed from anywhere. It is an instance of EventEmitter</p>
+<p>process对象是一个全局对象，可以在任何地方访问到它。 它是EventEmitter的一个实例</p>
+</blockquote>
+<h3 id="Process-API"><a href="#Process-API" class="headerlink" title="Process API"></a>Process API</h3><h4 id="cwd"><a href="#cwd" class="headerlink" title="cwd"></a>cwd</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">process.cwd();</div></pre></td></tr></table></figure>
+<blockquote>
+<p>查看应用程序当前目录</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="string">`Current directory: <span class="subst">$&#123;process.cwd()&#125;</span>`</span>);</div></pre></td></tr></table></figure>
+<h4 id="chdir"><a href="#chdir" class="headerlink" title="chdir"></a>chdir</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">process.chdir(directory);</div></pre></td></tr></table></figure>
+<blockquote>
+<p>改变应用的当前目录，失败时报错，通过try/catch捕获</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="string">`Starting directory: <span class="subst">$&#123;process.cwd()&#125;</span>`</span>);</div><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">  process.chdir(<span class="string">'/tmp'</span>);</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">`New directory: <span class="subst">$&#123;process.cwd()&#125;</span>`</span>);</div><div class="line">&#125;</div><div class="line"><span class="keyword">catch</span> (err) &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">`chdir: <span class="subst">$&#123;err&#125;</span>`</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="stdout-amp-stderr-amp-stdin"><a href="#stdout-amp-stderr-amp-stdin" class="headerlink" title="stdout &amp; stderr &amp; stdin"></a>stdout &amp; stderr &amp; stdin</h4><blockquote>
+<p><code>process.stdout.write()</code></p>
+<p>标准输出流</p>
+<p>console.log 已封装该方法</p>
+<p>可以通过stdout注册事件监听</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 设置流编码</span></div><div class="line">process.stdout.setEncoding(<span class="string">'utf8'</span>);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log = <span class="function"><span class="keyword">function</span>(<span class="params">d</span>)</span>&#123;</div><div class="line">    process.stdout.write(d+<span class="string">'\n'</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 注册监听事件</span></div><div class="line">process.stdout.on(<span class="string">'data'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">   <span class="built_in">console</span>.log(data);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<blockquote>
+<p><code>process.stderr.write()</code></p>
+<p>标准错误流，捕获错误信息</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 设置流编码</span></div><div class="line">process.stderr.setEncoding(<span class="string">'utf8'</span>);</div></pre></td></tr></table></figure>
+<blockquote>
+<p><code>process.stdin</code> 进程的输入流</p>
+<p>可以通过注册事件的方式来获取输入的内容</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 设置流编码</span></div><div class="line">process.stdin.setEncoding(<span class="string">'utf8'</span>);</div><div class="line"></div><div class="line"><span class="comment">// 打开标准输入流，并监听两个事件</span></div><div class="line">process.stdin.on(<span class="string">'readable'</span>, () =&gt; &#123;</div><div class="line">  <span class="keyword">var</span> chunk = process.stdin.read();</div><div class="line">  <span class="keyword">if</span> (chunk !== <span class="literal">null</span>) &#123;</div><div class="line">    process.stdout.write(<span class="string">`data: <span class="subst">$&#123;chunk&#125;</span>`</span>);</div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">process.stdin.on(<span class="string">'end'</span>, () =&gt; &#123;</div><div class="line">  process.stdout.write(<span class="string">'end'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h4 id="exit"><a href="#exit" class="headerlink" title="exit"></a>exit</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">process.exit([code])</div></pre></td></tr></table></figure>
+<blockquote>
+<p>杀死进程，退出程序</p>
+<p>参数code为退出后返回的代码，如果省略则默认返回0</p>
+</blockquote>
+<h4 id="memoryUsage"><a href="#memoryUsage" class="headerlink" title="memoryUsage"></a>memoryUsage</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">process.memoryUsage()</div></pre></td></tr></table></figure>
+<blockquote>
+<p>返回一个对象，它描述了Node进程的内存使用情况</p>
+<p>单位是bytes</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(util.inspect(process.memoryUsage())); </div><div class="line"></div><div class="line"><span class="comment">// 输出</span></div><div class="line">&#123; </div><div class="line">  <span class="attr">rss</span>: <span class="number">4935680</span>,</div><div class="line">  <span class="attr">heapTotal</span>: <span class="number">1826816</span>,</div><div class="line">  <span class="attr">heapUsed</span>: <span class="number">650472</span> </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="nextTick"><a href="#nextTick" class="headerlink" title="nextTick"></a>nextTick</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">process.nextTick(callback[, arg][, ...]);</div></pre></td></tr></table></figure>
+<blockquote>
+<p>在事件循环的下一次循环中调用 callback 回调函数</p>
+<p>该函数能在任何 I/O 事件 (including timers) 之前调用 callback</p>
+<p>比 <code>setTimeout(fn, 0)</code> 更高效</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="string">'start'</span>);</div><div class="line">process.nextTick(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'nextTick callback'</span>);</div><div class="line">&#125;);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'scheduled'</span>);</div><div class="line"><span class="comment">// Output:</span></div><div class="line"><span class="comment">// start</span></div><div class="line"><span class="comment">// scheduled</span></div><div class="line"><span class="comment">// nextTick callback</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>这个函数对于想要在<em>对象创建</em>后而<em>I/O操作</em>发生之前，执行某些操作来说非常重要</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyThing</span>(<span class="params">options</span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.setupOptions(options);</div><div class="line"></div><div class="line">  process.nextTick(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    <span class="keyword">this</span>.startDoingStuff();</div><div class="line">  &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> thing = <span class="keyword">new</span> MyThing();</div><div class="line">thing.getReadyForStuff();</div><div class="line"></div><div class="line"><span class="comment">// thing.startDoingStuff() gets called now, not before.</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>必须保证函数一定是同步执行或者一定是异步执行</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// WARNING!  DO NOT USE!  BAD UNSAFE HAZARD!</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">maybeSync</span>(<span class="params">arg, cb</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (arg) &#123;</div><div class="line">    cb();</div><div class="line">    <span class="keyword">return</span>;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  fs.stat(<span class="string">'file'</span>, cb);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样做很危险，因为当你这样做的时候：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">maybeSync(<span class="literal">true</span>, () =&gt; &#123;</div><div class="line">  foo();</div><div class="line">&#125;);</div><div class="line">bar();</div></pre></td></tr></table></figure>
+<p>并不知道<code>foo()</code>还是<code>bar()</code>哪个先被调用。如果能够确定是否100%异步或同步的话就没问题：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">definitelyAsync</span>(<span class="params">arg, cb</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (arg) &#123;</div><div class="line">    process.nextTick(cb);</div><div class="line">    <span class="keyword">return</span>;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  fs.stat(<span class="string">'file'</span>, cb);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p><code>nextTick</code> 的队列会在完全执行完毕之后才调用 I/O 操作</p>
+<p>因此，递归设置 <code>nextTick</code> 的回调就像一个 <code>while(true);</code> 循环一样，将会阻止任何<code>I/O操作</code>的发生</p>
+</blockquote>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Node-js初步-API-Process"><span class="toc-number">1.</span> <span class="toc-text">Node.js初步 - API - Process</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Process-API"><span class="toc-number">1.1.</span> <span class="toc-text">Process API</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#cwd"><span class="toc-number">1.1.1.</span> <span class="toc-text">cwd</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#chdir"><span class="toc-number">1.1.2.</span> <span class="toc-text">chdir</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#stdout-amp-stderr-amp-stdin"><span class="toc-number">1.1.3.</span> <span class="toc-text">stdout & stderr & stdin</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#exit"><span class="toc-number">1.1.4.</span> <span class="toc-text">exit</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#memoryUsage"><span class="toc-number">1.1.5.</span> <span class="toc-text">memoryUsage</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#nextTick"><span class="toc-number">1.1.6.</span> <span class="toc-text">nextTick</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ecmadao.com/2017/01/13/Notes/NodeJS/Node基础/Node.js初步-API-Process/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/Node基础/Node.js初步-API-Process/&text=Node.js初步-API-Process"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/Node基础/Node.js初步-API-Process/&title=Node.js初步-API-Process"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/Node基础/Node.js初步-API-Process/&is_video=false&description=Node.js初步-API-Process"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Node.js初步-API-Process&body=Check out this article: http://ecmadao.com/2017/01/13/Notes/NodeJS/Node基础/Node.js初步-API-Process/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/Node基础/Node.js初步-API-Process/&title=Node.js初步-API-Process"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/Node基础/Node.js初步-API-Process/&title=Node.js初步-API-Process"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/Node基础/Node.js初步-API-Process/&title=Node.js初步-API-Process"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/Node基础/Node.js初步-API-Process/&title=Node.js初步-API-Process"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/Node基础/Node.js初步-API-Process/&name=Node.js初步-API-Process&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2017 ecmadao
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    <script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'ecmadao-blog';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
+</body>
+</html>

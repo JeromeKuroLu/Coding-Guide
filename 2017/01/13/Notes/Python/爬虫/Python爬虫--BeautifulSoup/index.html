@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Table of Contents  generated with DocToc
+
+Python爬虫–BeautifulSoup
+quick start
+遍历DOM
+获取节点内容
+获取子节点
+获取父节点
+获取兄弟节点
+获取前后节点
+
+
+搜索DOM
+全DOM搜索
+相邻节点搜索
+
+
+
+
+
+
+Python爬虫–BeautifulSoup使用BeautifulSoup库解析HTML
+quick sta">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python爬虫--BeautifulSoup">
+<meta property="og:url" content="http://ecmadao.com/2017/01/13/Notes/Python/爬虫/Python爬虫--BeautifulSoup/index.html">
+<meta property="og:site_name" content="ecmadao">
+<meta property="og:description" content="Table of Contents  generated with DocToc
+
+Python爬虫–BeautifulSoup
+quick start
+遍历DOM
+获取节点内容
+获取子节点
+获取父节点
+获取兄弟节点
+获取前后节点
+
+
+搜索DOM
+全DOM搜索
+相邻节点搜索
+
+
+
+
+
+
+Python爬虫–BeautifulSoup使用BeautifulSoup库解析HTML
+quick sta">
+<meta property="og:updated_time" content="2017-01-14T12:11:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python爬虫--BeautifulSoup">
+<meta name="twitter:description" content="Table of Contents  generated with DocToc
+
+Python爬虫–BeautifulSoup
+quick start
+遍历DOM
+获取节点内容
+获取子节点
+获取父节点
+获取兄弟节点
+获取前后节点
+
+
+搜索DOM
+全DOM搜索
+相邻节点搜索
+
+
+
+
+
+
+Python爬虫–BeautifulSoup使用BeautifulSoup库解析HTML
+quick sta">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Python爬虫--BeautifulSoup</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+    <link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    <script src="/lib/jquery/jquery.min.js"></script>
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/01/13/Notes/Python/Python及应用/Python3及应用7-打包发布自己的库/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/01/13/Notes/Python/Python及应用/Python3及应用8-命令行工具/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ecmadao.com/2017/01/13/Notes/Python/爬虫/Python爬虫--BeautifulSoup/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ecmadao.com/2017/01/13/Notes/Python/爬虫/Python爬虫--BeautifulSoup/&text=Python爬虫--BeautifulSoup"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ecmadao.com/2017/01/13/Notes/Python/爬虫/Python爬虫--BeautifulSoup/&title=Python爬虫--BeautifulSoup"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ecmadao.com/2017/01/13/Notes/Python/爬虫/Python爬虫--BeautifulSoup/&is_video=false&description=Python爬虫--BeautifulSoup"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Python爬虫--BeautifulSoup&body=Check out this article: http://ecmadao.com/2017/01/13/Notes/Python/爬虫/Python爬虫--BeautifulSoup/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ecmadao.com/2017/01/13/Notes/Python/爬虫/Python爬虫--BeautifulSoup/&title=Python爬虫--BeautifulSoup"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ecmadao.com/2017/01/13/Notes/Python/爬虫/Python爬虫--BeautifulSoup/&title=Python爬虫--BeautifulSoup"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ecmadao.com/2017/01/13/Notes/Python/爬虫/Python爬虫--BeautifulSoup/&title=Python爬虫--BeautifulSoup"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ecmadao.com/2017/01/13/Notes/Python/爬虫/Python爬虫--BeautifulSoup/&title=Python爬虫--BeautifulSoup"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ecmadao.com/2017/01/13/Notes/Python/爬虫/Python爬虫--BeautifulSoup/&name=Python爬虫--BeautifulSoup&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Python爬虫–BeautifulSoup"><span class="toc-number">1.</span> <span class="toc-text">Python爬虫–BeautifulSoup</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#quick-start"><span class="toc-number">1.1.</span> <span class="toc-text">quick start</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#遍历DOM"><span class="toc-number">1.2.</span> <span class="toc-text">遍历DOM</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#获取节点内容"><span class="toc-number">1.2.1.</span> <span class="toc-text">获取节点内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#获取子节点"><span class="toc-number">1.2.2.</span> <span class="toc-text">获取子节点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#获取父节点"><span class="toc-number">1.2.3.</span> <span class="toc-text">获取父节点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#获取兄弟节点"><span class="toc-number">1.2.4.</span> <span class="toc-text">获取兄弟节点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#获取前后节点"><span class="toc-number">1.2.5.</span> <span class="toc-text">获取前后节点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#搜索DOM"><span class="toc-number">1.3.</span> <span class="toc-text">搜索DOM</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#全DOM搜索"><span class="toc-number">1.3.1.</span> <span class="toc-text">全DOM搜索</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#相邻节点搜索"><span class="toc-number">1.3.2.</span> <span class="toc-text">相邻节点搜索</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Python爬虫--BeautifulSoup
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">ecmadao</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-01-13T05:58:37.000Z" itemprop="datePublished">2017-01-13</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Python/">Python</a>, <a class="tag-link" href="/tags/爬虫/">爬虫</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<p><strong>Table of Contents</strong>  <em>generated with <a href="https://github.com/thlorenz/doctoc" target="_blank" rel="external">DocToc</a></em></p>
+<ul>
+<li><a href="#python%E7%88%AC%E8%99%AB--beautifulsoup">Python爬虫–BeautifulSoup</a><ul>
+<li><a href="#quick-start">quick start</a></li>
+<li><a href="#%E9%81%8D%E5%8E%86dom">遍历DOM</a><ul>
+<li><a href="#%E8%8E%B7%E5%8F%96%E8%8A%82%E7%82%B9%E5%86%85%E5%AE%B9">获取节点内容</a></li>
+<li><a href="#%E8%8E%B7%E5%8F%96%E5%AD%90%E8%8A%82%E7%82%B9">获取子节点</a></li>
+<li><a href="#%E8%8E%B7%E5%8F%96%E7%88%B6%E8%8A%82%E7%82%B9">获取父节点</a></li>
+<li><a href="#%E8%8E%B7%E5%8F%96%E5%85%84%E5%BC%9F%E8%8A%82%E7%82%B9">获取兄弟节点</a></li>
+<li><a href="#%E8%8E%B7%E5%8F%96%E5%89%8D%E5%90%8E%E8%8A%82%E7%82%B9">获取前后节点</a></li>
+</ul>
+</li>
+<li><a href="#%E6%90%9C%E7%B4%A2dom">搜索DOM</a><ul>
+<li><a href="#%E5%85%A8dom%E6%90%9C%E7%B4%A2">全DOM搜索</a></li>
+<li><a href="#%E7%9B%B8%E9%82%BB%E8%8A%82%E7%82%B9%E6%90%9C%E7%B4%A2">相邻节点搜索</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<h2 id="Python爬虫–BeautifulSoup"><a href="#Python爬虫–BeautifulSoup" class="headerlink" title="Python爬虫–BeautifulSoup"></a>Python爬虫–BeautifulSoup</h2><p>使用BeautifulSoup库解析HTML</p>
+<h3 id="quick-start"><a href="#quick-start" class="headerlink" title="quick start"></a>quick start</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># install</span></div><div class="line">sudo pip3 install beautifulsoup4</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># import</span></div><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</div><div class="line"></div><div class="line">soup = BeautifulSoup(htmlstring, <span class="string">"html.parser"</span>)</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>bs中的对象类型</th>
+<th>含义</th>
+<th>常用方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tag</td>
+<td>html标签。只能获取到第一个标签。Type为bs4.element.Tag，可以通过str()转化为string</td>
+<td><code>soup.tag.name</code>, <code>soup.tag.attrs</code></td>
+</tr>
+<tr>
+<td>NavigableString</td>
+<td>通过<code>.string</code>获取到的标签内容，类型为bs4.element.NavigableString</td>
+<td><code>soup.tag.string</code></td>
+</tr>
+<tr>
+<td>BeautifulSoup</td>
+<td>一个文档的全部内容</td>
+<td><code>soup.name</code>(document)</td>
+</tr>
+<tr>
+<td>Comment</td>
+<td>特殊类型的 NavigableString 对象，输出的内容不包括注释符号</td>
+</tr>
+</tbody>
+</table>
+<h3 id="遍历DOM"><a href="#遍历DOM" class="headerlink" title="遍历DOM"></a>遍历DOM</h3><h4 id="获取节点内容"><a href="#获取节点内容" class="headerlink" title="获取节点内容"></a>获取节点内容</h4><ul>
+<li><p><code>soup.tag.string</code></p>
+<ul>
+<li>如果tag只有一个 NavigableString 类型子节点,那么这个tag可以使用 .string 得到子节点</li>
+<li>如果一个tag仅有一个子节点,那么这个tag也可以使用 .string 方法,输出结果与当前唯一子节点的 .string 结果相同</li>
+<li>如果tag包含了多个子节点,tag就无法确定，string 方法应该调用哪个子节点的内容, .string 的输出结果是 None</li>
+</ul>
+</li>
+<li><p><code>soup.tag.strings</code></p>
+<ul>
+<li>获取多个子节点内容。需遍历获取：</li>
+<li><code>for string in soup.tag.strings</code></li>
+<li>其结果会包含空行或空格</li>
+</ul>
+</li>
+<li><p><code>soup.tag.stripped_strings</code></p>
+<ul>
+<li>效果类似于<code>.strings</code></li>
+<li>获取多个子节点内容，但不含空行或空格</li>
+</ul>
+</li>
+</ul>
+<h4 id="获取子节点"><a href="#获取子节点" class="headerlink" title="获取子节点"></a>获取子节点</h4><ul>
+<li><p><code>soup.tag.contents</code></p>
+<ul>
+<li>将tag的<strong>直接子节点</strong>以list列表的方式输出</li>
+<li><strong>节点内的空白元素(如换行符\n)也会成为列表的一员输出</strong></li>
+</ul>
+</li>
+<li><p><code>soup.tag.children</code></p>
+<ul>
+<li>返回由Tag子节点组成的生成器对象，只能获取到<strong>直接子节点</strong></li>
+<li><code>for child in soup.tag.children</code></li>
+</ul>
+</li>
+<li><p><code>soup.tag.descendants</code></p>
+<ul>
+<li>返回由Tag子节点组成的生成器对象，获取到<strong>全部子节点</strong></li>
+<li><code>for child in soup.tag.descendants</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="获取父节点"><a href="#获取父节点" class="headerlink" title="获取父节点"></a>获取父节点</h4><ul>
+<li><code>soup.tag.parent</code> # 获取单个父节点</li>
+<li><code>soup.tag.parents</code> # 获取全部父节点</li>
+</ul>
+<h4 id="获取兄弟节点"><a href="#获取兄弟节点" class="headerlink" title="获取兄弟节点"></a>获取兄弟节点</h4><ul>
+<li><code>soup.tag.next_sibling</code> # 下一个兄弟节点</li>
+<li><code>soup.tag.previous_sibling</code> # 上一个兄弟节点</li>
+<li>若节点不存在，则返回 None</li>
+</ul>
+<h4 id="获取前后节点"><a href="#获取前后节点" class="headerlink" title="获取前后节点"></a>获取前后节点</h4><ul>
+<li><p>单个前后节点</p>
+<ul>
+<li><code>soup.tag.next_element</code></li>
+<li><code>soup.tag.previous_element</code></li>
+</ul>
+</li>
+<li><p>全部前后节点</p>
+<ul>
+<li><code>soup.tag.next_elements</code></li>
+<li><code>soup.tag.previous_elements</code></li>
+</ul>
+</li>
+</ul>
+<p>与 兄弟节点 不同，它并不是针对于兄弟节点，而是<strong>按照层次往内部深入</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">html = <span class="string">'&lt;head&gt;&lt;title&gt;The Dormouse\'s story&lt;/title&gt;&lt;/head&gt;'</span></div><div class="line">soup = BeautifulSoup(html, <span class="string">"html.parser"</span>)</div><div class="line">soup.head.next_element <span class="comment"># &lt;title&gt;The Dormouse's story&lt;/title&gt;</span></div><div class="line">soup.title.next_element <span class="comment"># The Dormouse's story</span></div></pre></td></tr></table></figure>
+<h3 id="搜索DOM"><a href="#搜索DOM" class="headerlink" title="搜索DOM"></a>搜索DOM</h3><h4 id="全DOM搜索"><a href="#全DOM搜索" class="headerlink" title="全DOM搜索"></a>全DOM搜索</h4><ul>
+<li><code>find_all( name , attrs , recursive , text , **kwargs )</code> 返回找到的全部元素，为一个<strong>列表</strong></li>
+<li><code>find( name , attrs , recursive , text , **kwargs )</code> 返回找到的第一个元素</li>
+</ul>
+<ul>
+<li>name：tag名，可以传入字符串、正则、列表、true、方法</li>
+<li>attrs：属性，{key: value}或者id=XX(class=XX)这样</li>
+<li>text：文档中的字符串内容，参数接受 字符串 , 正则表达式 , 列表, True</li>
+<li>limit：返回的数目上线</li>
+<li>recursive：是否搜索Tag的所有子孙节点，默认为True</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">soup.find_all(<span class="string">'a'</span>, attrs=&#123;href: <span class="string">'/'</span>&#125;)</div><div class="line">soup.find_all(<span class="string">'a'</span>, id=<span class="string">"test"</span>)</div><div class="line"></div><div class="line"><span class="comment"># HTML5中的 data-* 属性不能直接在find_all()里定义</span></div><div class="line"><span class="comment"># 但是可以通过 find_all() 方法的 attrs 参数定义一个字典参数来搜索包含特殊属性的tag</span></div><div class="line">soup.find_all(attrs=&#123;<span class="string">"data-foo"</span>: <span class="string">"value"</span>,<span class="string">"id"</span>:<span class="string">"XX"</span>&#125;)</div></pre></td></tr></table></figure>
+<h4 id="相邻节点搜索"><a href="#相邻节点搜索" class="headerlink" title="相邻节点搜索"></a>相邻节点搜索</h4><ul>
+<li><code>find_parents()</code></li>
+<li><p><code>find_parent()</code></p>
+</li>
+<li><p><code>find_next_siblings()</code></p>
+</li>
+<li><p><code>find_next_sibling()</code></p>
+</li>
+<li><p><code>find_previous_siblings()</code></p>
+</li>
+<li><p><code>find_previous_sibling()</code></p>
+</li>
+<li><p><code>find_all_next()</code></p>
+</li>
+<li><p><code>find_next()</code></p>
+</li>
+<li><p><code>find_all_previous()</code></p>
+</li>
+<li><code>find_previous()</code></li>
+</ul>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Python爬虫–BeautifulSoup"><span class="toc-number">1.</span> <span class="toc-text">Python爬虫–BeautifulSoup</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#quick-start"><span class="toc-number">1.1.</span> <span class="toc-text">quick start</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#遍历DOM"><span class="toc-number">1.2.</span> <span class="toc-text">遍历DOM</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#获取节点内容"><span class="toc-number">1.2.1.</span> <span class="toc-text">获取节点内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#获取子节点"><span class="toc-number">1.2.2.</span> <span class="toc-text">获取子节点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#获取父节点"><span class="toc-number">1.2.3.</span> <span class="toc-text">获取父节点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#获取兄弟节点"><span class="toc-number">1.2.4.</span> <span class="toc-text">获取兄弟节点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#获取前后节点"><span class="toc-number">1.2.5.</span> <span class="toc-text">获取前后节点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#搜索DOM"><span class="toc-number">1.3.</span> <span class="toc-text">搜索DOM</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#全DOM搜索"><span class="toc-number">1.3.1.</span> <span class="toc-text">全DOM搜索</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#相邻节点搜索"><span class="toc-number">1.3.2.</span> <span class="toc-text">相邻节点搜索</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ecmadao.com/2017/01/13/Notes/Python/爬虫/Python爬虫--BeautifulSoup/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ecmadao.com/2017/01/13/Notes/Python/爬虫/Python爬虫--BeautifulSoup/&text=Python爬虫--BeautifulSoup"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ecmadao.com/2017/01/13/Notes/Python/爬虫/Python爬虫--BeautifulSoup/&title=Python爬虫--BeautifulSoup"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ecmadao.com/2017/01/13/Notes/Python/爬虫/Python爬虫--BeautifulSoup/&is_video=false&description=Python爬虫--BeautifulSoup"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Python爬虫--BeautifulSoup&body=Check out this article: http://ecmadao.com/2017/01/13/Notes/Python/爬虫/Python爬虫--BeautifulSoup/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ecmadao.com/2017/01/13/Notes/Python/爬虫/Python爬虫--BeautifulSoup/&title=Python爬虫--BeautifulSoup"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ecmadao.com/2017/01/13/Notes/Python/爬虫/Python爬虫--BeautifulSoup/&title=Python爬虫--BeautifulSoup"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ecmadao.com/2017/01/13/Notes/Python/爬虫/Python爬虫--BeautifulSoup/&title=Python爬虫--BeautifulSoup"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ecmadao.com/2017/01/13/Notes/Python/爬虫/Python爬虫--BeautifulSoup/&title=Python爬虫--BeautifulSoup"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ecmadao.com/2017/01/13/Notes/Python/爬虫/Python爬虫--BeautifulSoup/&name=Python爬虫--BeautifulSoup&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2017 ecmadao
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    <script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'ecmadao-blog';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
+</body>
+</html>

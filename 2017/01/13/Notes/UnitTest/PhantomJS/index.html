@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Table of Contents  generated with DocToc
+
+PhantomJS
+install
+编写测试脚本
+webpage实例
+webpage属性
+webpage方法
+User-Agent
+获取页面上下文
+网页截图
+监测网络请求
+使用附加库
+
+
+
+
+
+
+PhantomJSA browser without a GUIPhantomJS基于Webkit引擎，可以布局和渲">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PhantomJS">
+<meta property="og:url" content="http://ecmadao.com/2017/01/13/Notes/UnitTest/PhantomJS/index.html">
+<meta property="og:site_name" content="ecmadao">
+<meta property="og:description" content="Table of Contents  generated with DocToc
+
+PhantomJS
+install
+编写测试脚本
+webpage实例
+webpage属性
+webpage方法
+User-Agent
+获取页面上下文
+网页截图
+监测网络请求
+使用附加库
+
+
+
+
+
+
+PhantomJSA browser without a GUIPhantomJS基于Webkit引擎，可以布局和渲">
+<meta property="og:updated_time" content="2017-01-14T12:11:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PhantomJS">
+<meta name="twitter:description" content="Table of Contents  generated with DocToc
+
+PhantomJS
+install
+编写测试脚本
+webpage实例
+webpage属性
+webpage方法
+User-Agent
+获取页面上下文
+网页截图
+监测网络请求
+使用附加库
+
+
+
+
+
+
+PhantomJSA browser without a GUIPhantomJS基于Webkit引擎，可以布局和渲">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>PhantomJS</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+    <link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    <script src="/lib/jquery/jquery.min.js"></script>
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/01/13/Notes/Python/Python踩坑笔记/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/01/13/Notes/UnitTest/UnitTest in React/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ecmadao.com/2017/01/13/Notes/UnitTest/PhantomJS/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ecmadao.com/2017/01/13/Notes/UnitTest/PhantomJS/&text=PhantomJS"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ecmadao.com/2017/01/13/Notes/UnitTest/PhantomJS/&title=PhantomJS"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ecmadao.com/2017/01/13/Notes/UnitTest/PhantomJS/&is_video=false&description=PhantomJS"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=PhantomJS&body=Check out this article: http://ecmadao.com/2017/01/13/Notes/UnitTest/PhantomJS/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ecmadao.com/2017/01/13/Notes/UnitTest/PhantomJS/&title=PhantomJS"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ecmadao.com/2017/01/13/Notes/UnitTest/PhantomJS/&title=PhantomJS"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ecmadao.com/2017/01/13/Notes/UnitTest/PhantomJS/&title=PhantomJS"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ecmadao.com/2017/01/13/Notes/UnitTest/PhantomJS/&title=PhantomJS"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ecmadao.com/2017/01/13/Notes/UnitTest/PhantomJS/&name=PhantomJS&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#PhantomJS"><span class="toc-number">1.</span> <span class="toc-text">PhantomJS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#install"><span class="toc-number">1.1.</span> <span class="toc-text">install</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编写测试脚本"><span class="toc-number">1.2.</span> <span class="toc-text">编写测试脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#webpage实例"><span class="toc-number">1.3.</span> <span class="toc-text">webpage实例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#webpage属性"><span class="toc-number">1.3.1.</span> <span class="toc-text">webpage属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#webpage方法"><span class="toc-number">1.3.2.</span> <span class="toc-text">webpage方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#User-Agent"><span class="toc-number">1.3.3.</span> <span class="toc-text">User-Agent</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#获取页面上下文"><span class="toc-number">1.3.4.</span> <span class="toc-text">获取页面上下文</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#网页截图"><span class="toc-number">1.3.5.</span> <span class="toc-text">网页截图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#监测网络请求"><span class="toc-number">1.3.6.</span> <span class="toc-text">监测网络请求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用附加库"><span class="toc-number">1.3.7.</span> <span class="toc-text">使用附加库</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        PhantomJS
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">ecmadao</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-01-13T05:58:37.000Z" itemprop="datePublished">2017-01-13</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/UnitTest/">UnitTest</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<p><strong>Table of Contents</strong>  <em>generated with <a href="https://github.com/thlorenz/doctoc" target="_blank" rel="external">DocToc</a></em></p>
+<ul>
+<li><a href="#phantomjs">PhantomJS</a><ul>
+<li><a href="#install">install</a></li>
+<li><a href="#%E7%BC%96%E5%86%99%E6%B5%8B%E8%AF%95%E8%84%9A%E6%9C%AC">编写测试脚本</a></li>
+<li><a href="#webpage%E5%AE%9E%E4%BE%8B">webpage实例</a><ul>
+<li><a href="#webpage%E5%B1%9E%E6%80%A7">webpage属性</a></li>
+<li><a href="#webpage%E6%96%B9%E6%B3%95">webpage方法</a></li>
+<li><a href="#user-agent">User-Agent</a></li>
+<li><a href="#%E8%8E%B7%E5%8F%96%E9%A1%B5%E9%9D%A2%E4%B8%8A%E4%B8%8B%E6%96%87">获取页面上下文</a></li>
+<li><a href="#%E7%BD%91%E9%A1%B5%E6%88%AA%E5%9B%BE">网页截图</a></li>
+<li><a href="#%E7%9B%91%E6%B5%8B%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82">监测网络请求</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8%E9%99%84%E5%8A%A0%E5%BA%93">使用附加库</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<h2 id="PhantomJS"><a href="#PhantomJS" class="headerlink" title="PhantomJS"></a>PhantomJS</h2><p>A browser without a GUI<br>PhantomJS基于Webkit引擎，可以布局和渲染页面。它原生支持多种web标准，可以使用HTML，CSS，SVG，Canvas</p>
+<h3 id="install"><a href="#install" class="headerlink" title="install"></a>install</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># install</span></div><div class="line">$ brew update &amp;&amp; brew install phantomjs</div><div class="line"><span class="comment"># 之后就可以运行phantomjs命令</span></div><div class="line"></div><div class="line"><span class="comment"># 查看版本</span></div><div class="line">$ phantomjs -v</div><div class="line"><span class="comment"># 查看操作</span></div><div class="line">$ phantomjs --help</div><div class="line"><span class="comment"># 运行测试脚本</span></div><div class="line">$ phantomjs &lt;js file name&gt;</div></pre></td></tr></table></figure>
+<h3 id="编写测试脚本"><a href="#编写测试脚本" class="headerlink" title="编写测试脚本"></a>编写测试脚本</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line">* 重要API-webpage</div><div class="line">* webpage用来打开网页，并返回status。若成功打开则为success</div><div class="line">* 在打开网页之后，可以调用webpage.render(filename)来快速的生成一个当前网页的截图</div><div class="line">*/</div><div class="line"></div><div class="line"><span class="keyword">var</span> webpage = <span class="built_in">require</span>(<span class="string">'webpage'</span>).create();</div><div class="line">webpage.open(<span class="string">'https://google.com'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">status</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'status is '</span> + status);</div><div class="line">  <span class="keyword">if</span>(status === <span class="string">'success'</span>) &#123;</div><div class="line">    webpage.render(<span class="string">'google.png'</span>);</div><div class="line">  &#125;</div><div class="line">  phantom.exit();</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p><code>phantom.exit()</code>必须在脚本结束时调用，否则PhantomJS永远不会终止</p>
+<h3 id="webpage实例"><a href="#webpage实例" class="headerlink" title="webpage实例"></a>webpage实例</h3><h4 id="webpage属性"><a href="#webpage属性" class="headerlink" title="webpage属性"></a>webpage属性</h4><ul>
+<li><code>page.clipRect</code> 返回一个Object，代表webpage截图剪裁的图像大小</li>
+<li><code>page.content</code> 返回当前页面的HTML</li>
+<li><code>page.cookies</code></li>
+<li><code>page.settings.userAgent</code> 获取及设置UserAgent</li>
+<li><code>page.title</code></li>
+<li><code>page.url</code></li>
+<li><code>page.viewportSize</code> 返回当前模拟的窗口大小</li>
+</ul>
+<h4 id="webpage方法"><a href="#webpage方法" class="headerlink" title="webpage方法"></a>webpage方法</h4><ul>
+<li><code>page.close</code></li>
+<li><code>page.loadFinished</code></li>
+<li><code>page.loadStarted</code></li>
+<li><code>page.openUrl</code></li>
+<li><p><code>page.render</code></p>
+</li>
+<li><p><code>page.addCookie</code></p>
+</li>
+<li><code>page.deleteCookie</code></li>
+<li><code>page.clearCookies</code></li>
+</ul>
+<h4 id="User-Agent"><a href="#User-Agent" class="headerlink" title="User-Agent"></a>User-Agent</h4><p>通过<code>webpage.settings.userAgent</code>可以获取及设置UserAgent</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var webpage = require(<span class="string">'webpage'</span>).create();</div><div class="line">print(webpage.setting.userAgent);</div><div class="line">webpage.setting.userAgent = <span class="string">'new agent'</span></div></pre></td></tr></table></figure>
+<h4 id="获取页面上下文"><a href="#获取页面上下文" class="headerlink" title="获取页面上下文"></a>获取页面上下文</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line">* 使用webpage的evaluate()函数</div><div class="line">* 可以在回调中获取到页面的上下文环境</div><div class="line">* 但是在evaluate()中通过console.log()输出的内容不会出现在terminal中</div><div class="line">*/</div><div class="line"></div><div class="line"><span class="keyword">var</span> webpage = <span class="built_in">require</span>(<span class="string">'webpage'</span>).create();</div><div class="line">webpage.open(<span class="string">'https://google.com'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">status</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> pageTitle = webpage.evaluate(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> title = <span class="built_in">document</span>.title;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'page title is '</span> + title);</div><div class="line">    <span class="comment">// 甚至可以使用document.getElementById()</span></div><div class="line">    <span class="keyword">return</span> title;</div><div class="line">  &#125;);</div><div class="line">  <span class="built_in">console</span>.log(pageTitle);</div><div class="line">  phantom.exit();</div><div class="line">&#125;);</div><div class="line"><span class="comment">// 输出结果</span></div><div class="line"><span class="comment">// Google</span></div></pre></td></tr></table></figure>
+<ul>
+<li><code>evalute()</code>方法可以返回一个对象，然而<strong>返回值仅限于对象，不能包含函数（或闭包）</strong></li>
+<li>任何来自于网页并且包括来自<code>evaluate()</code>内部代码的控制台信息，默认不会显示。解决方案如下：</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 重写webpage的onConsoleMessage方法，使输出统一调用console.log</span></div><div class="line"><span class="keyword">var</span> webpage = <span class="built_in">require</span>(<span class="string">'webpage'</span>).create();</div><div class="line">webpage.onConsoleMessage = <span class="function"><span class="keyword">function</span>(<span class="params">(msg</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(msg);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h4 id="网页截图"><a href="#网页截图" class="headerlink" title="网页截图"></a>网页截图</h4><p>在webpage成功open一个页面之后，可以调用它render的函数来截取当前页面的快照。</p>
+<ul>
+<li><code>render(filename)</code> # 针对当前open的页面截图，在脚本文件夹下生成指定文件名的图片</li>
+<li><code>viewportSize</code> # 相当于浏览器窗口的大小，默认为手机端大小的窗口</li>
+<li><code>clipRect</code> # 截图剪裁的图像大小</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> webpage = <span class="built_in">require</span>(<span class="string">'webpage'</span>).create();</div><div class="line">webpage.viewportSize = &#123;</div><div class="line">  <span class="attr">width</span>: <span class="number">1024</span>,</div><div class="line">  <span class="attr">height</span>: <span class="number">768</span></div><div class="line">&#125;;</div><div class="line">webpage.clipRect = &#123;</div><div class="line">  <span class="attr">top</span>: <span class="number">0</span>,</div><div class="line">  <span class="attr">left</span>: <span class="number">0</span>,</div><div class="line">  <span class="attr">width</span>: <span class="number">1024</span>,</div><div class="line">  <span class="attr">height</span>: <span class="number">768</span></div><div class="line">&#125;;</div><div class="line">webpage.open(<span class="string">'https://www.google.com'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">status</span>) </span>&#123;</div><div class="line">  webpage.render(<span class="string">'google.png'</span>);</div><div class="line">  phantomjs.exit();</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h4 id="监测网络请求"><a href="#监测网络请求" class="headerlink" title="监测网络请求"></a>监测网络请求</h4><ul>
+<li><code>onResourceRequested</code> 记录request</li>
+<li><code>onResourceReceived</code> 记录response</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> url = <span class="string">'https://www.google.com'</span>;</div><div class="line"><span class="keyword">var</span> webpage = <span class="built_in">require</span>(<span class="string">'webpage'</span>).create();</div><div class="line">webpage.onResourceRequested = <span class="function"><span class="keyword">function</span>(<span class="params">request</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'Request '</span> + <span class="built_in">JSON</span>.stringify(request, <span class="literal">undefined</span>, <span class="number">4</span>));</div><div class="line">&#125;;</div><div class="line">webpage.onResourceReceived = <span class="function"><span class="keyword">function</span>(<span class="params">response</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'Receive '</span> + <span class="built_in">JSON</span>.stringify(response, <span class="literal">undefined</span>, <span class="number">4</span>));</div><div class="line">&#125;;</div><div class="line">webpage.open(url, <span class="function"><span class="keyword">function</span>(<span class="params">status</span>) </span>&#123;</div><div class="line">  </div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h4 id="使用附加库"><a href="#使用附加库" class="headerlink" title="使用附加库"></a>使用附加库</h4><p>在evaluate内获取DOM元素太慢太痛苦？我们可以引入jQuery等第三方库来便捷操作</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> webpage = <span class="built_in">require</span>(<span class="string">'webpage'</span>).create();</div><div class="line">page.open(<span class="string">'https://www.google.com'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line"><span class="comment">// includeJs用来引入第三方库</span></div><div class="line">page.includeJs(<span class="string">"http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    page.evaluate(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      $(<span class="string">"button"</span>).click(); <span class="comment">// jQuery</span></div><div class="line">    &#125;);</div><div class="line">    phantom.exit()</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#PhantomJS"><span class="toc-number">1.</span> <span class="toc-text">PhantomJS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#install"><span class="toc-number">1.1.</span> <span class="toc-text">install</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编写测试脚本"><span class="toc-number">1.2.</span> <span class="toc-text">编写测试脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#webpage实例"><span class="toc-number">1.3.</span> <span class="toc-text">webpage实例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#webpage属性"><span class="toc-number">1.3.1.</span> <span class="toc-text">webpage属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#webpage方法"><span class="toc-number">1.3.2.</span> <span class="toc-text">webpage方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#User-Agent"><span class="toc-number">1.3.3.</span> <span class="toc-text">User-Agent</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#获取页面上下文"><span class="toc-number">1.3.4.</span> <span class="toc-text">获取页面上下文</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#网页截图"><span class="toc-number">1.3.5.</span> <span class="toc-text">网页截图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#监测网络请求"><span class="toc-number">1.3.6.</span> <span class="toc-text">监测网络请求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用附加库"><span class="toc-number">1.3.7.</span> <span class="toc-text">使用附加库</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ecmadao.com/2017/01/13/Notes/UnitTest/PhantomJS/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ecmadao.com/2017/01/13/Notes/UnitTest/PhantomJS/&text=PhantomJS"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ecmadao.com/2017/01/13/Notes/UnitTest/PhantomJS/&title=PhantomJS"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ecmadao.com/2017/01/13/Notes/UnitTest/PhantomJS/&is_video=false&description=PhantomJS"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=PhantomJS&body=Check out this article: http://ecmadao.com/2017/01/13/Notes/UnitTest/PhantomJS/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ecmadao.com/2017/01/13/Notes/UnitTest/PhantomJS/&title=PhantomJS"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ecmadao.com/2017/01/13/Notes/UnitTest/PhantomJS/&title=PhantomJS"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ecmadao.com/2017/01/13/Notes/UnitTest/PhantomJS/&title=PhantomJS"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ecmadao.com/2017/01/13/Notes/UnitTest/PhantomJS/&title=PhantomJS"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ecmadao.com/2017/01/13/Notes/UnitTest/PhantomJS/&name=PhantomJS&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2017 ecmadao
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    <script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'ecmadao-blog';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
+</body>
+</html>

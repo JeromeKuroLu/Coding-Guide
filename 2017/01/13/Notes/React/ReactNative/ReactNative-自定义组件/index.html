@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Table of Contents  generated with DocToc
+
+ReactNative-自定义组件ViewPagerAndroid
+INTRO
+目录结构
+代码
+坑1
+方案一
+方案二
+
+
+坑2
+
+
+
+
+ReactNative-自定义组件ViewPagerAndroidINTRO最初接触ReactNative的时候，觉得它的性能和UI方面很弱，只能做出一些原生应用的基本功能，比">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ReactNative-自定义组件">
+<meta property="og:url" content="http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative-自定义组件/index.html">
+<meta property="og:site_name" content="ecmadao">
+<meta property="og:description" content="Table of Contents  generated with DocToc
+
+ReactNative-自定义组件ViewPagerAndroid
+INTRO
+目录结构
+代码
+坑1
+方案一
+方案二
+
+
+坑2
+
+
+
+
+ReactNative-自定义组件ViewPagerAndroidINTRO最初接触ReactNative的时候，觉得它的性能和UI方面很弱，只能做出一些原生应用的基本功能，比">
+<meta property="og:image" content="http://ecmadao.com/images/ReactNative/bug/viewpager_bug1.png">
+<meta property="og:image" content="http://ecmadao.com/images/ReactNative/bug/viewpager_bug2.png">
+<meta property="og:image" content="http://ecmadao.com/images/ReactNative/bug/viewpager_bug3.png">
+<meta property="og:updated_time" content="2017-01-14T12:11:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ReactNative-自定义组件">
+<meta name="twitter:description" content="Table of Contents  generated with DocToc
+
+ReactNative-自定义组件ViewPagerAndroid
+INTRO
+目录结构
+代码
+坑1
+方案一
+方案二
+
+
+坑2
+
+
+
+
+ReactNative-自定义组件ViewPagerAndroidINTRO最初接触ReactNative的时候，觉得它的性能和UI方面很弱，只能做出一些原生应用的基本功能，比">
+<meta name="twitter:image" content="http://ecmadao.com/images/ReactNative/bug/viewpager_bug1.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>ReactNative-自定义组件</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+    <link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    <script src="/lib/jquery/jquery.min.js"></script>
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/01/13/Notes/React/ReactJS/Write a React Timepicker Component hand by hand/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/01/13/Notes/React/ReactNative/使用ReactNative&Redux构建移动端App/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative-自定义组件/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative-自定义组件/&text=ReactNative-自定义组件"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative-自定义组件/&title=ReactNative-自定义组件"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative-自定义组件/&is_video=false&description=ReactNative-自定义组件"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=ReactNative-自定义组件&body=Check out this article: http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative-自定义组件/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative-自定义组件/&title=ReactNative-自定义组件"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative-自定义组件/&title=ReactNative-自定义组件"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative-自定义组件/&title=ReactNative-自定义组件"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative-自定义组件/&title=ReactNative-自定义组件"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative-自定义组件/&name=ReactNative-自定义组件&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ReactNative-自定义组件ViewPagerAndroid"><span class="toc-number">1.</span> <span class="toc-text">ReactNative-自定义组件ViewPagerAndroid</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#INTRO"><span class="toc-number">1.1.</span> <span class="toc-text">INTRO</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#目录结构"><span class="toc-number">1.2.</span> <span class="toc-text">目录结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码"><span class="toc-number">1.3.</span> <span class="toc-text">代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#坑1"><span class="toc-number">1.4.</span> <span class="toc-text">坑1</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#方案一"><span class="toc-number">1.4.1.</span> <span class="toc-text">方案一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方案二"><span class="toc-number">1.4.2.</span> <span class="toc-text">方案二</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#坑2"><span class="toc-number">1.5.</span> <span class="toc-text">坑2</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        ReactNative-自定义组件
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">ecmadao</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-01-13T05:58:37.000Z" itemprop="datePublished">2017-01-13</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/React/">React</a>, <a class="tag-link" href="/tags/ReactNative/">ReactNative</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<p><strong>Table of Contents</strong>  <em>generated with <a href="https://github.com/thlorenz/doctoc" target="_blank" rel="external">DocToc</a></em></p>
+<ul>
+<li><a href="#reactnative-%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BB%84%E4%BB%B6viewpagerandroid">ReactNative-自定义组件ViewPagerAndroid</a><ul>
+<li><a href="#intro">INTRO</a></li>
+<li><a href="#%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84">目录结构</a></li>
+<li><a href="#%E4%BB%A3%E7%A0%81">代码</a></li>
+<li><a href="#%E5%9D%911">坑1</a><ul>
+<li><a href="#%E6%96%B9%E6%A1%88%E4%B8%80">方案一</a></li>
+<li><a href="#%E6%96%B9%E6%A1%88%E4%BA%8C">方案二</a></li>
+</ul>
+</li>
+<li><a href="#%E5%9D%912">坑2</a></li>
+</ul>
+</li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<h2 id="ReactNative-自定义组件ViewPagerAndroid"><a href="#ReactNative-自定义组件ViewPagerAndroid" class="headerlink" title="ReactNative-自定义组件ViewPagerAndroid"></a>ReactNative-自定义组件ViewPagerAndroid</h2><h3 id="INTRO"><a href="#INTRO" class="headerlink" title="INTRO"></a>INTRO</h3><p>最初接触ReactNative的时候，觉得它的性能和UI方面很弱，只能做出一些原生应用的基本功能，比如阅读类的偏重于浏览的应用，而不适合做多交互和动效的应用。最近进一步学习了它后发现，配合Redux的ReactNative，通过发挥组件分离复用的思想，依旧可以做出很漂亮的App</p>
+<p>Redux为数据与UI分离提供了可能，那么我们可以开始着手进行一些UI的封装定制。首先从<code>ViewPagerAndroid</code>开始吧。</p>
+<p>ViewPager算是Android中的老牌组件了吧。在Android中，配合一个适配器<code>PagerAdapter</code>，一个<code>PagerTitleStrip</code>,各种玩的花。然而在ReactNative中就没那么爽了（起码目前）</p>
+<p>ReactNative里的ViewPager，只提供了基础了pager功能：提供多个View加载进ViewPagerAndroid内部，可以通过左右滑动切换页面。没有Tab的显示和操作</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">return</span> (</div><div class="line">    <span class="xml"><span class="tag">&lt;<span class="name">ViewPagerAndroid</span></span></span></div><div class="line">      <span class="attr">style</span>=<span class="string">&#123;styles.viewPager&#125;</span></div><div class="line">      <span class="attr">initialPage</span>=<span class="string">&#123;0&#125;</span>&gt;</div><div class="line">      <span class="tag">&lt;<span class="name">View</span> <span class="attr">style</span>=<span class="string">&#123;styles.pageStyle&#125;</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">Text</span>&gt;</span>First page<span class="tag">&lt;/<span class="name">Text</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">View</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">View</span> <span class="attr">style</span>=<span class="string">&#123;styles.pageStyle&#125;</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">Text</span>&gt;</span>Second page<span class="tag">&lt;/<span class="name">Text</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">View</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">ViewPagerAndroid</span>&gt;</span></div><div class="line">);</div></pre></td></tr></table></figure>
+<p>我们怎能甘心与此。ViewPagerAndroid中提供了页面切换的回调，那么时候自己封装一个玩玩了</p>
+<h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">- EcViewPagerAndroid</div><div class="line">-- index.js</div><div class="line">-- EcEmptyContainer.js <span class="comment">// 处理没有数据的情况</span></div><div class="line">-- EcViewPagerContainer.js <span class="comment">// 放置在ViewPager中</span></div><div class="line">-- EcViewPagerTitle.js <span class="comment">// 定义头部的tab</span></div></pre></td></tr></table></figure>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// EcViewPagerAndroid/EcViewPagerTitle.js</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">EcViewPagerTitle</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line"> </div><div class="line">  onPageChange() &#123;</div><div class="line">    <span class="keyword">let</span> &#123;onPageChange, index&#125; = <span class="keyword">this</span>.props;</div><div class="line">    onPageChange(index);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render() &#123;</div><div class="line">    <span class="comment">// 自定义了tab，需要从父组件传入index和activeIndex，以渲染不同UI</span></div><div class="line">    <span class="keyword">let</span> &#123;activeIndex, title, index&#125; = <span class="keyword">this</span>.props;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      <span class="xml"><span class="tag">&lt;<span class="name">View</span> <span class="attr">style</span>=<span class="string">&#123;styles.topBarContainer&#125;</span>&gt;</span></span></div><div class="line">        <span class="tag">&lt;<span class="name">TouchableOpacity</span> <span class="attr">style</span>=<span class="string">&#123;styles.topBarTouchArea&#125;</span> <span class="attr">onPress</span>=<span class="string">&#123;this.onPageChange.bind(this)&#125;</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">View</span> <span class="attr">style</span>=<span class="string">&#123;styles.topBarTop&#125;</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">Text</span> <span class="attr">style</span>=<span class="string">&#123;[styles.topBarText,</span> <span class="attr">activeIndex</span> === <span class="string">index</span> &amp;&amp; <span class="attr">styles.topBarTextActive</span>]&#125;&gt;</span>&#123;this.props.title&#125;<span class="tag">&lt;/<span class="name">Text</span>&gt;</span></div><div class="line">          <span class="tag">&lt;/<span class="name">View</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">View</span> <span class="attr">style</span>=<span class="string">&#123;[styles.topBarBottom,</span> <span class="attr">activeIndex</span> === <span class="string">index</span> &amp;&amp; <span class="attr">styles.topBarBottomActive</span>]&#125;&gt;</span><span class="tag">&lt;/<span class="name">View</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">TouchableOpacity</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">View</span>&gt;</span></div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">const</span> styles = StyleSheet.create(&#123;</div><div class="line">  <span class="attr">topBarContainer</span>: &#123;</div><div class="line">    <span class="attr">height</span>: <span class="number">50</span>,</div><div class="line">    <span class="attr">flex</span>: <span class="number">1</span>,</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">topBarTouchArea</span>: &#123;</div><div class="line">    <span class="attr">height</span>: <span class="number">50</span>,</div><div class="line">    <span class="attr">flex</span>: <span class="number">1</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">topBarTop</span>: &#123;</div><div class="line">    <span class="attr">alignItems</span>: <span class="string">'center'</span>,</div><div class="line">    <span class="attr">justifyContent</span>: <span class="string">'center'</span>,</div><div class="line">    <span class="attr">flex</span>: <span class="number">1</span>,</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">topBarBottom</span>: &#123;</div><div class="line">    <span class="attr">height</span>: <span class="number">3</span>,</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">topBarText</span>: &#123;</div><div class="line">    <span class="attr">color</span>: <span class="string">'#bdc3c7'</span>,</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">topBarTextActive</span>: &#123;</div><div class="line">    <span class="attr">color</span>: <span class="string">'#ecf0f1'</span>,</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">topBarBottomActive</span>: &#123;</div><div class="line">    <span class="attr">backgroundColor</span>: <span class="string">'#ecf0f1'</span>,</div><div class="line">  &#125;</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> EcViewPagerTitle;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// EcViewPagerAndroid/EcViewPagerContainer.js</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">EcViewPagerContent</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">  </div><div class="line">  render() &#123;</div><div class="line">    <span class="comment">// 只是将传入的pager组合进View中</span></div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      <span class="xml"><span class="tag">&lt;<span class="name">View</span> <span class="attr">style</span>=<span class="string">&#123;styles.listviewPager&#125;</span>&gt;</span></span></div><div class="line">        &#123;this.props.pager&#125;</div><div class="line">      <span class="tag">&lt;/<span class="name">View</span>&gt;</span></div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">const</span> styles = StyleSheet.create(&#123;</div><div class="line">  <span class="attr">listviewPager</span>: &#123;</div><div class="line">    <span class="attr">flex</span>: <span class="number">1</span>,</div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> EcViewPagerContent;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// EcViewPagerAndroid/index.js</span></div><div class="line"><span class="keyword">import</span> EcViewPagerTitle <span class="keyword">from</span> <span class="string">'./EcViewPagerTitle'</span>;</div><div class="line"><span class="keyword">import</span> EcViewPagerContent <span class="keyword">from</span> <span class="string">'./EcViewPagerContent'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> VIEW_PAGER = <span class="string">'TeeViewPager'</span>;</div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line">* props</div><div class="line">* 接收的props</div><div class="line">* viewPagerTitles: [string]</div><div class="line">*</div><div class="line">* viewPagerPages: [Component]</div><div class="line">* </div><div class="line">* 如果愿意的话，也可以改为&#123;title: component&#125;的对象传入</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">EcViewPagerAndroid</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">  <span class="keyword">constructor</span>(props, context) &#123;</div><div class="line">    <span class="keyword">super</span>(props, context);</div><div class="line">    <span class="keyword">this</span>.state = &#123;</div><div class="line">      <span class="comment">// 组件内部控制当前显示pager的state，我认为没有必要暴露到全局</span></div><div class="line">      activeIndex: <span class="number">0</span></div><div class="line">    &#125;;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  onPageChange(pageIndex) &#123;</div><div class="line">    <span class="keyword">if</span>(pageIndex === <span class="keyword">this</span>.state.activeIndex)&#123;</div><div class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;;</div><div class="line">    <span class="comment">// 在点击tab的时候，通过setPage和LayoutAnimation达到pager切换的动画效果</span></div><div class="line">    LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);</div><div class="line">    <span class="keyword">this</span>.setState(&#123;</div><div class="line">      <span class="attr">activeIndex</span>: pageIndex</div><div class="line">    &#125;);</div><div class="line">    <span class="keyword">this</span>.refs[VIEW_PAGER].setPage(pageIndex);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  onPageSelected(e) &#123;</div><div class="line">    <span class="keyword">this</span>.onPageChange(e.nativeEvent.position);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render() &#123;</div><div class="line"></div><div class="line">    <span class="keyword">let</span> &#123;viewPagerTitles, viewPagerPages&#125; = <span class="keyword">this</span>.props;</div><div class="line">    <span class="keyword">let</span> activeIndex = <span class="keyword">this</span>.state.activeIndex;</div><div class="line">    <span class="comment">// 分别遍历props，将其组合起来</span></div><div class="line">    <span class="keyword">let</span> pagerTitles = viewPagerTitles.map(<span class="function">(<span class="params">title, index</span>) =&gt;</span> &#123;</div><div class="line">      <span class="keyword">return</span> (</div><div class="line">        &lt;EcViewPagerTitle</div><div class="line">          key=&#123;index&#125;</div><div class="line">          index=&#123;index&#125;</div><div class="line">          title=&#123;title&#125;</div><div class="line">          onPageChange=&#123;this.onPageChange.bind(this)&#125;</div><div class="line">          activeIndex=&#123;activeIndex&#125;</div><div class="line">        /&gt;</div><div class="line">      )</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    let pagerContents = viewPagerPages.map((pager, index) =&gt; &#123;</div><div class="line">      return (</div><div class="line">        &lt;EcViewPagerContent pager=&#123;pager&#125; key=&#123;index&#125; /&gt;</div><div class="line">      )</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    return (</div><div class="line">      &lt;View style=&#123;styles.teeViewPagerContainer&#125;&gt;</div><div class="line">        &lt;View style=&#123;styles.topBar&#125;&gt;</div><div class="line">          &#123;pagerTitles&#125;</div><div class="line">        &lt;/View&gt;</div><div class="line">        &lt;ViewPagerAndroid</div><div class="line">          style=&#123;styles.viewPager&#125;</div><div class="line">          keyboardDismissMode='on-drag'</div><div class="line">          initialPage=&#123;activeIndex&#125;</div><div class="line">          ref=&#123;VIEW_PAGER&#125;</div><div class="line">          onPageSelected=&#123;this.onPageSelected.bind(this)&#125;</div><div class="line">        &gt;</div><div class="line">        &#123;pagerContents&#125;</div><div class="line">        &lt;/ViewPagerAndroid&gt;</div><div class="line">      &lt;/View&gt;</div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">const styles = StyleSheet.create(&#123;</div><div class="line">  teeViewPagerContainer: &#123;</div><div class="line">    flex: 1,</div><div class="line">    flexDirection: 'column'</div><div class="line">  &#125;,</div><div class="line">  topBar: &#123;</div><div class="line">    height: 50,</div><div class="line">    backgroundColor: '#3498db',</div><div class="line">    flexDirection: 'row',</div><div class="line">    alignItems: 'center',</div><div class="line">    justifyContent: 'center',</div><div class="line">  &#125;,</div><div class="line">  viewPager: &#123;</div><div class="line">    flex: 1,</div><div class="line">  &#125;,</div><div class="line">&#125;);</div><div class="line"></div><div class="line">export default EcViewPagerAndroid;</div></pre></td></tr></table></figure>
+<p>以上，一个大致的自定义ViewPagerAndroid已经完成了。在使用的时候，只要传入数组格式的titles和pagers就可以了</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> PageOne <span class="keyword">from</span> <span class="string">'./Page/PageOne'</span>;</div><div class="line"><span class="keyword">import</span> PageTwo <span class="keyword">from</span> <span class="string">'./Page/PageTwo'</span>;</div><div class="line"><span class="keyword">import</span> EcViewPagerAndroid <span class="keyword">from</span> <span class="string">'../EcViewPagerAndroid/index'</span>;</div><div class="line"></div><div class="line">render() &#123;</div><div class="line">  <span class="keyword">let</span> titles = [<span class="string">'page1'</span>, <span class="string">'page2'</span>];</div><div class="line">  <span class="keyword">let</span> pageOne = (</div><div class="line">    &lt;PageOne data=&#123;data1&#125; onItemClick=&#123;this.onItemClick.bind(this)&#125; /&gt;</div><div class="line">  );</div><div class="line">  let pageTwo = (</div><div class="line">    &lt;PageOne data=&#123;data2&#125; onItemClick=&#123;this.onItemClick.bind(this)&#125; /&gt;</div><div class="line">  );</div><div class="line">  let pagers = [pageOne, pageTwo];</div><div class="line">  return (</div><div class="line">    &lt;EcViewPagerAndroid</div><div class="line">      viewPagerTitles=&#123;titles&#125;</div><div class="line">      viewPagerPages=&#123;pagers&#125;</div><div class="line">    /&gt;</div><div class="line">  )</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>完毕。</p>
+<hr>
+<p>你以为这样就完了？Too young too simple啊</p>
+<h3 id="坑1"><a href="#坑1" class="headerlink" title="坑1"></a>坑1</h3><p>ViewPager里放什么？View啊！那么好的，来让我们先做一个EmptyContainer，作为没有数据时的占位符</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// ECEmptyContainer.js</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">EcEmptyContainer</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">  </div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      <span class="xml"><span class="tag">&lt;<span class="name">View</span> <span class="attr">style</span>=<span class="string">&#123;styles.defaultViewContainer&#125;</span>&gt;</span></span></div><div class="line">        <span class="tag">&lt;<span class="name">View</span> <span class="attr">style</span>=<span class="string">&#123;styles.defaultView&#125;</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">Image</span> <span class="attr">resizeMode</span>=<span class="string">'contain'</span> <span class="attr">source</span>=<span class="string">&#123;require(/images/logo.jpg</span>')&#125; <span class="attr">style</span>=<span class="string">&#123;styles.defaultImage&#125;/</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">Text</span>&gt;</span>哎呦我去没有数据..<span class="tag">&lt;/<span class="name">Text</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">Text</span>&gt;</span>下拉可刷新哦<span class="tag">&lt;/<span class="name">Text</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">View</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">View</span>&gt;</span></div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">const styles = StyleSheet.create(&#123;</div><div class="line">  defaultViewContainer: &#123;</div><div class="line">    flex: 1,</div><div class="line">    justifyContent: 'center',</div><div class="line">    alignItems: 'center'</div><div class="line">  &#125;,</div><div class="line">  defaultView: &#123;</div><div class="line">    height: 100,</div><div class="line">    flex: 1,</div><div class="line">    justifyContent: 'center',</div><div class="line">    alignItems: 'center'</div><div class="line">  &#125;,</div><div class="line">  defaultImage: &#123;</div><div class="line">    height: 60</div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">export default EcEmptyContainer;</div></pre></td></tr></table></figure>
+<p>大功告成。让我们代入EcViewPagerAndroid试试看。然后。。等着傻眼吧。</p>
+<p>WTF？我们只扔进去一个组件，应该只有一个pager，但居然深井冰般的出现了三个。</p>
+<p><img src="/images/ReactNative/bug/viewpager_bug1.png" alt="viewpager_bug1"><br><img src="/images/ReactNative/bug/viewpager_bug2.png" alt="viewpager_bug2"><br><img src="/images/ReactNative/bug/viewpager_bug3.png" alt="viewpager_bug3"></p>
+<p>钻研半天。。好吧我只能说这可能是个bug吧（或者我写的有问题喽）。通过这种方式组件的ViewPager，pager组件只能有两层嵌套，再多就会被当做其他的pager。</p>
+<p>那该怎么做一个EmptyContainer？</p>
+<h4 id="方案一"><a href="#方案一" class="headerlink" title="方案一"></a>方案一</h4><p>使用ListView，内部只渲染充满屏幕的一行就好了：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">EcEmptyContainer</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line"></div><div class="line">  render() &#123;</div><div class="line">    <span class="comment">// 只有一行数据，作为占位</span></div><div class="line">    <span class="keyword">let</span> dataSource = <span class="keyword">new</span> ListView.DataSource(&#123;<span class="attr">rowHasChanged</span>: <span class="function">(<span class="params">r1, r2</span>) =&gt;</span> r1 !== r2&#125;);</div><div class="line">    <span class="keyword">let</span> listData = dataSource.cloneWithRows([<span class="number">1</span>]);</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;View style=&#123;styles.emptyContainer&#125;&gt;</div><div class="line">        &lt;ListView</div><div class="line">          enableEmptySections=&#123;true&#125;</div><div class="line">          style=&#123;styles.emptyListView&#125;</div><div class="line">          dataSource=&#123;listData&#125;</div><div class="line">          renderRow=&#123;(data) =&gt; &#123;</div><div class="line">            return (</div><div class="line">              &lt;View style=&#123;styles.defaultViewContainer&#125;&gt;</div><div class="line">                &lt;View style=&#123;styles.defaultView&#125;&gt;</div><div class="line">                  &lt;Image resizeMode='contain' source=&#123;require(/images/logo.jpg')&#125; style=&#123;styles.defaultImage&#125;/&gt;</div><div class="line">                  &lt;Text&gt;哎呦我去没有数据..&lt;/Text&gt;</div><div class="line">                  &lt;Text&gt;下拉可刷新哦&lt;/Text&gt;</div><div class="line">                &lt;/View&gt;</div><div class="line">              &lt;/View&gt;</div><div class="line">            )</div><div class="line">          &#125;&#125;</div><div class="line">        /&gt;</div><div class="line">      &lt;/View&gt;</div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">const styles = StyleSheet.create(&#123;</div><div class="line">  emptyContainer: &#123;</div><div class="line">    flex: 1,</div><div class="line">  &#125;,</div><div class="line">  emptyListView: &#123;</div><div class="line">    flex: 1</div><div class="line">  &#125;,</div><div class="line">  defaultViewContainer: &#123;</div><div class="line">    flex: 1,</div><div class="line">    height: 400,</div><div class="line">    justifyContent: 'center',</div><div class="line">    alignItems: 'center'</div><div class="line">  &#125;,</div><div class="line">  defaultView: &#123;</div><div class="line">    height: 100,</div><div class="line">    flex: 1,</div><div class="line">    justifyContent: 'center',</div><div class="line">    alignItems: 'center'</div><div class="line">  &#125;,</div><div class="line">  defaultImage: &#123;</div><div class="line">    height: 60</div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">export default EcEmptyContainer;</div></pre></td></tr></table></figure>
+<h4 id="方案二"><a href="#方案二" class="headerlink" title="方案二"></a>方案二</h4><p>出乎意料的简单。。。在外层<code>&lt;View&gt;&lt;/View&gt;</code>加入<code>collapsable={false}</code>就好了</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// ECEmptyContainer.js</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">EcEmptyContainer</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">  </div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      <span class="xml"><span class="tag">&lt;<span class="name">View</span> <span class="attr">style</span>=<span class="string">&#123;styles.defaultViewContainer&#125;</span> <span class="attr">collapsable</span>=<span class="string">&#123;false&#125;</span>&gt;</span></span></div><div class="line">        <span class="tag">&lt;<span class="name">View</span> <span class="attr">style</span>=<span class="string">&#123;styles.defaultView&#125;</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">Image</span> <span class="attr">resizeMode</span>=<span class="string">'contain'</span> <span class="attr">source</span>=<span class="string">&#123;require(/images/logo.jpg</span>')&#125; <span class="attr">style</span>=<span class="string">&#123;styles.defaultImage&#125;/</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">Text</span>&gt;</span>哎呦我去没有数据..<span class="tag">&lt;/<span class="name">Text</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">Text</span>&gt;</span>下拉可刷新哦<span class="tag">&lt;/<span class="name">Text</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">View</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">View</span>&gt;</span></div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="坑2"><a href="#坑2" class="headerlink" title="坑2"></a>坑2</h3><p>ReactNative的ListView中，自带了几个便利的方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">onEndReached=&#123;<span class="function"><span class="keyword">function</span>&#125;</span></div><div class="line">// 当所有的数据都已经渲染过，并且列表被滚动到距离最底部不足<span class="title">onEndReachedThreshold</span>个像素的距离时调用。原生的滚动事件会被作为参数传递。</div><div class="line"></div><div class="line"><span class="title">onEndReachedThreshold</span>=&#123;number&#125;</div><div class="line"><span class="comment">// 调用onEndReached之前的临界值，单位是像素。</span></div></pre></td></tr></table></figure>
+<p>因此，我们可以在列表滚动到底部的时候，发送请求fetch下一页的数据，之后更新到state中，就可以轻松的实现如同原生分页般的顺滑体验</p>
+<p>但是，当它和上面的自定义ViewPager配合的时候，就会出现诡异的现象：</p>
+<p>当ViewPager滚动到底部触发fetch事件，并获取到数据更新了state之后，ListView会被压缩至原来的一半高，下半部的ListView中的内容没有被渲染（但ListView依旧全部占满屏幕）！</p>
+<p>坑爹玩意！</p>
+<p>目前解决方案:</p>
+<p>ListView中有一个不起眼的方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">renderScrollComponent=&#123;<span class="function"><span class="keyword">function</span>&#125;</span></div><div class="line">// 指定一个函数，在其中返回一个可以滚动的组件。<span class="title">ListView</span>将会在该组件内部进行渲染。默认情况下会返回一个包含指定属性的<span class="title">ScrollView</span>。</div></pre></td></tr></table></figure>
+<p>文档里没有详细介绍，但在最新版英文文档ListView的例子里有它：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> React = <span class="built_in">require</span>(<span class="string">'react-native'</span>);</div><div class="line"><span class="keyword">var</span> &#123;</div><div class="line">  ListView,</div><div class="line">  RecyclerViewBackedScrollView,</div><div class="line">  View,</div><div class="line">&#125; = React;</div><div class="line"></div><div class="line">&lt;ListView</div><div class="line">  dataSource=&#123;this.state.dataSource&#125;</div><div class="line">  renderRow=&#123;this._renderRow&#125;</div><div class="line">  renderScrollComponent=&#123;props =&gt; &lt;RecyclerViewBackedScrollView &#123;...props&#125; /&gt;&#125;</div><div class="line">  renderSeparator=&#123;(sectionID, rowID) =&gt; &lt;View key=&#123;`$&#123;sectionID&#125;-$&#123;rowID&#125;`&#125; style=&#123;styles.separator&#125; /&gt;&#125;</div><div class="line">/&gt;</div></pre></td></tr></table></figure>
+<p>所以我们在使用的时候：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">return</span> (</div><div class="line">  &lt;ListView</div><div class="line">    dataSource=&#123;listData&#125;</div><div class="line">    initialListSize = &#123;LOAD_NUM&#125;</div><div class="line">    onEndReached = &#123;this.canLoadMore.bind(this)&#125;</div><div class="line">    onEndReachedThreshold = &#123;LIST_END_REACH&#125;</div><div class="line">    enableEmptySections=&#123;true&#125;</div><div class="line">    // IMPORTANT</div><div class="line">    renderScrollComponent=&#123;props =&gt; &lt;RecyclerViewBackedScrollView &#123;...props&#125; /&gt;&#125;</div><div class="line">    renderRow=&#123;(row)=&gt;&#123;&#125;&#125;</div><div class="line">  /&gt;</div><div class="line">)</div></pre></td></tr></table></figure>
+<p>然后就解决问题了==</p>
+<hr>
+<p>2016/04/26更新，发现上面问题的原因：</p>
+<p>在<code>&lt;ListView&gt;&lt;/ListView&gt;</code>组件中加入了<code>&lt;RefreshControl/&gt;</code>…..删掉就好了。。。。。好吧</p>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ReactNative-自定义组件ViewPagerAndroid"><span class="toc-number">1.</span> <span class="toc-text">ReactNative-自定义组件ViewPagerAndroid</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#INTRO"><span class="toc-number">1.1.</span> <span class="toc-text">INTRO</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#目录结构"><span class="toc-number">1.2.</span> <span class="toc-text">目录结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码"><span class="toc-number">1.3.</span> <span class="toc-text">代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#坑1"><span class="toc-number">1.4.</span> <span class="toc-text">坑1</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#方案一"><span class="toc-number">1.4.1.</span> <span class="toc-text">方案一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方案二"><span class="toc-number">1.4.2.</span> <span class="toc-text">方案二</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#坑2"><span class="toc-number">1.5.</span> <span class="toc-text">坑2</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative-自定义组件/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative-自定义组件/&text=ReactNative-自定义组件"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative-自定义组件/&title=ReactNative-自定义组件"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative-自定义组件/&is_video=false&description=ReactNative-自定义组件"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=ReactNative-自定义组件&body=Check out this article: http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative-自定义组件/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative-自定义组件/&title=ReactNative-自定义组件"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative-自定义组件/&title=ReactNative-自定义组件"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative-自定义组件/&title=ReactNative-自定义组件"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative-自定义组件/&title=ReactNative-自定义组件"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative-自定义组件/&name=ReactNative-自定义组件&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2017 ecmadao
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    <script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'ecmadao-blog';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
+</body>
+</html>

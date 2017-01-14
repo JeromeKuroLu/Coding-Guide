@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Table of Contents  generated with DocToc
+
+ReactNative入坑笔记-ThinkInReactNative
+INTRO
+组件UI
+布局初步
+StyleSheet
+按文件名加载
+
+
+数据
+Redux
+数据储存AsyncStorage
+使用redux-persist完成数据持久化
+
+
+
+
+
+
+ReactNative入坑笔记-ThinkInReactNa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ReactNative入坑笔记-ThinkInReactNative">
+<meta property="og:url" content="http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative入坑笔记-ThinkInReactNative/index.html">
+<meta property="og:site_name" content="ecmadao">
+<meta property="og:description" content="Table of Contents  generated with DocToc
+
+ReactNative入坑笔记-ThinkInReactNative
+INTRO
+组件UI
+布局初步
+StyleSheet
+按文件名加载
+
+
+数据
+Redux
+数据储存AsyncStorage
+使用redux-persist完成数据持久化
+
+
+
+
+
+
+ReactNative入坑笔记-ThinkInReactNa">
+<meta property="og:image" content="http://ecmadao.com/images/React-with-Redux.png">
+<meta property="og:updated_time" content="2017-01-14T12:11:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ReactNative入坑笔记-ThinkInReactNative">
+<meta name="twitter:description" content="Table of Contents  generated with DocToc
+
+ReactNative入坑笔记-ThinkInReactNative
+INTRO
+组件UI
+布局初步
+StyleSheet
+按文件名加载
+
+
+数据
+Redux
+数据储存AsyncStorage
+使用redux-persist完成数据持久化
+
+
+
+
+
+
+ReactNative入坑笔记-ThinkInReactNa">
+<meta name="twitter:image" content="http://ecmadao.com/images/React-with-Redux.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>ReactNative入坑笔记-ThinkInReactNative</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+    <link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    <script src="/lib/jquery/jquery.min.js"></script>
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/01/13/Notes/React/ReactNative/ReactNative-Android-踩坑/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/01/13/Notes/React/Redux/Redux入坑笔记-Middleware/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative入坑笔记-ThinkInReactNative/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative入坑笔记-ThinkInReactNative/&text=ReactNative入坑笔记-ThinkInReactNative"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative入坑笔记-ThinkInReactNative/&title=ReactNative入坑笔记-ThinkInReactNative"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative入坑笔记-ThinkInReactNative/&is_video=false&description=ReactNative入坑笔记-ThinkInReactNative"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=ReactNative入坑笔记-ThinkInReactNative&body=Check out this article: http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative入坑笔记-ThinkInReactNative/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative入坑笔记-ThinkInReactNative/&title=ReactNative入坑笔记-ThinkInReactNative"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative入坑笔记-ThinkInReactNative/&title=ReactNative入坑笔记-ThinkInReactNative"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative入坑笔记-ThinkInReactNative/&title=ReactNative入坑笔记-ThinkInReactNative"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative入坑笔记-ThinkInReactNative/&title=ReactNative入坑笔记-ThinkInReactNative"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative入坑笔记-ThinkInReactNative/&name=ReactNative入坑笔记-ThinkInReactNative&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ReactNative入坑笔记-ThinkInReactNative"><span class="toc-number">1.</span> <span class="toc-text">ReactNative入坑笔记-ThinkInReactNative</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#INTRO"><span class="toc-number">1.1.</span> <span class="toc-text">INTRO</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组件UI"><span class="toc-number">1.2.</span> <span class="toc-text">组件UI</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#布局初步"><span class="toc-number">1.2.1.</span> <span class="toc-text">布局初步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#StyleSheet"><span class="toc-number">1.2.2.</span> <span class="toc-text">StyleSheet</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#按文件名加载"><span class="toc-number">1.2.3.</span> <span class="toc-text">按文件名加载</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据"><span class="toc-number">1.3.</span> <span class="toc-text">数据</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Redux"><span class="toc-number">1.3.1.</span> <span class="toc-text">Redux</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据储存AsyncStorage"><span class="toc-number">1.3.2.</span> <span class="toc-text">数据储存AsyncStorage</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用redux-persist完成数据持久化"><span class="toc-number">1.3.3.</span> <span class="toc-text">使用redux-persist完成数据持久化</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        ReactNative入坑笔记-ThinkInReactNative
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">ecmadao</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-01-13T05:58:37.000Z" itemprop="datePublished">2017-01-13</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/React/">React</a>, <a class="tag-link" href="/tags/ReactNative/">ReactNative</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<p><strong>Table of Contents</strong>  <em>generated with <a href="https://github.com/thlorenz/doctoc" target="_blank" rel="external">DocToc</a></em></p>
+<ul>
+<li><a href="#reactnative%E5%85%A5%E5%9D%91%E7%AC%94%E8%AE%B0-thinkinreactnative">ReactNative入坑笔记-ThinkInReactNative</a><ul>
+<li><a href="#intro">INTRO</a></li>
+<li><a href="#%E7%BB%84%E4%BB%B6ui">组件UI</a><ul>
+<li><a href="#%E5%B8%83%E5%B1%80%E5%88%9D%E6%AD%A5">布局初步</a></li>
+<li><a href="#stylesheet">StyleSheet</a></li>
+<li><a href="#%E6%8C%89%E6%96%87%E4%BB%B6%E5%90%8D%E5%8A%A0%E8%BD%BD">按文件名加载</a></li>
+</ul>
+</li>
+<li><a href="#%E6%95%B0%E6%8D%AE">数据</a><ul>
+<li><a href="#redux">Redux</a></li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%82%A8%E5%AD%98asyncstorage">数据储存<code>AsyncStorage</code></a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8redux-persist%E5%AE%8C%E6%88%90%E6%95%B0%E6%8D%AE%E6%8C%81%E4%B9%85%E5%8C%96">使用<code>redux-persist</code>完成数据持久化</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<h2 id="ReactNative入坑笔记-ThinkInReactNative"><a href="#ReactNative入坑笔记-ThinkInReactNative" class="headerlink" title="ReactNative入坑笔记-ThinkInReactNative"></a>ReactNative入坑笔记-ThinkInReactNative</h2><p>部分参考并整理自<a href="http://f8-app.liaohuqiu.net/" target="_blank" rel="external">构建 F8 2016 App</a></p>
+<blockquote>
+<p>Learn once, write anywhere.</p>
+</blockquote>
+<h3 id="INTRO"><a href="#INTRO" class="headerlink" title="INTRO"></a>INTRO</h3><p>Learn once, write anywhere. 并不是指字面意义的“四处编码运行”，毕竟，从ReactWeb到ReactNative，他们之间的差别还是很大的。但是，因为都是原生的js语言，所以会有很多相同的地方。掌握本质思想，再四处踩踩坑，才能玩的更愉快:)</p>
+<p>React系列充满了组件化思想，提倡组件复用。而从中衍生出的flux到Redux，更是利用函数式编程，逐步将代表UI的Component层与逻辑层(reducer, action)分离，从此写前端也有了前后端分离般的快感了呢。</p>
+<p>ReactNative和Redux搭配，由此更像是一个大型的单页Web应用，通过内置的<code>Navigator</code>进行页面跳转，而Redux则专心负责全局的State和事件处理。UI与逻辑分离，而Native又同时可兼顾iOS与Android双平台，因此需要从ReactNative中公共的UI组件入手，针对不同平台的UI特点进行多平台的适配。</p>
+<h3 id="组件UI"><a href="#组件UI" class="headerlink" title="组件UI"></a>组件UI</h3><h4 id="布局初步"><a href="#布局初步" class="headerlink" title="布局初步"></a>布局初步</h4><p>ReactNative的CSS与Web端的CSS有通用但也有很多不同，可以参考这篇文章入门学习：<br><a href="https://segmentfault.com/a/1190000002658374" target="_blank" rel="external">react-native 之布局篇</a></p>
+<h4 id="StyleSheet"><a href="#StyleSheet" class="headerlink" title="StyleSheet"></a>StyleSheet</h4><p>通过<code>Platform</code>，我们可以分辨应用的运行平台：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Platform.OS === <span class="string">'ios'</span></div></pre></td></tr></table></figure>
+<p>通过扩展<code>StyleSheet</code>，我们可以利用class名称，加载不同的style</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// from F8 2016 app</span></div><div class="line"><span class="comment">// F8StyleSheet.js</span></div><div class="line"><span class="keyword">import</span> &#123;StyleSheet, Platform&#125; <span class="keyword">from</span> <span class="string">'react-native'</span>;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">create</span>(<span class="params">styles: Object</span>): </span>&#123;[name: string]: number&#125; &#123;</div><div class="line">  <span class="keyword">const</span> platformStyles = &#123;&#125;;</div><div class="line">  <span class="built_in">Object</span>.keys(styles).forEach(<span class="function">(<span class="params">name</span>) =&gt;</span> &#123;</div><div class="line">    <span class="keyword">let</span> &#123;ios, android, ...style&#125; = &#123;...styles[name]&#125;;</div><div class="line">    <span class="keyword">if</span>(ios &amp;&amp; Platform.OS === <span class="string">'ios'</span>) &#123;</div><div class="line">      style = &#123;...style, ...ios&#125;;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span>(android &amp;&amp; Platform.OS === <span class="string">'android'</span>) &#123;</div><div class="line">      style = &#123;...style, ...android&#125;;</div><div class="line">    &#125;</div><div class="line">    platformStyles[name] = style;</div><div class="line">  &#125;);</div><div class="line">  <span class="keyword">return</span> StyleSheet.create(platformStyles);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// usage, from F8 2016 app</span></div><div class="line"><span class="comment">// F8SegmentedControl.js</span></div><div class="line"><span class="keyword">import</span> F8StyleSheet <span class="keyword">from</span> <span class="string">'./F8StyleSheet'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> styles = F8StyleSheet.create(&#123;</div><div class="line">  <span class="attr">container</span>: &#123;</div><div class="line">    <span class="attr">flexDirection</span>: <span class="string">'row'</span>,</div><div class="line">    <span class="attr">backgroundColor</span>: <span class="string">'transparent'</span>,</div><div class="line">    <span class="attr">ios</span>: &#123;</div><div class="line">      <span class="attr">paddingBottom</span>: <span class="number">6</span>,</div><div class="line">      <span class="attr">justifyContent</span>: <span class="string">'center'</span>,</div><div class="line">      <span class="attr">alignItems</span>: <span class="string">'center'</span>,</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">android</span>: &#123;</div><div class="line">      <span class="attr">paddingLeft</span>: <span class="number">60</span>,</div><div class="line">    &#125;,</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h4 id="按文件名加载"><a href="#按文件名加载" class="headerlink" title="按文件名加载"></a>按文件名加载</h4><p>有时候，不同的平台有自己独特的插件，如<code>NavigatorIOS</code>,<code>DrawerLayoutAndroid</code>。这种时候我们就不得不把组件文件分离。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// file name</span></div><div class="line">AppContainer.android.js</div><div class="line">AppContainer.ios.js</div><div class="line"></div><div class="line"><span class="comment">// usage</span></div><div class="line"><span class="keyword">import</span> AppContainer <span class="keyword">from</span> <span class="string">'./AppContainer'</span>;</div></pre></td></tr></table></figure>
+<h3 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h3><h4 id="Redux"><a href="#Redux" class="headerlink" title="Redux"></a>Redux</h4><p><img src="/images/React-with-Redux.png" alt="React-with-Redux"></p>
+<p>戳这里看<a href="../Redux/Redux入坑笔记-ThinkInRedux.md">Redux的入坑笔记</a>和<a href="../Redux/Redux入坑笔记-源码解析">详细解析</a></p>
+<h4 id="数据储存AsyncStorage"><a href="#数据储存AsyncStorage" class="headerlink" title="数据储存AsyncStorage"></a>数据储存<code>AsyncStorage</code></h4><p><code>AsyncStorage</code>是ReactNative中内置的<strong>异步</strong>储存系统。</p>
+<p>它的方法返回一个<code>Promise</code>对象</p>
+<ul>
+<li><code>getItem(key: string, callback(err, result))</code></li>
+<li><p><code>setItem(ket: string, value: string, callback(err))</code></p>
+</li>
+<li><p><code>multiMerge([[key1,val1],[key2,val2]..], callback(err))</code></p>
+</li>
+<li><code>mergeItem(key: string, value: string, callback(err))</code></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> UID123_object = &#123;</div><div class="line"> <span class="attr">name</span>: <span class="string">'Chris'</span>,</div><div class="line"> <span class="attr">age</span>: <span class="number">30</span>,</div><div class="line"> <span class="attr">traits</span>: &#123;<span class="attr">hair</span>: <span class="string">'brown'</span>, <span class="attr">eyes</span>: <span class="string">'brown'</span>&#125;,</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// need only define what will be added or updated</span></div><div class="line"><span class="keyword">let</span> UID123_delta = &#123;</div><div class="line"> <span class="attr">age</span>: <span class="number">31</span>,</div><div class="line"> <span class="attr">traits</span>: &#123;<span class="attr">eyes</span>: <span class="string">'blue'</span>, <span class="attr">shoe_size</span>: <span class="number">10</span>&#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">AsyncStorage.setItem(<span class="string">'UID123'</span>, <span class="built_in">JSON</span>.stringify(UID123_object), () =&gt; &#123;</div><div class="line">  AsyncStorage.mergeItem(<span class="string">'UID123'</span>, <span class="built_in">JSON</span>.stringify(UID123_delta), () =&gt; &#123;</div><div class="line">    AsyncStorage.getItem(<span class="string">'UID123'</span>, (err, result) =&gt; &#123;</div><div class="line">      <span class="built_in">console</span>.log(result);</div><div class="line">      <span class="comment">// =&gt; &#123;'name':'Chris','age':31,'traits':&#123;'shoe_size':10,'hair':'brown','eyes':'blue'&#125;&#125;</span></div><div class="line">    &#125;);</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<ul>
+<li><code>clear(callback(err))</code> // clear all AsyncStorage</li>
+<li><code>getAllKeys(callback(err, keys))</code></li>
+</ul>
+<ul>
+<li><code>multiGet(keys[key1, key2..], callback(err, result[[key1, val1], [[key2, val2]]]))</code></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">AsyncStorage.getAllKeys(<span class="function">(<span class="params">err, keys</span>) =&gt;</span> &#123;</div><div class="line">  AsyncStorage.multiGet(keys, (err, stores) =&gt; &#123;</div><div class="line">    <span class="comment">// stores =&gt; [[key1, val1], [key2, val2]...]</span></div><div class="line">   stores.map(<span class="function">(<span class="params">result, i, store</span>) =&gt;</span> &#123;</div><div class="line">     <span class="comment">// get at each store's key/value so you can work with it</span></div><div class="line">     <span class="keyword">let</span> key = store[i][<span class="number">0</span>];</div><div class="line">     <span class="keyword">let</span> value = store[i][<span class="number">1</span>];</div><div class="line">    &#125;);</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<ul>
+<li><code>multiSet(KeyValuePairs[[key1,val1],[key2,val2]..], callback(err))</code></li>
+<li><code>multiRemove(keys[key1, key2..], callback(err))</code></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> keys = [<span class="string">'k1'</span>, <span class="string">'k2'</span>];</div><div class="line">AsyncStorage.multiRemove(keys, (err) =&gt; &#123;</div><div class="line">  <span class="comment">// keys k1 &amp; k2 removed, if they existed</span></div><div class="line">  <span class="comment">// do most stuff after removal (if you want)</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>可以使用ES7的<code>async/await</code>同步式的使用<code>AsyncStorage</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">async</span> getUserToken(name) &#123;</div><div class="line">  <span class="keyword">try</span> &#123;</div><div class="line">    <span class="keyword">let</span> token = <span class="keyword">await</span> AsyncStorage.getItem(name);</div><div class="line">    <span class="comment">// do something</span></div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">  &#125; <span class="keyword">catch</span>(error) &#123;</div><div class="line">    <span class="comment">// do something</span></div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">checkIfLogin() &#123;</div><div class="line">  <span class="keyword">let</span> result = <span class="keyword">this</span>.getUserToken().done();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="使用redux-persist完成数据持久化"><a href="#使用redux-persist完成数据持久化" class="headerlink" title="使用redux-persist完成数据持久化"></a>使用<code>redux-persist</code>完成数据持久化</h4><p>使用<a href="https://github.com/rt2zz/redux-persist" target="_blank" rel="external">redux-persist</a>可以配合Redux完成数据持久化储存，使应用在断网的时候可以使用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm i --save redux-persist</div></pre></td></tr></table></figure>
+<p>还记得React中<code>createStore</code>的使用吗</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> store = createStore(reducer, initState, enhancer);</div><div class="line"><span class="comment">// =&gt; 在使用applyMiddleware等enhancer时，其本质等价于</span></div><div class="line"><span class="keyword">const</span> store = enhancer(createStore)(reducer, initState);</div></pre></td></tr></table></figure>
+<p><code>redux-persist</code>也是一个enhancer</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// basic usage</span></div><div class="line"><span class="keyword">import</span> &#123;persistStore, autoRehydrate&#125; <span class="keyword">from</span> <span class="string">'redux-persist'</span></div><div class="line"><span class="keyword">const</span> store = createStore(reducer, iniState, autoRehydrate());</div><div class="line">persistStore(store);</div></pre></td></tr></table></figure>
+<p>在和其他enhancer搭配的时候</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; AsyncStorage &#125; <span class="keyword">from</span> <span class="string">'react-native'</span>;</div><div class="line"><span class="keyword">import</span> &#123; createStore, applyMiddleware &#125; <span class="keyword">from</span> <span class="string">'redux'</span>;</div><div class="line"><span class="keyword">import</span> thunk <span class="keyword">from</span> <span class="string">'redux-thunk'</span>;</div><div class="line"><span class="keyword">import</span> &#123;persistStore, autoRehydrate&#125; <span class="keyword">from</span> <span class="string">'redux-persist'</span>;</div><div class="line"></div><div class="line"><span class="comment">// 先用applyMiddleware封装createStore，返回新的store</span></div><div class="line"><span class="keyword">const</span> middlewareWrapper = applyMiddleware(thunk);</div><div class="line"><span class="keyword">const</span> store = middlewareWrapper(createStore);</div><div class="line"></div><div class="line"><span class="comment">// autoRehydrate()返回一个可作用于Store的函数</span></div><div class="line"><span class="keyword">const</span> rehydrator = autoRehydrate();</div><div class="line"><span class="comment">// 将之前存储于本地的 Store 对象用当前的 Store 的 state 进行自动更新</span></div><div class="line"><span class="keyword">const</span> AppStore = rehydrator(store)(appReducer, initialState);</div><div class="line"><span class="comment">// 处理 Store 保存到本地存储相关的逻辑，将持久化数据(store)储存在AsyncStorage中</span></div><div class="line">persistStore(AppStore, &#123;<span class="attr">storage</span>: AsyncStorage&#125;);</div></pre></td></tr></table></figure>
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ReactNative入坑笔记-ThinkInReactNative"><span class="toc-number">1.</span> <span class="toc-text">ReactNative入坑笔记-ThinkInReactNative</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#INTRO"><span class="toc-number">1.1.</span> <span class="toc-text">INTRO</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组件UI"><span class="toc-number">1.2.</span> <span class="toc-text">组件UI</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#布局初步"><span class="toc-number">1.2.1.</span> <span class="toc-text">布局初步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#StyleSheet"><span class="toc-number">1.2.2.</span> <span class="toc-text">StyleSheet</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#按文件名加载"><span class="toc-number">1.2.3.</span> <span class="toc-text">按文件名加载</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据"><span class="toc-number">1.3.</span> <span class="toc-text">数据</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Redux"><span class="toc-number">1.3.1.</span> <span class="toc-text">Redux</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据储存AsyncStorage"><span class="toc-number">1.3.2.</span> <span class="toc-text">数据储存AsyncStorage</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用redux-persist完成数据持久化"><span class="toc-number">1.3.3.</span> <span class="toc-text">使用redux-persist完成数据持久化</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative入坑笔记-ThinkInReactNative/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative入坑笔记-ThinkInReactNative/&text=ReactNative入坑笔记-ThinkInReactNative"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative入坑笔记-ThinkInReactNative/&title=ReactNative入坑笔记-ThinkInReactNative"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative入坑笔记-ThinkInReactNative/&is_video=false&description=ReactNative入坑笔记-ThinkInReactNative"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=ReactNative入坑笔记-ThinkInReactNative&body=Check out this article: http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative入坑笔记-ThinkInReactNative/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative入坑笔记-ThinkInReactNative/&title=ReactNative入坑笔记-ThinkInReactNative"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative入坑笔记-ThinkInReactNative/&title=ReactNative入坑笔记-ThinkInReactNative"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative入坑笔记-ThinkInReactNative/&title=ReactNative入坑笔记-ThinkInReactNative"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative入坑笔记-ThinkInReactNative/&title=ReactNative入坑笔记-ThinkInReactNative"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ecmadao.com/2017/01/13/Notes/React/ReactNative/ReactNative入坑笔记-ThinkInReactNative/&name=ReactNative入坑笔记-ThinkInReactNative&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2017 ecmadao
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    <script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'ecmadao-blog';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
+</body>
+</html>

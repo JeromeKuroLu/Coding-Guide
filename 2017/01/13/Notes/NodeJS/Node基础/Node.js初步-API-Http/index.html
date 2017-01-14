@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Table of Contents  generated with DocToc
+
+Node.js初步 - API - Http
+Http 初步
+Http Class
+http.Agent
+
+
+
+
+
+
+Node.js初步 - API - HttpHttp 初步1var http = require(&apos;http&apos;)
+
+HTTP message headers are represented by">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node.js初步-API-Http">
+<meta property="og:url" content="http://ecmadao.com/2017/01/13/Notes/NodeJS/Node基础/Node.js初步-API-Http/index.html">
+<meta property="og:site_name" content="ecmadao">
+<meta property="og:description" content="Table of Contents  generated with DocToc
+
+Node.js初步 - API - Http
+Http 初步
+Http Class
+http.Agent
+
+
+
+
+
+
+Node.js初步 - API - HttpHttp 初步1var http = require(&apos;http&apos;)
+
+HTTP message headers are represented by">
+<meta property="og:updated_time" content="2017-01-14T12:11:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Node.js初步-API-Http">
+<meta name="twitter:description" content="Table of Contents  generated with DocToc
+
+Node.js初步 - API - Http
+Http 初步
+Http Class
+http.Agent
+
+
+
+
+
+
+Node.js初步 - API - HttpHttp 初步1var http = require(&apos;http&apos;)
+
+HTTP message headers are represented by">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Node.js初步-API-Http</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+    <link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    <script src="/lib/jquery/jquery.min.js"></script>
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/01/13/Notes/NodeJS/Node基础/Node.js初步-API-FileSystem/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/01/13/Notes/NodeJS/Node基础/Node.js初步-API-Path/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ecmadao.com/2017/01/13/Notes/NodeJS/Node基础/Node.js初步-API-Http/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/Node基础/Node.js初步-API-Http/&text=Node.js初步-API-Http"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/Node基础/Node.js初步-API-Http/&title=Node.js初步-API-Http"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/Node基础/Node.js初步-API-Http/&is_video=false&description=Node.js初步-API-Http"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Node.js初步-API-Http&body=Check out this article: http://ecmadao.com/2017/01/13/Notes/NodeJS/Node基础/Node.js初步-API-Http/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/Node基础/Node.js初步-API-Http/&title=Node.js初步-API-Http"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/Node基础/Node.js初步-API-Http/&title=Node.js初步-API-Http"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/Node基础/Node.js初步-API-Http/&title=Node.js初步-API-Http"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/Node基础/Node.js初步-API-Http/&title=Node.js初步-API-Http"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/Node基础/Node.js初步-API-Http/&name=Node.js初步-API-Http&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Node-js初步-API-Http"><span class="toc-number">1.</span> <span class="toc-text">Node.js初步 - API - Http</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Http-初步"><span class="toc-number">1.1.</span> <span class="toc-text">Http 初步</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Http-Class"><span class="toc-number">1.2.</span> <span class="toc-text">Http Class</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#http-Agent"><span class="toc-number">1.2.1.</span> <span class="toc-text">http.Agent</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Node.js初步-API-Http
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">ecmadao</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-01-13T05:58:37.000Z" itemprop="datePublished">2017-01-13</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/NodeJS/">NodeJS</a>, <a class="tag-link" href="/tags/Node基础/">Node基础</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<p><strong>Table of Contents</strong>  <em>generated with <a href="https://github.com/thlorenz/doctoc" target="_blank" rel="external">DocToc</a></em></p>
+<ul>
+<li><a href="#nodejs%E5%88%9D%E6%AD%A5---api---http">Node.js初步 - API - Http</a><ul>
+<li><a href="#http-%E5%88%9D%E6%AD%A5">Http 初步</a></li>
+<li><a href="#http-class">Http Class</a><ul>
+<li><a href="#httpagent">http.Agent</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<h2 id="Node-js初步-API-Http"><a href="#Node-js初步-API-Http" class="headerlink" title="Node.js初步 - API - Http"></a>Node.js初步 - API - Http</h2><h3 id="Http-初步"><a href="#Http-初步" class="headerlink" title="Http 初步"></a>Http 初步</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>HTTP message headers are represented by an object like this. Keys are lowercased. Values are not modified.</p>
+<p>http 头部信息通畅是如下所示的对象。Key全部小写，值是不能修改的</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123; </div><div class="line">  <span class="string">'content-length'</span>: <span class="string">'123'</span>,</div><div class="line">  <span class="string">'content-type'</span>: <span class="string">'text/plain'</span>,</div><div class="line">  <span class="string">'connection'</span>: <span class="string">'keep-alive'</span>,</div><div class="line">  <span class="string">'host'</span>: <span class="string">'mysite.com'</span>,</div><div class="line">  <span class="string">'accept'</span>: <span class="string">'*/*'</span> </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>In order to support the full spectrum of possible HTTP applications, Node.js’s HTTP API is very low-level. It deals with stream handling and message parsing only. </p>
+<p>为了能全面地支持可能的HTTP应用程序，Node提供的HTTP API都很底层。它处理的只有流处理和消息解析。</p>
+<p>It parses a message into headers and body but it does not parse the actual headers or the body.</p>
+<p>它把一份消息解析成报文头和报文体，但是它不解析实际的报文头和报文体。</p>
+<p>接收到的原始头信息以数组形式 [key, value, key2, value2, …] 保存在 rawHeaders 属性中. 例如, 前面提到的消息对象会有 rawHeaders 列表如下</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[ <span class="string">'ConTent-Length'</span>, <span class="string">'123456'</span>,</div><div class="line">  <span class="string">'content-LENGTH'</span>, <span class="string">'123'</span>,</div><div class="line">  <span class="string">'content-type'</span>, <span class="string">'text/plain'</span>,</div><div class="line">  <span class="string">'CONNECTION'</span>, <span class="string">'keep-alive'</span>,</div><div class="line">  <span class="string">'Host'</span>, <span class="string">'mysite.com'</span>,</div><div class="line">  <span class="string">'accepT'</span>, <span class="string">'*/*'</span> ]</div></pre></td></tr></table></figure>
+<h3 id="Http-Class"><a href="#Http-Class" class="headerlink" title="Http Class"></a>Http Class</h3><h4 id="http-Agent"><a href="#http-Agent" class="headerlink" title="http.Agent"></a>http.Agent</h4><blockquote>
+<p>HTTP Agent 是用于把套接字做成资源池，用于HTTP客户端请求</p>
+<p>HTTP Agent 也把客户端的请求默认为使用 <code>Connection:keep-alive</code></p>
+<p>Sockets are removed from the agent’s pool when the socket emits either a ‘close’ event or a special ‘agentRemove’ event. This means that if you intend to keep one HTTP request open for a long time and don’t want it to stay in the pool you can do something along the lines of:</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">http.get(options, (res) =&gt; &#123;</div><div class="line">  <span class="comment">// Do stuff</span></div><div class="line">&#125;).on(<span class="string">'socket'</span>, (socket) =&gt; &#123;</div><div class="line">  socket.emit(<span class="string">'agentRemove'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<blockquote>
+<p>Alternatively, you could just opt out of pooling entirely using <code>agent:false</code> :</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">http.get(&#123;</div><div class="line">  <span class="attr">hostname</span>: <span class="string">'localhost'</span>,</div><div class="line">  <span class="attr">port</span>: <span class="number">80</span>,</div><div class="line">  <span class="attr">path</span>: <span class="string">'/'</span>,</div><div class="line">  <span class="attr">agent</span>: <span class="literal">false</span>  <span class="comment">// create a new agent just for this one request</span></div><div class="line">&#125;, (res) =&gt; &#123;</div><div class="line">  <span class="comment">// Do stuff with response</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>new Agent([options]):</p>
+<ul>
+<li>options<ul>
+<li><code>keepAlive</code> Boolean Keep sockets around in a pool to be used by other requests in the future. <code>Default = false</code></li>
+<li><code>keepAliveMsecs</code> Integer When using HTTP KeepAlive, how often to send TCP KeepAlive packets over sockets being kept alive. <code>Default = 1000</code>. Only relevant if <code>keepAlive</code> is set to true.</li>
+<li><code>maxSockets</code> Number Maximum number of sockets to allow per host. <code>Default = Infinity</code></li>
+<li><code>maxFreeSockets</code> Number Maximum number of sockets to leave open in a free state. Only relevant if <code>keepAlive</code> is set to true. <code>Default = 256</code></li>
+</ul>
+</li>
+</ul>
+<p>To configure any of them, you must create your own http.Agent object.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</div><div class="line"><span class="keyword">var</span> keepAliveAgent = <span class="keyword">new</span> http.Agent(&#123; <span class="attr">keepAlive</span>: <span class="literal">true</span> &#125;);</div><div class="line">options.agent = keepAliveAgent;</div><div class="line">http.request(options, onResponseCallback);</div></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Node-js初步-API-Http"><span class="toc-number">1.</span> <span class="toc-text">Node.js初步 - API - Http</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Http-初步"><span class="toc-number">1.1.</span> <span class="toc-text">Http 初步</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Http-Class"><span class="toc-number">1.2.</span> <span class="toc-text">Http Class</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#http-Agent"><span class="toc-number">1.2.1.</span> <span class="toc-text">http.Agent</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ecmadao.com/2017/01/13/Notes/NodeJS/Node基础/Node.js初步-API-Http/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/Node基础/Node.js初步-API-Http/&text=Node.js初步-API-Http"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/Node基础/Node.js初步-API-Http/&title=Node.js初步-API-Http"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/Node基础/Node.js初步-API-Http/&is_video=false&description=Node.js初步-API-Http"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Node.js初步-API-Http&body=Check out this article: http://ecmadao.com/2017/01/13/Notes/NodeJS/Node基础/Node.js初步-API-Http/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/Node基础/Node.js初步-API-Http/&title=Node.js初步-API-Http"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/Node基础/Node.js初步-API-Http/&title=Node.js初步-API-Http"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/Node基础/Node.js初步-API-Http/&title=Node.js初步-API-Http"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/Node基础/Node.js初步-API-Http/&title=Node.js初步-API-Http"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ecmadao.com/2017/01/13/Notes/NodeJS/Node基础/Node.js初步-API-Http/&name=Node.js初步-API-Http&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2017 ecmadao
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    <script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'ecmadao-blog';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Table of Contents  generated with DocToc
+
+【译文】构建积极友好的 UI
+积极？
+看起来太 Magic 了，为什么要这么做？
+真实案例
+进度展示
+处理错误
+结论
+
+
+
+
+【译文】构建积极友好的 UI
+原文链接：Optimistic UIs in under 1000 words
+
+今天来谈论一下“积极友好的 UI”
+积极？积极的 UI 指其不需要等到更新">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【译文】构建积极友好的 UI">
+<meta property="og:url" content="http://ecmadao.com/2017/01/13/Notes/译文/【译文】构建积极友好的 UI/index.html">
+<meta property="og:site_name" content="ecmadao">
+<meta property="og:description" content="Table of Contents  generated with DocToc
+
+【译文】构建积极友好的 UI
+积极？
+看起来太 Magic 了，为什么要这么做？
+真实案例
+进度展示
+处理错误
+结论
+
+
+
+
+【译文】构建积极友好的 UI
+原文链接：Optimistic UIs in under 1000 words
+
+今天来谈论一下“积极友好的 UI”
+积极？积极的 UI 指其不需要等到更新">
+<meta property="og:image" content="http://ecmadao.com/images/OptimisticUIs/1-N5tK8JB0MmRb04ONghE5mg.gif?raw=true">
+<meta property="og:image" content="http://ecmadao.com/images/OptimisticUIs/1-KE0p_NCjeeV0Sk9ZAIuE8g.gif?raw=true">
+<meta property="og:image" content="http://ecmadao.com/images/OptimisticUIs/1-lGIBhHTPCUuFl8LkSi3Ikg.gif?raw=true">
+<meta property="og:image" content="http://ecmadao.com/images/OptimisticUIs/1-GwXigyxILbWYKqcOnOiEdw.gif?raw=true">
+<meta property="og:image" content="http://ecmadao.com/images/OptimisticUIs/1-x6Av27i_C_Y939jDI1vS3Q.png?raw=true">
+<meta property="og:image" content="http://ecmadao.com/images/OptimisticUIs/1-2sem8ziRkYSVenm5pk6cBw.gif?raw=true">
+<meta property="og:image" content="http://ecmadao.com/images/OptimisticUIs/1-zOpNzRINts7Pzc_4wsO-dw.png?raw=true">
+<meta property="og:image" content="http://ecmadao.com/images/OptimisticUIs/1-TwOEaDPTJnbJiPMRxlC8Vg.png?raw=true">
+<meta property="og:image" content="http://ecmadao.com/images/OptimisticUIs/1-Vm7qBwrOO3JkTzSmhvNOyg.png?raw=true">
+<meta property="og:image" content="http://ecmadao.com/images/OptimisticUIs/1-Yo4j_LieR_xB2O89_Zr6RQ.gif?raw=true">
+<meta property="og:image" content="http://ecmadao.com/images/OptimisticUIs/1-zDdRaFaU2qVHGJFQXGbyHA.png?raw=true">
+<meta property="og:image" content="http://ecmadao.com/images/OptimisticUIs/1-eArwlVHG4IDGQVEdoggb9A.png?raw=true">
+<meta property="og:image" content="http://ecmadao.com/images/OptimisticUIs/1-fJNUyqeU5Ssju9J7AuWExg.png?raw=true">
+<meta property="og:updated_time" content="2017-01-14T12:11:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【译文】构建积极友好的 UI">
+<meta name="twitter:description" content="Table of Contents  generated with DocToc
+
+【译文】构建积极友好的 UI
+积极？
+看起来太 Magic 了，为什么要这么做？
+真实案例
+进度展示
+处理错误
+结论
+
+
+
+
+【译文】构建积极友好的 UI
+原文链接：Optimistic UIs in under 1000 words
+
+今天来谈论一下“积极友好的 UI”
+积极？积极的 UI 指其不需要等到更新">
+<meta name="twitter:image" content="http://ecmadao.com/images/OptimisticUIs/1-N5tK8JB0MmRb04ONghE5mg.gif?raw=true">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>【译文】构建积极友好的 UI</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+    <link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    <script src="/lib/jquery/jquery.min.js"></script>
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/01/13/Notes/译文/【译文】扁平化设计成了网页设计的标配了吗？10名设计师的心声/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/01/13/Notes/译文/【译文】用Webpack武装自己/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ecmadao.com/2017/01/13/Notes/译文/【译文】构建积极友好的 UI/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ecmadao.com/2017/01/13/Notes/译文/【译文】构建积极友好的 UI/&text=【译文】构建积极友好的 UI"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ecmadao.com/2017/01/13/Notes/译文/【译文】构建积极友好的 UI/&title=【译文】构建积极友好的 UI"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ecmadao.com/2017/01/13/Notes/译文/【译文】构建积极友好的 UI/&is_video=false&description=【译文】构建积极友好的 UI"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【译文】构建积极友好的 UI&body=Check out this article: http://ecmadao.com/2017/01/13/Notes/译文/【译文】构建积极友好的 UI/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ecmadao.com/2017/01/13/Notes/译文/【译文】构建积极友好的 UI/&title=【译文】构建积极友好的 UI"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ecmadao.com/2017/01/13/Notes/译文/【译文】构建积极友好的 UI/&title=【译文】构建积极友好的 UI"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ecmadao.com/2017/01/13/Notes/译文/【译文】构建积极友好的 UI/&title=【译文】构建积极友好的 UI"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ecmadao.com/2017/01/13/Notes/译文/【译文】构建积极友好的 UI/&title=【译文】构建积极友好的 UI"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ecmadao.com/2017/01/13/Notes/译文/【译文】构建积极友好的 UI/&name=【译文】构建积极友好的 UI&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#【译文】构建积极友好的-UI"><span class="toc-number">1.</span> <span class="toc-text">【译文】构建积极友好的 UI</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#积极？"><span class="toc-number">1.1.</span> <span class="toc-text">积极？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#看起来太-Magic-了，为什么要这么做？"><span class="toc-number">1.2.</span> <span class="toc-text">看起来太 Magic 了，为什么要这么做？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#真实案例"><span class="toc-number">1.3.</span> <span class="toc-text">真实案例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进度展示"><span class="toc-number">1.4.</span> <span class="toc-text">进度展示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#处理错误"><span class="toc-number">1.5.</span> <span class="toc-text">处理错误</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#结论"><span class="toc-number">1.6.</span> <span class="toc-text">结论</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        【译文】构建积极友好的 UI
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">ecmadao</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-01-13T05:58:37.000Z" itemprop="datePublished">2017-01-13</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/译文/">译文</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<p><strong>Table of Contents</strong>  <em>generated with <a href="https://github.com/thlorenz/doctoc" target="_blank" rel="external">DocToc</a></em></p>
+<ul>
+<li><a href="#%E3%80%90%E8%AF%91%E6%96%87%E3%80%91%E6%9E%84%E5%BB%BA%E7%A7%AF%E6%9E%81%E5%8F%8B%E5%A5%BD%E7%9A%84-ui">【译文】构建积极友好的 UI</a><ul>
+<li><a href="#%E7%A7%AF%E6%9E%81%EF%BC%9F">积极？</a></li>
+<li><a href="#%E7%9C%8B%E8%B5%B7%E6%9D%A5%E5%A4%AA-magic-%E4%BA%86%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E8%BF%99%E4%B9%88%E5%81%9A%EF%BC%9F">看起来太 Magic 了，为什么要这么做？</a></li>
+<li><a href="#%E7%9C%9F%E5%AE%9E%E6%A1%88%E4%BE%8B">真实案例</a></li>
+<li><a href="#%E8%BF%9B%E5%BA%A6%E5%B1%95%E7%A4%BA">进度展示</a></li>
+<li><a href="#%E5%A4%84%E7%90%86%E9%94%99%E8%AF%AF">处理错误</a></li>
+<li><a href="#%E7%BB%93%E8%AE%BA">结论</a></li>
+</ul>
+</li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<h2 id="【译文】构建积极友好的-UI"><a href="#【译文】构建积极友好的-UI" class="headerlink" title="【译文】构建积极友好的 UI"></a>【译文】构建积极友好的 UI</h2><blockquote>
+<p>原文链接：<a href="https://uxplanet.org/optimistic-1000-34d9eefe4c05#.wj1y3e4nd" target="_blank" rel="external">Optimistic UIs in under 1000 words</a></p>
+</blockquote>
+<p>今天来谈论一下“积极友好的 UI”</p>
+<h3 id="积极？"><a href="#积极？" class="headerlink" title="积极？"></a>积极？</h3><p>积极的 UI 指其不需要等到更新完状态之后才更新界面。它会立马切换到最终状态的界面，然后以进行中的样式等待操作的完成。</p>
+<p>这句话可能不好理解，还是先看个栗子吧。下面是一个名为 “Cotton Candy” 的虚构的发送信息的 APP。它有两种发送信息的方式可供我们选择：</p>
+<blockquote>
+<p>不积极的 UI设计</p>
+</blockquote>
+<p><img src="/images/OptimisticUIs/1-N5tK8JB0MmRb04ONghE5mg.gif?raw=true" alt="不积极的 UI设计"></p>
+<blockquote>
+<p>积极的 UI 设计</p>
+</blockquote>
+<p><img src="/images/OptimisticUIs/1-KE0p_NCjeeV0Sk9ZAIuE8g.gif?raw=true" alt="积极的 UI 设计"></p>
+<p>如上所示，积极的 UI 会在操作完成之前率先展示其最终的样式。</p>
+<h3 id="看起来太-Magic-了，为什么要这么做？"><a href="#看起来太-Magic-了，为什么要这么做？" class="headerlink" title="看起来太 Magic 了，为什么要这么做？"></a>看起来太 Magic 了，为什么要这么做？</h3><p>太背后隐藏的概念其实很简单，就是让用户感到愉悦。</p>
+<p>首先，通过这样的方式，可以让人感觉你的 APP 反应速度很快。当 APP 在上传一个照片或者发送一段话的时候，用户可以着手做其他事情。</p>
+<p>其次，去除掉不必要的等待状态，可以让操作连贯起来，获得“流”式的操作体验，这也使得 APP 看起来更加简洁友好。</p>
+<h3 id="真实案例"><a href="#真实案例" class="headerlink" title="真实案例"></a>真实案例</h3><p>积极的 UI 经常被用在信息和社交 APP 中。iOS 和 macOS 都在发送信息时使用了这种方式。</p>
+<blockquote>
+<p>在 Mac 上发送信息时会立即更新 UI</p>
+</blockquote>
+<p><img src="/images/OptimisticUIs/1-lGIBhHTPCUuFl8LkSi3Ikg.gif?raw=true" alt=""></p>
+<p>Instagram 在用户的评论列表里使用了积极的 UI 设计</p>
+<blockquote>
+<p>在评论的右侧展示发送状态</p>
+</blockquote>
+<p><img src="/images/OptimisticUIs/1-GwXigyxILbWYKqcOnOiEdw.gif?raw=true" alt=""></p>
+<p>再看一个不同的例子：iOS 上的 <a href="http://audible.com/" target="_blank" rel="external">Audible</a> 客户端。只要下载完成专辑的一小部分之后就可以播放，而剩下的部分则会在你听的时候悄然下载：</p>
+<blockquote>
+<p>下载好专辑的一小部分之后就能开始播放</p>
+</blockquote>
+<p><img src="/images/OptimisticUIs/1-x6Av27i_C_Y939jDI1vS3Q.png?raw=true" alt=""></p>
+<p>再来一个例子：<a href="http://trello.com/" target="_blank" rel="external">Trello</a>，当用户移动卡片时，它会被立即移动，而不用等待服务端完成这个操作</p>
+<p><img src="/images/OptimisticUIs/1-2sem8ziRkYSVenm5pk6cBw.gif?raw=true" alt=""></p>
+<p>而在 Medium 里，在用户接受图片时，会通过逐步显现的方式构建积极的界面。</p>
+<p>这些方法都可以用在你自己的产品里。</p>
+<h3 id="进度展示"><a href="#进度展示" class="headerlink" title="进度展示"></a>进度展示</h3><p>有时候只是展现一个最终状态的界面还是不够的。通过一个进度提示可以避免让用户困扰，尤其是在错误发生时至关重要。</p>
+<p>无疑，如果操作所用时间越长，则进度提示就会越显眼。当用户做出例如“点赞”这样的操作时没有必要使用进度提示，但当他上传照片时这样的提示就至关重要。</p>
+<p>一些 APP 会在结果展示的 UI 旁边展现当前进度：</p>
+<blockquote>
+<p>在消息的同一行里展示发送的进度</p>
+</blockquote>
+<p><img src="/images/OptimisticUIs/1-zOpNzRINts7Pzc_4wsO-dw.png?raw=true" alt=""></p>
+<p>再进一步的话，可以在消息旁边展示一个小 icon 或者 label</p>
+<blockquote>
+<p>facebook web 里发送消息时的 icon</p>
+</blockquote>
+<p><img src="/images/OptimisticUIs/1-TwOEaDPTJnbJiPMRxlC8Vg.png?raw=true" alt=""></p>
+<p>iOS 的消息 APP 则会在顶部展示一个发送进度条：</p>
+<p><img src="/images/OptimisticUIs/1-Vm7qBwrOO3JkTzSmhvNOyg.png?raw=true" alt=""></p>
+<h3 id="处理错误"><a href="#处理错误" class="headerlink" title="处理错误"></a>处理错误</h3><p>如果已经展示了最终结果的 UI，但又发生了错误的话，该如何处理？</p>
+<p>有两点要考虑：</p>
+<ol>
+<li>突出：结果必须可见，确保用户不会错过错误消息</li>
+<li>因果：需要让用户理解什么操作发生了错误。因为我们已经更新好了 UI，所以在用户心里这个操作是应该已经完成了的。</li>
+</ol>
+<p>在构建积极的 UI 过程中，错误处理是一个很大的挑战。</p>
+<p>最简单的处理方法是弹出一个错误提示框：</p>
+<p><img src="/images/OptimisticUIs/1-Yo4j_LieR_xB2O89_Zr6RQ.gif?raw=true" alt=""></p>
+<p>这种方法对于第一点（突出）而言很棒。用户不会错过错误消息，而且它终止了 APP 内的其他交互。</p>
+<p>但对于第二点（因果）来说就不行了。在心智上没能把错误和用户之前的操作联系起来。它只是随机的蹦出来，还在上面附带了吓人的文字。</p>
+<p>还有一种处理方式，是在消息旁边展示一个表示错误的 icon：</p>
+<p><img src="/images/OptimisticUIs/1-zDdRaFaU2qVHGJFQXGbyHA.png?raw=true" alt=""></p>
+<p>当用户点击这个 icon 的时候，再弹出一个选择框，让用户可以再次发送消息：</p>
+<p><img src="/images/OptimisticUIs/1-eArwlVHG4IDGQVEdoggb9A.png?raw=true" alt=""></p>
+<p>这个方法对于第二点（因果）很友好，但可惜的是错误提示不够明显。如果用户屏幕上展示的不是这个错误消息，那么他就无法查看到消息的错误状态。</p>
+<p>iOS 的消息 APP 会在图标上展示一个错误提示来让其更加显眼。所以即便用户离开了 APP 也能够注意到它：</p>
+<p><img src="/images/OptimisticUIs/1-fJNUyqeU5Ssju9J7AuWExg.png?raw=true" alt=""></p>
+<p>为了减少错误提示带来的负面影响，有时我们可以在程序内部初步处理错误，在错误发生时再次重新尝试消息发送。</p>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>积极的 UI 可以让你的应用更加流利、直接、面向用户，而当你的服务器响应比较缓慢的时候尤为重要。但要注意的是，如果你的后端服务并不可靠，可能经常会返回错误，此时再大量使用积极的 UI 就很槽糕了。</p>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#【译文】构建积极友好的-UI"><span class="toc-number">1.</span> <span class="toc-text">【译文】构建积极友好的 UI</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#积极？"><span class="toc-number">1.1.</span> <span class="toc-text">积极？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#看起来太-Magic-了，为什么要这么做？"><span class="toc-number">1.2.</span> <span class="toc-text">看起来太 Magic 了，为什么要这么做？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#真实案例"><span class="toc-number">1.3.</span> <span class="toc-text">真实案例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进度展示"><span class="toc-number">1.4.</span> <span class="toc-text">进度展示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#处理错误"><span class="toc-number">1.5.</span> <span class="toc-text">处理错误</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#结论"><span class="toc-number">1.6.</span> <span class="toc-text">结论</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ecmadao.com/2017/01/13/Notes/译文/【译文】构建积极友好的 UI/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ecmadao.com/2017/01/13/Notes/译文/【译文】构建积极友好的 UI/&text=【译文】构建积极友好的 UI"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ecmadao.com/2017/01/13/Notes/译文/【译文】构建积极友好的 UI/&title=【译文】构建积极友好的 UI"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ecmadao.com/2017/01/13/Notes/译文/【译文】构建积极友好的 UI/&is_video=false&description=【译文】构建积极友好的 UI"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【译文】构建积极友好的 UI&body=Check out this article: http://ecmadao.com/2017/01/13/Notes/译文/【译文】构建积极友好的 UI/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ecmadao.com/2017/01/13/Notes/译文/【译文】构建积极友好的 UI/&title=【译文】构建积极友好的 UI"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ecmadao.com/2017/01/13/Notes/译文/【译文】构建积极友好的 UI/&title=【译文】构建积极友好的 UI"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ecmadao.com/2017/01/13/Notes/译文/【译文】构建积极友好的 UI/&title=【译文】构建积极友好的 UI"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ecmadao.com/2017/01/13/Notes/译文/【译文】构建积极友好的 UI/&title=【译文】构建积极友好的 UI"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ecmadao.com/2017/01/13/Notes/译文/【译文】构建积极友好的 UI/&name=【译文】构建积极友好的 UI&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2017 ecmadao
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    <script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'ecmadao-blog';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
+</body>
+</html>

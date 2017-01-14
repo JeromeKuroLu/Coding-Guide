@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Table of Contents  generated with DocToc
+
+JavaScript异步操作
+Fetch
+实例
+
+
+Promise
+APIS
+
+
+ES7的异步async/await
+
+
+
+
+JavaScript异步操作Fetch用于发送异步请求，返回 Promise 对象
+12345678910fetch(request).then(function(response) &amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript异步操作">
+<meta property="og:url" content="http://ecmadao.com/2017/01/13/Notes/JavaScript/JavaScript异步操作/index.html">
+<meta property="og:site_name" content="ecmadao">
+<meta property="og:description" content="Table of Contents  generated with DocToc
+
+JavaScript异步操作
+Fetch
+实例
+
+
+Promise
+APIS
+
+
+ES7的异步async/await
+
+
+
+
+JavaScript异步操作Fetch用于发送异步请求，返回 Promise 对象
+12345678910fetch(request).then(function(response) &amp;">
+<meta property="og:updated_time" content="2017-01-14T12:11:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript异步操作">
+<meta name="twitter:description" content="Table of Contents  generated with DocToc
+
+JavaScript异步操作
+Fetch
+实例
+
+
+Promise
+APIS
+
+
+ES7的异步async/await
+
+
+
+
+JavaScript异步操作Fetch用于发送异步请求，返回 Promise 对象
+12345678910fetch(request).then(function(response) &amp;">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>JavaScript异步操作</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+    <link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    <script src="/lib/jquery/jquery.min.js"></script>
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/01/13/Notes/JavaScript/JavaScript结构与代码优化/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/01/13/Notes/JavaScript/JavaScript编码规范/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ecmadao.com/2017/01/13/Notes/JavaScript/JavaScript异步操作/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ecmadao.com/2017/01/13/Notes/JavaScript/JavaScript异步操作/&text=JavaScript异步操作"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ecmadao.com/2017/01/13/Notes/JavaScript/JavaScript异步操作/&title=JavaScript异步操作"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ecmadao.com/2017/01/13/Notes/JavaScript/JavaScript异步操作/&is_video=false&description=JavaScript异步操作"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=JavaScript异步操作&body=Check out this article: http://ecmadao.com/2017/01/13/Notes/JavaScript/JavaScript异步操作/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ecmadao.com/2017/01/13/Notes/JavaScript/JavaScript异步操作/&title=JavaScript异步操作"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ecmadao.com/2017/01/13/Notes/JavaScript/JavaScript异步操作/&title=JavaScript异步操作"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ecmadao.com/2017/01/13/Notes/JavaScript/JavaScript异步操作/&title=JavaScript异步操作"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ecmadao.com/2017/01/13/Notes/JavaScript/JavaScript异步操作/&title=JavaScript异步操作"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ecmadao.com/2017/01/13/Notes/JavaScript/JavaScript异步操作/&name=JavaScript异步操作&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript异步操作"><span class="toc-number">1.</span> <span class="toc-text">JavaScript异步操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Fetch"><span class="toc-number">1.1.</span> <span class="toc-text">Fetch</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#实例"><span class="toc-number">1.1.1.</span> <span class="toc-text">实例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Promise"><span class="toc-number">1.2.</span> <span class="toc-text">Promise</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#APIS"><span class="toc-number">1.2.1.</span> <span class="toc-text">APIS</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ES7的异步async-await"><span class="toc-number">1.3.</span> <span class="toc-text">ES7的异步async/await</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        JavaScript异步操作
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">ecmadao</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-01-13T05:58:37.000Z" itemprop="datePublished">2017-01-13</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/JavaScript/">JavaScript</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<p><strong>Table of Contents</strong>  <em>generated with <a href="https://github.com/thlorenz/doctoc" target="_blank" rel="external">DocToc</a></em></p>
+<ul>
+<li><a href="#javascript%E5%BC%82%E6%AD%A5%E6%93%8D%E4%BD%9C">JavaScript异步操作</a><ul>
+<li><a href="#fetch">Fetch</a><ul>
+<li><a href="#%E5%AE%9E%E4%BE%8B">实例</a></li>
+</ul>
+</li>
+<li><a href="#promise">Promise</a><ul>
+<li><a href="#apis">APIS</a></li>
+</ul>
+</li>
+<li><a href="#es7%E7%9A%84%E5%BC%82%E6%AD%A5asyncawait">ES7的异步<code>async/await</code></a></li>
+</ul>
+</li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<h2 id="JavaScript异步操作"><a href="#JavaScript异步操作" class="headerlink" title="JavaScript异步操作"></a>JavaScript异步操作</h2><h3 id="Fetch"><a href="#Fetch" class="headerlink" title="Fetch"></a><a href="http://github.github.io/fetch/" target="_blank" rel="external">Fetch</a></h3><p>用于发送异步请求，返回 Promise 对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">fetch(request).then(<span class="function"><span class="keyword">function</span>(<span class="params">response</span>) </span>&#123;</div><div class="line">  <span class="comment">// handle HTTP response</span></div><div class="line">  <span class="keyword">if</span>(response.ok) &#123;</div><div class="line">  	<span class="comment">// ....</span></div><div class="line">  &#125;<span class="keyword">else</span> &#123;</div><div class="line">  	<span class="comment">// ...</span></div><div class="line">  &#125;</div><div class="line">&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">error</span>) </span>&#123;</div><div class="line">  <span class="comment">// handle network error</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>更详细的例子:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 提交GET请求</span></div><div class="line">fetch(url).then(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>&#123;</div><div class="line"></div><div class="line">&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">error</span>) </span>&#123;</div><div class="line"></div><div class="line">&#125;);</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// 提交POST请求</span></div><div class="line"><span class="comment">// request 请求</span></div><div class="line">fetch(url, &#123;</div><div class="line">  <span class="attr">method</span>: <span class="string">"POST"</span>,</div><div class="line">  <span class="attr">body</span>: <span class="built_in">JSON</span>.stringify(data),</div><div class="line">  <span class="comment">// fetch 的 Headers 接口</span></div><div class="line">  headers: &#123;</div><div class="line">    <span class="string">"Content-Type"</span>: <span class="string">"application/json"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">credentials</span>: <span class="string">"same-origin"</span></div><div class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params">response</span>) </span>&#123;</div><div class="line"></div><div class="line">  <span class="comment">// response 相应</span></div><div class="line">  response.status     <span class="comment">//=&gt; number 100–599</span></div><div class="line">  response.statusText <span class="comment">//=&gt; String</span></div><div class="line">  response.headers    <span class="comment">//=&gt; Headers</span></div><div class="line">  response.url        <span class="comment">//=&gt; String</span></div><div class="line"></div><div class="line">  response.text().then(<span class="function"><span class="keyword">function</span>(<span class="params">responseText</span>) </span>&#123; ... &#125;)</div><div class="line">&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">error</span>) </span>&#123;</div><div class="line">  error.message <span class="comment">//=&gt; String</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<ul>
+<li>Headers</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 不同的构造方法</span></div><div class="line"></div><div class="line"><span class="comment">// key-value</span></div><div class="line"><span class="keyword">var</span> content = <span class="string">"Hello World"</span>;</div><div class="line"><span class="keyword">var</span> reqHeaders = <span class="keyword">new</span> Headers();</div><div class="line">reqHeaders.append(<span class="string">"Content-Type"</span>, <span class="string">"text/plain"</span></div><div class="line">reqHeaders.append(<span class="string">"Content-Length"</span>, content.length.toString());</div><div class="line">reqHeaders.append(<span class="string">"X-Custom-Header"</span>, <span class="string">"ProcessThisImmediately"</span>);</div><div class="line"></div><div class="line"><span class="comment">// json</span></div><div class="line">reqHeaders = <span class="keyword">new</span> Headers(&#123;</div><div class="line">  <span class="string">"Content-Type"</span>: <span class="string">"text/plain"</span>,</div><div class="line">  <span class="string">"Content-Length"</span>: content.length.toString(),</div><div class="line">  <span class="string">"X-Custom-Header"</span>: <span class="string">"ProcessThisImmediately"</span>,</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<ul>
+<li>request</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">/** 注：</div><div class="line">* request = (url, options)</div><div class="line">* url 为请求的路径</div><div class="line">* options为详细配置:</div><div class="line">**/</div><div class="line"></div><div class="line">- method (String) - HTTP 请求方式, 默认为 &quot;GET&quot;</div><div class="line">- body (String, Blob, FormData) - HTTP 请求体</div><div class="line">- headers (Object, Headers) - 请求头部, Default: &#123;&#125;</div><div class="line">- credentials (String) - 是否允许跨域请求 Authentication credentials mode. Default: &quot;omit&quot;. Other data structures need to be encoded before hand as one of these types</div><div class="line">	- &quot;omit&quot; - don&apos;t include authentication credentials (e.g. cookies) in the request</div><div class="line">	- &quot;same-origin&quot; - 如果一个请求是跨域的，那么返回一个简单的error</div><div class="line">	- &quot;include&quot; - include credentials in requests to all sites</div></pre></td></tr></table></figure>
+<ul>
+<li>response</li>
+</ul>
+<p>response 的属性:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">status (number) - HTTP状态码，100~599之间</div><div class="line">statusText (String) - Status text as reported by the server, e.g. &quot;Unauthorized&quot;</div><div class="line">ok (boolean) - 如果返回的HTTP状态码为2XX则为true</div><div class="line">headers (Headers)</div><div class="line">url (String)</div></pre></td></tr></table></figure>
+<p>response处理body的方法:</p>
+<p><strong>返回一个Promise对象</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">text() - 将 response text 转为 String</div><div class="line">json() - 输出 result of JSON.parse(responseText)</div><div class="line">blob() - yields a Blob</div><div class="line">arrayBuffer() - yields an ArrayBuffer</div><div class="line">formData() - 处理成可以再次被request使用的formData对象</div></pre></td></tr></table></figure>
+<p><strong>request 和 response 的body 只能被读取一次, 读取之后 bodyUsed 属性被设置为 true, 则不能再次读取</strong></p>
+<p>若要多次读取 body, 则应该在读取之前调用 <code>response.clone()</code> 方法, 之后读取clone的body（每个clone只能读取一次）</p>
+<h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><ul>
+<li>通过fetch获取数据</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">fetch(url).then(<span class="function">(<span class="params">response</span>) =&gt;</span> response.json()) <span class="comment">// 解析获取到的json</span></div><div class="line">.then(<span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</div><div class="line">  <span class="comment">// do something</span></div><div class="line">&#125;)</div><div class="line">.catch(<span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</div><div class="line">  <span class="comment">// do something</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<ul>
+<li>通过fetch发送数据</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">fetch(url, &#123;</div><div class="line">  <span class="attr">method</span>: <span class="string">'post'</span>,</div><div class="line">  <span class="attr">headers</span>: &#123;</div><div class="line">        <span class="string">'Accept'</span>: <span class="string">'application/json'</span>,</div><div class="line">        <span class="string">'Content-Type'</span>: <span class="string">'application/json'</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">body</span>: <span class="built_in">JSON</span>.stringify(&#123;data&#125;)</div><div class="line">&#125;)</div><div class="line">.then(<span class="function">(<span class="params">response</span>) =&gt;</span> response.json())</div><div class="line">.then(<span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</div><div class="line">  <span class="comment">// do something</span></div><div class="line">&#125;)</div><div class="line">.then(<span class="function">(<span class="params">error</span>) =&gt;</span> &#123;&#125;);</div></pre></td></tr></table></figure>
+<h3 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise" target="_blank" rel="external">Promise</a></h3><ul>
+<li>作用</li>
+</ul>
+<p>在 <code>Promise</code> 对象内部编写异步操作，并通过其自带的 <code>resolve</code> 和 <code>reject</code> 进行异步结果返回的处理。之后在使用这个 <code>Promise</code> 的时候，便可以通过 <code>.then((result) =&gt; {}).then((result) =&gt; {})...</code> 进行链式调用。 <code>.then()</code> 函数中的 <code>result</code> 参数即异步操作的结果</p>
+<ul>
+<li>status</li>
+</ul>
+<p>Promise 对象所拥有的几种状态:</p>
+<pre><code>- pending 初始化状态
+- fulfilled 成功的状态
+- rejected 失败的状态
+</code></pre><ul>
+<li>example</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">example</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(data)</div><div class="line">	<span class="comment">// resolve 和 reject 分别表示异步操作执行成功或失败后的回调函数</span></div><div class="line">	<span class="keyword">var</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</div><div class="line">		$.ajax(&#123;</div><div class="line">			<span class="attr">url</span>: www.example.com?page=<span class="number">1</span>&amp;num=<span class="number">1</span>,</div><div class="line">			<span class="attr">methon</span>: get,</div><div class="line">			<span class="attr">success</span>: <span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</div><div class="line">				resolve(data);</div><div class="line">			&#125;,</div><div class="line">			<span class="attr">error</span>: <span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</div><div class="line">				reject(error);</div><div class="line">			&#125;</div><div class="line">		&#125;);</div><div class="line">	&#125;);</div><div class="line">	<span class="keyword">return</span> promise;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>usage</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// then方法可以接受两个参数，第一个对应resolve的回调，第二个对应reject的回调</span></div><div class="line"><span class="comment">// 但这种方法无法捕获resolve回调中产生的异常</span></div><div class="line">example().then(</div><div class="line">	<span class="function">(<span class="params">result</span>) =&gt;</span> &#123;</div><div class="line">		<span class="comment">// 获取 resolve 传输的参数</span></div><div class="line">	&#125;,</div><div class="line">	(error) =&gt; &#123;</div><div class="line">		<span class="comment">// 获取 reject 传输的参数</span></div><div class="line">	&#125;</div><div class="line">);</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line">* 或者使用 catch 写法，在 catch 中指定 reject 时的回调</div><div class="line">* 当 reject 或者 resolve 失败的时候，会调用 catch</div><div class="line">* catch()方法是then(undefined, onRejected)的一个别名</div><div class="line">**/</div><div class="line">example().then(<span class="function">(<span class="params">result</span>) =&gt;</span> &#123;</div><div class="line">	<span class="comment">// do something..</span></div><div class="line">&#125;).catch(<span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</div><div class="line">	<span class="comment">// when fail..</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p><code>Promise.then()</code>和<code>Promise.catch()</code>都返回 Promise 对象，因此可以链式调用<br>如果只想对异常进行处理，可以采用<code>promise.then(undefined, callback);</code>方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">* Promise 的链式操作</div><div class="line">* 可以保证按照顺序依次执行异步操作，并能利用上一步异步操作的结果</div><div class="line">**/</div><div class="line">example().then(<span class="function">(<span class="params">data1</span>) =&gt;</span> &#123;</div><div class="line">	<span class="comment">// 获取 resolve 传输的参数</span></div><div class="line">	example(data1)</div><div class="line">&#125;).then(<span class="function">(<span class="params">data2</span>) =&gt;</span> &#123;</div><div class="line">	example(data2);</div><div class="line">&#125;).then(<span class="function">(<span class="params">data3</span>) =&gt;</span> &#123;</div><div class="line">	<span class="built_in">console</span>.log(data3);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 输出 data1 data2 data3</span></div></pre></td></tr></table></figure>
+<ul>
+<li>final</li>
+</ul>
+<p>Promise中没有<code>.final()</code>API，但是我们可以手动造一个：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">promise(XXX).then(<span class="function">(<span class="params">result</span>) =&gt;</span> &#123;</div><div class="line">  <span class="comment">// resolve时</span></div><div class="line">&#125;).catch(<span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</div><div class="line">  <span class="comment">// reject时</span></div><div class="line">&#125;).then(</div><div class="line">  <span class="comment">/*</span></div><div class="line">  * 全部处理完以后</div><div class="line">  * do something..</div><div class="line">  * 注：如果发生错误则不会catch</div><div class="line">  */</div><div class="line">)</div></pre></td></tr></table></figure></p>
+<h4 id="APIS"><a href="#APIS" class="headerlink" title="APIS"></a>APIS</h4><ul>
+<li><code>Promise.all()</code></li>
+</ul>
+<p>接收一个数组作为参数，数组内是多个 Promise 对象。 <code>.then()</code>会在<strong>全部 Promise 执行完毕</strong>之后返回一个包含所有异步操作结果的 list<br>传递给 Promise.all 的promise并不是一个个的顺序执行的，而是同时开始、并行执行的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Promise</span>.all([example(<span class="number">1</span>), example(<span class="number">2</span>), example(<span class="number">3</span>)])</div><div class="line">	.then(<span class="function">(<span class="params">result</span>) =&gt;</span> &#123;</div><div class="line">		<span class="built_in">console</span>.log(result);</div><div class="line">		<span class="comment">// [data1, data2, data3]</span></div><div class="line">	&#125;);</div></pre></td></tr></table></figure>
+<p><code>Promise.all()</code>所耗费的时间为最慢的异步操作的时间</p>
+<p>如果传入的数组中某项不是一个 promise ，该项会被用<code>Promise.resolve</code>转换为一个promise</p>
+<p><em>如果传出的参数list中有任意 Promise 失败返回 reject, 那么 <code>.all()</code> 将带着该 Promise 的 reject参数进入 reject 状态，不再理会其他 Promise 的返回结果</em></p>
+<ul>
+<li><code>Promise.race()</code></li>
+</ul>
+<p>接收一个数组作为参数，数组内是多个 Promise 对象。 <code>.then()</code>会在<strong>执行最快的 Promise 执行完毕</strong>之后返回一个包含异步操作结果的 result</p>
+<p>在最快的 Promise 执行完毕之后，数组参数中的其他 Promise 会正常继续执行，并通过 <code>.then()</code>返回结果</p>
+<p>如果最快的 Promise 返回 reject，那么<code>.race()</code>将会返回 reject，不再理会之后的 Promise 操作结果</p>
+<h3 id="ES7的异步async-await"><a href="#ES7的异步async-await" class="headerlink" title="ES7的异步async/await"></a>ES7的异步<code>async/await</code></h3><p><strong>用同步的方法写异步</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> setTimeoutToLog = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">  setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'test async'</span>);</div><div class="line">  &#125;, <span class="number">1000</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">const</span> showConsole = <span class="keyword">async</span> () =&gt; &#123;</div><div class="line">  <span class="keyword">await</span> setTimeoutToLog();</div><div class="line">&#125;</div><div class="line"></div><div class="line">showConsole();</div></pre></td></tr></table></figure>
+<p><code>await</code>会阻塞后面代码的执行，直到异步函数执行完成</p>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript异步操作"><span class="toc-number">1.</span> <span class="toc-text">JavaScript异步操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Fetch"><span class="toc-number">1.1.</span> <span class="toc-text">Fetch</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#实例"><span class="toc-number">1.1.1.</span> <span class="toc-text">实例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Promise"><span class="toc-number">1.2.</span> <span class="toc-text">Promise</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#APIS"><span class="toc-number">1.2.1.</span> <span class="toc-text">APIS</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ES7的异步async-await"><span class="toc-number">1.3.</span> <span class="toc-text">ES7的异步async/await</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ecmadao.com/2017/01/13/Notes/JavaScript/JavaScript异步操作/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ecmadao.com/2017/01/13/Notes/JavaScript/JavaScript异步操作/&text=JavaScript异步操作"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ecmadao.com/2017/01/13/Notes/JavaScript/JavaScript异步操作/&title=JavaScript异步操作"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ecmadao.com/2017/01/13/Notes/JavaScript/JavaScript异步操作/&is_video=false&description=JavaScript异步操作"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=JavaScript异步操作&body=Check out this article: http://ecmadao.com/2017/01/13/Notes/JavaScript/JavaScript异步操作/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ecmadao.com/2017/01/13/Notes/JavaScript/JavaScript异步操作/&title=JavaScript异步操作"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ecmadao.com/2017/01/13/Notes/JavaScript/JavaScript异步操作/&title=JavaScript异步操作"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ecmadao.com/2017/01/13/Notes/JavaScript/JavaScript异步操作/&title=JavaScript异步操作"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ecmadao.com/2017/01/13/Notes/JavaScript/JavaScript异步操作/&title=JavaScript异步操作"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ecmadao.com/2017/01/13/Notes/JavaScript/JavaScript异步操作/&name=JavaScript异步操作&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2017 ecmadao
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    <script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'ecmadao-blog';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
+</body>
+</html>
