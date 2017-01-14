@@ -80,32 +80,32 @@ Transitioning Befo">
     
         
           
-              <link rel="shortcut icon" href="/images/favicon.ico">
+              <link rel="shortcut icon" href="/Coding-Guide/images/favicon.ico">
           
         
         
           
-            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+            <link rel="icon" type="image/png" href="/Coding-Guide/images/favicon-192x192.png" sizes="192x192">
           
         
         
           
-            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+            <link rel="apple-touch-icon" sizes="180x180" href="/Coding-Guide/images/apple-touch-icon.png">
           
         
     
     <!-- title -->
     <title>Ember初步--Routing</title>
     <!-- styles -->
-    <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
-    <link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/Coding-Guide/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/Coding-Guide/lib/meslo-LG/styles.css">
+    <link rel="stylesheet" href="/Coding-Guide/lib/justified-gallery/justifiedGallery.min.css">
+    <link rel="stylesheet" href="/Coding-Guide/css/style.css">
     <!-- rss -->
     
     
     <!-- jquery -->
-    <script src="/lib/jquery/jquery.min.js"></script>
+    <script src="/Coding-Guide/lib/jquery/jquery.min.js"></script>
 </head>
 
 <body>
@@ -118,11 +118,11 @@ Transitioning Befo">
     <span id="nav">
       <ul>
          
-          <li><a href="/">Home</a></li>
+          <li><a href="/Coding-Guide/">Home</a></li>
          
-          <li><a href="/about/">About</a></li>
+          <li><a href="/Coding-Guide/about/">About</a></li>
          
-          <li><a href="/archives/">Articles</a></li>
+          <li><a href="/Coding-Guide/archives/">Articles</a></li>
          
           <li><a href="http://github.com/probberechts">Projects</a></li>
         
@@ -132,10 +132,10 @@ Transitioning Befo">
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/2017/01/13/Notes/RxJS/探索RxJS-CoreConcept/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        <li><a class="icon" href="/Coding-Guide/2017/01/13/Notes/前端工程/Chrome扩展程序开发/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
         
         
-        <li><a class="icon" href="/2017/01/13/Notes/RxJS/探索RxJS-Observable/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        <li><a class="icon" href="/Coding-Guide/2017/01/13/Notes/前端工程/Webpack编译提速-CommonsChunkPlugin的正确姿势/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
         <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
@@ -148,16 +148,16 @@ Transitioning Befo">
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ecmadao.com/2017/01/13/Notes/ember/Ember初步--Routing/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://ecmadao.com/2017/01/13/Notes/ember/Ember初步--Routing/&text=Ember初步--Routing"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ecmadao.com/2017/01/13/Notes/ember/Ember初步--Routing/&title=Ember初步--Routing"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ecmadao.com/2017/01/13/Notes/ember/Ember初步--Routing/&is_video=false&description=Ember初步--Routing"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Ember初步--Routing&body=Check out this article: http://ecmadao.com/2017/01/13/Notes/ember/Ember初步--Routing/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://ecmadao.com/2017/01/13/Notes/ember/Ember初步--Routing/&title=Ember初步--Routing"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://ecmadao.com/2017/01/13/Notes/ember/Ember初步--Routing/&title=Ember初步--Routing"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ecmadao.com/2017/01/13/Notes/ember/Ember初步--Routing/&title=Ember初步--Routing"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://ecmadao.com/2017/01/13/Notes/ember/Ember初步--Routing/&title=Ember初步--Routing"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ecmadao.com/2017/01/13/Notes/ember/Ember初步--Routing/&name=Ember初步--Routing&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ecmadao.com/Coding-Guide/2017/01/13/Notes/ember/Ember初步--Routing/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ecmadao.com/Coding-Guide/2017/01/13/Notes/ember/Ember初步--Routing/&text=Ember初步--Routing"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ecmadao.com/Coding-Guide/2017/01/13/Notes/ember/Ember初步--Routing/&title=Ember初步--Routing"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ecmadao.com/Coding-Guide/2017/01/13/Notes/ember/Ember初步--Routing/&is_video=false&description=Ember初步--Routing"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Ember初步--Routing&body=Check out this article: http://ecmadao.com/Coding-Guide/2017/01/13/Notes/ember/Ember初步--Routing/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ecmadao.com/Coding-Guide/2017/01/13/Notes/ember/Ember初步--Routing/&title=Ember初步--Routing"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ecmadao.com/Coding-Guide/2017/01/13/Notes/ember/Ember初步--Routing/&title=Ember初步--Routing"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ecmadao.com/Coding-Guide/2017/01/13/Notes/ember/Ember初步--Routing/&title=Ember初步--Routing"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ecmadao.com/Coding-Guide/2017/01/13/Notes/ember/Ember初步--Routing/&title=Ember初步--Routing"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ecmadao.com/Coding-Guide/2017/01/13/Notes/ember/Ember初步--Routing/&name=Ember初步--Routing&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -192,7 +192,7 @@ Transitioning Befo">
       
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/ember/">ember</a>
+        <a class="tag-link" href="/Coding-Guide/tags/ember/">ember</a>
     </div>
 
 
@@ -447,11 +447,11 @@ Transitioning Befo">
     <div id="nav-footer" style="display: none">
       <ul>
          
-          <li><a href="/">Home</a></li>
+          <li><a href="/Coding-Guide/">Home</a></li>
          
-          <li><a href="/about/">About</a></li>
+          <li><a href="/Coding-Guide/about/">About</a></li>
          
-          <li><a href="/archives/">Articles</a></li>
+          <li><a href="/Coding-Guide/archives/">Articles</a></li>
          
           <li><a href="http://github.com/probberechts">Projects</a></li>
         
@@ -464,16 +464,16 @@ Transitioning Befo">
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ecmadao.com/2017/01/13/Notes/ember/Ember初步--Routing/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://ecmadao.com/2017/01/13/Notes/ember/Ember初步--Routing/&text=Ember初步--Routing"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ecmadao.com/2017/01/13/Notes/ember/Ember初步--Routing/&title=Ember初步--Routing"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ecmadao.com/2017/01/13/Notes/ember/Ember初步--Routing/&is_video=false&description=Ember初步--Routing"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Ember初步--Routing&body=Check out this article: http://ecmadao.com/2017/01/13/Notes/ember/Ember初步--Routing/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://ecmadao.com/2017/01/13/Notes/ember/Ember初步--Routing/&title=Ember初步--Routing"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://ecmadao.com/2017/01/13/Notes/ember/Ember初步--Routing/&title=Ember初步--Routing"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ecmadao.com/2017/01/13/Notes/ember/Ember初步--Routing/&title=Ember初步--Routing"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://ecmadao.com/2017/01/13/Notes/ember/Ember初步--Routing/&title=Ember初步--Routing"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ecmadao.com/2017/01/13/Notes/ember/Ember初步--Routing/&name=Ember初步--Routing&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ecmadao.com/Coding-Guide/2017/01/13/Notes/ember/Ember初步--Routing/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ecmadao.com/Coding-Guide/2017/01/13/Notes/ember/Ember初步--Routing/&text=Ember初步--Routing"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ecmadao.com/Coding-Guide/2017/01/13/Notes/ember/Ember初步--Routing/&title=Ember初步--Routing"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ecmadao.com/Coding-Guide/2017/01/13/Notes/ember/Ember初步--Routing/&is_video=false&description=Ember初步--Routing"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Ember初步--Routing&body=Check out this article: http://ecmadao.com/Coding-Guide/2017/01/13/Notes/ember/Ember初步--Routing/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ecmadao.com/Coding-Guide/2017/01/13/Notes/ember/Ember初步--Routing/&title=Ember初步--Routing"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ecmadao.com/Coding-Guide/2017/01/13/Notes/ember/Ember初步--Routing/&title=Ember初步--Routing"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ecmadao.com/Coding-Guide/2017/01/13/Notes/ember/Ember初步--Routing/&title=Ember初步--Routing"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ecmadao.com/Coding-Guide/2017/01/13/Notes/ember/Ember初步--Routing/&title=Ember初步--Routing"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ecmadao.com/Coding-Guide/2017/01/13/Notes/ember/Ember初步--Routing/&name=Ember初步--Routing&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -499,11 +499,11 @@ Transitioning Befo">
     <nav>
       <ul>
          
-          <li><a href="/">Home</a></li>
+          <li><a href="/Coding-Guide/">Home</a></li>
          
-          <li><a href="/about/">About</a></li>
+          <li><a href="/Coding-Guide/about/">About</a></li>
          
-          <li><a href="/archives/">Articles</a></li>
+          <li><a href="/Coding-Guide/archives/">Articles</a></li>
          
           <li><a href="http://github.com/probberechts">Projects</a></li>
         
@@ -512,8 +512,8 @@ Transitioning Befo">
   </div>
 </footer>
 
-    <script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
-<script src="/js/main.js"></script>
+    <script src="/Coding-Guide/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/Coding-Guide/js/main.js"></script>
 <!-- Google Analytics -->
 
     <script type="text/javascript">
