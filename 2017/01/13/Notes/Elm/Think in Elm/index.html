@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Table of Contents  generated with DocToc
+
+Think in Elm
+基础组成
+Counter Example：
+Input Example
+Update
+
+
+混合实例
+注册表单
+
+
+Advance
+subscriptions
+example :
+
+
+Commands
+example–生成随机数
+
+
+Tasks
+import &amp;amp; module">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Think in Elm">
+<meta property="og:url" content="http://ecmadao.com/2017/01/13/Notes/Elm/Think in Elm/index.html">
+<meta property="og:site_name" content="ecmadao">
+<meta property="og:description" content="Table of Contents  generated with DocToc
+
+Think in Elm
+基础组成
+Counter Example：
+Input Example
+Update
+
+
+混合实例
+注册表单
+
+
+Advance
+subscriptions
+example :
+
+
+Commands
+example–生成随机数
+
+
+Tasks
+import &amp;amp; module">
+<meta property="og:image" content="http://ecmadao.com/images/elm-application-flow.png">
+<meta property="og:updated_time" content="2017-01-14T12:11:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Think in Elm">
+<meta name="twitter:description" content="Table of Contents  generated with DocToc
+
+Think in Elm
+基础组成
+Counter Example：
+Input Example
+Update
+
+
+混合实例
+注册表单
+
+
+Advance
+subscriptions
+example :
+
+
+Commands
+example–生成随机数
+
+
+Tasks
+import &amp;amp; module">
+<meta name="twitter:image" content="http://ecmadao.com/images/elm-application-flow.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Think in Elm</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+    <link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    <script src="/lib/jquery/jquery.min.js"></script>
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/01/13/Notes/Electron/使用Electron&React&Webpack构建桌面端App【01】--配置/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/01/13/Notes/Elm/Elm基础语法/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ecmadao.com/2017/01/13/Notes/Elm/Think in Elm/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ecmadao.com/2017/01/13/Notes/Elm/Think in Elm/&text=Think in Elm"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ecmadao.com/2017/01/13/Notes/Elm/Think in Elm/&title=Think in Elm"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ecmadao.com/2017/01/13/Notes/Elm/Think in Elm/&is_video=false&description=Think in Elm"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Think in Elm&body=Check out this article: http://ecmadao.com/2017/01/13/Notes/Elm/Think in Elm/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ecmadao.com/2017/01/13/Notes/Elm/Think in Elm/&title=Think in Elm"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ecmadao.com/2017/01/13/Notes/Elm/Think in Elm/&title=Think in Elm"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ecmadao.com/2017/01/13/Notes/Elm/Think in Elm/&title=Think in Elm"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ecmadao.com/2017/01/13/Notes/Elm/Think in Elm/&title=Think in Elm"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ecmadao.com/2017/01/13/Notes/Elm/Think in Elm/&name=Think in Elm&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Think-in-Elm"><span class="toc-number">1.</span> <span class="toc-text">Think in Elm</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基础组成"><span class="toc-number">1.1.</span> <span class="toc-text">基础组成</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Counter-Example："><span class="toc-number">1.1.1.</span> <span class="toc-text">Counter Example：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Input-Example"><span class="toc-number">1.1.2.</span> <span class="toc-text">Input Example</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Update"><span class="toc-number">1.1.3.</span> <span class="toc-text">Update</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#混合实例"><span class="toc-number">1.2.</span> <span class="toc-text">混合实例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#注册表单"><span class="toc-number">1.2.1.</span> <span class="toc-text">注册表单</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Advance"><span class="toc-number">1.3.</span> <span class="toc-text">Advance</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#subscriptions"><span class="toc-number">1.3.1.</span> <span class="toc-text">subscriptions</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#example"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">example :</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Commands"><span class="toc-number">1.3.2.</span> <span class="toc-text">Commands</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#example–生成随机数"><span class="toc-number">1.3.2.1.</span> <span class="toc-text">example–生成随机数</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Tasks"><span class="toc-number">1.3.3.</span> <span class="toc-text">Tasks</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#import-amp-module"><span class="toc-number">1.3.4.</span> <span class="toc-text">import & module</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#生成HTML"><span class="toc-number">1.4.</span> <span class="toc-text">生成HTML</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Think in Elm
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">ecmadao</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-01-13T05:58:37.000Z" itemprop="datePublished">2017-01-13</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Elm/">Elm</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<p><strong>Table of Contents</strong>  <em>generated with <a href="https://github.com/thlorenz/doctoc" target="_blank" rel="external">DocToc</a></em></p>
+<ul>
+<li><a href="#think-in-elm">Think in Elm</a><ul>
+<li><a href="#%E5%9F%BA%E7%A1%80%E7%BB%84%E6%88%90">基础组成</a><ul>
+<li><a href="#counter-example%EF%BC%9A">Counter Example：</a></li>
+<li><a href="#input-example">Input Example</a></li>
+<li><a href="#update">Update</a></li>
+</ul>
+</li>
+<li><a href="#%E6%B7%B7%E5%90%88%E5%AE%9E%E4%BE%8B">混合实例</a><ul>
+<li><a href="#%E6%B3%A8%E5%86%8C%E8%A1%A8%E5%8D%95">注册表单</a></li>
+</ul>
+</li>
+<li><a href="#advance">Advance</a><ul>
+<li><a href="#subscriptions">subscriptions</a><ul>
+<li><a href="#example-">example :</a></li>
+</ul>
+</li>
+<li><a href="#commands">Commands</a><ul>
+<li><a href="#example--%E7%94%9F%E6%88%90%E9%9A%8F%E6%9C%BA%E6%95%B0">example–生成随机数</a></li>
+</ul>
+</li>
+<li><a href="#tasks">Tasks</a></li>
+<li><a href="#import-&amp;-module">import &amp; module</a></li>
+</ul>
+</li>
+<li><a href="#%E7%94%9F%E6%88%90html">生成HTML</a></li>
+</ul>
+</li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<h2 id="Think-in-Elm"><a href="#Think-in-Elm" class="headerlink" title="Think in Elm"></a>Think in Elm</h2><p><img src="/images/elm-application-flow.png" alt="Elm Application Flow"></p>
+<h3 id="基础组成"><a href="#基础组成" class="headerlink" title="基础组成"></a>基础组成</h3><p>Elm的基本概念由Model, Update, View三者组成：</p>
+<blockquote>
+<p>Model — the state of your application</p>
+<p>Update — a way to update your state. composed by messages &amp; update</p>
+<p>iew — a way to view your state as HTML</p>
+</blockquote>
+<p><a href="http://www.elm-tutorial.org/en/02-elm-arch/02-structure.html" target="_blank" rel="external">Elm structure</a></p>
+<h4 id="Counter-Example："><a href="#Counter-Example：" class="headerlink" title="Counter Example："></a>Counter Example：</h4><figure class="highlight elm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> Html <span class="keyword">exposing</span> (..)</div><div class="line"><span class="keyword">import</span> Html.Attributes <span class="keyword">exposing</span> (..)</div><div class="line"><span class="keyword">import</span> Html.Events <span class="keyword">exposing</span> (onClick)</div><div class="line"><span class="keyword">import</span> Html.App <span class="keyword">as</span> App</div><div class="line"></div><div class="line"><span class="comment">-- Model，App state</span></div><div class="line"><span class="keyword">type</span> <span class="keyword">alias</span> <span class="type">Model</span> = <span class="type">Int</span></div><div class="line"><span class="title">initModel</span> : <span class="type">Model</span></div><div class="line"><span class="title">initModel</span> = <span class="number">999</span></div><div class="line"></div><div class="line"><span class="comment">-- update the way you can update your state</span></div><div class="line"></div><div class="line"><span class="comment">-- define messages type</span></div><div class="line"><span class="keyword">type</span> <span class="type">Msg</span> = <span class="type">Increment</span> | <span class="type">Decrement</span></div><div class="line"></div><div class="line"><span class="comment">-- define update func</span></div><div class="line"><span class="title">update</span> : <span class="type">Msg</span> -&gt; <span class="type">Model</span> -&gt; <span class="type">Model</span></div><div class="line"><span class="title">update</span> msg model =</div><div class="line">  <span class="keyword">case</span> msg <span class="keyword">of</span></div><div class="line">    <span class="type">Increment</span> -&gt;</div><div class="line">      model + <span class="number">1</span></div><div class="line">    <span class="type">Decrement</span> -&gt;</div><div class="line">      model - <span class="number">1</span></div><div class="line"></div><div class="line"><span class="comment">-- view, render as html</span></div><div class="line"><span class="title">view</span>: <span class="type">Model</span> -&gt; <span class="type">Html</span> <span class="type">Msg</span></div><div class="line"><span class="title">view</span> model =</div><div class="line">  div [class <span class="string">"model_container"</span>]</div><div class="line">    [ button [onClick <span class="type">Decrement</span>] [text <span class="string">"-"</span>]</div><div class="line">    , text (toString model)</div><div class="line">    , button [onClick <span class="type">Increment</span>] [text <span class="string">"+"</span>]</div><div class="line">    ]</div><div class="line"></div><div class="line"><span class="title">main</span> = <span class="type">App</span>.beginnerProgram &#123;model = initModel, view = view, update = update&#125;</div></pre></td></tr></table></figure>
+<h4 id="Input-Example"><a href="#Input-Example" class="headerlink" title="Input Example"></a>Input Example</h4><figure class="highlight elm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> Html <span class="keyword">exposing</span> (<span class="type">Html</span>, <span class="type">Attribute</span>, text, div, input)</div><div class="line"><span class="keyword">import</span> Html.App <span class="keyword">exposing</span> (beginnerProgram)</div><div class="line"><span class="keyword">import</span> Html.Attributes <span class="keyword">exposing</span> (..)</div><div class="line"><span class="keyword">import</span> Html.Events <span class="keyword">exposing</span> (onInput)</div><div class="line"><span class="keyword">import</span> String</div><div class="line"></div><div class="line"><span class="keyword">type</span> <span class="keyword">alias</span> <span class="type">Model</span> = <span class="type">String</span></div><div class="line"></div><div class="line"><span class="title">initModel</span>: <span class="type">Model</span></div><div class="line"><span class="title">initModel</span> = <span class="string">""</span></div><div class="line"></div><div class="line"><span class="keyword">type</span> <span class="type">Msg</span> = <span class="type">NewContent</span> <span class="type">String</span></div><div class="line"></div><div class="line"><span class="title">update</span>: <span class="type">Msg</span> -&gt; <span class="type">Model</span> -&gt; <span class="type">Model</span></div><div class="line"><span class="title">update</span> msg model =</div><div class="line">  <span class="keyword">case</span> msg <span class="keyword">of</span></div><div class="line">    <span class="type">NewContent</span> content -&gt;</div><div class="line">      content</div><div class="line"></div><div class="line"><span class="title">view</span> model =</div><div class="line">  div []</div><div class="line">    [</div><div class="line">      input [onInput <span class="type">NewContent</span>, placeholder <span class="string">"placeholder"</span>] [],</div><div class="line">      div [] [text model]</div><div class="line">    ]</div><div class="line"></div><div class="line"><span class="title">main</span> = beginnerProgram &#123;model = initModel, view = view, update = update&#125;</div></pre></td></tr></table></figure>
+<h4 id="Update"><a href="#Update" class="headerlink" title="Update"></a>Update</h4><figure class="highlight elm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- 定义操作类型</span></div><div class="line"><span class="keyword">type</span> <span class="type">Msg</span> = <span class="type">Increment</span> | <span class="type">Decrement</span></div><div class="line"><span class="comment">-- or</span></div><div class="line"><span class="keyword">type</span> <span class="type">Operation</span> = <span class="type">Increment</span> | <span class="type">Decrement</span> | <span class="type">Reset</span></div><div class="line"><span class="comment">-- or</span></div><div class="line"><span class="keyword">type</span> <span class="type">Bool</span> = <span class="type">True</span> | <span class="type">False</span></div></pre></td></tr></table></figure>
+<p>定义的Msg，Operation叫作Union type，用来表示一组可能的值。它的名称可以自己定义，但要大写开头。<br>类型的可能的值叫作Tag</p>
+<p><strong>Tag也可以是一个接受参数的函数</strong>，例如：</p>
+<figure class="highlight elm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> <span class="type">Msg</span></div><div class="line">  = <span class="type">Change</span> <span class="type">String</span></div><div class="line"></div><div class="line"><span class="type">Change</span>: <span class="type">String</span> -&gt; <span class="type">String</span></div></pre></td></tr></table></figure>
+<p>定义类型如何改变数据：</p>
+<figure class="highlight elm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- 定义类型如何改变数据</span></div><div class="line"><span class="comment">-- 该update方法接受operation和state作为参数</span></div><div class="line"><span class="title">update</span> operation state =</div><div class="line">  <span class="keyword">case</span> operation <span class="keyword">of</span></div><div class="line">    <span class="type">Increment</span> -&gt;</div><div class="line">      state + <span class="number">1</span></div><div class="line">    <span class="type">Decrement</span> -&gt;</div><div class="line">      state - <span class="number">1</span></div><div class="line">    <span class="type">Reset</span> -&gt;</div><div class="line">      <span class="number">0</span></div><div class="line"></div><div class="line"><span class="comment">-- view</span></div><div class="line"><span class="title">view</span> : <span class="type">Model</span> -&gt; <span class="type">Html</span> <span class="type">Msg</span></div><div class="line"><span class="title">view</span> model =</div><div class="line">  div []</div><div class="line">    [ input [ placeholder <span class="string">"Text to reverse"</span>, onInput <span class="type">Change</span> ] []</div><div class="line">    , div [] [ text (<span class="type">String</span>.reverse model.content) ]</div><div class="line">    ]</div></pre></td></tr></table></figure>
+<p>实例：</p>
+<figure class="highlight elm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- model</span></div><div class="line"><span class="comment">-- Model的类型是一个record</span></div><div class="line"><span class="keyword">type</span> <span class="keyword">alias</span> <span class="type">Model</span> =</div><div class="line">  &#123; content : <span class="type">String</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line"><span class="title">model</span> : <span class="type">Model</span></div><div class="line"><span class="title">model</span> =</div><div class="line">  &#123; content = <span class="string">""</span> &#125;</div><div class="line"></div><div class="line"><span class="comment">-- update</span></div><div class="line"><span class="comment">-- tag是Change String，其中Change接受String类型作为参数，并返回Model类型</span></div><div class="line"><span class="keyword">type</span> <span class="type">Msg</span></div><div class="line">  = <span class="type">Change</span> <span class="type">String</span></div><div class="line"></div><div class="line"><span class="title">update</span> : <span class="type">Msg</span> -&gt; <span class="type">Model</span> -&gt; <span class="type">Model</span></div><div class="line"><span class="title">update</span> msg model =</div><div class="line">  <span class="keyword">case</span> msg <span class="keyword">of</span></div><div class="line">    <span class="type">Change</span> newContent -&gt;</div><div class="line">      &#123; model | content = newContent &#125; <span class="comment">-- 更新record类型的model中的content key</span></div></pre></td></tr></table></figure>
+<h3 id="混合实例"><a href="#混合实例" class="headerlink" title="混合实例"></a>混合实例</h3><h4 id="注册表单"><a href="#注册表单" class="headerlink" title="注册表单"></a>注册表单</h4><figure class="highlight elm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> Html <span class="keyword">exposing</span> (..)</div><div class="line"><span class="keyword">import</span> Html.App <span class="keyword">as</span> App</div><div class="line"><span class="keyword">import</span> Html.Attributes <span class="keyword">exposing</span> (..)</div><div class="line"><span class="keyword">import</span> Html.Events <span class="keyword">exposing</span> (onInput)</div><div class="line"></div><div class="line"><span class="title">main</span> =</div><div class="line">  <span class="type">App</span>.beginnerProgram</div><div class="line">    &#123; model = model</div><div class="line">    , view = view</div><div class="line">    , update = update</div><div class="line">    &#125;</div><div class="line"></div><div class="line"><span class="comment">-- MODEL</span></div><div class="line"></div><div class="line"><span class="comment">-- 定义model别名为Model</span></div><div class="line"><span class="keyword">type</span> <span class="keyword">alias</span> <span class="type">Model</span> =</div><div class="line">  &#123; name : <span class="type">String</span></div><div class="line">  , password : <span class="type">String</span></div><div class="line">  , passwordAgain : <span class="type">String</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line"><span class="title">model</span> : <span class="type">Model</span></div><div class="line"><span class="comment">-- 调用Record生成一个实例</span></div><div class="line"><span class="comment">-- &#123;name = "", password = "", passwordAgain = ""&#125;</span></div><div class="line"><span class="title">model</span> =</div><div class="line">  <span class="type">Model</span> <span class="string">""</span> <span class="string">""</span> <span class="string">""</span></div><div class="line"></div><div class="line"><span class="comment">-- UPDATE</span></div><div class="line"></div><div class="line"><span class="comment">-- 定义Tag</span></div><div class="line"><span class="keyword">type</span> <span class="type">Msg</span></div><div class="line">    = <span class="type">Name</span> <span class="type">String</span></div><div class="line">    | <span class="type">Password</span> <span class="type">String</span></div><div class="line">    | <span class="type">PasswordAgain</span> <span class="type">String</span></div><div class="line"></div><div class="line"><span class="title">update</span> : <span class="type">Msg</span> -&gt; <span class="type">Model</span> -&gt; <span class="type">Model</span></div><div class="line"><span class="title">update</span> msg model =</div><div class="line">  <span class="keyword">case</span> msg <span class="keyword">of</span></div><div class="line">    <span class="type">Name</span> name -&gt;</div><div class="line">      &#123; model | name = name &#125;</div><div class="line"></div><div class="line">    <span class="type">Password</span> password -&gt;</div><div class="line">      &#123; model | password = password &#125;</div><div class="line"></div><div class="line">    <span class="type">PasswordAgain</span> password -&gt;</div><div class="line">      &#123; model | passwordAgain = password &#125;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">-- VIEW</span></div><div class="line"></div><div class="line"><span class="title">view</span> : <span class="type">Model</span> -&gt; <span class="type">Html</span> <span class="type">Msg</span></div><div class="line"><span class="title">view</span> model =</div><div class="line">  div []</div><div class="line">    [ input [ <span class="keyword">type</span>' "text", placeholder "<span class="type">Name</span>", onInput <span class="type">Name</span> ] []</div><div class="line">    , input [ <span class="keyword">type</span>' "password", placeholder "<span class="type">Password</span>", onInput <span class="type">Password</span> ] []</div><div class="line">    , input [ <span class="keyword">type</span>' "password", placeholder "<span class="type">Re</span>-enter <span class="type">Password</span>", onInput <span class="type">PasswordAgain</span> ] []</div><div class="line">    , viewValidation model</div><div class="line">    ]</div><div class="line"></div><div class="line"></div><div class="line"><span class="title">viewValidation</span> : <span class="type">Model</span> -&gt; <span class="type">Html</span> msg</div><div class="line"><span class="title">viewValidation</span> model =</div><div class="line">  <span class="keyword">let</span></div><div class="line">    (color, message) =</div><div class="line">      <span class="keyword">if</span> model.password == model.passwordAgain <span class="keyword">then</span></div><div class="line">        (<span class="string">"green"</span>, <span class="string">"OK"</span>)</div><div class="line">      <span class="keyword">else</span></div><div class="line">        (<span class="string">"red"</span>, <span class="string">"Passwords do not match!"</span>)</div><div class="line">  <span class="keyword">in</span></div><div class="line">    div [ style [(<span class="string">"color"</span>, color)] ] [ text message ]</div></pre></td></tr></table></figure>
+<h3 id="Advance"><a href="#Advance" class="headerlink" title="Advance"></a>Advance</h3><h4 id="subscriptions"><a href="#subscriptions" class="headerlink" title="subscriptions"></a>subscriptions</h4><blockquote>
+<p>using subscriptions is how your application can listen for external input. Some examples are:<br>Keyboard events,<br>Mouse movements,<br>Browser locations changes,<br>Websocket events</p>
+</blockquote>
+<p>在Elm中，使用<code>subscriptions</code>来监听应用的一些事件，例如键盘响应、鼠标移动、浏览器URL变化、websocket事件等等，并使用<code>Commands</code>对事件进行处理。</p>
+<blockquote>
+<p>A Cmd can be one or a collection of things to do. We use commands to gather all the things that need to happen and hand them to the runtime. Then the runtime will execute them and feed the results back to the application</p>
+</blockquote>
+<p><code>subscriptions</code>要和<code>cmd</code>搭配使用，在使用之后，之前的<code>MUV</code>结构变为<code>MSUV</code>结构。并且Update函数返回的不再仅仅是Model，是<code>Model + Cmd Msg</code></p>
+<figure class="highlight elm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- MODEL</span></div><div class="line"><span class="keyword">type</span> <span class="keyword">alias</span> <span class="type">Model</span> =</div><div class="line">  &#123; ...</div><div class="line">  &#125;</div><div class="line"></div><div class="line"><span class="comment">-- SUBSCRIPTIONS</span></div><div class="line"><span class="comment">-- subscriptions接受model作为参数，在内部声明了要监听的事件，并返回Msg Value，之后传入UPDATE方法</span></div><div class="line"><span class="title">subscriptions</span> : <span class="type">Model</span> -&gt; <span class="type">Sub</span> <span class="type">Msg</span></div><div class="line"><span class="title">subscriptions</span> model =</div><div class="line">  ...</div><div class="line"></div><div class="line"><span class="comment">-- UPDATE</span></div><div class="line"><span class="keyword">type</span> <span class="type">Msg</span> = <span class="type">Submit</span> | ...</div><div class="line"></div><div class="line"><span class="title">update</span> : <span class="type">Msg</span> -&gt; <span class="type">Model</span> -&gt; (<span class="type">Model</span>, <span class="type">Cmd</span> <span class="type">Msg</span>)</div><div class="line"><span class="title">update</span> msg model =</div><div class="line">  ...</div><div class="line"></div><div class="line"><span class="comment">-- VIEW</span></div><div class="line"><span class="title">view</span> : <span class="type">Model</span> -&gt; <span class="type">Html</span> <span class="type">Msg</span></div><div class="line"><span class="title">view</span> model =</div><div class="line">  ...</div><div class="line"></div><div class="line"><span class="comment">-- INIT</span></div><div class="line"><span class="title">init</span> : (<span class="type">Model</span>, <span class="type">Cmd</span> <span class="type">Msg</span>)</div><div class="line"><span class="title">init</span> =</div><div class="line">  ...</div></pre></td></tr></table></figure>
+<h5 id="example"><a href="#example" class="headerlink" title="example :"></a>example :</h5><figure class="highlight elm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> Html <span class="keyword">exposing</span> (<span class="type">Html</span>, div, text)</div><div class="line"><span class="keyword">import</span> Html.App</div><div class="line"><span class="keyword">import</span> Mouse</div><div class="line"><span class="keyword">import</span> Keyboard</div><div class="line"></div><div class="line"><span class="comment">-- MODEL</span></div><div class="line"><span class="keyword">type</span> <span class="keyword">alias</span> <span class="type">Model</span> =</div><div class="line">    <span class="type">Int</span></div><div class="line"><span class="title">init</span> : ( <span class="type">Model</span>, <span class="type">Cmd</span> <span class="type">Msg</span> )</div><div class="line"><span class="title">init</span> =</div><div class="line">    ( <span class="number">0</span>, <span class="type">Cmd</span>.none )</div><div class="line"></div><div class="line"><span class="comment">-- MESSAGES</span></div><div class="line"><span class="keyword">type</span> <span class="type">Msg</span></div><div class="line">    = <span class="type">MouseMsg</span> <span class="type">Mouse</span>.<span class="type">Position</span></div><div class="line">    | <span class="type">KeyMsg</span> <span class="type">Keyboard</span>.<span class="type">KeyCode</span></div><div class="line"><span class="comment">-- 监听两种消息MouseMsg、KeyMsg。会在鼠标/键盘操作的时候触发相应的监听事件</span></div><div class="line"></div><div class="line"><span class="comment">-- UPDATE</span></div><div class="line"><span class="title">update</span> : <span class="type">Msg</span> -&gt; <span class="type">Model</span> -&gt; ( <span class="type">Model</span>, <span class="type">Cmd</span> <span class="type">Msg</span> )</div><div class="line"><span class="title">update</span> msg model =</div><div class="line">    <span class="keyword">case</span> msg <span class="keyword">of</span></div><div class="line">        <span class="type">MouseMsg</span> position -&gt;</div><div class="line">            ( model + <span class="number">1</span>, <span class="type">Cmd</span>.none )</div><div class="line">        <span class="type">KeyMsg</span> code -&gt;</div><div class="line">            ( model + <span class="number">2</span>, <span class="type">Cmd</span>.none )</div><div class="line"><span class="comment">-- update函数必须多返回一个Cmd</span></div><div class="line"><span class="comment">-- Cmd.none代表没有命令，什么也不需要做</span></div><div class="line"></div><div class="line"><span class="comment">-- SUBSCRIPTIONS</span></div><div class="line"><span class="title">subscriptions</span> : <span class="type">Model</span> -&gt; <span class="type">Sub</span> <span class="type">Msg</span></div><div class="line"><span class="title">subscriptions</span> model =</div><div class="line">    <span class="type">Sub</span>.batch</div><div class="line">        [ <span class="type">Mouse</span>.clicks <span class="type">MouseMsg</span></div><div class="line">        , <span class="type">Keyboard</span>.presses <span class="type">KeyMsg</span></div><div class="line">        ]</div><div class="line"><span class="comment">-- 声明要监听的事件。它们(Mouse.clicks/Keyboard.presses)接受Msg作为参数并返回</span></div><div class="line"><span class="comment">-- 使用Sub.batch监听多个事件</span></div><div class="line"></div><div class="line"><span class="comment">-- VIEW</span></div><div class="line"><span class="title">view</span> : <span class="type">Model</span> -&gt; <span class="type">Html</span> <span class="type">Msg</span></div><div class="line"><span class="title">view</span> model =</div><div class="line">    div []</div><div class="line">        [ text (toString model) ]</div><div class="line"></div><div class="line"><span class="comment">-- MAIN</span></div><div class="line"><span class="title">main</span> : <span class="type">Program</span> <span class="type">Never</span></div><div class="line"><span class="title">main</span> =</div><div class="line">    <span class="type">Html</span>.<span class="type">App</span>.program</div><div class="line">        &#123; init = init</div><div class="line">        , view = view</div><div class="line">        , update = update</div><div class="line">        , subscriptions = subscriptions</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
+<p><a href="http://guide.elm-lang.org/architecture/effects/random.html" target="_blank" rel="external">Random案例</a></p>
+<h4 id="Commands"><a href="#Commands" class="headerlink" title="Commands"></a>Commands</h4><blockquote>
+<p>commands (Cmd) are how we tell the runtime to execute things that involve side effects</p>
+</blockquote>
+<p>我们使用cmd来处理需要在程序中运行并需要被处理的事件。在处理完成之后程序会将结果返还给应用。</p>
+<p>例如：</p>
+<ul>
+<li>生成随机数</li>
+<li>http请求</li>
+<li>储存数据</li>
+</ul>
+<h5 id="example–生成随机数"><a href="#example–生成随机数" class="headerlink" title="example–生成随机数"></a>example–生成随机数</h5><figure class="highlight elm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">module</span> Main <span class="keyword">exposing</span> (..)</div><div class="line"></div><div class="line"><span class="keyword">import</span> Html <span class="keyword">exposing</span> (<span class="type">Html</span>, div, button, text)</div><div class="line"><span class="keyword">import</span> Html.Events <span class="keyword">exposing</span> (onClick)</div><div class="line"><span class="keyword">import</span> Html.App</div><div class="line"><span class="keyword">import</span> Random</div><div class="line"></div><div class="line"><span class="comment">-- MODEL</span></div><div class="line"><span class="keyword">type</span> <span class="keyword">alias</span> <span class="type">Model</span> =</div><div class="line">    <span class="type">Int</span></div><div class="line"><span class="title">init</span> : ( <span class="type">Model</span>, <span class="type">Cmd</span> <span class="type">Msg</span> )</div><div class="line"><span class="title">init</span> =</div><div class="line">    ( <span class="number">1</span>, <span class="type">Cmd</span>.none )</div><div class="line"></div><div class="line"><span class="comment">-- MESSAGES</span></div><div class="line"><span class="keyword">type</span> <span class="type">Msg</span></div><div class="line">    = <span class="type">Roll</span></div><div class="line">    | <span class="type">OnResult</span> <span class="type">Int</span></div><div class="line"><span class="comment">-- OnResult 用来从Random库中获取一个随机数</span></div><div class="line">    </div><div class="line"><span class="comment">-- VIEW</span></div><div class="line"><span class="title">view</span> : <span class="type">Model</span> -&gt; <span class="type">Html</span> <span class="type">Msg</span></div><div class="line"><span class="title">view</span> model =</div><div class="line">    div []</div><div class="line">        [ button [ onClick <span class="type">Roll</span> ] [ text <span class="string">"Roll"</span> ]</div><div class="line">        , text (toString model)</div><div class="line">        ]</div><div class="line"></div><div class="line"><span class="comment">-- UPDATE</span></div><div class="line"><span class="title">update</span> : <span class="type">Msg</span> -&gt; <span class="type">Model</span> -&gt; ( <span class="type">Model</span>, <span class="type">Cmd</span> <span class="type">Msg</span> )</div><div class="line"><span class="title">update</span> msg model =</div><div class="line">    <span class="keyword">case</span> msg <span class="keyword">of</span></div><div class="line">        <span class="type">Roll</span> -&gt;</div><div class="line">            ( model, <span class="type">Random</span>.generate <span class="type">OnResult</span> (<span class="type">Random</span>.int <span class="number">1</span> <span class="number">6</span>) )</div><div class="line">        <span class="type">OnResult</span> res -&gt;</div><div class="line">            ( res, <span class="type">Cmd</span>.none )</div><div class="line"></div><div class="line"><span class="comment">-- MAIN</span></div><div class="line"><span class="title">main</span> : <span class="type">Program</span> <span class="type">Never</span></div><div class="line"><span class="title">main</span> =</div><div class="line">    <span class="type">Html</span>.<span class="type">App</span>.program</div><div class="line">        &#123; init = init</div><div class="line">        , view = view</div><div class="line">        , update = update</div><div class="line">        , subscriptions = (always <span class="type">Sub</span>.none)</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
+<p><strong>IMPORTANT</strong></p>
+<blockquote>
+<p>But commands don’t have a concept of success or failure. They also don’t have the concept of sequencing. Commands are just bags of things to do.</p>
+</blockquote>
+<h4 id="Tasks"><a href="#Tasks" class="headerlink" title="Tasks"></a>Tasks</h4><p>鉴于commands并不知道任务返回的结果是成功还是失败，而且也没有对立的概念。因此，我们使用task来进行异步操作，它就像是js中的Promise</p>
+<p>task的signature：</p>
+<figure class="highlight elm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> Task</div><div class="line"></div><div class="line"><span class="comment">-- 第一个参数代表失败值，第二个参数代表成功时的回调</span></div><div class="line"><span class="type">Task</span> errorValue successValue</div><div class="line"></div><div class="line"><span class="comment">-- example</span></div><div class="line"><span class="comment">-- fails with an Http.Error or succeeds with a String</span></div><div class="line"><span class="type">Task</span> <span class="type">Http</span>.<span class="type">Error</span> <span class="type">String</span></div><div class="line"></div><div class="line"><span class="comment">-- a task that never fails, and always succeeds with a Result</span></div><div class="line"><span class="type">Task</span> <span class="type">Never</span> <span class="type">Result</span></div></pre></td></tr></table></figure>
+<p><em>举个栗子：</em></p>
+<figure class="highlight elm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">module</span> Main <span class="keyword">exposing</span> (..)</div><div class="line"></div><div class="line"><span class="keyword">import</span> Html <span class="keyword">exposing</span> (<span class="type">Html</span>, div, button, text)</div><div class="line"><span class="keyword">import</span> Html.Events <span class="keyword">exposing</span> (onClick)</div><div class="line"><span class="keyword">import</span> Html.App</div><div class="line"><span class="keyword">import</span> Http</div><div class="line"><span class="keyword">import</span> Task <span class="keyword">exposing</span> (<span class="type">Task</span>)</div><div class="line"><span class="keyword">import</span> Json.Decode <span class="keyword">as</span> Decode</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">-- MODEL</span></div><div class="line"><span class="keyword">type</span> <span class="keyword">alias</span> <span class="type">Model</span> =</div><div class="line">    <span class="type">String</span></div><div class="line"><span class="title">init</span> : ( <span class="type">Model</span>, <span class="type">Cmd</span> <span class="type">Msg</span> )</div><div class="line"><span class="title">init</span> =</div><div class="line">    ( <span class="string">""</span>, <span class="type">Cmd</span>.none )</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">-- MESSAGES</span></div><div class="line"><span class="keyword">type</span> <span class="type">Msg</span></div><div class="line">    = <span class="type">Fetch</span></div><div class="line">    | <span class="type">FetchSuccess</span> <span class="type">String</span></div><div class="line">    | <span class="type">FetchError</span> <span class="type">Http</span>.<span class="type">Error</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">-- VIEW</span></div><div class="line"><span class="title">view</span> : <span class="type">Model</span> -&gt; <span class="type">Html</span> <span class="type">Msg</span></div><div class="line"><span class="title">view</span> model =</div><div class="line">    div []</div><div class="line">        [ button [ onClick <span class="type">Fetch</span> ] [ text <span class="string">"Fetch"</span> ]</div><div class="line">        , text model</div><div class="line">        ]</div><div class="line"></div><div class="line"><span class="title">decode</span> : <span class="type">Decode</span>.<span class="type">Decoder</span> <span class="type">String</span></div><div class="line"><span class="title">decode</span> =</div><div class="line">    <span class="type">Decode</span>.at [ <span class="string">"name"</span> ] <span class="type">Decode</span>.string</div><div class="line"></div><div class="line"><span class="title">url</span> : <span class="type">String</span></div><div class="line"><span class="title">url</span> =</div><div class="line">    <span class="string">"http://swapi.co/api/planets/1/?format=json"</span></div><div class="line"></div><div class="line"><span class="comment">-- fetchTask: takes a decoder and a url and returns a task.</span></div><div class="line"><span class="title">fetchTask</span> : <span class="type">Task</span> <span class="type">Http</span>.<span class="type">Error</span> <span class="type">String</span></div><div class="line"><span class="title">fetchTask</span> =</div><div class="line">    <span class="type">Http</span>.get decode url</div><div class="line"></div><div class="line"><span class="comment">-- use Task.perform to transform a task into a command</span></div><div class="line"><span class="title">fetchCmd</span> : <span class="type">Cmd</span> <span class="type">Msg</span></div><div class="line"><span class="title">fetchCmd</span> =</div><div class="line">    <span class="type">Task</span>.perform <span class="type">FetchError</span> <span class="type">FetchSuccess</span> fetchTask</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">-- UPDATE</span></div><div class="line"><span class="title">update</span> : <span class="type">Msg</span> -&gt; <span class="type">Model</span> -&gt; ( <span class="type">Model</span>, <span class="type">Cmd</span> <span class="type">Msg</span> )</div><div class="line"><span class="title">update</span> msg model =</div><div class="line">    <span class="keyword">case</span> msg <span class="keyword">of</span></div><div class="line">        <span class="type">Fetch</span> -&gt;</div><div class="line">            ( model, fetchCmd )</div><div class="line">        <span class="type">FetchSuccess</span> name -&gt;</div><div class="line">            ( name, <span class="type">Cmd</span>.none )</div><div class="line">        <span class="type">FetchError</span> error -&gt;</div><div class="line">            ( toString error, <span class="type">Cmd</span>.none )</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">-- MAIN</span></div><div class="line"><span class="title">main</span> : <span class="type">Program</span> <span class="type">Never</span></div><div class="line"><span class="title">main</span> =</div><div class="line">    <span class="type">Html</span>.<span class="type">App</span>.program</div><div class="line">        &#123; init = init</div><div class="line">        , view = view</div><div class="line">        , update = update</div><div class="line">        , subscriptions = (always <span class="type">Sub</span>.none)</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
+<p><a href="http://guide.elm-lang.org/architecture/effects/http.html" target="_blank" rel="external">http请求</a></p>
+<p><em>Task &amp; unit type</em></p>
+<p>上面已经说过，一个典型的Task有 errorValue 和 successValue：</p>
+<figure class="highlight elm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="type">Task</span> errorValue successValue</div><div class="line"><span class="comment">-- 如果想要忽略error</span></div><div class="line"><span class="type">Task</span> () successValue</div><div class="line"><span class="comment">-- 同理，忽略success</span></div><div class="line"><span class="type">Task</span> errorValue ()</div><div class="line"><span class="comment">-- 甚至</span></div><div class="line"><span class="type">Task</span> () ()</div></pre></td></tr></table></figure>
+<h4 id="import-amp-module"><a href="#import-amp-module" class="headerlink" title="import &amp; module"></a>import &amp; module</h4><figure class="highlight elm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> Html <span class="keyword">exposing</span> (..)</div><div class="line"><span class="comment">-- 把Html模块内的变量全部导入</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> Html.Events <span class="keyword">exposing</span> (onClick)</div><div class="line"><span class="comment">-- 只导入指定的变量</span></div><div class="line"></div><div class="line"><span class="comment">-- 暴露module</span></div><div class="line"></div><div class="line"><span class="comment">-- 在文件开头加入</span></div><div class="line"><span class="keyword">module</span> Counter <span class="keyword">exposing</span> (<span class="type">Model</span>, initModel, <span class="type">Msg</span>, update, view)</div><div class="line"><span class="comment">-- exposing后是要暴露出去的变量名。使用(..)则暴露全部(不推荐)</span></div><div class="line"><span class="comment">-- module名(Counter)要首字母大写</span></div><div class="line"><span class="comment">-- module名(Counter)与文件名要一致</span></div><div class="line"><span class="comment">-- 且该文件内不再有main变量</span></div><div class="line"></div><div class="line"><span class="comment">-- 暴露文件夹内部的module</span></div><div class="line"><span class="comment">-- for example, 要暴露位于Players文件夹下的Utils.elm，即Players/Utils.elm</span></div><div class="line"><span class="keyword">module</span> Players.Utils <span class="keyword">exposing</span> (..)</div><div class="line"><span class="comment">-- 引用这个module</span></div><div class="line"><span class="keyword">import</span> Players.Utils</div></pre></td></tr></table></figure>
+<h3 id="生成HTML"><a href="#生成HTML" class="headerlink" title="生成HTML"></a>生成HTML</h3><figure class="highlight elm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- 引入全部HTML组件</span></div><div class="line"><span class="keyword">import</span> Html</div><div class="line"><span class="type">Html</span>.div [] []</div><div class="line"></div><div class="line"><span class="comment">-- or</span></div><div class="line"><span class="keyword">import</span> Html <span class="keyword">exposing</span> (..)</div><div class="line"><span class="title">div</span> [] []</div><div class="line"></div><div class="line"><span class="comment">-- 或者引入特定的组件</span></div><div class="line"><span class="keyword">import</span> Html <span class="keyword">exposing</span> (div)</div><div class="line"><span class="title">div</span> [] []</div></pre></td></tr></table></figure>
+<figure class="highlight elm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- 调用方式</span></div><div class="line"><span class="title">div</span> [] []</div><div class="line"><span class="comment">-- 第一个[]内写入div的attr</span></div><div class="line"><span class="comment">-- 第二个[]内写入div的子组件</span></div><div class="line"></div><div class="line"><span class="comment">-- example</span></div><div class="line"><span class="keyword">import</span> Html.Events <span class="keyword">exposing</span> (onInput)</div><div class="line"><span class="keyword">import</span> Html.Attributes <span class="keyword">exposing</span> (..)</div><div class="line"><span class="keyword">import</span> Html <span class="keyword">exposing</span> (..)</div><div class="line"></div><div class="line"><span class="title">div</span> [class <span class="string">"example"</span>, id <span class="string">"example"</span>] [</div><div class="line">  span [] [text <span class="string">"hey world"</span>]</div><div class="line">]</div><div class="line"><span class="title">input</span> [onInput <span class="type">NewContent</span>, placeholder <span class="string">"placeholder"</span>] []</div></pre></td></tr></table></figure>
+<p><strong>非module的渲染文件中必须有main变量</strong></p>
+<blockquote>
+<p>Front end applications in Elm start on a function called main. main is a function that returns an element to draw into the page. In this case it returns an Html element </p>
+</blockquote>
+<figure class="highlight elm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> Html <span class="keyword">exposing</span> (..)</div><div class="line"><span class="keyword">import</span> Html.App <span class="keyword">as</span> App</div><div class="line"></div><div class="line"><span class="title">main</span> = <span class="type">App</span>.beginnerProgram &#123;model = initModel, view = view, update = update&#125;</div><div class="line"><span class="comment">-- or</span></div><div class="line"><span class="title">main</span> =</div><div class="line">  <span class="type">Html</span>.program</div><div class="line">    &#123; init = init</div><div class="line">    , view = view</div><div class="line">    , update = update</div><div class="line">    , subscriptions = subscriptions</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p><strong>HTML渲染</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">-- 前端使用elm时的渲染方法</div><div class="line"><span class="keyword">const</span> Elm = <span class="built_in">require</span>(<span class="string">'./example.elm'</span>);</div><div class="line"><span class="keyword">const</span> mountNode = <span class="built_in">document</span>.getElementById(<span class="string">'example'</span>);</div><div class="line"><span class="keyword">let</span> app = Elm.Main.embed(mountNode);</div></pre></td></tr></table></figure>
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Think-in-Elm"><span class="toc-number">1.</span> <span class="toc-text">Think in Elm</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基础组成"><span class="toc-number">1.1.</span> <span class="toc-text">基础组成</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Counter-Example："><span class="toc-number">1.1.1.</span> <span class="toc-text">Counter Example：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Input-Example"><span class="toc-number">1.1.2.</span> <span class="toc-text">Input Example</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Update"><span class="toc-number">1.1.3.</span> <span class="toc-text">Update</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#混合实例"><span class="toc-number">1.2.</span> <span class="toc-text">混合实例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#注册表单"><span class="toc-number">1.2.1.</span> <span class="toc-text">注册表单</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Advance"><span class="toc-number">1.3.</span> <span class="toc-text">Advance</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#subscriptions"><span class="toc-number">1.3.1.</span> <span class="toc-text">subscriptions</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#example"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">example :</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Commands"><span class="toc-number">1.3.2.</span> <span class="toc-text">Commands</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#example–生成随机数"><span class="toc-number">1.3.2.1.</span> <span class="toc-text">example–生成随机数</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Tasks"><span class="toc-number">1.3.3.</span> <span class="toc-text">Tasks</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#import-amp-module"><span class="toc-number">1.3.4.</span> <span class="toc-text">import & module</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#生成HTML"><span class="toc-number">1.4.</span> <span class="toc-text">生成HTML</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ecmadao.com/2017/01/13/Notes/Elm/Think in Elm/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ecmadao.com/2017/01/13/Notes/Elm/Think in Elm/&text=Think in Elm"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ecmadao.com/2017/01/13/Notes/Elm/Think in Elm/&title=Think in Elm"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ecmadao.com/2017/01/13/Notes/Elm/Think in Elm/&is_video=false&description=Think in Elm"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Think in Elm&body=Check out this article: http://ecmadao.com/2017/01/13/Notes/Elm/Think in Elm/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ecmadao.com/2017/01/13/Notes/Elm/Think in Elm/&title=Think in Elm"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ecmadao.com/2017/01/13/Notes/Elm/Think in Elm/&title=Think in Elm"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ecmadao.com/2017/01/13/Notes/Elm/Think in Elm/&title=Think in Elm"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ecmadao.com/2017/01/13/Notes/Elm/Think in Elm/&title=Think in Elm"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ecmadao.com/2017/01/13/Notes/Elm/Think in Elm/&name=Think in Elm&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2017 ecmadao
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    <script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'ecmadao-blog';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
+</body>
+</html>

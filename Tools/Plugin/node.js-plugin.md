@@ -40,6 +40,8 @@
 
 - [commander.js](https://github.com/tj/commander.js)
 
+- [node-optimist](https://github.com/substack/node-optimist)
+
 - [shelljs](https://github.com/shelljs/shelljs)
 
 - [chalk](https://github.com/chalk/chalk)
@@ -65,5 +67,7 @@
 ### System
 
 - [node-fs-extra](https://github.com/jprichardson/node-fs-extra)
+
+- [line-reader](https://github.com/nickewing/line-reader)
 
 - [string.js](https://github.com/jprichardson/string.js)

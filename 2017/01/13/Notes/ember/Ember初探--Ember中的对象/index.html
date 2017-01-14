@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Table of Contents  generated with DocToc
+
+Ember初探–Ember中的对象
+类和实例
+定义类
+复写父类的方法
+创建实例
+初始化实例
+获取对象的属性
+
+
+Reopen 类和实例
+计算属性
+计算属性实例
+链式计算属性
+动态更新
+改变计算属性
+计算属性宏
+计算属性和数据汇总
+
+
+观察者
+观察者和异步
+观察者和对象初始化
+未使用过的计算属性不会触发观察者
+在">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ember初探--Ember中的对象">
+<meta property="og:url" content="http://ecmadao.com/2017/01/13/Notes/ember/Ember初探--Ember中的对象/index.html">
+<meta property="og:site_name" content="ecmadao">
+<meta property="og:description" content="Table of Contents  generated with DocToc
+
+Ember初探–Ember中的对象
+类和实例
+定义类
+复写父类的方法
+创建实例
+初始化实例
+获取对象的属性
+
+
+Reopen 类和实例
+计算属性
+计算属性实例
+链式计算属性
+动态更新
+改变计算属性
+计算属性宏
+计算属性和数据汇总
+
+
+观察者
+观察者和异步
+观察者和对象初始化
+未使用过的计算属性不会触发观察者
+在">
+<meta property="og:updated_time" content="2017-01-14T12:11:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ember初探--Ember中的对象">
+<meta name="twitter:description" content="Table of Contents  generated with DocToc
+
+Ember初探–Ember中的对象
+类和实例
+定义类
+复写父类的方法
+创建实例
+初始化实例
+获取对象的属性
+
+
+Reopen 类和实例
+计算属性
+计算属性实例
+链式计算属性
+动态更新
+改变计算属性
+计算属性宏
+计算属性和数据汇总
+
+
+观察者
+观察者和异步
+观察者和对象初始化
+未使用过的计算属性不会触发观察者
+在">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Ember初探--Ember中的对象</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+    <link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    <script src="/lib/jquery/jquery.min.js"></script>
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/01/13/Notes/ember/Ember初步--Component/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/01/13/Notes/ember/Ember初探--Tutorial/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ecmadao.com/2017/01/13/Notes/ember/Ember初探--Ember中的对象/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ecmadao.com/2017/01/13/Notes/ember/Ember初探--Ember中的对象/&text=Ember初探--Ember中的对象"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ecmadao.com/2017/01/13/Notes/ember/Ember初探--Ember中的对象/&title=Ember初探--Ember中的对象"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ecmadao.com/2017/01/13/Notes/ember/Ember初探--Ember中的对象/&is_video=false&description=Ember初探--Ember中的对象"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Ember初探--Ember中的对象&body=Check out this article: http://ecmadao.com/2017/01/13/Notes/ember/Ember初探--Ember中的对象/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ecmadao.com/2017/01/13/Notes/ember/Ember初探--Ember中的对象/&title=Ember初探--Ember中的对象"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ecmadao.com/2017/01/13/Notes/ember/Ember初探--Ember中的对象/&title=Ember初探--Ember中的对象"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ecmadao.com/2017/01/13/Notes/ember/Ember初探--Ember中的对象/&title=Ember初探--Ember中的对象"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ecmadao.com/2017/01/13/Notes/ember/Ember初探--Ember中的对象/&title=Ember初探--Ember中的对象"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ecmadao.com/2017/01/13/Notes/ember/Ember初探--Ember中的对象/&name=Ember初探--Ember中的对象&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Ember初探–Ember中的对象"><span class="toc-number">1.</span> <span class="toc-text">Ember初探–Ember中的对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#类和实例"><span class="toc-number">1.1.</span> <span class="toc-text">类和实例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#定义类"><span class="toc-number">1.1.1.</span> <span class="toc-text">定义类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#复写父类的方法"><span class="toc-number">1.1.2.</span> <span class="toc-text">复写父类的方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建实例"><span class="toc-number">1.1.3.</span> <span class="toc-text">创建实例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#初始化实例"><span class="toc-number">1.1.4.</span> <span class="toc-text">初始化实例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#获取对象的属性"><span class="toc-number">1.1.5.</span> <span class="toc-text">获取对象的属性</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reopen-类和实例"><span class="toc-number">1.2.</span> <span class="toc-text">Reopen 类和实例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#计算属性"><span class="toc-number">1.3.</span> <span class="toc-text">计算属性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#计算属性实例"><span class="toc-number">1.3.1.</span> <span class="toc-text">计算属性实例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#链式计算属性"><span class="toc-number">1.3.2.</span> <span class="toc-text">链式计算属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#动态更新"><span class="toc-number">1.3.3.</span> <span class="toc-text">动态更新</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#改变计算属性"><span class="toc-number">1.3.4.</span> <span class="toc-text">改变计算属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#计算属性宏"><span class="toc-number">1.3.5.</span> <span class="toc-text">计算属性宏</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#计算属性和数据汇总"><span class="toc-number">1.3.6.</span> <span class="toc-text">计算属性和数据汇总</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#观察者"><span class="toc-number">1.4.</span> <span class="toc-text">观察者</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#观察者和异步"><span class="toc-number">1.4.1.</span> <span class="toc-text">观察者和异步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#观察者和对象初始化"><span class="toc-number">1.4.2.</span> <span class="toc-text">观察者和对象初始化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#未使用过的计算属性不会触发观察者"><span class="toc-number">1.4.3.</span> <span class="toc-text">未使用过的计算属性不会触发观察者</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#在class外定义"><span class="toc-number">1.4.4.</span> <span class="toc-text">在class外定义</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事件绑定"><span class="toc-number">1.5.</span> <span class="toc-text">事件绑定</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#双向绑定"><span class="toc-number">1.5.1.</span> <span class="toc-text">双向绑定</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#单向绑定"><span class="toc-number">1.5.2.</span> <span class="toc-text">单向绑定</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#可枚举对象"><span class="toc-number">1.6.</span> <span class="toc-text">可枚举对象</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#使用观察者方法和属性"><span class="toc-number">1.6.1.</span> <span class="toc-text">使用观察者方法和属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#API概览"><span class="toc-number">1.6.2.</span> <span class="toc-text">API概览</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#遍历可枚举对象"><span class="toc-number">1.6.2.1.</span> <span class="toc-text">遍历可枚举对象</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#第一个和最后一个元素"><span class="toc-number">1.6.2.2.</span> <span class="toc-text">第一个和最后一个元素</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#map"><span class="toc-number">1.6.2.3.</span> <span class="toc-text">map</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#filter"><span class="toc-number">1.6.2.4.</span> <span class="toc-text">filter</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#find"><span class="toc-number">1.6.2.5.</span> <span class="toc-text">find</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Every-or-Any"><span class="toc-number">1.6.2.6.</span> <span class="toc-text">Every or Any</span></a></li></ol></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Ember初探--Ember中的对象
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">ecmadao</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-01-13T05:58:37.000Z" itemprop="datePublished">2017-01-13</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/ember/">ember</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<p><strong>Table of Contents</strong>  <em>generated with <a href="https://github.com/thlorenz/doctoc" target="_blank" rel="external">DocToc</a></em></p>
+<ul>
+<li><a href="#ember%E5%88%9D%E6%8E%A2--ember%E4%B8%AD%E7%9A%84%E5%AF%B9%E8%B1%A1">Ember初探–Ember中的对象</a><ul>
+<li><a href="#%E7%B1%BB%E5%92%8C%E5%AE%9E%E4%BE%8B">类和实例</a><ul>
+<li><a href="#%E5%AE%9A%E4%B9%89%E7%B1%BB">定义类</a></li>
+<li><a href="#%E5%A4%8D%E5%86%99%E7%88%B6%E7%B1%BB%E7%9A%84%E6%96%B9%E6%B3%95">复写父类的方法</a></li>
+<li><a href="#%E5%88%9B%E5%BB%BA%E5%AE%9E%E4%BE%8B">创建实例</a></li>
+<li><a href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E5%AE%9E%E4%BE%8B">初始化实例</a></li>
+<li><a href="#%E8%8E%B7%E5%8F%96%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%B1%9E%E6%80%A7">获取对象的属性</a></li>
+</ul>
+</li>
+<li><a href="#reopen-%E7%B1%BB%E5%92%8C%E5%AE%9E%E4%BE%8B">Reopen 类和实例</a></li>
+<li><a href="#%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7">计算属性</a><ul>
+<li><a href="#%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7%E5%AE%9E%E4%BE%8B">计算属性实例</a></li>
+<li><a href="#%E9%93%BE%E5%BC%8F%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7">链式计算属性</a></li>
+<li><a href="#%E5%8A%A8%E6%80%81%E6%9B%B4%E6%96%B0">动态更新</a></li>
+<li><a href="#%E6%94%B9%E5%8F%98%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7">改变计算属性</a></li>
+<li><a href="#%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7%E5%AE%8F">计算属性宏</a></li>
+<li><a href="#%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7%E5%92%8C%E6%95%B0%E6%8D%AE%E6%B1%87%E6%80%BB">计算属性和数据汇总</a></li>
+</ul>
+</li>
+<li><a href="#%E8%A7%82%E5%AF%9F%E8%80%85">观察者</a><ul>
+<li><a href="#%E8%A7%82%E5%AF%9F%E8%80%85%E5%92%8C%E5%BC%82%E6%AD%A5">观察者和异步</a></li>
+<li><a href="#%E8%A7%82%E5%AF%9F%E8%80%85%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%88%9D%E5%A7%8B%E5%8C%96">观察者和对象初始化</a></li>
+<li><a href="#%E6%9C%AA%E4%BD%BF%E7%94%A8%E8%BF%87%E7%9A%84%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7%E4%B8%8D%E4%BC%9A%E8%A7%A6%E5%8F%91%E8%A7%82%E5%AF%9F%E8%80%85">未使用过的计算属性不会触发观察者</a></li>
+<li><a href="#%E5%9C%A8class%E5%A4%96%E5%AE%9A%E4%B9%89">在class外定义</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A">事件绑定</a><ul>
+<li><a href="#%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A">双向绑定</a></li>
+<li><a href="#%E5%8D%95%E5%90%91%E7%BB%91%E5%AE%9A">单向绑定</a></li>
+</ul>
+</li>
+<li><a href="#%E5%8F%AF%E6%9E%9A%E4%B8%BE%E5%AF%B9%E8%B1%A1">可枚举对象</a><ul>
+<li><a href="#%E4%BD%BF%E7%94%A8%E8%A7%82%E5%AF%9F%E8%80%85%E6%96%B9%E6%B3%95%E5%92%8C%E5%B1%9E%E6%80%A7">使用观察者方法和属性</a></li>
+<li><a href="#api%E6%A6%82%E8%A7%88">API概览</a><ul>
+<li><a href="#%E9%81%8D%E5%8E%86%E5%8F%AF%E6%9E%9A%E4%B8%BE%E5%AF%B9%E8%B1%A1">遍历可枚举对象</a></li>
+<li><a href="#%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%92%8C%E6%9C%80%E5%90%8E%E4%B8%80%E4%B8%AA%E5%85%83%E7%B4%A0">第一个和最后一个元素</a></li>
+<li><a href="#map">map</a></li>
+<li><a href="#filter">filter</a></li>
+<li><a href="#find">find</a></li>
+<li><a href="#every-or-any">Every or Any</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<h2 id="Ember初探–Ember中的对象"><a href="#Ember初探–Ember中的对象" class="headerlink" title="Ember初探–Ember中的对象"></a>Ember初探–Ember中的对象</h2><p>你或许已经发现，虽然Ember已经支持了ES6，但JS中的class和ES2015的class还没有在Ember中得到广泛运用。而原生的JS对象并不对属性改变进行监听，所以，在Ember中大量使用的是一种名为<code>Ember.Object</code>的对象。</p>
+<p><code>Ember.Object</code>同样提供了“类”系统，并支持<code>mixins</code>和<code>constructor</code>构造方法，而一些Ember对象的model目前并不存在于JS的类中，不过在其他语言中有着类似的实现。</p>
+<p>Ember中的对象与JS对照关系大致如下：</p>
+<ul>
+<li>Ember.Object -&gt; JS Class</li>
+<li>Ember.Enumerable -&gt; JS Array</li>
+<li>Ember.String -&gt; JS String</li>
+</ul>
+<h3 id="类和实例"><a href="#类和实例" class="headerlink" title="类和实例"></a>类和实例</h3><p>在Ember中经常可见例如<code>Ember.Component.extend()</code>或者<code>DS.Model.extend()</code>这样的东西。通过<code>extend()</code>可以定义一个类。</p>
+<h4 id="定义类"><a href="#定义类" class="headerlink" title="定义类"></a>定义类</h4><p>调用<code>Ember.Object</code>上的<code>extend()</code>方法可以定义一个新的Ember类：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 定义一个有say方法的Person类</span></div><div class="line"><span class="keyword">const</span> Person = Ember.Object.extend(&#123;</div><div class="line">  say(thing) &#123;</div><div class="line">    alert(thing);</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>除此以外，也可以在任何已经存在的类上调用<code>extend()</code>方法来创建一个子类：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> Ember.Component.extend(&#123;</div><div class="line">  <span class="attr">classNameBindings</span>: [<span class="string">'isUrgent'</span>],</div><div class="line">  <span class="attr">isUrgent</span>: <span class="literal">true</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h4 id="复写父类的方法"><a href="#复写父类的方法" class="headerlink" title="复写父类的方法"></a>复写父类的方法</h4><p>创建子类之后，你可以覆盖父类的方法，也可以通过<code>_super()</code>方法来调用父类的方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> Person = Ember.Object.extend(&#123;</div><div class="line">  say(thing) &#123;</div><div class="line">    alert(<span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>.get(<span class="string">'name'</span>)&#125;</span> says: <span class="subst">$&#123;thing&#125;</span>`</span>);</div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">const</span> Soldier = Person.extend(&#123;</div><div class="line">  say(thing) &#123;</div><div class="line">    <span class="comment">// 调用父类的say方法，把thing作为参数传入</span></div><div class="line">    <span class="keyword">this</span>._super(<span class="string">`<span class="subst">$&#123;thing&#125;</span>, sir!`</span>);</div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">let</span> yehuda = Soldier.create(&#123;</div><div class="line">  <span class="attr">name</span>: <span class="string">'Yehuda Katz'</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line">yehuda.say(<span class="string">'Yes'</span>); <span class="comment">// alerts "Yehuda Katz says: Yes, sir!"</span></div></pre></td></tr></table></figure>
+<p>可能在一些特定的场景下，你想要把一些参数传给<code>_super()</code>方法，让它正常运行：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// ...</span></div><div class="line"></div><div class="line">someFunc(a, b, c) &#123;</div><div class="line">    <span class="keyword">this</span>._super(...arguments);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="创建实例"><a href="#创建实例" class="headerlink" title="创建实例"></a>创建实例</h4><p>在定义类之后，可以通过<code>create()</code>方法来创建类的实例。之后这个类中的属性、方法都可以被这个实例所调用。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> Person = Ember.Object.extend(&#123;</div><div class="line">  say(thing) &#123;</div><div class="line">    alert(<span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>.get(<span class="string">'name'</span>)&#125;</span> says: <span class="subst">$&#123;thing&#125;</span>`</span>);</div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">let</span> person = Person.create();</div><div class="line"></div><div class="line">person.say(<span class="string">'Hello'</span>); <span class="comment">// alerts " says: Hello"</span></div></pre></td></tr></table></figure>
+<p>在创建实例时，可以把初始化参数传入：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> Person = Ember.Object.extend(&#123;</div><div class="line">  helloWorld() &#123;</div><div class="line">    alert(<span class="string">`Hi, my name is <span class="subst">$&#123;<span class="keyword">this</span>.get(<span class="string">'name'</span>)&#125;</span>`</span>);</div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">let</span> tom = Person.create(&#123;</div><div class="line">  <span class="attr">name</span>: <span class="string">'Tom Dale'</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line">tom.helloWorld(); <span class="comment">// alerts "Hi, my name is Tom Dale"</span></div></pre></td></tr></table></figure>
+<p>创建实例时，只能在<code>create()</code>方法中传入简单的参数，不行复写对象的方法。如果要复写，只能通过子类的形式进行。</p>
+<h4 id="初始化实例"><a href="#初始化实例" class="headerlink" title="初始化实例"></a>初始化实例</h4><p>在创建一个实例的时候，类的<code>init()</code>方法会被自动调用，在这里进行一些初始化的工作：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> Person = Ember.Object.extend(&#123;</div><div class="line">  init() &#123;</div><div class="line">    alert(<span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>.get(<span class="string">'name'</span>)&#125;</span>, reporting for duty!`</span>);</div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">Person.create(&#123;</div><div class="line">  <span class="attr">name</span>: <span class="string">'Stefan Penner'</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// alerts "Stefan Penner, reporting for duty!"</span></div></pre></td></tr></table></figure>
+<p>当你在创建子类并要自定义<code>init()</code>方法的时候，例如从<code>Ember.Component</code>扩展出子类，必须要在子类中调用父类的<code>init()</code>方法，否则无法正常工作。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// app/components/list-filter.js</span></div><div class="line"><span class="keyword">import</span> Ember <span class="keyword">from</span> <span class="string">'ember'</span>;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> Ember.Component.extend(&#123;</div><div class="line">  <span class="attr">classNames</span>: [<span class="string">'list-filter'</span>],</div><div class="line">  <span class="attr">value</span>: <span class="string">''</span>,</div><div class="line"></div><div class="line">  init() &#123;</div><div class="line">    <span class="keyword">this</span>._super(...arguments);</div><div class="line">    <span class="comment">// 初始化</span></div><div class="line">    <span class="keyword">this</span>.get(<span class="string">'filter'</span>)(<span class="string">''</span>).then(<span class="function">(<span class="params">results</span>) =&gt;</span> <span class="keyword">this</span>.set(<span class="string">'results'</span>, results));</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  <span class="attr">actions</span>: &#123;</div><div class="line">    handleFilterEntry() &#123;</div><div class="line">      <span class="keyword">let</span> filterInputValue = <span class="keyword">this</span>.get(<span class="string">'value'</span>); <span class="comment">// input的value</span></div><div class="line">      <span class="keyword">let</span> filterAction = <span class="keyword">this</span>.get(<span class="string">'filter'</span>); <span class="comment">// 在index.hbs中传入，为filterByCity</span></div><div class="line">      <span class="comment">// 筛选过后把结果赋值给result</span></div><div class="line">      <span class="comment">// filter=(action 'filterByCity') as |rentals| 即 result as |rentals|</span></div><div class="line">      filterAction(filterInputValue).then(<span class="function">(<span class="params">filterResults</span>) =&gt;</span> <span class="keyword">this</span>.set(<span class="string">'results'</span>, filterResults));</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p><strong>IMPORTANT</strong></p>
+<blockquote>
+<p><strong>直接定义在Ember.Object上的Array和对象，会共享创建出的实例：</strong></p>
+</blockquote>
+<p>举个栗子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> Person = Ember.Object.extend(&#123;</div><div class="line">  <span class="attr">shoppingList</span>: [<span class="string">'eggs'</span>, <span class="string">'cheese'</span>]</div><div class="line">&#125;);</div><div class="line"></div><div class="line">Person.create(&#123;</div><div class="line">  <span class="attr">name</span>: <span class="string">'Stefan'</span>,</div><div class="line">  addItem() &#123;</div><div class="line">    <span class="keyword">this</span>.get(<span class="string">'shoppingList'</span>).pushObject(<span class="string">'bacon'</span>);</div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">Person.create(&#123;</div><div class="line">  <span class="attr">name</span>: <span class="string">'Robert'</span>,</div><div class="line">  addItem() &#123;</div><div class="line">    <span class="keyword">this</span>.get(<span class="string">'shoppingList'</span>).pushObject(<span class="string">'sausage'</span>);</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>最终创建出的两个实例（Stefan和Robert），会共享同一个<code>shoppingList</code>：<br><code>[&#39;eggs&#39;, &#39;cheese&#39;, &#39;bacon&#39;, &#39;sausage&#39;]</code></p>
+<p>因为<code>shoppingList</code>直接定义在了Ember.Object上。</p>
+<p>如何避免这种情况？复写类的初始化方法，在初始化方法里给<code>shoppingList</code>赋初始化值：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> Person = Ember.Object.extend(&#123;</div><div class="line">  init() &#123;</div><div class="line">    <span class="keyword">this</span>.set(<span class="string">'shoppingList'</span>, [<span class="string">'eggs'</span>, <span class="string">'cheese'</span>]);</div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">Person.create(&#123;</div><div class="line">  <span class="attr">name</span>: <span class="string">'Stefan Penner'</span>,</div><div class="line">  addItem() &#123;</div><div class="line">    <span class="keyword">this</span>.get(<span class="string">'shoppingList'</span>).pushObject(<span class="string">'bacon'</span>);</div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">Person.create(&#123;</div><div class="line">  <span class="attr">name</span>: <span class="string">'Robert Jackson'</span>,</div><div class="line">  addItem() &#123;</div><div class="line">    <span class="keyword">this</span>.get(<span class="string">'shoppingList'</span>).pushObject(<span class="string">'sausage'</span>);</div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// Stefan ['eggs', 'cheese', 'bacon']</span></div><div class="line"><span class="comment">// Robert ['eggs', 'cheese', 'sausage']</span></div></pre></td></tr></table></figure>
+<h4 id="获取对象的属性"><a href="#获取对象的属性" class="headerlink" title="获取对象的属性"></a>获取对象的属性</h4><p>使用<code>get()</code>和<code>set()</code>方法进行属性操作：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> Person = Ember.Object.extend(&#123;</div><div class="line">  <span class="attr">name</span>: <span class="string">'Robert Jackson'</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">let</span> person = Person.create();</div><div class="line"></div><div class="line">person.get(<span class="string">'name'</span>); <span class="comment">// 'Robert Jackson'</span></div><div class="line">person.set(<span class="string">'name'</span>, <span class="string">'Tobias Fünke'</span>);</div><div class="line">person.get(<span class="string">'name'</span>); <span class="comment">// 'Tobias Fünke'</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>记住，属性操作必须通过<code>get</code>和<code>set</code>方法，否则不会重新计算，也就无法触发监听事件，导致模板UI无法更新。</p>
+</blockquote>
+<h3 id="Reopen-类和实例"><a href="#Reopen-类和实例" class="headerlink" title="Reopen 类和实例"></a>Reopen 类和实例</h3><p>你可以不必一次性定义好一个类，可以在之后通过<code>reopen()</code>来更新它：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Person.reopen(&#123;</div><div class="line">  <span class="attr">isPerson</span>: <span class="literal">true</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line">Person.create().get(<span class="string">'isPerson'</span>); <span class="comment">// true</span></div></pre></td></tr></table></figure>
+<p>在使用<code>reopen()</code>方法的时候。可以通过调用<code>this._super</code>来复写已存在的方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Person.reopen(&#123;</div><div class="line">  <span class="comment">// override `say` to add an ! at the end</span></div><div class="line">  say(thing) &#123;</div><div class="line">    <span class="keyword">this</span>._super(thing + <span class="string">'!'</span>);</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<blockquote>
+<p>通过<code>reopen</code>增改的属性和方法会被类的所有实例所共享，并不会单独改某一个特定的实例</p>
+</blockquote>
+<p>但是，如果你仅仅想给类增改静态属性或方法，则可以使用<code>reopenClass()</code>方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// add static property to class</span></div><div class="line">Person.reopenClass(&#123;</div><div class="line">  <span class="attr">isPerson</span>: <span class="literal">false</span></div><div class="line">&#125;);</div><div class="line"><span class="comment">// override property of Person instance</span></div><div class="line">Person.reopen(&#123;</div><div class="line">  <span class="attr">isPerson</span>: <span class="literal">true</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line">Person.isPerson; <span class="comment">// false - 因为通过reopenClass更改了类的静态属性</span></div><div class="line"></div><div class="line"><span class="comment">// 但通过reopen添加的类属性isPerson不会被更改，并且它的实例会获得这个属性</span></div><div class="line">Person.create().get(<span class="string">'isPerson'</span>); <span class="comment">// true</span></div></pre></td></tr></table></figure>
+<h3 id="计算属性"><a href="#计算属性" class="headerlink" title="计算属性"></a>计算属性</h3><p>计算属性是什么？</p>
+<p>计算属性允许你把函数声明为一个属性，当你调用这个属性的时候，Ember会自动允许这个函数并返回结果，因此可以像正常属性一样使用它。</p>
+<h4 id="计算属性实例"><a href="#计算属性实例" class="headerlink" title="计算属性实例"></a>计算属性实例</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">Person = Ember.Object.extend(&#123;</div><div class="line">  <span class="comment">// these will be supplied by `create`</span></div><div class="line">  firstName: <span class="literal">null</span>,</div><div class="line">  <span class="attr">lastName</span>: <span class="literal">null</span>,</div><div class="line"></div><div class="line">  <span class="attr">fullName</span>: Ember.computed(<span class="string">'firstName'</span>, <span class="string">'lastName'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>.get(<span class="string">'firstName'</span>)&#125;</span> <span class="subst">$&#123;<span class="keyword">this</span>.get(<span class="string">'lastName'</span>)&#125;</span>`</span>;</div><div class="line">  &#125;)</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">let</span> ironMan = Person.create(&#123;</div><div class="line">  <span class="attr">firstName</span>: <span class="string">'Tony'</span>,</div><div class="line">  <span class="attr">lastName</span>:  <span class="string">'Stark'</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line">ironMan.get(<span class="string">'fullName'</span>); <span class="comment">// "Tony Stark"</span></div></pre></td></tr></table></figure>
+<p>如果你在计算属性中要用到Object：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> obj = Ember.Object.extend(&#123;</div><div class="line">  <span class="attr">baz</span>: &#123;<span class="attr">foo</span>: <span class="string">'BLAMMO'</span>, <span class="attr">bar</span>: <span class="string">'BLAZORZ'</span>&#125;,</div><div class="line"></div><div class="line">  <span class="attr">something</span>: Ember.computed(<span class="string">'baz.&#123;foo,bar&#125;'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.get(<span class="string">'baz.foo'</span>) + <span class="string">' '</span> + <span class="keyword">this</span>.get(<span class="string">'baz.bar'</span>);</div><div class="line">  &#125;)</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h4 id="链式计算属性"><a href="#链式计算属性" class="headerlink" title="链式计算属性"></a>链式计算属性</h4><p>因为计算属性可以被当做正常属性来使用，所以计算属性里传入的属性也可以是计算属性：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 在description计算属性里调用了fullName计算属性</span></div><div class="line"></div><div class="line">Person = Ember.Object.extend(&#123;</div><div class="line">  <span class="attr">firstName</span>: <span class="literal">null</span>,</div><div class="line">  <span class="attr">lastName</span>: <span class="literal">null</span>,</div><div class="line">  <span class="attr">age</span>: <span class="literal">null</span>,</div><div class="line">  <span class="attr">country</span>: <span class="literal">null</span>,</div><div class="line"></div><div class="line">  <span class="attr">fullName</span>: Ember.computed(<span class="string">'firstName'</span>, <span class="string">'lastName'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>.get(<span class="string">'firstName'</span>)&#125;</span> <span class="subst">$&#123;<span class="keyword">this</span>.get(<span class="string">'lastName'</span>)&#125;</span>`</span>;</div><div class="line">  &#125;),</div><div class="line"></div><div class="line">  <span class="attr">description</span>: Ember.computed(<span class="string">'fullName'</span>, <span class="string">'age'</span>, <span class="string">'country'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>.get(<span class="string">'fullName'</span>)&#125;</span>; Age: <span class="subst">$&#123;<span class="keyword">this</span>.get(<span class="string">'age'</span>)&#125;</span>; Country: <span class="subst">$&#123;<span class="keyword">this</span>.get(<span class="string">'country'</span>)&#125;</span>`</span>;</div><div class="line">  &#125;)</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">let</span> captainAmerica = Person.create(&#123;</div><div class="line">  <span class="attr">firstName</span>: <span class="string">'Steve'</span>,</div><div class="line">  <span class="attr">lastName</span>: <span class="string">'Rogers'</span>,</div><div class="line">  <span class="attr">age</span>: <span class="number">80</span>,</div><div class="line">  <span class="attr">country</span>: <span class="string">'USA'</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line">captainAmerica.get(<span class="string">'description'</span>); <span class="comment">// "Steve Rogers; Age: 80; Country: USA"</span></div></pre></td></tr></table></figure>
+<h4 id="动态更新"><a href="#动态更新" class="headerlink" title="动态更新"></a>动态更新</h4><p>计算属性监听着可以改变他们计算结果的属性。因此在改变那些属性的时候，动态属性的计算结果也会被改变：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">captainAmerica.set(<span class="string">'firstName'</span>, <span class="string">'William'</span>);</div><div class="line"></div><div class="line">captainAmerica.get(<span class="string">'description'</span>); <span class="comment">// "William Rogers; Age: 80; Country: USA"</span></div></pre></td></tr></table></figure>
+<h4 id="改变计算属性"><a href="#改变计算属性" class="headerlink" title="改变计算属性"></a>改变计算属性</h4><p>你可以自定义计算属性被set时的行为，但需要提供key-value键值对，以便Ember确定你更改了对象的哪个属性：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">Person = Ember.Object.extend(&#123;</div><div class="line">  <span class="attr">firstName</span>: <span class="literal">null</span>,</div><div class="line">  <span class="attr">lastName</span>: <span class="literal">null</span>,</div><div class="line"></div><div class="line">  <span class="attr">fullName</span>: Ember.computed(<span class="string">'firstName'</span>, <span class="string">'lastName'</span>, &#123;</div><div class="line">    get(key) &#123;</div><div class="line">      <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>.get(<span class="string">'firstName'</span>)&#125;</span> <span class="subst">$&#123;<span class="keyword">this</span>.get(<span class="string">'lastName'</span>)&#125;</span>`</span>;</div><div class="line">    &#125;,</div><div class="line">    set(key, value) &#123;</div><div class="line">      <span class="keyword">let</span> [firstName, lastName] = value.split(<span class="regexp">/\s+/</span>);</div><div class="line">      <span class="keyword">this</span>.set(<span class="string">'firstName'</span>, firstName);</div><div class="line">      <span class="keyword">this</span>.set(<span class="string">'lastName'</span>,  lastName);</div><div class="line">      <span class="keyword">return</span> value;</div><div class="line">    &#125;</div><div class="line">  &#125;)</div><div class="line">&#125;);</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">let</span> captainAmerica = Person.create();</div><div class="line">captainAmerica.set(<span class="string">'fullName'</span>, <span class="string">'William Burnside'</span>);</div><div class="line">captainAmerica.get(<span class="string">'firstName'</span>); <span class="comment">// William</span></div><div class="line">captainAmerica.get(<span class="string">'lastName'</span>); <span class="comment">// Burnside</span></div></pre></td></tr></table></figure>
+<h4 id="计算属性宏"><a href="#计算属性宏" class="headerlink" title="计算属性宏"></a>计算属性宏</h4><p>Ember提供了一些属性可以让我们的操作更便捷：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Person = Ember.Object.extend(&#123;</div><div class="line">  <span class="attr">fullName</span>: <span class="string">'Tony Stark'</span>,</div><div class="line"></div><div class="line">  <span class="attr">isIronManLongWay</span>: Ember.computed(<span class="string">'fullName'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.get(<span class="string">'fullName'</span>) === <span class="string">'Tony Stark'</span>;</div><div class="line">  &#125;),</div><div class="line"></div><div class="line">  <span class="attr">isIronManShortWay</span>: Ember.computed.equal(<span class="string">'fullName'</span>, <span class="string">'Tony Stark'</span>)</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>上面这个例子里，<code>isIronManLongWay</code>和<code>isIronManShortWay</code>完全等价，但是利用Ember的<code>Ember.computed.equal()</code>方法则更加简洁。</p>
+<p>更多的自带方法可以参考<a href="http://emberjs.com/api/classes/Ember.computed.html" target="_blank" rel="external">Ember API文档</a></p>
+<h4 id="计算属性和数据汇总"><a href="#计算属性和数据汇总" class="headerlink" title="计算属性和数据汇总"></a>计算属性和数据汇总</h4><p>有时候你的计算属性的值可能依赖于一个数组中的值。举个例子，有一个Array里面是ToDo Items，现在需要用一个计算属性通过每个ToDo Item <code>isDone</code>的属性，来得到没有完成的ToDo列表：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// app/components/todo-list.js</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> Ember.Component.extend(&#123;</div><div class="line">  <span class="attr">todos</span>: [</div><div class="line">    Ember.Object.create(&#123; <span class="attr">isDone</span>: <span class="literal">true</span> &#125;),</div><div class="line">    Ember.Object.create(&#123; <span class="attr">isDone</span>: <span class="literal">false</span> &#125;),</div><div class="line">    Ember.Object.create(&#123; <span class="attr">isDone</span>: <span class="literal">true</span> &#125;)</div><div class="line">  ],</div><div class="line">  <span class="comment">// 使用Ember的@each关键字</span></div><div class="line">  incomplete: Ember.computed(<span class="string">'todos.@each.isDone'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> todos = <span class="keyword">this</span>.get(<span class="string">'todos'</span>);</div><div class="line">    <span class="keyword">return</span> todos.filterBy(<span class="string">'isDone'</span>, <span class="literal">false</span>);</div><div class="line">  &#125;)</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>这样，Array中的每个Item的isDone属性被传入计算属性，使其对Array进行如下的监听：</p>
+<ol>
+<li><code>todos</code>列表中的任意一个item的<code>isDone</code>发生变化</li>
+<li>一个新ToDo被添加到<code>todos</code>里</li>
+<li>一个ToDo从<code>todos</code>里移除</li>
+<li>组件里的<code>todos</code>属性变成了不同的Array</li>
+</ol>
+<p>Ember还提供了一个便捷的<code>computed.filterBy</code>方法对Array进行筛选：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// app/components/todo-list.js</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> Ember.Component.extend(&#123;</div><div class="line">  <span class="attr">todos</span>: [</div><div class="line">    Ember.Object.create(&#123; <span class="attr">isDone</span>: <span class="literal">true</span> &#125;),</div><div class="line">    Ember.Object.create(&#123; <span class="attr">isDone</span>: <span class="literal">false</span> &#125;),</div><div class="line">    Ember.Object.create(&#123; <span class="attr">isDone</span>: <span class="literal">true</span> &#125;)</div><div class="line">  ],</div><div class="line"></div><div class="line">  <span class="attr">incomplete</span>: Ember.computed.filterBy(<span class="string">'todos'</span>, <span class="string">'isDone'</span>, <span class="literal">false</span>)</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>在上面两个例子里，<code>incomplete</code>计算属性返回的都是一个有着未完成的ToDo的Array：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> TodoListComponent <span class="keyword">from</span> <span class="string">'app/components/todo-list'</span>;</div><div class="line"></div><div class="line"><span class="keyword">let</span> todoListComponent = TodoListComponent.create();</div><div class="line">todoListComponent.get(<span class="string">'incomplete.length'</span>);</div><div class="line"><span class="comment">// 1</span></div></pre></td></tr></table></figure>
+<p>当我们改变ToDo的isDone属性时，<code>incomplete</code>会自动进行更新：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> todos = todoListComponent.get(<span class="string">'todos'</span>);</div><div class="line"><span class="keyword">let</span> todo = todos.objectAt(<span class="number">1</span>);</div><div class="line">todo.set(<span class="string">'isDone'</span>, <span class="literal">true</span>);</div><div class="line"></div><div class="line">todoListComponent.get(<span class="string">'incomplete.length'</span>);</div><div class="line"><span class="comment">// 0</span></div><div class="line"></div><div class="line">todo = Ember.Object.create(&#123; <span class="attr">isDone</span>: <span class="literal">false</span> &#125;);</div><div class="line">todos.pushObject(todo);</div><div class="line"></div><div class="line">todoListComponent.get(<span class="string">'incomplete.length'</span>);</div><div class="line"><span class="comment">// 1</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>需要注意的是，<code>@each</code>方法只能获取到Array元素的第一层。也就是说如果Array里面是层层包裹的Object，而@each就无法获取到Object的底层属性了。</p>
+<p>例如，无法这样：</p>
+<p><code>todos.@each.owner.name</code> or <code>todos.@each.owner.@each.name</code></p>
+</blockquote>
+<p>有时候你不想关心列表中元素的属性变化。此时应该使用<code>[]</code>而不是<code>@each</code>。当使用<code>[]</code>关键字的时候，计算属性只会关心Array中是否有元素被加入或移除，或者Array的属性被设置成了其他的Array。例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// app/components/todo-list.js</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> Ember.Component.extend(&#123;</div><div class="line">  <span class="attr">todos</span>: [</div><div class="line">    Ember.Object.create(&#123; <span class="attr">isDone</span>: <span class="literal">true</span> &#125;),</div><div class="line">    Ember.Object.create(&#123; <span class="attr">isDone</span>: <span class="literal">false</span> &#125;),</div><div class="line">    Ember.Object.create(&#123; <span class="attr">isDone</span>: <span class="literal">true</span> &#125;)</div><div class="line">  ],</div><div class="line"></div><div class="line">  <span class="attr">selectedTodo</span>: <span class="literal">null</span>,</div><div class="line">  <span class="comment">// 接受selectedTodo属性，只关心todos这个Array</span></div><div class="line">  indexOfSelectedTodo: Ember.computed(<span class="string">'selectedTodo'</span>, <span class="string">'todos.[]'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.get(<span class="string">'todos'</span>).indexOf(<span class="keyword">this</span>.get(<span class="string">'selectedTodo'</span>));</div><div class="line">  &#125;)</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>这样，计算属性<code>indexOfSelectedTodo</code>只收到<code>todos</code>长度大小的影响，而ToDo的isDone改变时不会有影响。</p>
+<p>一些<a href="http://emberjs.com/api/classes/Ember.computed.html" target="_blank" rel="external">Ember.computed</a>宏指令利用了<code>[]</code>关键字，例如，遍历一个Array，自己写的话可能是下面这样：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> Hamster = Ember.Object.extend(&#123;</div><div class="line">  <span class="attr">excitingChores</span>: Ember.computed(<span class="string">'chores.[]'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.get(<span class="string">'chores'</span>).map(<span class="function"><span class="keyword">function</span>(<span class="params">chore, index</span>) </span>&#123;</div><div class="line">      <span class="keyword">return</span> <span class="string">`CHORE <span class="subst">$&#123;index&#125;</span>: <span class="subst">$&#123;chore.toUpperCase()&#125;</span>!`</span>;</div><div class="line">    &#125;);</div><div class="line">  &#125;)</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">const</span> hamster = Hamster.create(&#123;</div><div class="line">  <span class="attr">chores</span>: [<span class="string">'clean'</span>, <span class="string">'write more unit tests'</span>]</div><div class="line">&#125;);</div><div class="line"></div><div class="line">hamster.get(<span class="string">'excitingChores'</span>); <span class="comment">// ['CHORE 1: CLEAN!', 'CHORE 2: WRITE MORE UNIT TESTS!']</span></div><div class="line">hamster.get(<span class="string">'chores'</span>).pushObject(<span class="string">'review code'</span>);</div><div class="line">hamster.get(<span class="string">'excitingChores'</span>); <span class="comment">// ['CHORE 1: CLEAN!', 'CHORE 2: WRITE MORE UNIT TESTS!', 'CHORE 3: REVIEW CODE!']</span></div></pre></td></tr></table></figure>
+<p>而我们使用自带的命令的话：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Ember.computed.map实际上利用了[]，帮我们封装好了方法</span></div><div class="line"><span class="comment">// 这个方法本身就期待传入一个Array，所以也没必要再使用[]关键字</span></div><div class="line"><span class="keyword">const</span> Hamster = Ember.Object.extend(&#123;</div><div class="line">  <span class="attr">excitingChores</span>: Ember.computed.map(<span class="string">'chores'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">chore, index</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">`CHORE <span class="subst">$&#123;index&#125;</span>: <span class="subst">$&#123;chore.toUpperCase()&#125;</span>!`</span>;</div><div class="line">  &#125;)</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="观察者"><a href="#观察者" class="headerlink" title="观察者"></a>观察者</h3><p>Ember支持监听任意属性，包括计算属性。</p>
+<p>观察者应该拥有“能对其他属性的变化做出反应”的行为。它在要求针对变化同步表现出行为的场景下很有用。但观察者经常被Ember新手过度的使用。Ember框架内部确实使用了很多的观察者模式，但有时对于你的开发需求而言，使用计算属性就可以了。</p>
+<p>使用<code>Ember.Observer</code>建立观察者：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">Person = Ember.Object.extend(&#123;</div><div class="line">  <span class="comment">// these will be supplied by `create`</span></div><div class="line">  firstName: <span class="literal">null</span>,</div><div class="line">  <span class="attr">lastName</span>: <span class="literal">null</span>,</div><div class="line"></div><div class="line">  <span class="attr">fullName</span>: Ember.computed(<span class="string">'firstName'</span>, <span class="string">'lastName'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>.get(<span class="string">'firstName'</span>)&#125;</span> <span class="subst">$&#123;<span class="keyword">this</span>.get(<span class="string">'lastName'</span>)&#125;</span>`</span>;</div><div class="line">  &#125;),</div><div class="line"></div><div class="line">  <span class="attr">fullNameChanged</span>: Ember.observer(<span class="string">'fullName'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// 针对变化做出反应</span></div><div class="line">    <span class="built_in">console</span>.log(<span class="string">`fullName changed to: <span class="subst">$&#123;<span class="keyword">this</span>.get(<span class="string">'fullName'</span>)&#125;</span>`</span>);</div><div class="line">  &#125;)</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">var</span> person = Person.create(&#123;</div><div class="line">  <span class="attr">firstName</span>: <span class="string">'Yehuda'</span>,</div><div class="line">  <span class="attr">lastName</span>: <span class="string">'Katz'</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// get属性时观察者不会有反应</span></div><div class="line">person.get(<span class="string">'fullName'</span>); <span class="comment">// "Yehuda Katz"</span></div><div class="line">person.set(<span class="string">'firstName'</span>, <span class="string">'Brohuda'</span>); <span class="comment">// 当属性被改变时观察者被调用</span></div></pre></td></tr></table></figure>
+<h4 id="观察者和异步"><a href="#观察者和异步" class="headerlink" title="观察者和异步"></a>观察者和异步</h4><p>Ember中的大部分观察者是同步的。这以为着当他们监听的属性发生变化时观察者会被立即调用。因而这有可能会在非异步行为里引入bug：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Person.reopen(&#123;</div><div class="line">  <span class="attr">lastNameChanged</span>: Ember.observer(<span class="string">'lastName'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// 这个观察者观察lastName，但会输出fullName。当lastName被改变时，观察者立即调用，但此时fullName还没改变，因此观察者的输出会是改变之前的旧的fullName</span></div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.get(<span class="string">'fullName'</span>));</div><div class="line">  &#125;)</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>而且，当有大量属性改变时，同步的观察者也会相应的被调用非常多次：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Person.reopen(&#123;</div><div class="line">  <span class="attr">partOfNameChanged</span>: Ember.observer(<span class="string">'firstName'</span>, <span class="string">'lastName'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// 观察者同时观察firstName和lastName，因此在任意一个改变时都会被调用</span></div><div class="line">  &#125;)</div><div class="line">&#125;);</div><div class="line"></div><div class="line">person.set(<span class="string">'firstName'</span>, <span class="string">'John'</span>);</div><div class="line">person.set(<span class="string">'lastName'</span>, <span class="string">'Smith'</span>);</div></pre></td></tr></table></figure>
+<p>为了避免这个问题，可以使用<code>Ember.run.once()</code>。它会保证有关的观察者只会在属性变化完成之后调用一次：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">Person.reopen(&#123;</div><div class="line">  <span class="attr">partOfNameChanged</span>: Ember.observer(<span class="string">'firstName'</span>, <span class="string">'lastName'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    Ember.run.once(<span class="keyword">this</span>, <span class="string">'processFullName'</span>);</div><div class="line">  &#125;),</div><div class="line"></div><div class="line">  processFullName() &#123;</div><div class="line">    <span class="comment">// This will only fire once if you set two properties at the same time, and</span></div><div class="line">    <span class="comment">// will also happen in the next run loop once all properties are synchronized</span></div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.get(<span class="string">'fullName'</span>));</div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">person.set(<span class="string">'firstName'</span>, <span class="string">'John'</span>);</div><div class="line">person.set(<span class="string">'lastName'</span>, <span class="string">'Smith'</span>);</div></pre></td></tr></table></figure>
+<h4 id="观察者和对象初始化"><a href="#观察者和对象初始化" class="headerlink" title="观察者和对象初始化"></a>观察者和对象初始化</h4><p>观察者只会在对象初始化完成只会运行。如果你需要把观察者作为初始化的一部分，则需要使用<code>Ember.on()</code>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Person = Ember.Object.extend(&#123;</div><div class="line">  init() &#123;</div><div class="line">    <span class="keyword">this</span>.set(<span class="string">'salutation'</span>, <span class="string">'Mr/Ms'</span>);</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  <span class="attr">salutationDidChange</span>: Ember.on(<span class="string">'init'</span>, Ember.observer(<span class="string">'salutation'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// some side effect of salutation changing</span></div><div class="line">  &#125;))</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h4 id="未使用过的计算属性不会触发观察者"><a href="#未使用过的计算属性不会触发观察者" class="headerlink" title="未使用过的计算属性不会触发观察者"></a>未使用过的计算属性不会触发观察者</h4><p>如果你从未对计算属性调用<code>get</code>方法，那么即便计算属性依赖的属性发生了改变，观察者也不会被触发。</p>
+<p>实际上这个不会造成什么问题，因为当计算属性被获取时，它总是保持着被监听。</p>
+<h4 id="在class外定义"><a href="#在class外定义" class="headerlink" title="在class外定义"></a>在class外定义</h4><p>可以在类的外面定义观察者：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">person.addObserver(<span class="string">'fullName'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="comment">// deal with the change</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="事件绑定"><a href="#事件绑定" class="headerlink" title="事件绑定"></a>事件绑定</h3><p>在Ember中事件绑定可以被用在任意对象上。最常用的领域是Ember框架内部。而Ember开发者面对的大多数问题，都可以用计算属性来很好的解决。</p>
+<h4 id="双向绑定"><a href="#双向绑定" class="headerlink" title="双向绑定"></a>双向绑定</h4><p>创建双向绑定的最快方法是使用<code>computed.alias()</code>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">wife = Ember.Object.create(&#123;</div><div class="line">  <span class="attr">householdIncome</span>: <span class="number">80000</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line">Husband = Ember.Object.extend(&#123;</div><div class="line">  <span class="attr">householdIncome</span>: Ember.computed.alias(<span class="string">'wife.householdIncome'</span>)</div><div class="line">&#125;);</div><div class="line"></div><div class="line">husband = Husband.create(&#123;</div><div class="line">  <span class="attr">wife</span>: wife</div><div class="line">&#125;);</div><div class="line"></div><div class="line">husband.get(<span class="string">'householdIncome'</span>); <span class="comment">// 80000</span></div><div class="line"></div><div class="line"><span class="comment">// Someone gets raise.</span></div><div class="line">wife.set(<span class="string">'householdIncome'</span>, <span class="number">90000</span>);</div><div class="line">husband.get(<span class="string">'householdIncome'</span>); <span class="comment">// 90000</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>要注意的是绑定事件不会立即调用，而是等到同步的代码运行完成之后。所以你可以随心所欲的多次改变属性</p>
+</blockquote>
+<h4 id="单向绑定"><a href="#单向绑定" class="headerlink" title="单向绑定"></a>单向绑定</h4><p>单向绑定只会往一个方向传递变化。它的使用方式是通过<code>computed.oneWay()</code>。通常情况下，单向绑定是最佳实践，你可以通过只向一个方向传递变化的双向绑定来达到这种效果。有时候单向绑定在一些事件上表现的特别给力，比如有映射关系的两个值（A和B），改变A会改变B，但是改变B不会改变A。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">user = Ember.Object.create(&#123;</div><div class="line">  <span class="attr">fullName</span>: <span class="string">'Kara Gates'</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line">UserComponent = Ember.Component.extend(&#123;</div><div class="line">  <span class="attr">userName</span>: Ember.computed.oneWay(<span class="string">'user.fullName'</span>)</div><div class="line">&#125;);</div><div class="line"></div><div class="line">userComponent = UserComponent.create(&#123;</div><div class="line">  <span class="attr">user</span>: user</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 改变user对象的name会影响它单向绑定的userComponent</span></div><div class="line">user.set(<span class="string">'fullName'</span>, <span class="string">'Krang Gates'</span>);</div><div class="line"><span class="comment">// userComponent.userName 此时是 "Krang Gates"</span></div><div class="line"></div><div class="line"><span class="comment">// 但是改变userComponent却不会改变user</span></div><div class="line">userComponent.set(<span class="string">'userName'</span>, <span class="string">'Truckasaurus Gates'</span>);</div><div class="line">user.get(<span class="string">'fullName'</span>); <span class="comment">// "Krang Gates"</span></div></pre></td></tr></table></figure>
+<h3 id="可枚举对象"><a href="#可枚举对象" class="headerlink" title="可枚举对象"></a>可枚举对象</h3><p>在Ember中，可枚举对象是指包含了多个子对象，并可以通过<code>Ember.Enumerable</code>API进行调研的对象。</p>
+<p>Ember提供了便捷的方法来操作可枚举对象。</p>
+<h4 id="使用观察者方法和属性"><a href="#使用观察者方法和属性" class="headerlink" title="使用观察者方法和属性"></a>使用观察者方法和属性</h4><p>为了能够让观察者监听到可枚举对象的变化，你需要使用<code>Ember.Enumerable</code>提供的特殊方法。例如，在JS中我们可以利用<code>push()</code>方法给Array增加元素，而对应的观察者的监听方法则是叫作<code>pushObject()</code>。</p>
+<p>标准的JS Array方法和观察者监听方法对应如下：</p>
+<p>Standard Method –&gt; Observable Equivalent<br>pop –&gt; popObject<br>push –&gt; pushObject<br>reverse –&gt; reverseObjects<br>shift –&gt; shiftObject<br>unshift –&gt; unshiftObject</p>
+<p>除此以外，为了获取观察者模式下Array中最后和第一个元素，可以使用<code>myArray.get(&#39;firstObject&#39;)</code>和<code>myArray.get(&#39;lastObject&#39;)</code>方法、</p>
+<h4 id="API概览"><a href="#API概览" class="headerlink" title="API概览"></a>API概览</h4><p>更多详细的API可以查阅<a href="http://emberjs.com/api/classes/Ember.Enumerable.html" target="_blank" rel="external">Ember.Enumerable API reference documentation</a></p>
+<h5 id="遍历可枚举对象"><a href="#遍历可枚举对象" class="headerlink" title="遍历可枚举对象"></a>遍历可枚举对象</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> food = [<span class="string">'Poi'</span>, <span class="string">'Ono'</span>, <span class="string">'Adobo Chicken'</span>];</div><div class="line"></div><div class="line">food.forEach(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">`Menu Item <span class="subst">$&#123;index+<span class="number">1</span>&#125;</span>: <span class="subst">$&#123;item&#125;</span>`</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// Menu Item 1: Poi</span></div><div class="line"><span class="comment">// Menu Item 2: Ono</span></div><div class="line"><span class="comment">// Menu Item 3: Adobo Chicken</span></div></pre></td></tr></table></figure>
+<h5 id="第一个和最后一个元素"><a href="#第一个和最后一个元素" class="headerlink" title="第一个和最后一个元素"></a>第一个和最后一个元素</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> animals = [<span class="string">'rooster'</span>, <span class="string">'pig'</span>];</div><div class="line"></div><div class="line">animals.get(<span class="string">'lastObject'</span>);</div><div class="line"><span class="comment">//=&gt; "pig"</span></div><div class="line"></div><div class="line">animals.pushObject(<span class="string">'peacock'</span>);</div><div class="line"></div><div class="line">animals.get(<span class="string">'lastObject'</span>);</div><div class="line"><span class="comment">//=&gt; "peacock"</span></div></pre></td></tr></table></figure>
+<h5 id="map"><a href="#map" class="headerlink" title="map"></a>map</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> words = [<span class="string">'goodbye'</span>, <span class="string">'cruel'</span>, <span class="string">'world'</span>];</div><div class="line"></div><div class="line"><span class="keyword">let</span> emphaticWords = words.map(<span class="function"><span class="params">item</span> =&gt;</span> <span class="string">`<span class="subst">$&#123;item&#125;</span>!`</span>);</div><div class="line"><span class="comment">//=&gt; ["goodbye!", "cruel!", "world!"]</span></div></pre></td></tr></table></figure>
+<p>对于由对象组成的可枚举对象，可以使用<code>mapBy()</code>方法来指明用于<code>map</code>的属性：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> hawaii = Ember.Object.create(&#123;</div><div class="line">  <span class="attr">capital</span>: <span class="string">'Honolulu'</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">let</span> california = Ember.Object.create(&#123;</div><div class="line">  <span class="attr">capital</span>: <span class="string">'Sacramento'</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">let</span> states = [hawaii, california];</div><div class="line"></div><div class="line">states.mapBy(<span class="string">'capital'</span>);</div><div class="line"><span class="comment">//=&gt; ["Honolulu", "Sacramento"]</span></div></pre></td></tr></table></figure>
+<h5 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</div><div class="line"></div><div class="line">arr.filter(<span class="function">(<span class="params">item, index, self</span>) =&gt;</span> item &lt; <span class="number">4</span>);</div><div class="line"></div><div class="line"><span class="comment">//=&gt; [1, 2, 3]</span></div></pre></td></tr></table></figure>
+<p>当Array由对象组成的时候，则可以使用<code>filterBy()</code>来指定筛选的属性：</p>
+<p><code>filterBy(property, targetValue)</code>接收两个参数，第一个是要筛选的属性，第二个是期望值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">Todo = Ember.Object.extend(&#123;</div><div class="line">  <span class="attr">title</span>: <span class="literal">null</span>,</div><div class="line">  <span class="attr">isDone</span>: <span class="literal">false</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">let</span> todos = [</div><div class="line">  Todo.create(&#123; <span class="attr">title</span>: <span class="string">'Write code'</span>, <span class="attr">isDone</span>: <span class="literal">true</span> &#125;),</div><div class="line">  Todo.create(&#123; <span class="attr">title</span>: <span class="string">'Go to sleep'</span> &#125;)</div><div class="line">];</div><div class="line"></div><div class="line">todos.filterBy(<span class="string">'isDone'</span>, <span class="literal">true</span>);</div><div class="line"></div><div class="line"><span class="comment">// returns an Array containing only items with `isDone == true`</span></div></pre></td></tr></table></figure>
+<h5 id="find"><a href="#find" class="headerlink" title="find"></a>find</h5><p><code>find()</code>方法和<code>filter()</code>类似，都会对可枚举对象进行筛选。但<code>find()</code>方法返回第一个匹配的对象。</p>
+<p>类似的。也有<code>findBy(property, targetValue)</code>方法</p>
+<h5 id="Every-or-Any"><a href="#Every-or-Any" class="headerlink" title="Every or Any"></a>Every or Any</h5><p>使用<code>every()</code>来验证可枚举对象中的每个值是否都符合条件。只要有一个不符合就返回false：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">Person = Ember.Object.extend(&#123;</div><div class="line">  <span class="attr">name</span>: <span class="literal">null</span>,</div><div class="line">  <span class="attr">isHappy</span>: <span class="literal">false</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">let</span> people = [</div><div class="line">  Person.create(&#123; <span class="attr">name</span>: <span class="string">'Yehuda'</span>, <span class="attr">isHappy</span>: <span class="literal">true</span> &#125;),</div><div class="line">  Person.create(&#123; <span class="attr">name</span>: <span class="string">'Majd'</span>, <span class="attr">isHappy</span>: <span class="literal">false</span> &#125;)</div><div class="line">];</div><div class="line"></div><div class="line">people.every(<span class="function">(<span class="params">person, index, self</span>) =&gt;</span> person.get(<span class="string">'isHappy'</span>));</div><div class="line"></div><div class="line"><span class="comment">//=&gt; false</span></div></pre></td></tr></table></figure>
+<p>使用<code>any()</code>来验证可枚举对象中至少有一个值符合条件。只要有一个符合就返回true：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">people.any(<span class="function">(<span class="params">person, index, self</span>) =&gt;</span> person.get(<span class="string">'isHappy'</span>));</div><div class="line"></div><div class="line"><span class="comment">//=&gt; true</span></div></pre></td></tr></table></figure>
+<p>类似的，也有<code>isEvery()</code>和<code>isAny()</code>方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">people.isEvery(<span class="string">'isHappy'</span>, <span class="literal">true</span>); <span class="comment">// false</span></div><div class="line">people.isAny(<span class="string">'isHappy'</span>, <span class="literal">true</span>);  <span class="comment">// true</span></div></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Ember初探–Ember中的对象"><span class="toc-number">1.</span> <span class="toc-text">Ember初探–Ember中的对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#类和实例"><span class="toc-number">1.1.</span> <span class="toc-text">类和实例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#定义类"><span class="toc-number">1.1.1.</span> <span class="toc-text">定义类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#复写父类的方法"><span class="toc-number">1.1.2.</span> <span class="toc-text">复写父类的方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建实例"><span class="toc-number">1.1.3.</span> <span class="toc-text">创建实例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#初始化实例"><span class="toc-number">1.1.4.</span> <span class="toc-text">初始化实例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#获取对象的属性"><span class="toc-number">1.1.5.</span> <span class="toc-text">获取对象的属性</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reopen-类和实例"><span class="toc-number">1.2.</span> <span class="toc-text">Reopen 类和实例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#计算属性"><span class="toc-number">1.3.</span> <span class="toc-text">计算属性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#计算属性实例"><span class="toc-number">1.3.1.</span> <span class="toc-text">计算属性实例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#链式计算属性"><span class="toc-number">1.3.2.</span> <span class="toc-text">链式计算属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#动态更新"><span class="toc-number">1.3.3.</span> <span class="toc-text">动态更新</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#改变计算属性"><span class="toc-number">1.3.4.</span> <span class="toc-text">改变计算属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#计算属性宏"><span class="toc-number">1.3.5.</span> <span class="toc-text">计算属性宏</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#计算属性和数据汇总"><span class="toc-number">1.3.6.</span> <span class="toc-text">计算属性和数据汇总</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#观察者"><span class="toc-number">1.4.</span> <span class="toc-text">观察者</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#观察者和异步"><span class="toc-number">1.4.1.</span> <span class="toc-text">观察者和异步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#观察者和对象初始化"><span class="toc-number">1.4.2.</span> <span class="toc-text">观察者和对象初始化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#未使用过的计算属性不会触发观察者"><span class="toc-number">1.4.3.</span> <span class="toc-text">未使用过的计算属性不会触发观察者</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#在class外定义"><span class="toc-number">1.4.4.</span> <span class="toc-text">在class外定义</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事件绑定"><span class="toc-number">1.5.</span> <span class="toc-text">事件绑定</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#双向绑定"><span class="toc-number">1.5.1.</span> <span class="toc-text">双向绑定</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#单向绑定"><span class="toc-number">1.5.2.</span> <span class="toc-text">单向绑定</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#可枚举对象"><span class="toc-number">1.6.</span> <span class="toc-text">可枚举对象</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#使用观察者方法和属性"><span class="toc-number">1.6.1.</span> <span class="toc-text">使用观察者方法和属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#API概览"><span class="toc-number">1.6.2.</span> <span class="toc-text">API概览</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#遍历可枚举对象"><span class="toc-number">1.6.2.1.</span> <span class="toc-text">遍历可枚举对象</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#第一个和最后一个元素"><span class="toc-number">1.6.2.2.</span> <span class="toc-text">第一个和最后一个元素</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#map"><span class="toc-number">1.6.2.3.</span> <span class="toc-text">map</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#filter"><span class="toc-number">1.6.2.4.</span> <span class="toc-text">filter</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#find"><span class="toc-number">1.6.2.5.</span> <span class="toc-text">find</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Every-or-Any"><span class="toc-number">1.6.2.6.</span> <span class="toc-text">Every or Any</span></a></li></ol></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ecmadao.com/2017/01/13/Notes/ember/Ember初探--Ember中的对象/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ecmadao.com/2017/01/13/Notes/ember/Ember初探--Ember中的对象/&text=Ember初探--Ember中的对象"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ecmadao.com/2017/01/13/Notes/ember/Ember初探--Ember中的对象/&title=Ember初探--Ember中的对象"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ecmadao.com/2017/01/13/Notes/ember/Ember初探--Ember中的对象/&is_video=false&description=Ember初探--Ember中的对象"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Ember初探--Ember中的对象&body=Check out this article: http://ecmadao.com/2017/01/13/Notes/ember/Ember初探--Ember中的对象/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ecmadao.com/2017/01/13/Notes/ember/Ember初探--Ember中的对象/&title=Ember初探--Ember中的对象"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ecmadao.com/2017/01/13/Notes/ember/Ember初探--Ember中的对象/&title=Ember初探--Ember中的对象"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ecmadao.com/2017/01/13/Notes/ember/Ember初探--Ember中的对象/&title=Ember初探--Ember中的对象"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ecmadao.com/2017/01/13/Notes/ember/Ember初探--Ember中的对象/&title=Ember初探--Ember中的对象"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ecmadao.com/2017/01/13/Notes/ember/Ember初探--Ember中的对象/&name=Ember初探--Ember中的对象&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2017 ecmadao
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    <script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'ecmadao-blog';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
+</body>
+</html>

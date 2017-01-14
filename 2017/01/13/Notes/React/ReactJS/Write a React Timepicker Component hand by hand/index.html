@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Table of Contents  generated with DocToc
+
+一言不合造轮子–撸一个ReactTimePicker
+起因
+设计与架构
+UI设计
+需求整理
+代码设计
+文件结构
+
+
+环境搭建
+组件编写
+TimePicker
+OutsideClickHandler
+TimePickerModal
+PickerPointGenerator
+PickerPoint
+PickerDa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Write a React Timepicker Component hand by hand">
+<meta property="og:url" content="http://ecmadao.com/2017/01/13/Notes/React/ReactJS/Write a React Timepicker Component hand by hand/index.html">
+<meta property="og:site_name" content="ecmadao">
+<meta property="og:description" content="Table of Contents  generated with DocToc
+
+一言不合造轮子–撸一个ReactTimePicker
+起因
+设计与架构
+UI设计
+需求整理
+代码设计
+文件结构
+
+
+环境搭建
+组件编写
+TimePicker
+OutsideClickHandler
+TimePickerModal
+PickerPointGenerator
+PickerPoint
+PickerDa">
+<meta property="og:image" content="http://ecmadao.com/images/timepicker/react-times.gif">
+<meta property="og:image" content="http://ecmadao.com/images/timepicker/pickadate.png">
+<meta property="og:image" content="http://ecmadao.com/images/timepicker/pickadate-date.png">
+<meta property="og:image" content="http://ecmadao.com/images/timepicker/pickadate-time.png">
+<meta property="og:image" content="http://ecmadao.com/images/timepicker/UI.png">
+<meta property="og:image" content="http://ecmadao.com/images/timepicker/ui-line.png">
+<meta property="og:image" content="http://ecmadao.com/images/timepicker/hour-picker.png">
+<meta property="og:image" content="http://ecmadao.com/images/timepicker/minute-picker.png">
+<meta property="og:image" content="http://ecmadao.com/images/timepicker/24HoursMode.png">
+<meta property="og:image" content="http://ecmadao.com/images/timepicker/12HoursMode.png">
+<meta property="og:image" content="http://ecmadao.com/images/timepicker/getRadian.png">
+<meta property="og:updated_time" content="2017-01-14T12:11:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Write a React Timepicker Component hand by hand">
+<meta name="twitter:description" content="Table of Contents  generated with DocToc
+
+一言不合造轮子–撸一个ReactTimePicker
+起因
+设计与架构
+UI设计
+需求整理
+代码设计
+文件结构
+
+
+环境搭建
+组件编写
+TimePicker
+OutsideClickHandler
+TimePickerModal
+PickerPointGenerator
+PickerPoint
+PickerDa">
+<meta name="twitter:image" content="http://ecmadao.com/images/timepicker/react-times.gif">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Write a React Timepicker Component hand by hand</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+    <link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    <script src="/lib/jquery/jquery.min.js"></script>
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/01/13/Notes/React/ReactNative/ReactNative-Android-Setup/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/01/13/Notes/React/ReactNative/ReactNative-自定义组件/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ecmadao.com/2017/01/13/Notes/React/ReactJS/Write a React Timepicker Component hand by hand/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ecmadao.com/2017/01/13/Notes/React/ReactJS/Write a React Timepicker Component hand by hand/&text=Write a React Timepicker Component hand by hand"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ecmadao.com/2017/01/13/Notes/React/ReactJS/Write a React Timepicker Component hand by hand/&title=Write a React Timepicker Component hand by hand"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ecmadao.com/2017/01/13/Notes/React/ReactJS/Write a React Timepicker Component hand by hand/&is_video=false&description=Write a React Timepicker Component hand by hand"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Write a React Timepicker Component hand by hand&body=Check out this article: http://ecmadao.com/2017/01/13/Notes/React/ReactJS/Write a React Timepicker Component hand by hand/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ecmadao.com/2017/01/13/Notes/React/ReactJS/Write a React Timepicker Component hand by hand/&title=Write a React Timepicker Component hand by hand"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ecmadao.com/2017/01/13/Notes/React/ReactJS/Write a React Timepicker Component hand by hand/&title=Write a React Timepicker Component hand by hand"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ecmadao.com/2017/01/13/Notes/React/ReactJS/Write a React Timepicker Component hand by hand/&title=Write a React Timepicker Component hand by hand"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ecmadao.com/2017/01/13/Notes/React/ReactJS/Write a React Timepicker Component hand by hand/&title=Write a React Timepicker Component hand by hand"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ecmadao.com/2017/01/13/Notes/React/ReactJS/Write a React Timepicker Component hand by hand/&name=Write a React Timepicker Component hand by hand&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一言不合造轮子–撸一个ReactTimePicker"><span class="toc-number">1.</span> <span class="toc-text">一言不合造轮子–撸一个ReactTimePicker</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#起因"><span class="toc-number">1.1.</span> <span class="toc-text">起因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设计与架构"><span class="toc-number">1.2.</span> <span class="toc-text">设计与架构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#UI设计"><span class="toc-number">1.2.1.</span> <span class="toc-text">UI设计</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#需求整理"><span class="toc-number">1.2.2.</span> <span class="toc-text">需求整理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#代码设计"><span class="toc-number">1.2.3.</span> <span class="toc-text">代码设计</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#文件结构"><span class="toc-number">1.2.4.</span> <span class="toc-text">文件结构</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#环境搭建"><span class="toc-number">1.3.</span> <span class="toc-text">环境搭建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组件编写"><span class="toc-number">1.4.</span> <span class="toc-text">组件编写</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#TimePicker"><span class="toc-number">1.4.1.</span> <span class="toc-text">TimePicker</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#OutsideClickHandler"><span class="toc-number">1.4.2.</span> <span class="toc-text">OutsideClickHandler</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TimePickerModal"><span class="toc-number">1.4.3.</span> <span class="toc-text">TimePickerModal</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PickerPointGenerator"><span class="toc-number">1.4.4.</span> <span class="toc-text">PickerPointGenerator</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PickerPoint"><span class="toc-number">1.4.5.</span> <span class="toc-text">PickerPoint</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PickerDargHandler"><span class="toc-number">1.4.6.</span> <span class="toc-text">PickerDargHandler</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#测试"><span class="toc-number">1.5.</span> <span class="toc-text">测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编译"><span class="toc-number">1.6.</span> <span class="toc-text">编译</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Write a React Timepicker Component hand by hand
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">ecmadao</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-01-13T05:58:37.000Z" itemprop="datePublished">2017-01-13</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/React/">React</a>, <a class="tag-link" href="/tags/ReactJS/">ReactJS</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<p><strong>Table of Contents</strong>  <em>generated with <a href="https://github.com/thlorenz/doctoc" target="_blank" rel="external">DocToc</a></em></p>
+<ul>
+<li><a href="#%E4%B8%80%E8%A8%80%E4%B8%8D%E5%90%88%E9%80%A0%E8%BD%AE%E5%AD%90--%E6%92%B8%E4%B8%80%E4%B8%AAreacttimepicker">一言不合造轮子–撸一个ReactTimePicker</a><ul>
+<li><a href="#%E8%B5%B7%E5%9B%A0">起因</a></li>
+<li><a href="#%E8%AE%BE%E8%AE%A1%E4%B8%8E%E6%9E%B6%E6%9E%84">设计与架构</a><ul>
+<li><a href="#ui%E8%AE%BE%E8%AE%A1">UI设计</a></li>
+<li><a href="#%E9%9C%80%E6%B1%82%E6%95%B4%E7%90%86">需求整理</a></li>
+<li><a href="#%E4%BB%A3%E7%A0%81%E8%AE%BE%E8%AE%A1">代码设计</a></li>
+<li><a href="#%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84">文件结构</a></li>
+</ul>
+</li>
+<li><a href="#%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA">环境搭建</a></li>
+<li><a href="#%E7%BB%84%E4%BB%B6%E7%BC%96%E5%86%99">组件编写</a><ul>
+<li><a href="#timepicker"><code>TimePicker</code></a></li>
+<li><a href="#outsideclickhandler"><code>OutsideClickHandler</code></a></li>
+<li><a href="#timepickermodal"><code>TimePickerModal</code></a></li>
+<li><a href="#pickerpointgenerator"><code>PickerPointGenerator</code></a></li>
+<li><a href="#pickerpoint"><code>PickerPoint</code></a></li>
+<li><a href="#pickerdarghandler"><code>PickerDargHandler</code></a></li>
+</ul>
+</li>
+<li><a href="#%E6%B5%8B%E8%AF%95">测试</a></li>
+<li><a href="#%E7%BC%96%E8%AF%91">编译</a></li>
+</ul>
+</li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<h2 id="一言不合造轮子–撸一个ReactTimePicker"><a href="#一言不合造轮子–撸一个ReactTimePicker" class="headerlink" title="一言不合造轮子–撸一个ReactTimePicker"></a>一言不合造轮子–撸一个ReactTimePicker</h2><blockquote>
+<p>本文的源码全部位于github项目仓库<a href="https://github.com/ecmadao/react-times" target="_blank" rel="external"><code>react-times</code></a>，如果有差异请以github为准。最终线上DEMO可见<a href="https://ecmadao.github.io/react-times/" target="_blank" rel="external">react-times github page</a></p>
+<p>文章记录了一次创建独立React组件并做成NPM包的过程，将会涉及到React开发、单页测试、Webpack等内容。</p>
+</blockquote>
+<p>先看下最终的效果~</p>
+<p><img src="/images/timepicker/react-times.gif" alt="react-times.gif"></p>
+<p>这里可以玩<a href="https://ecmadao.github.io/react-times/" target="_blank" rel="external">线上demo</a></p>
+<h3 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h3><p>因为我司的业务需求，需要有一个日期和时间的选择器。最开始我们使用的是<a href="http://amsul.ca/pickadate.js/" target="_blank" rel="external"><code>pickadate</code></a>，一个基于jQuery的比较老牌的时间日期选择器。在页面上大致长这样：</p>
+<p><img src="/images/timepicker/pickadate.png" alt="pickadata"></p>
+<p>这样：</p>
+<p><img src="/images/timepicker/pickadate-date.png" alt="pickadata"></p>
+<p>还有这样：</p>
+<p><img src="/images/timepicker/pickadate-time.png" alt="pickadata"></p>
+<p>大体上看着还OK吧？但是后来随着我们业务的增长和代码重构，前端webpack成为标配，同时越来越多的页面使用React进行重构，pickadata经常出现一些莫名的bug，再加上它本身的API不够<code>React Style</code> — 在和React中使用的时候，pickadate组件的初始化还不得不按照老式的jQuery组件那样，调用API，在DOM里插入pickadate。而且，为了获取date/time变动时的值，往往需要通过jQuery选择器来拿到value，因而pickadate组件选择器的初始化和一些事件都较多的依赖于React Component的生命周期。这。。用久了就感觉越来越蛋疼了。</p>
+<p>后来又一次偶尔发现了Airbnb（业界良心）开源的React组件–<a href="https://github.com/airbnb/react-dates" target="_blank" rel="external"><code>react-dates</code></a>。</p>
+<p><code>react-dates</code>是一个基于<code>moment</code>和<code>React</code>的日期选择器，其插件本身就是一个ReactComponent，有NPM，有足够的测试，有良好的API。于是当即下定决心要趁此干掉pickadate。可真正用到项目中才发现它居然不支持时间选择！！！（或许因为Airbnb本身的业务就是更看重日期的？）因此才有了自己撸一个的想法。</p>
+<h3 id="设计与架构"><a href="#设计与架构" class="headerlink" title="设计与架构"></a>设计与架构</h3><h4 id="UI设计"><a href="#UI设计" class="headerlink" title="UI设计"></a>UI设计</h4><p>UI方面没得说，我是妥妥的<code>Material Design</code>党。这次也是着急动手撸代码，所以直接就参考Android6.0+系统上闹钟里的时间选择好了，之后再完善并增加UI主题：</p>
+<p><img src="/images/timepicker/UI.png" alt="Android-Material-Design"></p>
+<p>目标差不多就长这个样子，再增加一个选择时间的按钮和黑白配色的选择。</p>
+<h4 id="需求整理"><a href="#需求整理" class="headerlink" title="需求整理"></a>需求整理</h4><p>搭配我们的“UI稿”和线框稿一起食用：</p>
+<p><img src="/images/timepicker/ui-line.png" alt="ui-line"></p>
+<p>可以看到，除去上方选择时间并展示的按钮之外，我们把真正的时间表盘放在了下面的modal里。而modal表盘里的设计，则会模仿上图的Android时间选择器，是一个MD风格的拟时钟样式的选择器。初步整理出一些需求：</p>
+<ul>
+<li>点击按钮弹出表盘modal，再点击其他区域关闭modal</li>
+<li>表盘modal里有一个圆形的时间选择器，时间的数字围绕圆形环绕</li>
+<li>表盘里有一个指针，可以以表盘为中心旋转</li>
+<li>点击代表时间的数字，应该改变外层按钮里对应的小时/分钟，同时指针改变旋转角度，指向点击的时间</li>
+<li>拖拽指针，可以环绕中心旋转。当放开指针时，它应该自动指向距离最近的小时或者分钟</li>
+<li>拖拽指针并松开，指针停止之后，当前选择的时间和外层按钮上显示的时间应该被改变</li>
+<li>拖拽指针到两个整数数字之间并放开时，指针应该自动旋转到距离最近的时间上</li>
+</ul>
+<h4 id="代码设计"><a href="#代码设计" class="headerlink" title="代码设计"></a>代码设计</h4><p>有了上面的初步需求整理，我们就可以来构思组件的代码设计了。既然是个React组件，那么就应该按照逻辑和UI，把整体尽可能的拆分成足够小的模块。</p>
+<p>有几点代码层面的架构需要考虑：</p>
+<ul>
+<li>考虑到“点击按钮弹出表盘modal，再点击其他区域关闭modal”这个需求，或许我们应该在分离出一个<code>OutsideClickHandler</code>，专门用来处理用户点击了表盘以外其他区域时的modal关闭事件。</li>
+<li>Android时间选择的表盘其实有两个，一个是小时的选择，另一个则是分钟的选择。用户可以点击modal里圆形表盘上的小时/分钟，来切换不同的表盘。那么这意味着或许会有大量的代码可供我们复用。</li>
+</ul>
+<p>那么就先按照这个思路进行拆分：</p>
+<ul>
+<li><code>TimePicker</code><ul>
+<li>按钮</li>
+<li>处理外层点击事件的组件（<code>OutsideClickHandler</code>）</li>
+<li>表盘modal<ul>
+<li>modal + 表盘（<code>TimePickerModal</code>）</li>
+<li>环绕的数字（<code>PickerPoint</code>）</li>
+<li>指针（<code>PickerDargHandler</code>）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>在这样的结构下，<code>TimePicker.jsx</code>文件将是我们最后<code>export</code>出去的组件。在<code>TimePicker,jsx</code>中，包含了按钮组件和Modal组件。而Modal组件的各个组成部分被拆分成粒度更小的组件，以便组合和复用。</p>
+<p>这样有哪些好处呢？举个栗子：</p>
+<ul>
+<li>我们在做组件的时候，先做了小时的选择，然后做分钟的选择。但两个picker的UI不同点主要集中在数字在表盘的布局上，以及一些选择的代码逻辑。这样的话我们就可以保持大体框架不变，只改变表盘中心渲染的数字布局即可。</li>
+</ul>
+<p>假设下图是小时选择器：（请原谅我可怜的绘图）</p>
+<p><img src="/images/timepicker/hour-picker.png" alt="hour-picker"></p>
+<p>假设下图是分钟选择器：（请原谅我可怜的绘图）</p>
+<p><img src="/images/timepicker/minute-picker.png" alt="minute-picker"></p>
+<ul>
+<li>而我们按照这样的架构撸完代码之后，如果想额外做一些其他的东西，比如支持12小时制，那么小时和分钟的选择则应该集中在一个表盘modal上（也就是长得和正常是时钟一样）。在这样的需求下，我们需要在一个表盘里同时渲染小时和分钟的数字布局，而其他的东西，比如说modal啊，指针啊依旧保持原样（一样的指针组件，只不过渲染了两个）。</li>
+</ul>
+<p>下图是24小时制，点击modal上的小时/分钟来切换不同表盘：</p>
+<p><img src="/images/timepicker/24HoursMode.png" alt="24hours mode"></p>
+<p>下图是12小时制，在同一个表盘上显示小时和分钟：</p>
+<p><img src="/images/timepicker/12HoursMode.png" alt="12hours mode"></p>
+<h4 id="文件结构"><a href="#文件结构" class="headerlink" title="文件结构"></a>文件结构</h4><p>So, 目前这样的结构设计应该可以满足我们的简单的需求。接下来就开始卷起袖子撸代码喽。</p>
+<p>新建项目，基本的文件结构如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># react-times</span></div><div class="line">- src/</div><div class="line">    - components/</div><div class="line">        TimePicker.jsx</div><div class="line">        OutsideClickHandler.jsx</div><div class="line">        TimePickerModal.jsx</div><div class="line">        PickerPoint.jsx</div><div class="line">        PickerDargHandler.jsx</div><div class="line">    - utils.js</div><div class="line">    - ConstValue.js</div><div class="line">+ css/</div><div class="line">+ <span class="built_in">test</span>/</div><div class="line">+ lib/</div><div class="line">index.js</div><div class="line">package.json</div><div class="line">webpack.config.js</div></pre></td></tr></table></figure>
+<p>其中，<code>src</code>文件夹下是我们的源码，而<code>lib</code>则是编译过后的代码。而<code>index.js</code>则是整个包最终的出口，我们在这里将做好的组件暴露出去：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> TimePicker = <span class="built_in">require</span>(<span class="string">'./lib/components/TimePicker'</span>).default;</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = TimePicker;</div></pre></td></tr></table></figure>
+<h3 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h3><p>既然是写一个独立的React组件，那它的开发则和我们项目的开发相互独立。</p>
+<p>那么问题来了：该如何搭建开发和测试环境呢？这个组件我想使用<code>React</code>和<code>ES6</code>的语法，而单元测试则使用<code>mocha</code>+<code>chai</code>和Airbnb的<code>enzyme</code>（再次感谢业界良心）。那么在发布之前，应该使用构建工具将其初步打包，针对于这点我选用了<code>webpack</code>。</p>
+<p>而在开发过程中，需要能够启动一个server，以便能在网页上渲染出组件，进行调试。因此，可以使用<a href="https://github.com/kadirahq/react-storybook" target="_blank" rel="external"><code>react-storybook</code></a>这个库，它允许我们启动一个server，把自己的组件渲染在页面上，并支持webpack进行编译。具体的使用大家可以去看<a href="https://getstorybook.io/" target="_blank" rel="external">storybook文档</a>，非常简单易懂，便于配置。</p>
+<p>那么进入正题，组件的编写。</p>
+<h3 id="组件编写"><a href="#组件编写" class="headerlink" title="组件编写"></a>组件编写</h3><h4 id="TimePicker"><a href="#TimePicker" class="headerlink" title="TimePicker"></a><code>TimePicker</code></h4><p>对于传入组件的<code>props</code>：</p>
+<ul>
+<li><code>defaultTime</code>：默认初始化时间。默认为当前时间</li>
+<li><code>focused</code>：初始化时modal是否打开。默认为<code>false</code></li>
+<li><code>onFocusChange</code>：modal开/关状态变化时的回调</li>
+<li><code>onHourChange</code>：选择的小时变化时的回调，以小时作为参数</li>
+<li><code>onMinuteChange</code>：选择的分钟变化时的回调，以分钟作为参数</li>
+<li><code>onTimeChange</code>：任意时间变化时的回调，以<code>hour:minute</code>作为参数，参数类型是String</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// src/components/TimePicker.jsx</span></div><div class="line"><span class="comment">// 省略了一些方法的具体内容和组件属性的传递</span></div><div class="line"><span class="keyword">import</span> React, &#123;PropTypes&#125; <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> moment <span class="keyword">from</span> <span class="string">'moment'</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> OutsideClickHandler <span class="keyword">from</span> <span class="string">'./OutsideClickHandler'</span>;</div><div class="line"><span class="keyword">import</span> TimePickerModal <span class="keyword">from</span> <span class="string">'./TimePickerModal'</span>;</div><div class="line"></div><div class="line"><span class="comment">// 组件开发要养成良好的习惯：检查传入的属性，并设定默认属性值</span></div><div class="line"><span class="keyword">const</span> propTypes = &#123;</div><div class="line">  <span class="attr">defaultTime</span>: PropTypes.string,</div><div class="line">  <span class="attr">focused</span>: PropTypes.bool,</div><div class="line">  <span class="attr">onFocusChange</span>: PropTypes.func,</div><div class="line">  <span class="attr">onHourChange</span>: PropTypes.func,</div><div class="line">  <span class="attr">onMinuteChange</span>: PropTypes.func,</div><div class="line">  <span class="attr">onTimeChange</span>: PropTypes.func</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">const</span> defaultProps = &#123;</div><div class="line">  <span class="attr">defaultTime</span>: moment().format(<span class="string">"HH:mm"</span>),</div><div class="line">  <span class="attr">focused</span>: <span class="literal">false</span>,</div><div class="line">  <span class="attr">onFocusChange</span>: <span class="function"><span class="params">()</span> =&gt;</span> &#123;&#125;,</div><div class="line">  <span class="attr">onHourChange</span>: <span class="function"><span class="params">()</span> =&gt;</span> &#123;&#125;,</div><div class="line">  <span class="attr">onMinuteChange</span>: <span class="function"><span class="params">()</span> =&gt;</span> &#123;&#125;,</div><div class="line">  <span class="attr">onTimeChange</span>: <span class="function"><span class="params">()</span> =&gt;</span> &#123;&#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">TimePicker</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  <span class="keyword">constructor</span>(props) &#123;</div><div class="line">    <span class="keyword">super</span>(props);</div><div class="line">    <span class="keyword">let</span> &#123;defaultTime, focused&#125; = props;</div><div class="line">    <span class="keyword">let</span> [hour, minute] = initialTime(defaultTime);</div><div class="line">    <span class="keyword">this</span>.state = &#123;</div><div class="line">      hour,</div><div class="line">      minute,</div><div class="line">      focused</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">this</span>.onFocus = <span class="keyword">this</span>.onFocus.bind(<span class="keyword">this</span>);</div><div class="line">    <span class="keyword">this</span>.onClearFocus = <span class="keyword">this</span>.onClearFocus.bind(<span class="keyword">this</span>);</div><div class="line">    <span class="keyword">this</span>.handleHourChange = <span class="keyword">this</span>.handleHourChange.bind(<span class="keyword">this</span>);</div><div class="line">    <span class="keyword">this</span>.handleMinuteChange = <span class="keyword">this</span>.handleMinuteChange.bind(<span class="keyword">this</span>);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// 改变state，并触发onFocusChange callback</span></div><div class="line">  onFocus() &#123;&#125;</div><div class="line">  onClearFocus() &#123;&#125;</div><div class="line">  handleHourChange() &#123;&#125;</div><div class="line">  handleMinuteChange() &#123;&#125;</div><div class="line"></div><div class="line">  renderTimePickerModal() &#123;</div><div class="line">    <span class="keyword">let</span> &#123;hour, minute, focused&#125; = <span class="keyword">this</span>.state;</div><div class="line">    <span class="comment">// 给组件传入小时/分钟，以及handleHourChange,handleMinuteChange</span></div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      <span class="xml"><span class="tag">&lt;<span class="name">TimePickerModal</span> /&gt;</span></span></div><div class="line">    )</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render() &#123;</div><div class="line">    let &#123;hour, minute, focused&#125; = this.state;</div><div class="line">    let times = `$&#123;hour&#125; : $&#123;minute&#125;`;</div><div class="line">    return (</div><div class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">"time_picker_container"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">onClick</span>=<span class="string">&#123;this.onFocus&#125;</span> <span class="attr">className</span>=<span class="string">"time_picker_preview"</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&#123;previewContainerClass&#125;</span>&gt;</span></div><div class="line">            &#123;times&#125;</div><div class="line">          <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">        &#123;/*OutsideClickHandler 就是上面说到了，专门用于处理modal外点击事件，来关闭modal的组件*/&#125;</div><div class="line">        <span class="tag">&lt;<span class="name">OutsideClickHandler</span> <span class="attr">onOutsideClick</span>=<span class="string">&#123;this.onClearFocus&#125;</span>&gt;</span></div><div class="line">          &#123;this.renderTimePickerModal()&#125;</div><div class="line">        <span class="tag">&lt;/<span class="name">OutsideClickHandler</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">TimePicker.propTypes = propTypes;</div><div class="line">TimePicker.defaultProps = defaultProps;</div></pre></td></tr></table></figure>
+<p>可以看到，<code>OutsideClickHandler</code>包裹着<code>TimePickerModal</code>，而在<code>OutsideClickHandler</code>中，我们进行modal外点击事件的处理，关闭modal</p>
+<h4 id="OutsideClickHandler"><a href="#OutsideClickHandler" class="headerlink" title="OutsideClickHandler"></a><code>OutsideClickHandler</code></h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// src/components/OutsideClickHandler.jsx</span></div><div class="line"></div><div class="line"><span class="comment">// ...</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> propTypes = &#123;</div><div class="line">  <span class="attr">children</span>: PropTypes.node,</div><div class="line">  <span class="attr">onOutsideClick</span>: PropTypes.func,</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">const</span> defaultProps = &#123;</div><div class="line">  <span class="attr">children</span>: <span class="xml"><span class="tag">&lt;<span class="name">span</span> /&gt;</span>,</span></div><div class="line">  onOutsideClick: () =&gt; &#123;&#125;,</div><div class="line">&#125;;</div><div class="line"></div><div class="line">export default class OutsideClickHandler extends React.Component &#123;</div><div class="line">  constructor(props) &#123;</div><div class="line">    super(props);</div><div class="line">    this.onOutsideClick = this.onOutsideClick.bind(this);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  componentDidMount() &#123;</div><div class="line">    // 组件didMount之后，直接在document上绑定点击事件监听</div><div class="line">    if (document.addEventListener) &#123;</div><div class="line">      document.addEventListener('click', this.onOutsideClick, true);</div><div class="line">    &#125; else &#123;</div><div class="line">      document.attachEvent('onclick', this.onOutsideClick);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  componentWillUnmount() &#123;</div><div class="line">    if (document.removeEventListener) &#123;</div><div class="line">      document.removeEventListener('click', this.onOutsideClick, true);</div><div class="line">    &#125; else &#123;</div><div class="line">      document.detachEvent('onclick', this.onOutsideClick);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  onOutsideClick(e) &#123;</div><div class="line">    // 如果点击区域不在该组件内部，则调用关闭modal的方法</div><div class="line">    // 通过ReactDOM.findDOMNode来拿到原生的DOM，避免额外的jQuery依赖</div><div class="line">    const isDescendantOfRoot = ReactDOM.findDOMNode(this.childNode).contains(e.target);</div><div class="line">    if (!isDescendantOfRoot) &#123;</div><div class="line">      let &#123;onOutsideClick&#125; = this.props;</div><div class="line">      onOutsideClick &amp;&amp; onOutsideClick(e);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render() &#123;</div><div class="line">    return (</div><div class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">ref</span>=<span class="string">&#123;(c)</span> =&gt;</span> this.childNode = c&#125;&gt;</div><div class="line">        &#123;this.props.children&#125;</div><div class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">OutsideClickHandler.propTypes = propTypes;</div><div class="line">OutsideClickHandler.defaultProps = defaultProps;</div></pre></td></tr></table></figure>
+<h4 id="TimePickerModal"><a href="#TimePickerModal" class="headerlink" title="TimePickerModal"></a><code>TimePickerModal</code></h4><p>而<code>TimePickerModal</code>主要用来渲染<code>PickerDargHandler</code>和<code>PickerPoint</code>组件：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// src/components/TimePickerModal.jsx</span></div><div class="line"><span class="comment">// ...</span></div><div class="line"><span class="comment">// 为了简便我们在文章中忽略引入的React和一些参数类型检查</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TimePickerModal</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  <span class="keyword">constructor</span>(props) &#123;</div><div class="line">    <span class="keyword">super</span>(props);</div><div class="line">    <span class="comment">/*</span></div><div class="line">    - 获取初始化时的旋转角度</div><div class="line">    - 以step 0代表hour的选择，1代表minute的选择</div><div class="line">    */</div><div class="line">    <span class="keyword">let</span> pointerRotate = <span class="keyword">this</span>.resetHourDegree();</div><div class="line">    <span class="keyword">this</span>.state = &#123;</div><div class="line">      <span class="attr">step</span>: <span class="number">0</span>,</div><div class="line">      pointerRotate</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  handleStepChange(step) &#123;&#125;</div><div class="line"></div><div class="line">  handleTimePointerClick(time, pointerRotate) &#123;</div><div class="line">    <span class="comment">/*</span></div><div class="line">    - 当表盘上某一个数字被点击时</div><div class="line">    - 或者拖拽完指针并放下时，所调用的回调</div><div class="line">    - 参数是该数字或指针所代表的时间和旋转角度</div><div class="line">    */</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// 在切换step的时候，根据当前的hour/minute来重新改变旋转角度</span></div><div class="line">  resetHourDegree() &#123;&#125;</div><div class="line">  resetMinuteDegree() &#123;&#125;</div><div class="line"></div><div class="line">  <span class="comment">/*</span></div><div class="line">  + 两个方法会return PickerPoint组件</div><div class="line">  + 之所以分两个是因为小时/分钟表盘在UI上有较多不同，因而传入的props需要不同的计算</div><div class="line">  + 但在PickerPoint组件内部的逻辑是一样的</div><div class="line">  */</div><div class="line">  renderMinutePointes() &#123;&#125;</div><div class="line">  renderHourPointes() &#123;&#125;</div><div class="line"></div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">let</span> &#123;step, pointerRotate&#125; = <span class="keyword">this</span>.state;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      <span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">"time_picker_modal_container"</span>&gt;</span></span></div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">"time_picker_modal_header"</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">span</span> <span class="attr">onClick</span>=<span class="string">&#123;this.handleStepChange.bind(this,</span> <span class="attr">0</span>)&#125;&gt;</span></div><div class="line">            &#123;hour&#125;</div><div class="line">          <span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">          &amp;nbsp;:&amp;nbsp;</div><div class="line">          <span class="tag">&lt;<span class="name">span</span> <span class="attr">onClick</span>=<span class="string">&#123;this.handleStepChange.bind(this,</span> <span class="attr">1</span>)&#125;&gt;</span></div><div class="line">            &#123;minute&#125;</div><div class="line">          <span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">"picker_container"</span>&gt;</span></div><div class="line">          &#123;step === 0 ? this.renderHourPointes() : this.renderMinutePointes()&#125;</div><div class="line">          <span class="tag">&lt;<span class="name">PickerDargHandler</span></span></div><div class="line">              <span class="attr">pointerRotate</span>=<span class="string">&#123;pointerRotate&#125;</span></div><div class="line">              <span class="attr">time</span>=<span class="string">&#123;step</span> === <span class="string">0</span> ? <span class="attr">parseInt</span>(<span class="attr">hour</span>) <span class="attr">:</span> <span class="attr">parseInt</span>(<span class="attr">minute</span>)&#125;</div><div class="line">              <span class="attr">handleTimePointerClick</span>=<span class="string">&#123;this.handleTimePointerClick&#125;</span> /&gt;</div><div class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面这样，就基本完成了<code>TimePickerModal</code>组件的编写。但还不够好。为什么呢？</p>
+<p>按照我们的逻辑，这个时间选择器应该根据<code>step</code>来切换表盘上表示小时/分钟的数字。也就是说，第一步选择小时，第二部选择分钟 – 它是一个24小时制的时间选择器。那么，如果是要变成12小时制呢？让小时和分钟在同一个表盘上渲染，而<code>step</code>只改变AM/PM呢？</p>
+<p>那么考虑12小时制的情况：</p>
+<ul>
+<li>一个表盘上要同时有小时和分钟两种数字</li>
+<li>一个表盘上要有小时和分钟的两个指针</li>
+<li>切换<code>step</code>改变的是AM/PM</li>
+</ul>
+<p>鉴于我们不应该在<code>TimePickerModal</code>中放入太多的逻辑判断，那么还是针对12小时制专门创建一个组件<code>TwelveHoursModal</code>比较好，但也会提取出<code>TimePickerModal</code>组件中可以独立的方法，作为专门渲染PickerPoint的中间层，<code>PickerPointGenerator.jsx</code>。</p>
+<h4 id="PickerPointGenerator"><a href="#PickerPointGenerator" class="headerlink" title="PickerPointGenerator"></a><code>PickerPointGenerator</code></h4><p><code>PickerPointGenerator</code>其实算是一个中间层组件。在它内部会进行一些逻辑判断，最终渲染出我们想要的表盘数字。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// src/components/PickerPointGenerator.jsx</span></div><div class="line"><span class="comment">// ...</span></div><div class="line"><span class="keyword">import</span> &#123;</div><div class="line">  MINUTES,</div><div class="line">  HOURS,</div><div class="line">  TWELVE_HOURS</div><div class="line">&#125; <span class="keyword">from</span> <span class="string">'../ConstValue.js'</span>;</div><div class="line"><span class="keyword">import</span> PickerPoint <span class="keyword">from</span> <span class="string">'./PickerPoint'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> pickerPointGenerator = <span class="function">(<span class="params">type = <span class="string">'hour'</span>, mode = <span class="number">24</span></span>) =&gt;</span> &#123;</div><div class="line">  <span class="keyword">return</span> <span class="class"><span class="keyword">class</span> <span class="title">PickerPointGenerator</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">    <span class="keyword">constructor</span>(props) &#123;</div><div class="line">      <span class="keyword">super</span>(props);</div><div class="line">      <span class="keyword">this</span>.handleTimePointerClick = props.handleTimePointerClick.bind(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 返回PickerPoint</span></div><div class="line">    renderMinutePointes() &#123;&#125;</div><div class="line">    renderHourPointes() &#123;&#125;</div><div class="line"></div><div class="line">    render() &#123;</div><div class="line">      <span class="keyword">return</span> (</div><div class="line">        <span class="xml"><span class="tag">&lt;<span class="name">div</span></span></span></div><div class="line">          <span class="attr">ref</span>=<span class="string">&#123;ref</span> =&gt; this.pickerPointerContainer = ref&#125;</div><div class="line">          id="picker_pointer_container"&gt;</div><div class="line">          &#123;type === 'hour' ? this.renderHourPointes() : this.renderMinutePointes()&#125;</div><div class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">      )</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> pickerPointGenerator;</div></pre></td></tr></table></figure>
+<p>有了它之后，我们之前的<code>TimePickerModal</code>可以这么写：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// src/components/TimePickerModal.jsx</span></div><div class="line"><span class="comment">// ...</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TimePickerModal</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">const</span> &#123;step&#125; = <span class="keyword">this</span>.state;</div><div class="line">    <span class="keyword">const</span> type = step === <span class="number">0</span> ? <span class="string">'hour'</span> : <span class="string">'minute'</span>;</div><div class="line">    <span class="keyword">const</span> PickerPointGenerator = pickerPointGenerator(type);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      ...</div><div class="line">      &lt;PickerPointGenerator</div><div class="line">        handleTimePointerClick=&#123;<span class="keyword">this</span>.handleTimePointerClick&#125;</div><div class="line">      /&gt;</div><div class="line">      ...</div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>而如果是12小时制呢：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// src/components/TwelveHoursModal.jsx</span></div><div class="line"><span class="comment">// ...</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TwelveHoursModal</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">const</span> HourPickerPointGenerator = pickerPointGenerator(<span class="string">'hour'</span>, <span class="number">12</span>);</div><div class="line">    <span class="keyword">const</span> MinutePickerPointGenerator = pickerPointGenerator(<span class="string">'minute'</span>, <span class="number">12</span>);</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      ...</div><div class="line">      &lt;HourPickerPointGenerator</div><div class="line">        handleTimePointerClick=&#123;<span class="keyword">this</span>.handleHourPointerClick&#125;</div><div class="line">      /&gt;</div><div class="line">      <span class="xml"><span class="tag">&lt;<span class="name">MinutePickerPointGenerator</span></span></span></div><div class="line">        <span class="attr">handleTimePointerClick</span>=<span class="string">&#123;this.handleMinutePointerClick&#125;</span></div><div class="line">      /&gt;</div><div class="line">      ...</div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="PickerPoint"><a href="#PickerPoint" class="headerlink" title="PickerPoint"></a><code>PickerPoint</code></h4><p><code>PickerPoint</code>内的逻辑很简单，就是渲染数字，并处理点击事件：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// src/components/PickerPoint.jsx</span></div><div class="line"><span class="comment">// ...</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> propTypes = &#123;</div><div class="line">  <span class="attr">index</span>: PropTypes.number,</div><div class="line">  <span class="attr">angle</span>: PropTypes.number,</div><div class="line">  <span class="attr">handleTimeChange</span>: PropTypes.func</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">PickerPoint</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">let</span> &#123;index, handleTimeChange, angle&#125; = <span class="keyword">this</span>.props;</div><div class="line">    <span class="keyword">let</span> inlineStyle = getInlineRotateStyle(angle);</div><div class="line">    <span class="keyword">let</span> wrapperStyle = getRotateStyle(-angle);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      <span class="xml"><span class="tag">&lt;<span class="name">div</span></span></span></div><div class="line">        <span class="attr">style</span>=<span class="string">&#123;inlineStyle&#125;</span></div><div class="line">        <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt; &#123;</div><div class="line">          handleTimeChange(index, angle)</div><div class="line">        &#125;&#125;</div><div class="line">        onMouseDown=&#123;disableMouseDown&#125;&gt;</div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">"point_wrapper"</span> <span class="attr">style</span>=<span class="string">&#123;wrapperStyle&#125;</span>&gt;</span></div><div class="line">          &#123;index&#125;</div><div class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="PickerDargHandler"><a href="#PickerDargHandler" class="headerlink" title="PickerDargHandler"></a><code>PickerDargHandler</code></h4><p>在<code>PickerDargHandler</code>组件里，我们主要处理指针的拖拽事件，并将处理好的结果通过callback向上传递。</p>
+<p>在这个组件里，它拥有自己的state：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">this</span>.state = &#123;</div><div class="line">  <span class="attr">pointerRotate</span>: <span class="keyword">this</span>.props.pointerRotate,</div><div class="line">  <span class="attr">draging</span>: <span class="literal">false</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>其中，<code>pointerRotate</code>是从父层传入，用来给组件初始化时定位指针的位置。而<code>draging</code>则用于处理拖拽事件，标记着当前是否处于被拖拽状态。</p>
+<p>对于拖拽事件的处理，大致思路如下：</p>
+<p>先写一个获取坐标位置的util：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> mousePosition = <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</div><div class="line">  <span class="keyword">let</span> xPos, yPos;</div><div class="line">  e = e || <span class="built_in">window</span>.event;</div><div class="line">  <span class="keyword">if</span> (e.pageX) &#123;</div><div class="line">    xPos = e.pageX;</div><div class="line">    yPos = e.pageY;</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    xPos = e.clientX + <span class="built_in">document</span>.body.scrollLeft - <span class="built_in">document</span>.body.clientLeft;</div><div class="line">    yPos = e.clientY + <span class="built_in">document</span>.body.scrollTop - <span class="built_in">document</span>.body.clientTop;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    <span class="attr">x</span>: xPos,</div><div class="line">    <span class="attr">y</span>: yPos</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>然后需要明确的是，我们在处理拖拽事件过程中，需要记录的数据有：</p>
+<ul>
+<li><code>this.originX</code>/<code>this.originY</code> 旋转所环绕的中心坐标。在<code>componentDidMount</code>事件中记录并保存</li>
+<li><code>this.startX</code>/<code>this.startY</code> 每次拖拽事件开始时的坐标。在<code>onMouseDown</code>事件中记录并保存</li>
+<li><code>dragX</code>/<code>dragY</code> 移动过程中的坐标，随着移动而不断改变。在<code>onMouseMove</code>事件中记录并保存</li>
+<li><code>endX</code>/<code>endY</code> 移动结束时的坐标。在<code>onMouseUp</code>事件中进行处理，并获取最后的角度degree，算出指针停止时对准的时间time，并将time和degree通过callback向父层组件传递。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 处理onMouseDown</span></div><div class="line">handleMouseDown(e) &#123;</div><div class="line">  <span class="keyword">let</span> event = e || <span class="built_in">window</span>.event;</div><div class="line">  event.preventDefault();</div><div class="line">  event.stopPropagation();</div><div class="line">  <span class="comment">// 在鼠标按下的时候，将draging state标记为true，以便在移动时对坐标进行记录</span></div><div class="line">  <span class="keyword">this</span>.setState(&#123;</div><div class="line">    <span class="attr">draging</span>: <span class="literal">true</span></div><div class="line">  &#125;);</div><div class="line"></div><div class="line">  <span class="comment">// 获取此时的坐标位置，作为这次拖拽的开始位置保存下来</span></div><div class="line">  <span class="keyword">let</span> pos = mousePosition(event);</div><div class="line">  <span class="keyword">this</span>.startX = pos.x;</div><div class="line">  <span class="keyword">this</span>.startY = pos.y;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 处理onMouseMove</span></div><div class="line">handleMouseMove(e) &#123;</div><div class="line">  <span class="keyword">if</span> (<span class="keyword">this</span>.state.draging) &#123;</div><div class="line">    <span class="comment">// 实时获取更新当前坐标，用于计算旋转角度，来更新state中的pointerRotate，而pointerRotate用来改变渲染的视图</span></div><div class="line">    <span class="keyword">let</span> pos = mousePosition(e);</div><div class="line">    <span class="keyword">let</span> dragX = pos.x;</div><div class="line">    <span class="keyword">let</span> dragY = pos.y;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.originX !== dragX &amp;&amp; <span class="keyword">this</span>.originY !== dragY) &#123;</div><div class="line">      <span class="comment">// 获取旋转的弧度。getRadian方法在下面讲解</span></div><div class="line">      <span class="keyword">let</span> sRad = <span class="keyword">this</span>.getRadian(dragX, dragY);</div><div class="line">      <span class="comment">// 将弧度转为角度</span></div><div class="line">      <span class="keyword">let</span> pointerRotate = sRad * (<span class="number">360</span> / (<span class="number">2</span> * <span class="built_in">Math</span>.PI));</div><div class="line">      <span class="keyword">this</span>.setState(&#123;</div><div class="line">        <span class="comment">// 记录下来的state会改变渲染出来的指针角度</span></div><div class="line">        pointerRotate</div><div class="line">      &#125;);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在<code>getRadian</code>方法中，通过起始点和中心点的坐标来计算旋转结束后的弧度：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">getRadian(x, y) &#123;</div><div class="line">  <span class="keyword">let</span> sRad = <span class="built_in">Math</span>.atan2(y - <span class="keyword">this</span>.originY, x - <span class="keyword">this</span>.originX);</div><div class="line">  sRad -= <span class="built_in">Math</span>.atan2(<span class="keyword">this</span>.startY - <span class="keyword">this</span>.originY, <span class="keyword">this</span>.startX - <span class="keyword">this</span>.originX);</div><div class="line">  sRad += degree2Radian(<span class="keyword">this</span>.props.rotateState.pointerRotate);</div><div class="line">  <span class="keyword">return</span> sRad;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>Math.atan2(y, x)</code>方法返回从x轴到点(x, y)的弧度，介于 -PI/2 与 PI/2 之间。</p>
+<p>因此这个计算方法直接上图表示，清晰明了：</p>
+<p><img src="/images/timepicker/getRadian.png" alt="getRadian"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 处理onMouseUp</span></div><div class="line">handleMouseUp(e) &#123;</div><div class="line">  <span class="keyword">if</span> (<span class="keyword">this</span>.state.draging) &#123;</div><div class="line">    <span class="keyword">this</span>.setState(&#123;</div><div class="line">      <span class="attr">draging</span>: <span class="literal">false</span></div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    <span class="comment">// 获取结束时的坐标</span></div><div class="line">    <span class="keyword">let</span> pos = mousePosition(e);</div><div class="line">    <span class="keyword">let</span> endX = pos.x;</div><div class="line">    <span class="keyword">let</span> endY = pos.y;</div><div class="line"></div><div class="line">    <span class="keyword">let</span> sRad = <span class="keyword">this</span>.getRadian(endX, endY);</div><div class="line">    <span class="keyword">let</span> degree = sRad * (<span class="number">360</span> / (<span class="number">2</span> * <span class="built_in">Math</span>.PI));</div><div class="line"></div><div class="line">    <span class="comment">// 在停止拖拽时，要求指针要对准表盘的刻度。因此，除了要对角度的正负进行处理以外，还对其四舍五入。最终获取的pointerRotate是对准了刻度的角度。</span></div><div class="line">    <span class="keyword">if</span> (degree &lt; <span class="number">0</span>) &#123;</div><div class="line">      degree = <span class="number">360</span> + degree;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// roundSeg是四舍五入之后的对准的表盘上的时间数字</span></div><div class="line">    <span class="keyword">let</span> roundSeg = <span class="built_in">Math</span>.round(degree / (<span class="number">360</span> / <span class="number">12</span>));</div><div class="line">    <span class="keyword">let</span> pointerRotate = roundSeg * (<span class="number">360</span> / <span class="number">12</span>);</div><div class="line"></div><div class="line">    <span class="comment">// 分钟表盘的每一格都是小时表盘的5倍</span></div><div class="line">    <span class="keyword">let</span> time = step === <span class="number">0</span> ? time : time * <span class="number">5</span>;</div><div class="line">    <span class="comment">// 将结果回调给父组件</span></div><div class="line">    <span class="keyword">let</span> &#123;handleTimePointerClick&#125; = <span class="keyword">this</span>.props;</div><div class="line">    handleTimePointerClick &amp;&amp; handleTimePointerClick(time, pointerRotate);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>你可能注意到只有在<code>onMouseUp</code>的最后，我们才把计算得到的角度回调到父组件里，，改变父组件的state。而在<code>handleMouseMove</code>方法里，我们只把角度存在当前state里。那是因为在每次移动过程中，都需要知道每次开始移动时的角度偏移量。这个数值我们是从父组件state里拿到的，因此只有在放手时才会更新它。而<code>PickerDargHandler</code>组件内部存的state，只是用来在拖拽的过程中改变，以便渲染指针UI的旋转角度：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">componentDidUpdate(prevProps) &#123;</div><div class="line">  <span class="keyword">let</span> &#123;step, time, pointerRotate&#125; = <span class="keyword">this</span>.props;</div><div class="line">  <span class="keyword">let</span> prevStep = prevProps.step;</div><div class="line">  <span class="keyword">let</span> prevTime = prevProps.time;</div><div class="line">  <span class="keyword">let</span> PrevRotateState = prevProps.pointerRotate</div><div class="line">  <span class="keyword">if</span> (step !== prevStep || time !== prevTime || pointerRotate !== PrevRotateState) &#123;</div><div class="line">    <span class="keyword">this</span>.resetState();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>而这些方法，会在组件初始化时绑定，在卸载时取消绑定：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">componentDidMount() &#123;</div><div class="line">  <span class="comment">// 记录中心坐标</span></div><div class="line">  <span class="keyword">if</span> (!<span class="keyword">this</span>.originX) &#123;</div><div class="line">    <span class="keyword">let</span> centerPoint = ReactDOM.findDOMNode(<span class="keyword">this</span>.refs.pickerCenter);</div><div class="line">    <span class="keyword">let</span> centerPointPos = centerPoint.getBoundingClientRect();</div><div class="line">    <span class="keyword">this</span>.originX = centerPointPos.left;</div><div class="line">    <span class="keyword">this</span>.originY = centerPointPos.top;</div><div class="line">  &#125;</div><div class="line">  <span class="comment">// 把handleMouseMove和handleMouseUp绑定在document，这样即使鼠标移动时不在指针或者modal上，也能够继续响应移动事件</span></div><div class="line">  <span class="keyword">if</span> (<span class="built_in">document</span>.addEventListener) &#123;</div><div class="line">    <span class="built_in">document</span>.addEventListener(<span class="string">'mousemove'</span>, <span class="keyword">this</span>.handleMouseMove, <span class="literal">true</span>);</div><div class="line">    <span class="built_in">document</span>.addEventListener(<span class="string">'mouseup'</span>, <span class="keyword">this</span>.handleMouseUp, <span class="literal">true</span>);</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="built_in">document</span>.attachEvent(<span class="string">'onmousemove'</span>, <span class="keyword">this</span>.handleMouseMove);</div><div class="line">    <span class="built_in">document</span>.attachEvent(<span class="string">'onmouseup'</span>, <span class="keyword">this</span>.handleMouseUp);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">componentWillUnmount() &#123;</div><div class="line">  <span class="keyword">if</span> (<span class="built_in">document</span>.removeEventListener) &#123;</div><div class="line">    <span class="built_in">document</span>.removeEventListener(<span class="string">'mousemove'</span>, <span class="keyword">this</span>.handleMouseMove, <span class="literal">true</span>);</div><div class="line">    <span class="built_in">document</span>.removeEventListener(<span class="string">'mouseup'</span>, <span class="keyword">this</span>.handleMouseUp, <span class="literal">true</span>);</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="built_in">document</span>.detachEvent(<span class="string">'onmousemove'</span>, <span class="keyword">this</span>.handleMouseMove);</div><div class="line">    <span class="built_in">document</span>.detachEvent(<span class="string">'onmouseup'</span>, <span class="keyword">this</span>.handleMouseUp);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>最后看一眼render方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">render() &#123;</div><div class="line">  <span class="keyword">let</span> &#123;time&#125; = <span class="keyword">this</span>.props;</div><div class="line">  <span class="keyword">let</span> &#123;draging, height, top, pointerRotate&#125; = <span class="keyword">this</span>.state;</div><div class="line">  <span class="keyword">let</span> pickerPointerClass = draging ? <span class="string">"picker_pointer"</span> : <span class="string">"picker_pointer animation"</span>;</div><div class="line"></div><div class="line">  <span class="comment">// handleMouseDown事件绑定在了“.pointer_drag”上，它位于指针最顶端的位置</span></div><div class="line">  <span class="keyword">return</span> (</div><div class="line">    <span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">"picker_handler"</span>&gt;</span></span></div><div class="line">      <span class="tag">&lt;<span class="name">div</span></span></div><div class="line">        <span class="attr">ref</span>=<span class="string">&#123;(d)</span> =&gt; this.dragPointer = d&#125;</div><div class="line">        className=&#123;pickerPointerClass&#125;</div><div class="line">        style=&#123;getInitialPointerStyle(height, top, pointerRotate)&#125;&gt;</div><div class="line">        <span class="tag">&lt;<span class="name">div</span></span></div><div class="line">          <span class="attr">className</span>=<span class="string">"pointer_drag"</span></div><div class="line">          <span class="attr">style</span>=<span class="string">&#123;getRotateStyle(-pointerRotate)&#125;</span></div><div class="line">          <span class="attr">onMouseDown</span>=<span class="string">&#123;this.handleMouseDown&#125;</span>&gt;&#123;time&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">div</span></span></div><div class="line">        <span class="attr">className</span>=<span class="string">"picker_center"</span></div><div class="line">        <span class="attr">ref</span>=<span class="string">&#123;(p)</span> =&gt; this.pickerCenter = p&#125;&gt;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  )</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>至此，我们的工作就已经完成了（才没有）。其实除了控制旋转角度以外，还有指针的坐标、长度等需要进行计算和控制。但即便完成这些，离一个合格的NPM包还有一段距离。除了基本的代码编写，我们还需要有单元测试，需要对包进行编译和发布。</p>
+</blockquote>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><blockquote>
+<p>关于更多的React测试介绍，可以戳这两篇文章入个门：</p>
+<p><a href="https://voice.kadira.io/ui-testing-in-react-74fd90a5d58b" target="_blank" rel="external">UI Testing in React</a></p>
+<p><a href="https://medium.freecodecamp.com/react-unit-testing-with-mocha-and-enzyme-77d18b6875cb" target="_blank" rel="external">React Unit Testing with Mocha and Enzyme</a></p>
+</blockquote>
+<p>使用<code>mocha</code>+<code>chai</code>和<code>enzyme</code>来进行React组件的单元测试：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ npm i mocha --save-dev</div><div class="line">$ npm i chai --save-dev</div><div class="line">$ npm i enzyme --save-dev</div><div class="line">$ npm i react-addons-test-utils --save-dev</div><div class="line"></div><div class="line"><span class="comment"># 除此之外，为了模拟React中的事件，还需要安装：</span></div><div class="line">$ npm i sinon --save-dev</div><div class="line">$ npm i sinon-sandbox --save-dev</div></pre></td></tr></table></figure>
+<p>然后配置<code>package.json</code>：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">"scripts": &#123;</div><div class="line">  "mocha": "./node_modules/mocha/bin/mocha --compilers js:babel-register,jsx:babel-register",</div><div class="line">  "test": "npm run mocha test"</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>请注意，为了能够检查ES6和React，确保自己安装了需要的babel插件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ npm i babel-register --save-dev</div><div class="line">$ npm i babel-preset-react --save-dev</div><div class="line">$ npm i babel-preset-es2015 --save-dev</div></pre></td></tr></table></figure>
+<p>并在项目根目录下配置了<code>.babelrc</code>文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;presets&quot;: [&quot;react&quot;, &quot;es2015&quot;]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>然后在项目根目录下新建<code>test</code>文件夹，开始编写测试。</p>
+<p>编写<code>TimePicker</code>组件的测试：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// test/TimePicker_init_spec.jsx</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123;expect&#125; <span class="keyword">from</span> <span class="string">'chai'</span>;</div><div class="line"><span class="keyword">import</span> &#123;shallow&#125; <span class="keyword">from</span> <span class="string">'enzyme'</span>;</div><div class="line"><span class="keyword">import</span> moment <span class="keyword">from</span> <span class="string">'moment'</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> OutsideClickHandler <span class="keyword">from</span> <span class="string">'../../src/components/OutsideClickHandler'</span>;</div><div class="line"><span class="keyword">import</span> TimePickerModal <span class="keyword">from</span> <span class="string">'../../src/components/TimePickerModal'</span>;</div><div class="line"></div><div class="line">describe(<span class="string">'TimePicker initial'</span>, () =&gt; &#123;</div><div class="line">  it(<span class="string">'should be wrappered by div.time_picker_container'</span>, () =&gt; &#123;</div><div class="line">    <span class="comment">// 检查组件是否被正确的渲染。期待检测到组件最外层div的class</span></div><div class="line">    <span class="keyword">const</span> wrapper = shallow(&lt;TimePicker /&gt;);</div><div class="line">    expect(wrapper.is('.time_picker_container')).to.equal(true);</div><div class="line">  &#125;);</div><div class="line"></div><div class="line">  it('renders an OutsideClickHandler', () =&gt; &#123;</div><div class="line">    // 期待渲染出来的组件中含有OutsideClickHandler组件</div><div class="line">    const wrapper = shallow(&lt;TimePicker /&gt;);</div><div class="line">    expect(wrapper.find(OutsideClickHandler)).to.have.lengthOf(1);</div><div class="line">  &#125;);</div><div class="line"></div><div class="line">  it('should rendered with default time in child props', () =&gt; &#123;</div><div class="line">    // 提供默认time，期待TimePickerModal能够获取正确的hour和minute</div><div class="line">    const wrapper = shallow(&lt;TimePicker defaultTime="22:23" /&gt;);</div><div class="line">    expect(wrapper.find(TimePickerModal).props().hour).to.equal("22");</div><div class="line">    expect(wrapper.find(TimePickerModal).props().minute).to.equal("23");</div><div class="line">  &#125;);</div><div class="line"></div><div class="line">  it('should rendered with current time in child props', () =&gt; &#123;</div><div class="line">    // 在没有默认时间的情况下，期待TimePickerModal获取的hour和minute与当前的小时和分钟相同</div><div class="line">    const wrapper = shallow(&lt;TimePicker /&gt;);</div><div class="line">    const [hour, minute] = moment().format("HH:mm").split(':');</div><div class="line">    expect(wrapper.find(TimePickerModal).props().hour).to.equal(hour);</div><div class="line">    expect(wrapper.find(TimePickerModal).props().minute).to.equal(minute);</div><div class="line">  &#125;);</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// test/TimePicker_func_spec.jsx</span></div><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123;expect&#125; <span class="keyword">from</span> <span class="string">'chai'</span>;</div><div class="line"><span class="keyword">import</span> &#123;shallow&#125; <span class="keyword">from</span> <span class="string">'enzyme'</span>;</div><div class="line"><span class="keyword">import</span> sinon <span class="keyword">from</span> <span class="string">'sinon-sandbox'</span>;</div><div class="line"><span class="keyword">import</span> TimePicker <span class="keyword">from</span> <span class="string">'../../src/components/TimePicker'</span>;</div><div class="line"></div><div class="line">describe(<span class="string">'handle focus change func'</span>, () =&gt; &#123;</div><div class="line">  it(<span class="string">'should focus'</span>, () =&gt; &#123;</div><div class="line">    <span class="keyword">const</span> wrapper = shallow(&lt;TimePicker /&gt;);</div><div class="line">    // 通过wrapper.instance()获取组件实例</div><div class="line">    // 并调用了它的方法onFocus，并期待该方法能够改变组件的focused状态</div><div class="line">    wrapper.instance().onFocus();</div><div class="line">    expect(wrapper.state().focused).to.equal(true);</div><div class="line">  &#125;);</div><div class="line"></div><div class="line">  it('should change callback when hour change', () =&gt; &#123;</div><div class="line">    // 给组件传入onHourChangeStub方法作为onHourChange时的回调</div><div class="line">    // 之后手动调用onHourChange方法，并期待onHourChangeStub方法被调用了一次</div><div class="line">    const onHourChangeStub = sinon.stub();</div><div class="line">    const wrapper = shallow(&lt;TimePicker onHourChange=&#123;onHourChangeStub&#125;/ /&gt;);</div><div class="line">    wrapper.instance().handleHourChange(1);</div><div class="line">    expect(onHourChangeStub.callCount).to.equal(1);</div><div class="line">  &#125;);</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><p>如同上面所说，我最后选用的是当今最火的<code>webpack</code>同学来编译我们的代码。相信<code>React</code>加<code>ES6</code>的webpack编译配置大家已经配烦了，其基本的loader也就是<code>babel-loader</code>了：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</div><div class="line"></div><div class="line"><span class="comment">// 通过node的方法遍历src文件夹，来组成所有的webpack entry</span></div><div class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</div><div class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</div><div class="line"><span class="keyword">const</span> srcFolder = path.join(__dirname, <span class="string">'src'</span>, <span class="string">'components'</span>);</div><div class="line"><span class="comment">// 读取./src/components/文件夹下的所有文件</span></div><div class="line"><span class="keyword">const</span> components = fs.readdirSync(srcFolder);</div><div class="line"></div><div class="line"><span class="comment">// 把文件存在entries中，作为webpack编译的入口</span></div><div class="line"><span class="keyword">const</span> files = [];</div><div class="line"><span class="keyword">const</span> entries = &#123;&#125;;</div><div class="line">components.forEach(<span class="function"><span class="params">component</span> =&gt;</span> &#123;</div><div class="line">  <span class="keyword">const</span> name = component.split(<span class="string">'.'</span>)[<span class="number">0</span>];</div><div class="line">  <span class="keyword">if</span> (name) &#123;</div><div class="line">    <span class="keyword">const</span> file = <span class="string">`./src/components/<span class="subst">$&#123;name&#125;</span>`</span>;</div><div class="line">    files.push(file);</div><div class="line">    entries[name] = file;</div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">entry</span>: entries,</div><div class="line">  <span class="attr">output</span>: &#123;</div><div class="line">    <span class="attr">filename</span>: <span class="string">'[name].js'</span>,</div><div class="line">    <span class="attr">path</span>: <span class="string">'./lib/components/'</span>,</div><div class="line">    <span class="comment">// 模块化风格为commonjs2</span></div><div class="line">    libraryTarget: <span class="string">'commonjs2'</span>,</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">module</span>: &#123;</div><div class="line">    <span class="attr">loaders</span>: [</div><div class="line">      &#123;</div><div class="line">        <span class="attr">test</span>: <span class="regexp">/\.jsx?$/</span>,</div><div class="line">        <span class="attr">exclude</span>: <span class="regexp">/(node_modules)/</span>,</div><div class="line">        <span class="attr">include</span>: path.join(__dirname, <span class="string">'src'</span>),</div><div class="line">        <span class="attr">loader</span>: [<span class="string">"babel-loader"</span>],</div><div class="line">        <span class="attr">query</span>: &#123;</div><div class="line">          <span class="attr">presets</span>: [<span class="string">"react"</span>, <span class="string">"es2015"</span>]</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    ],</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">resolve</span>: &#123;</div><div class="line">    <span class="attr">extensions</span>: [<span class="string">''</span>, <span class="string">'.js'</span>, <span class="string">'.jsx'</span>],</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">plugins</span>: [</div><div class="line">    <span class="keyword">new</span> webpack.optimize.UglifyJsPlugin(&#123;</div><div class="line">      <span class="attr">compress</span>: &#123;</div><div class="line">          <span class="attr">warnings</span>: <span class="literal">false</span></div><div class="line">      &#125;</div><div class="line">    &#125;),</div><div class="line">    <span class="keyword">new</span> webpack.optimize.OccurenceOrderPlugin(),</div><div class="line">    <span class="keyword">new</span> webpack.DefinePlugin(&#123;</div><div class="line">      <span class="string">'process.env.NODE_ENV'</span>: <span class="string">'"production"'</span></div><div class="line">    &#125;),</div><div class="line">    <span class="keyword">new</span> webpack.NoErrorsPlugin()</div><div class="line">  ]</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>但有一个很重要很重要的问题需要说明一下：</p>
+<p>编译过React组件的人都应该知道，React打包进代码里是比较大的（即便在Production+UglifyJsPlugin的情况下），更何况，我们这个组件作为独立的<code>node_module</code>包，不应该把React打包进去，因为：</p>
+<ol>
+<li>打包React之后会让组件文件体积增大数倍</li>
+<li>打包React之后，安装这个组件的用户会出现“重复安装React”的严重bug</li>
+</ol>
+<p>因此，我们在打包的时候应该将第三方依赖独立出去，这就需要配置<code>webpack</code>的<code>externals</code>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">externals(context, request, callback) &#123;</div><div class="line">  <span class="keyword">if</span> (files.indexOf(request) &gt; <span class="number">-1</span>) &#123;</div><div class="line">    <span class="keyword">return</span> callback(<span class="literal">null</span>, <span class="literal">false</span>);</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> callback(<span class="literal">null</span>, <span class="literal">true</span>);</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+<p>什么意思呢？你可以看<a href="https://webpack.github.io/docs/configuration.html#externals" target="_blank" rel="external">webpack externals官方文档</a>。鉴于<code>webpack</code>文档一般都很烂，我来大致解释一下：</p>
+<p>在配置<code>externals</code>的时候，可以把它作为一个要复写的function：</p>
+<blockquote>
+<p>官方栗子</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// request是webpack在打包过程中要处理了某一个依赖，无论是自己写的文件之间的相互引用，还是对第三方包的引用，都会将这次引用作为request参数，走这个方法</span></div><div class="line"><span class="comment">// callback接收两个参数，error和result</span></div><div class="line"><span class="comment">// 当result返回true或者一个String的时候，webpack就不会把这个request依赖编译到文件里去。而返回false则会正常编译</span></div><div class="line"><span class="comment">// 因此，我们在每次依赖调用的时候，通过这个方法来判断，某些依赖是否应该编译进文件里</span></div><div class="line"><span class="function"><span class="keyword">function</span>(<span class="params">context, request, callback</span>) </span>&#123;</div><div class="line">  <span class="comment">// Every module prefixed with "global-" becomes external</span></div><div class="line">  <span class="comment">// "global-abc" -&gt; abc</span></div><div class="line">  <span class="keyword">if</span>(<span class="regexp">/^global-/</span>.test(request))</div><div class="line">      <span class="keyword">return</span> callback(<span class="literal">null</span>, <span class="string">"var "</span> + request.substr(<span class="number">7</span>));</div><div class="line">  callback();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>所以，就可以解释一下我们自己在webpack配置中的<code>externals</code>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">externals(context, request, callback) &#123;</div><div class="line">  <span class="comment">// 如果这个依赖存在于files中，也就是在./src/components/文件夹下，说明这是我们自己编写的文件，妥妥的要打包</span></div><div class="line">  <span class="keyword">if</span> (files.indexOf(request) &gt; <span class="number">-1</span>) &#123;</div><div class="line">    <span class="keyword">return</span> callback(<span class="literal">null</span>, <span class="literal">false</span>);</div><div class="line">  &#125;</div><div class="line">  <span class="comment">// 否则他就是第三方依赖，独立出去不打包，而是期待使用了该组件的用户自己去打包React</span></div><div class="line">  <span class="keyword">return</span> callback(<span class="literal">null</span>, <span class="literal">true</span>);</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+<p>至此，这个组件的编写可以告一段落了。之后要做的就是NPM包发布的事情。本来想一次性把这个也说了的，但是鉴于有更详细的文章在，大家可以参考<a href="https://www.awesomes.cn/source/12" target="_blank" rel="external">前端扫盲-之打造一个Node命令行工具</a>来学习Node包创建和发布的过程。</p>
+<blockquote>
+<p>本文的源码全部位于github项目仓库<a href="https://github.com/ecmadao/react-times" target="_blank" rel="external"><code>react-times</code></a>，如果有差异请以github为准。最终线上DEMO可见<a href="https://ecmadao.github.io/react-times/" target="_blank" rel="external">react-times github page</a></p>
+<p>转载请注明来源：</p>
+<p>ecmadao，<a href="https://github.com/ecmadao/Coding-Guide/blob/master/Notes/React/ReactJS/Write%20a%20React%20Timepicker%20Component%20hand%20by%20hand.md" target="_blank" rel="external">https://github.com/ecmadao/Coding-Guide/blob/master/Notes/React/ReactJS/Write%20a%20React%20Timepicker%20Component%20hand%20by%20hand.md</a></p>
+</blockquote>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一言不合造轮子–撸一个ReactTimePicker"><span class="toc-number">1.</span> <span class="toc-text">一言不合造轮子–撸一个ReactTimePicker</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#起因"><span class="toc-number">1.1.</span> <span class="toc-text">起因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设计与架构"><span class="toc-number">1.2.</span> <span class="toc-text">设计与架构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#UI设计"><span class="toc-number">1.2.1.</span> <span class="toc-text">UI设计</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#需求整理"><span class="toc-number">1.2.2.</span> <span class="toc-text">需求整理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#代码设计"><span class="toc-number">1.2.3.</span> <span class="toc-text">代码设计</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#文件结构"><span class="toc-number">1.2.4.</span> <span class="toc-text">文件结构</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#环境搭建"><span class="toc-number">1.3.</span> <span class="toc-text">环境搭建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组件编写"><span class="toc-number">1.4.</span> <span class="toc-text">组件编写</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#TimePicker"><span class="toc-number">1.4.1.</span> <span class="toc-text">TimePicker</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#OutsideClickHandler"><span class="toc-number">1.4.2.</span> <span class="toc-text">OutsideClickHandler</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TimePickerModal"><span class="toc-number">1.4.3.</span> <span class="toc-text">TimePickerModal</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PickerPointGenerator"><span class="toc-number">1.4.4.</span> <span class="toc-text">PickerPointGenerator</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PickerPoint"><span class="toc-number">1.4.5.</span> <span class="toc-text">PickerPoint</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PickerDargHandler"><span class="toc-number">1.4.6.</span> <span class="toc-text">PickerDargHandler</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#测试"><span class="toc-number">1.5.</span> <span class="toc-text">测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编译"><span class="toc-number">1.6.</span> <span class="toc-text">编译</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ecmadao.com/2017/01/13/Notes/React/ReactJS/Write a React Timepicker Component hand by hand/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ecmadao.com/2017/01/13/Notes/React/ReactJS/Write a React Timepicker Component hand by hand/&text=Write a React Timepicker Component hand by hand"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ecmadao.com/2017/01/13/Notes/React/ReactJS/Write a React Timepicker Component hand by hand/&title=Write a React Timepicker Component hand by hand"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ecmadao.com/2017/01/13/Notes/React/ReactJS/Write a React Timepicker Component hand by hand/&is_video=false&description=Write a React Timepicker Component hand by hand"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Write a React Timepicker Component hand by hand&body=Check out this article: http://ecmadao.com/2017/01/13/Notes/React/ReactJS/Write a React Timepicker Component hand by hand/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ecmadao.com/2017/01/13/Notes/React/ReactJS/Write a React Timepicker Component hand by hand/&title=Write a React Timepicker Component hand by hand"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ecmadao.com/2017/01/13/Notes/React/ReactJS/Write a React Timepicker Component hand by hand/&title=Write a React Timepicker Component hand by hand"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ecmadao.com/2017/01/13/Notes/React/ReactJS/Write a React Timepicker Component hand by hand/&title=Write a React Timepicker Component hand by hand"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ecmadao.com/2017/01/13/Notes/React/ReactJS/Write a React Timepicker Component hand by hand/&title=Write a React Timepicker Component hand by hand"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ecmadao.com/2017/01/13/Notes/React/ReactJS/Write a React Timepicker Component hand by hand/&name=Write a React Timepicker Component hand by hand&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2017 ecmadao
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    <script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'ecmadao-blog';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
+</body>
+</html>

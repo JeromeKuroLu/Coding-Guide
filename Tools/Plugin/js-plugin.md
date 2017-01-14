@@ -385,6 +385,10 @@ before.to(after); // in a day 相对时间多久之后
 
 > 无依赖JavaScript库，提供模糊搜索（近似字符串匹配）
 
+- [detector](https://github.com/hotoo/detector)
+
+> 客户端环境识别模块。(UserAgent detector) 
+
 ### 函数库
 
 - [bacon.js](https://github.com/baconjs/bacon.js)
@@ -403,3 +407,7 @@ before.to(after); // in a day 相对时间多久之后
 - [RxJS - 4.x](https://github.com/Reactive-Extensions/RxJS)
 
 > Everything is steam !
+
+- [ramda](https://github.com/ramda/ramda)
+
+> Practical functional Javascript

@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Table of Contents  generated with DocToc
+
+【译文】Javascript函数式编程【3】
+使用函数创造函数
+更多的函数块
+作用域
+特殊的参数变量
+call和apply
+匿名函数
+预留参数
+构造（Compose）
+柯里化
+
+
+
+
+
+
+【译文】Javascript函数式编程【3】
+本文译自：A GENTLE INTRODUCTION TO FUNCTIONA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【译文】Javascript函数式编程【3】">
+<meta property="og:url" content="http://ecmadao.com/2017/01/13/Notes/译文/Javascript函数式编程/【译文】Javascript函数式编程【3】/index.html">
+<meta property="og:site_name" content="ecmadao">
+<meta property="og:description" content="Table of Contents  generated with DocToc
+
+【译文】Javascript函数式编程【3】
+使用函数创造函数
+更多的函数块
+作用域
+特殊的参数变量
+call和apply
+匿名函数
+预留参数
+构造（Compose）
+柯里化
+
+
+
+
+
+
+【译文】Javascript函数式编程【3】
+本文译自：A GENTLE INTRODUCTION TO FUNCTIONA">
+<meta property="og:updated_time" content="2017-01-14T12:11:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【译文】Javascript函数式编程【3】">
+<meta name="twitter:description" content="Table of Contents  generated with DocToc
+
+【译文】Javascript函数式编程【3】
+使用函数创造函数
+更多的函数块
+作用域
+特殊的参数变量
+call和apply
+匿名函数
+预留参数
+构造（Compose）
+柯里化
+
+
+
+
+
+
+【译文】Javascript函数式编程【3】
+本文译自：A GENTLE INTRODUCTION TO FUNCTIONA">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>【译文】Javascript函数式编程【3】</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+    <link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    <script src="/lib/jquery/jquery.min.js"></script>
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/01/13/Notes/译文/Javascript函数式编程/【译文】Javascript函数式编程【2】/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/01/13/Notes/译文/ES6/【译文】用ES6写更赞的JavaScript（1）/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ecmadao.com/2017/01/13/Notes/译文/Javascript函数式编程/【译文】Javascript函数式编程【3】/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ecmadao.com/2017/01/13/Notes/译文/Javascript函数式编程/【译文】Javascript函数式编程【3】/&text=【译文】Javascript函数式编程【3】"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ecmadao.com/2017/01/13/Notes/译文/Javascript函数式编程/【译文】Javascript函数式编程【3】/&title=【译文】Javascript函数式编程【3】"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ecmadao.com/2017/01/13/Notes/译文/Javascript函数式编程/【译文】Javascript函数式编程【3】/&is_video=false&description=【译文】Javascript函数式编程【3】"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【译文】Javascript函数式编程【3】&body=Check out this article: http://ecmadao.com/2017/01/13/Notes/译文/Javascript函数式编程/【译文】Javascript函数式编程【3】/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ecmadao.com/2017/01/13/Notes/译文/Javascript函数式编程/【译文】Javascript函数式编程【3】/&title=【译文】Javascript函数式编程【3】"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ecmadao.com/2017/01/13/Notes/译文/Javascript函数式编程/【译文】Javascript函数式编程【3】/&title=【译文】Javascript函数式编程【3】"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ecmadao.com/2017/01/13/Notes/译文/Javascript函数式编程/【译文】Javascript函数式编程【3】/&title=【译文】Javascript函数式编程【3】"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ecmadao.com/2017/01/13/Notes/译文/Javascript函数式编程/【译文】Javascript函数式编程【3】/&title=【译文】Javascript函数式编程【3】"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ecmadao.com/2017/01/13/Notes/译文/Javascript函数式编程/【译文】Javascript函数式编程【3】/&name=【译文】Javascript函数式编程【3】&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#【译文】Javascript函数式编程【3】"><span class="toc-number">1.</span> <span class="toc-text">【译文】Javascript函数式编程【3】</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用函数创造函数"><span class="toc-number">1.1.</span> <span class="toc-text">使用函数创造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更多的函数块"><span class="toc-number">1.2.</span> <span class="toc-text">更多的函数块</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#作用域"><span class="toc-number">1.2.1.</span> <span class="toc-text">作用域</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#特殊的参数变量"><span class="toc-number">1.2.2.</span> <span class="toc-text">特殊的参数变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#call和apply"><span class="toc-number">1.2.3.</span> <span class="toc-text">call和apply</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#匿名函数"><span class="toc-number">1.2.4.</span> <span class="toc-text">匿名函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#预留参数"><span class="toc-number">1.2.5.</span> <span class="toc-text">预留参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#构造（Compose）"><span class="toc-number">1.2.6.</span> <span class="toc-text">构造（Compose）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#柯里化"><span class="toc-number">1.2.7.</span> <span class="toc-text">柯里化</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        【译文】Javascript函数式编程【3】
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">ecmadao</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-01-13T05:58:37.000Z" itemprop="datePublished">2017-01-13</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Javascript函数式编程/">Javascript函数式编程</a>, <a class="tag-link" href="/tags/译文/">译文</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<p><strong>Table of Contents</strong>  <em>generated with <a href="https://github.com/thlorenz/doctoc" target="_blank" rel="external">DocToc</a></em></p>
+<ul>
+<li><a href="#%E3%80%90%E8%AF%91%E6%96%87%E3%80%91javascript%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B%E3%80%903%E3%80%91">【译文】Javascript函数式编程【3】</a><ul>
+<li><a href="#%E4%BD%BF%E7%94%A8%E5%87%BD%E6%95%B0%E5%88%9B%E9%80%A0%E5%87%BD%E6%95%B0">使用函数创造函数</a></li>
+<li><a href="#%E6%9B%B4%E5%A4%9A%E7%9A%84%E5%87%BD%E6%95%B0%E5%9D%97">更多的函数块</a><ul>
+<li><a href="#%E4%BD%9C%E7%94%A8%E5%9F%9F">作用域</a></li>
+<li><a href="#%E7%89%B9%E6%AE%8A%E7%9A%84%E5%8F%82%E6%95%B0%E5%8F%98%E9%87%8F">特殊的参数变量</a></li>
+<li><a href="#call%E5%92%8Capply"><code>call</code>和<code>apply</code></a></li>
+<li><a href="#%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0">匿名函数</a></li>
+<li><a href="#%E9%A2%84%E7%95%99%E5%8F%82%E6%95%B0">预留参数</a></li>
+<li><a href="#%E6%9E%84%E9%80%A0%EF%BC%88compose%EF%BC%89">构造（<code>Compose</code>）</a></li>
+<li><a href="#%E6%9F%AF%E9%87%8C%E5%8C%96">柯里化</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<h2 id="【译文】Javascript函数式编程【3】"><a href="#【译文】Javascript函数式编程【3】" class="headerlink" title="【译文】Javascript函数式编程【3】"></a>【译文】Javascript函数式编程【3】</h2><blockquote>
+<p>本文译自：<a href="http://jrsinclair.com/articles/2016/gentle-introduction-to-functional-javascript-arrays/" target="_blank" rel="external">A GENTLE INTRODUCTION TO FUNCTIONAL JAVASCRIPT: PART 2</a></p>
+</blockquote>
+<p>这篇文章是JavaScript函数式编程系列的第三部分。在上一篇里，我们将函数的一些特性运用到了Array身上。这这一篇里面，我们会更深入一步–用函数创造函数。</p>
+<ol>
+<li><a href="【译文】Javascript函数式编程【1】.md">Part1：动机和代码块</a></li>
+<li><a href="【译文】Javascript函数式编程【2】.md">Part2：使用Array和List</a></li>
+<li>Part3：使用函数创造函数</li>
+<li>Part4：Doing it with style</li>
+</ol>
+<h3 id="使用函数创造函数"><a href="#使用函数创造函数" class="headerlink" title="使用函数创造函数"></a>使用函数创造函数</h3><p>在上一篇的文末，我所说的要更进一步深入函数式并不适合所有人。那时因为一旦你尝试过list-progressing函数，一切都会变的不一样了。我的意思是函数将会变的更加抽象。首先，我们把<code>for</code>循环抽象成了<code>map</code>和<code>reduce</code>，而它的下一个阶段就是重构创建函数的模式。创建函数是种强大又优雅的方式，但和你之前习惯的JavaScript有些许不同。</p>
+<h3 id="更多的函数块"><a href="#更多的函数块" class="headerlink" title="更多的函数块"></a>更多的函数块</h3><p>创建函数的函数有时被称作高阶函数。为了能够理解它们，我们先来看下JavaScript中为创建高阶函数提供可能的特性。</p>
+<h4 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h4><p>首先要理解的是JavaScript中的作用域。在JavaScript中，如果你在函数内部定义了一个变量，那么它就不能被外面的函数所引用。例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> thing = <span class="string">'bat'</span>;</div><div class="line">    </div><div class="line"><span class="keyword">var</span> sing = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// This function can 'see' thing</span></div><div class="line">    <span class="keyword">var</span> line = <span class="string">'Twinkle, twinkle, little '</span> + thing;</div><div class="line">    log(line);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">sing();</div><div class="line"><span class="comment">// Twinkle, twinkle, little bat</span></div><div class="line"></div><div class="line"><span class="comment">// Outside the function we can't see message though</span></div><div class="line">log(line);</div><div class="line"><span class="comment">// undefined</span></div></pre></td></tr></table></figure>
+<p>但是如果我们在函数内部定义了变量，函数内部的其他内部函数则可以使用这个外部的变量：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> outer = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> outerVar = <span class="string">'Hatter'</span>;</div><div class="line">    <span class="keyword">var</span> inner = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">         <span class="comment">// We can 'see' outerVar here</span></div><div class="line">         <span class="built_in">console</span>.log(outerVar);</div><div class="line">         <span class="comment">// Hatter</span></div><div class="line">         </div><div class="line">         <span class="keyword">var</span> innerVar = <span class="string">'Dormouse'</span>;</div><div class="line">         <span class="comment">// innerVar is only visible here inside inner()</span></div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">// innerVar is not visible here.</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这个特性超有用，规则也很直接。但是如果我们想把变量作为参数四处传递的时候，哪个函数可以看见哪个变量就会变的难以追踪。如果你感到了困惑，请静心想想：看下你在哪儿定义的函数。从那个地方出发，有哪些变量是这个函数可以引用的？如果只是四处寻找自己调用方法的地方的话，则很有可能只是徒劳。</p>
+<h4 id="特殊的参数变量"><a href="#特殊的参数变量" class="headerlink" title="特殊的参数变量"></a>特殊的参数变量</h4><p>当你创建一个函数的时候，它会创建一个特殊的参数变量叫作<code>arguments</code>，是一个类似数组的玩意，里面包含了所有传给这个函数的参数。例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> showArgs = <span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="built_in">arguments</span>);</div><div class="line">&#125;</div><div class="line">showArgs(<span class="string">'Tweedledee'</span>, <span class="string">'Tweedledum'</span>);</div><div class="line"><span class="comment">//=&gt; &#123; '0': 'Tweedledee', '1': 'Tweedledum' &#125;</span></div></pre></td></tr></table></figure>
+<p>需要注意的是输出的<code>arguments</code>更像是一个以数字做key的Object，而不是一个真正的Array。</p>
+<p>真正有趣的是不管定义了多少参数，<code>arguments</code>能够获取所有传入方法的参数。因此，如果你给函数传递了额外的参数，它还是会被<code>arguments</code>收录。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">showArgs(<span class="string">'a'</span>, <span class="string">'l'</span>, <span class="string">'i'</span>, <span class="string">'c'</span>, <span class="string">'e'</span>);</div><div class="line"><span class="comment">//=&gt; &#123; '0': 'a', '1': 'l', '2': 'i', '3': 'c', '4': 'e' &#125;</span></div></pre></td></tr></table></figure>
+<p><code>arguments</code>像Array一样，拥有<code>length</code>属性。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> argsLen = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="built_in">arguments</span>.length);</div><div class="line">&#125;</div><div class="line">argsLen(<span class="string">'a'</span>, <span class="string">'l'</span>, <span class="string">'i'</span>, <span class="string">'c'</span>, <span class="string">'e'</span>);</div><div class="line"><span class="comment">//=&gt; 5</span></div></pre></td></tr></table></figure>
+<p>将<code>arguments</code>当做真正的Array会非常有用。我们可以利用<code>slice</code>方法把<code>arguments</code>转成真正的Array：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> showArgsAsArray = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> args = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>, <span class="number">0</span>);</div><div class="line">    <span class="built_in">console</span>.log(args);</div><div class="line">&#125;</div><div class="line">showArgsAsArray(<span class="string">'Tweedledee'</span>, <span class="string">'Tweedledum'</span>);</div><div class="line"><span class="comment">//=&gt; [ 'Tweedledee', 'Tweedledum' ]</span></div></pre></td></tr></table></figure>
+<p><code>arguments</code>参数在创建函数的时候经常用到，之后我们就能看见它有多么得心应手。</p>
+<h4 id="call和apply"><a href="#call和apply" class="headerlink" title="call和apply"></a><code>call</code>和<code>apply</code></h4><p>我们在之前已经学过，js中的Array有一些诸如<code>.map</code>和<code>.reduce</code>的内置方法。其实吧函数也有自己的内置方法。</p>
+<p>最普遍的调用函数的方法是在函数名后面使用圆括号。例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">twinkleTwinkle</span>(<span class="params">thing</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'Twinkle, twinkle, little '</span> + thing);</div><div class="line">&#125;</div><div class="line">twinkleTwinkle(<span class="string">'bat'</span>);</div><div class="line"><span class="comment">//=&gt; Twinkle, twinkle, little bat</span></div></pre></td></tr></table></figure>
+<p>函数自己的一个内置方法叫作<code>call</code>，它可以让你使用其他方式调用函数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">twinkleTwinkle.call(<span class="literal">null</span>, <span class="string">'star'</span>);</div><div class="line"><span class="comment">//=&gt; Twinkle, twinkle, little star</span></div></pre></td></tr></table></figure>
+<p><code>.call</code>的第一个参数定义了需要传入函数内部的特殊作用域。现在可以忽略它。这之后的其他参数都会直接作为目标函数的参数传入。</p>
+<p>除此之外还有个类似的<code>.apply</code>方法。与一个个传入参数所不同的是，<code>apply</code>允许你把参数作为一个Array传入，例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">twinkleTwinkle.apply(<span class="literal">null</span>, [<span class="string">'bat'</span>]);</div><div class="line"><span class="comment">//=&gt; Twinkle, twinkle, little bat</span></div></pre></td></tr></table></figure>
+<p>这两个方法在我们创建“创建函数的函数”的时候非常有用。</p>
+<h4 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h4><p>JavaScript允许我们直接书写函数而不用先定义。这经常用在<code>map</code>和<code>reduce</code>里。例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</div><div class="line"><span class="keyword">var</span> doubledArray = map(<span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123; <span class="keyword">return</span> x * <span class="number">2</span>&#125;, numbers);</div><div class="line"><span class="built_in">console</span>.log(doubledArray);</div><div class="line"><span class="comment">//=&gt; [ 2, 4, 6 ]</span></div></pre></td></tr></table></figure>
+<p>这样的函数被称为匿名函数。有时也被称为<code>lambda</code>函数。</p>
+<h4 id="预留参数"><a href="#预留参数" class="headerlink" title="预留参数"></a>预留参数</h4><p>有时候不一定能给函数传满参数。例如，我们创建一个<code>addClass()</code>函数，接收<code>class</code>和DOM元素作为参数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> addClass = <span class="function"><span class="keyword">function</span>(<span class="params">className, element</span>) </span>&#123;</div><div class="line">    element.className += <span class="string">' '</span> + className;</div><div class="line">    <span class="keyword">return</span> element;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我们想让它和<code>map</code>函数一起使用，给每个元素加上class。但有个问题：<code>map</code>遍历Array中的每个元素并把它们作为参数传给回调函数。但我们怎么告诉<code>addClass</code>方法应该添加哪个class？</p>
+<p>解决方案是创建一个新函数，通过它来告诉<code>addClass</code>我们想添加的class：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> addTweedleClass = <span class="function"><span class="keyword">function</span>(<span class="params">el</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> addClass(<span class="string">'tweedle'</span>, el);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>现在我们就得到了只需要一个参数的函数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> ids = [<span class="string">'DEE'</span>, <span class="string">'DUM'</span>];</div><div class="line"><span class="keyword">var</span> elements = map(<span class="built_in">document</span>.getElementById, ids);</div><div class="line">elements = map(addTweedleClass, elements);</div></pre></td></tr></table></figure>
+<p>可是如果我们要加入其它class，则需要创建新的函数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> addBoyClass = <span class="function"><span class="keyword">function</span>(<span class="params">el</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> addClass(<span class="string">'boy'</span>, el);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我们开始重复代码了。。所以我们看看能不能找到它们相同的模式。如果我们再创建个函数来生成上面的函数呢？</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> partialFirstOfTwo = <span class="function"><span class="keyword">function</span>(<span class="params">fn, param1</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">param2</span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> fn(param1, param2);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>由此创建了一个返回匿名函数的函数。匿名函数需要接受一个参数，然后再返回一个函数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> addTweedleClass = partialFirstOfTwo(addClass, <span class="string">'tweedle'</span>);</div><div class="line"><span class="keyword">var</span> addBoyClass = partialFirstOfTwo(addClass, <span class="string">'boy'</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> ids = [<span class="string">'DEE'</span>, <span class="string">'DUM'</span>];</div><div class="line"><span class="keyword">var</span> elements = map(<span class="built_in">document</span>.getElementById, ids);</div><div class="line">elements = map(addTweedleClass, elements);</div><div class="line">elements = map(addBoyClass, elements);</div></pre></td></tr></table></figure>
+<p>当这个方法只需要传入两个参数的时候一切正常。但如果要传入三个参数呢？或者四个？针对这种情况，我们需要创建更通用的函数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> argsToArray(args) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="built_in">Array</span>.prototype.slice.call(args, <span class="number">0</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> partial = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// 将 arguments 转成 array </span></div><div class="line">    <span class="keyword">var</span> args = argsToArray(<span class="built_in">arguments</span>);</div><div class="line"></div><div class="line">    <span class="comment">// 取出 function (第一个参数). 之后 args 里面是剩下的参数</span></div><div class="line">    <span class="keyword">var</span> fn = args.shift();</div><div class="line"></div><div class="line">    <span class="comment">// Return a function that calls fn</span></div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> remainingArgs = toArray(<span class="built_in">arguments</span>);</div><div class="line">        <span class="keyword">return</span> fn.apply(<span class="keyword">this</span>, args.concat(remainingArgs));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这个函数允许我们传入任意多的参数，最终将参数传给目标函数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> twinkle = <span class="function"><span class="keyword">function</span>(<span class="params">noun, wonderAbout</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">'Twinkle, twinkle, little '</span> +</div><div class="line">        noun + <span class="string">'\nHow I wonder where you '</span> +</div><div class="line">        wonderAbout;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> twinkleBat = partial(twinkle, <span class="string">'bat'</span>, <span class="string">'are at'</span>);</div><div class="line"><span class="keyword">var</span> twinkleStar = partial(twinkle, <span class="string">'star'</span>, <span class="string">'are'</span>);</div></pre></td></tr></table></figure>
+<p>JavaScript有个叫<code>bind</code>的内置方法，它对所有方法都有效。它的第一个参数是你想要把<code>this</code>绑定到的Object，使得<code>this</code>所在的作用域传入到函数内部。这意味着，如果你想要把一些东西部分的<code>apply</code>到<code>document.getElementById</code>上，你需要把<code>document</code>作为参数传给<code>bind</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> getWhiteRabbit = <span class="built_in">document</span>.getElementById.bind(<span class="built_in">document</span>, <span class="string">'white-rabbit'</span>);</div><div class="line"><span class="keyword">var</span> rabbit = getWhiteRabbit();</div></pre></td></tr></table></figure>
+<p>然而我们并不需要<code>this</code>这个特殊的变量（尤其是我们使用了函数式编程），因此我们以<code>null</code>作为第一个参数传入。例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> twinkleBat = twinkle.bind(<span class="literal">null</span>, <span class="string">'bat'</span>, <span class="string">'are at'</span>);</div><div class="line"><span class="keyword">var</span> twinkleStar = twinkle.bind(<span class="literal">null</span>, <span class="string">'star'</span>, <span class="string">'are'</span>);</div></pre></td></tr></table></figure>
+<p>你可以在这儿查看等多和<a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_objects/Function/bind" target="_blank" rel="external">bind</a>有关的内容。</p>
+<h4 id="构造（Compose）"><a href="#构造（Compose）" class="headerlink" title="构造（Compose）"></a>构造（<code>Compose</code>）</h4><p>我在上一篇里说过，函数式编程就是创造小型的简单的函数，并把它们组合成大型函数。它的一部分用途是作为工具，让整个编程过程变的简单。我们可以利用它来把<code>addClass</code>函数转为可以使用<code>map</code>的函数。而“构造”则是让它们组合在一起的工具。</p>
+<p>最简单的例子由两个函数组成，a和b，它们两个都接受一个参数。<code>Compose</code>创建出第三个函数c。以x作为参数调用c，返回a的被调用函数，其中，以b的被调用结果（以x为参数）作为参数（译者注：我已晕。。这种东西直接上例子多清晰。）。这特么什么鬼（译者注：我表示赞同）。还是举个例子吧：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> composeTwo = <span class="function"><span class="keyword">function</span>(<span class="params">funcA, funcB</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> funcA(funcB(x));</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> nohow = <span class="function"><span class="keyword">function</span>(<span class="params">sentence</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> sentence + <span class="string">', nohow!'</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> contrariwise = <span class="function"><span class="keyword">function</span>(<span class="params">sentence</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> sentence + <span class="string">' Contrariwise…'</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> statement = <span class="string">'Not nothin&amp;amp;rsquo;'</span>;</div><div class="line"><span class="keyword">var</span> nohowContrariwise = composeTwo(contrariwise, nohow);</div><div class="line"><span class="built_in">console</span>.log(nohowContrariwise(statement));</div><div class="line"><span class="comment">//=&gt; Not nothin&amp;amp;rsquo;, nohow! Contrariwise…</span></div></pre></td></tr></table></figure>
+<p>看着真棒。使用<code>composeTwo</code>可以让我们爽很长一段时间了。可是，如果你开始使用“纯函数”（我们迟点讲它）的话，你就会发现要把不只两个函数组合到一起。为此我们需要一个适应面更广的<code>compose</code>函数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> compose = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> args = <span class="built_in">arguments</span>;</div><div class="line">    <span class="keyword">var</span> start = args.length - <span class="number">1</span>;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> i = start;</div><div class="line">        <span class="keyword">var</span> result = args[start].apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</div><div class="line">        i = i - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span> (i &gt;= <span class="number">0</span>) &#123;</div><div class="line">            result = args[i].call(<span class="keyword">this</span>, result);</div><div class="line">            i = i - <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> result;</div><div class="line">    &#125;;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>第一眼看上去，<code>compose</code>好像没那么神奇。我们可以这样用<code>compose</code>函数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> nohowContrariwise = compose(contrariwise, nohow);</div></pre></td></tr></table></figure>
+<p>可是这样看起来并不比下面的写法简洁：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> nohowContrariwise = <span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> nohow(contrariwise(x));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>compose</code>的真正威力在于将它和柯里化函数组合的时候可以非常简洁。就算不是柯里化函数，与其他函数进行组合也可以让代码变的简洁。例如，想象一下有下面这首诗：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> poem = <span class="string">'Twas brillig, and the slithy toves\n'</span> + </div><div class="line">    <span class="string">'Did gyre and gimble in the wabe;\n'</span> +</div><div class="line">    <span class="string">'All mimsy were the borogoves,\n'</span> +</div><div class="line">    <span class="string">'And the mome raths outgrabe.'</span>;</div></pre></td></tr></table></figure>
+<p>它在浏览器中的表现可不怎么样，因此我们需要给他加一些分段，顺便把难懂的”brillig”换成其他单词。我们要把整首诗放进<code>&lt;p&gt;&lt;/p&gt;</code>标签里并作为引语。先从两个简单的函数开始：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> replace = <span class="function"><span class="keyword">function</span>(<span class="params">find, replacement, str</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> str.replace(find, replacement);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> wrapWith = <span class="function"><span class="keyword">function</span>(<span class="params">tag, str</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">'&lt;'</span> + tag + <span class="string">'&gt;'</span> + str + <span class="string">'&lt;/'</span> + tag + <span class="string">'&gt;'</span>; </div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> addBreaks      = partial(replace, <span class="string">'\n'</span>, <span class="string">'&lt;br/&gt;\n'</span>);</div><div class="line"><span class="keyword">var</span> replaceBrillig = partial(replace, <span class="string">'brillig'</span>, <span class="string">'four o’clock in the afternoon'</span>);</div><div class="line"><span class="keyword">var</span> wrapP          = partial(wrapWith, <span class="string">'p'</span>);</div><div class="line"><span class="keyword">var</span> wrapBlockquote = partial(wrapWith, <span class="string">'blockquote'</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> modifyPoem = compose(wrapBlockquote, wrapP, addBreaks, replaceBrillig);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(modifyPoem(poem));</div><div class="line"><span class="comment">//=&gt; &lt;blockquote&gt;&lt;p&gt;Twas four o’clock in the afternoon, and the slithy toves&lt;br/&gt;</span></div><div class="line"><span class="comment">//   Did gyre and gimble in the wabe;&lt;br/&gt;</span></div><div class="line"><span class="comment">//   All mimsy were the borogoves,&lt;br/&gt;</span></div><div class="line"><span class="comment">//   And the mome raths outgrabe.&lt;/p&gt;&lt;/blockquote&gt;</span></div></pre></td></tr></table></figure>
+<p>值得一提的是，当你把参数从左到右的传给<code>compose</code>函数，他们将会按照反转的顺序进行调用。一些人会对此感到困惑。因此还有一种从左到右正常调用的方法叫<code>pipe</code>或<code>flow</code>:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> modifyPoem = pipe(replaceBrillig, addBreaks, wrapP, wrapBlockquote);</div></pre></td></tr></table></figure>
+<h4 id="柯里化"><a href="#柯里化" class="headerlink" title="柯里化"></a>柯里化</h4><p>关于柯里化的细节稍微有点复杂，因此，先让我们看个例子。现在有一个叫作<code>formatName</code>的函数，用来把人的绰号放进引言里。这个函数接受三个参数。当我们以柯里化的形式调用这个函数，并传入的参数少于三个时，它会返回一个新的函数，并以传入的参数作为新函数的参数来调用它：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> formatName = <span class="function"><span class="keyword">function</span>(<span class="params">first, surname, nickname</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> first + <span class="string">' “'</span> + nickname + <span class="string">'” '</span> + surname;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> formatNameCurried = curry(formatName);</div><div class="line"></div><div class="line"><span class="keyword">var</span> james = formatNameCurried(<span class="string">'James'</span>);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(james(<span class="string">'Sinclair'</span>, <span class="string">'Mad Hatter'</span>));</div><div class="line"><span class="comment">//=&gt; James “Mad Hatter” Sinclair</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> jamesS = james(<span class="string">'Sinclair'</span>)</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(jamesS(<span class="string">'Dormouse'</span>));</div><div class="line"><span class="comment">//=&gt; James “Dormouse” Sinclair</span></div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(jamesS(<span class="string">'Bandersnatch'</span>));</div><div class="line"><span class="comment">//=&gt; James “Bandersnatch” Sinclair</span></div></pre></td></tr></table></figure>
+<p>这里有些助你理解柯里化的函数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">formatNameCurried(<span class="string">'a'</span>)(<span class="string">'b'</span>)(<span class="string">'c'</span>) === formatNameCurried(<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>); <span class="comment">// true</span></div><div class="line">formatNameCurried(<span class="string">'a'</span>, <span class="string">'b'</span>)(<span class="string">'c'</span>) === formatNameCurried(<span class="string">'a'</span>)(<span class="string">'b'</span>, <span class="string">'c'</span>); <span class="comment">// true</span></div></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#【译文】Javascript函数式编程【3】"><span class="toc-number">1.</span> <span class="toc-text">【译文】Javascript函数式编程【3】</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用函数创造函数"><span class="toc-number">1.1.</span> <span class="toc-text">使用函数创造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更多的函数块"><span class="toc-number">1.2.</span> <span class="toc-text">更多的函数块</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#作用域"><span class="toc-number">1.2.1.</span> <span class="toc-text">作用域</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#特殊的参数变量"><span class="toc-number">1.2.2.</span> <span class="toc-text">特殊的参数变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#call和apply"><span class="toc-number">1.2.3.</span> <span class="toc-text">call和apply</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#匿名函数"><span class="toc-number">1.2.4.</span> <span class="toc-text">匿名函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#预留参数"><span class="toc-number">1.2.5.</span> <span class="toc-text">预留参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#构造（Compose）"><span class="toc-number">1.2.6.</span> <span class="toc-text">构造（Compose）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#柯里化"><span class="toc-number">1.2.7.</span> <span class="toc-text">柯里化</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ecmadao.com/2017/01/13/Notes/译文/Javascript函数式编程/【译文】Javascript函数式编程【3】/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ecmadao.com/2017/01/13/Notes/译文/Javascript函数式编程/【译文】Javascript函数式编程【3】/&text=【译文】Javascript函数式编程【3】"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ecmadao.com/2017/01/13/Notes/译文/Javascript函数式编程/【译文】Javascript函数式编程【3】/&title=【译文】Javascript函数式编程【3】"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ecmadao.com/2017/01/13/Notes/译文/Javascript函数式编程/【译文】Javascript函数式编程【3】/&is_video=false&description=【译文】Javascript函数式编程【3】"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【译文】Javascript函数式编程【3】&body=Check out this article: http://ecmadao.com/2017/01/13/Notes/译文/Javascript函数式编程/【译文】Javascript函数式编程【3】/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ecmadao.com/2017/01/13/Notes/译文/Javascript函数式编程/【译文】Javascript函数式编程【3】/&title=【译文】Javascript函数式编程【3】"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ecmadao.com/2017/01/13/Notes/译文/Javascript函数式编程/【译文】Javascript函数式编程【3】/&title=【译文】Javascript函数式编程【3】"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ecmadao.com/2017/01/13/Notes/译文/Javascript函数式编程/【译文】Javascript函数式编程【3】/&title=【译文】Javascript函数式编程【3】"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ecmadao.com/2017/01/13/Notes/译文/Javascript函数式编程/【译文】Javascript函数式编程【3】/&title=【译文】Javascript函数式编程【3】"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ecmadao.com/2017/01/13/Notes/译文/Javascript函数式编程/【译文】Javascript函数式编程【3】/&name=【译文】Javascript函数式编程【3】&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2017 ecmadao
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    <script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'ecmadao-blog';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
+</body>
+</html>

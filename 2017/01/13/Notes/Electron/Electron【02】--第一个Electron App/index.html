@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Table of Contents  generated with DocToc
+
+Electron【02】–第一个Electron App
+目录结构与文件
+运行&amp;amp;生成应用
+通过electron-prebuilt运行
+通过Electron Binary运行
+生成应用
+
+
+应用打包
+生成asar包
+
+
+例子
+
+
+
+
+Electron【02】–第一个Electron App目录结构与文件E">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Electron【02】--第一个Electron App">
+<meta property="og:url" content="http://ecmadao.com/2017/01/13/Notes/Electron/Electron【02】--第一个Electron App/index.html">
+<meta property="og:site_name" content="ecmadao">
+<meta property="og:description" content="Table of Contents  generated with DocToc
+
+Electron【02】–第一个Electron App
+目录结构与文件
+运行&amp;amp;生成应用
+通过electron-prebuilt运行
+通过Electron Binary运行
+生成应用
+
+
+应用打包
+生成asar包
+
+
+例子
+
+
+
+
+Electron【02】–第一个Electron App目录结构与文件E">
+<meta property="og:updated_time" content="2017-01-14T12:11:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Electron【02】--第一个Electron App">
+<meta name="twitter:description" content="Table of Contents  generated with DocToc
+
+Electron【02】–第一个Electron App
+目录结构与文件
+运行&amp;amp;生成应用
+通过electron-prebuilt运行
+通过Electron Binary运行
+生成应用
+
+
+应用打包
+生成asar包
+
+
+例子
+
+
+
+
+Electron【02】–第一个Electron App目录结构与文件E">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Electron【02】--第一个Electron App</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+    <link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    <script src="/lib/jquery/jquery.min.js"></script>
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/01/13/Notes/译文/【译文】为何柯里化（curry）如此给力/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/01/13/Notes/译文/【译文】你需要知道的四种JavaScript设计模式/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ecmadao.com/2017/01/13/Notes/Electron/Electron【02】--第一个Electron App/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ecmadao.com/2017/01/13/Notes/Electron/Electron【02】--第一个Electron App/&text=Electron【02】--第一个Electron App"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ecmadao.com/2017/01/13/Notes/Electron/Electron【02】--第一个Electron App/&title=Electron【02】--第一个Electron App"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ecmadao.com/2017/01/13/Notes/Electron/Electron【02】--第一个Electron App/&is_video=false&description=Electron【02】--第一个Electron App"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Electron【02】--第一个Electron App&body=Check out this article: http://ecmadao.com/2017/01/13/Notes/Electron/Electron【02】--第一个Electron App/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ecmadao.com/2017/01/13/Notes/Electron/Electron【02】--第一个Electron App/&title=Electron【02】--第一个Electron App"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ecmadao.com/2017/01/13/Notes/Electron/Electron【02】--第一个Electron App/&title=Electron【02】--第一个Electron App"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ecmadao.com/2017/01/13/Notes/Electron/Electron【02】--第一个Electron App/&title=Electron【02】--第一个Electron App"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ecmadao.com/2017/01/13/Notes/Electron/Electron【02】--第一个Electron App/&title=Electron【02】--第一个Electron App"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ecmadao.com/2017/01/13/Notes/Electron/Electron【02】--第一个Electron App/&name=Electron【02】--第一个Electron App&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Electron【02】–第一个Electron-App"><span class="toc-number">1.</span> <span class="toc-text">Electron【02】–第一个Electron App</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#目录结构与文件"><span class="toc-number">1.1.</span> <span class="toc-text">目录结构与文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运行-amp-生成应用"><span class="toc-number">1.2.</span> <span class="toc-text">运行&生成应用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#通过electron-prebuilt运行"><span class="toc-number">1.2.1.</span> <span class="toc-text">通过electron-prebuilt运行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#通过Electron-Binary运行"><span class="toc-number">1.2.2.</span> <span class="toc-text">通过Electron Binary运行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#生成应用"><span class="toc-number">1.2.3.</span> <span class="toc-text">生成应用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#应用打包"><span class="toc-number">1.3.</span> <span class="toc-text">应用打包</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#生成asar包"><span class="toc-number">1.3.1.</span> <span class="toc-text">生成asar包</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#例子"><span class="toc-number">1.4.</span> <span class="toc-text">例子</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Electron【02】--第一个Electron App
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">ecmadao</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-01-13T05:58:37.000Z" itemprop="datePublished">2017-01-13</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Electron/">Electron</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<p><strong>Table of Contents</strong>  <em>generated with <a href="https://github.com/thlorenz/doctoc" target="_blank" rel="external">DocToc</a></em></p>
+<ul>
+<li><a href="#electron%E3%80%9002%E3%80%91--%E7%AC%AC%E4%B8%80%E4%B8%AAelectron-app">Electron【02】–第一个Electron App</a><ul>
+<li><a href="#%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84%E4%B8%8E%E6%96%87%E4%BB%B6">目录结构与文件</a></li>
+<li><a href="#%E8%BF%90%E8%A1%8C&amp;%E7%94%9F%E6%88%90%E5%BA%94%E7%94%A8">运行&amp;生成应用</a><ul>
+<li><a href="#%E9%80%9A%E8%BF%87electron-prebuilt%E8%BF%90%E8%A1%8C">通过<code>electron-prebuilt</code>运行</a></li>
+<li><a href="#%E9%80%9A%E8%BF%87electron-binary%E8%BF%90%E8%A1%8C">通过Electron Binary运行</a></li>
+<li><a href="#%E7%94%9F%E6%88%90%E5%BA%94%E7%94%A8">生成应用</a></li>
+</ul>
+</li>
+<li><a href="#%E5%BA%94%E7%94%A8%E6%89%93%E5%8C%85">应用打包</a><ul>
+<li><a href="#%E7%94%9F%E6%88%90asar%E5%8C%85">生成<code>asar</code>包</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BE%8B%E5%AD%90">例子</a></li>
+</ul>
+</li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<h2 id="Electron【02】–第一个Electron-App"><a href="#Electron【02】–第一个Electron-App" class="headerlink" title="Electron【02】–第一个Electron App"></a>Electron【02】–第一个Electron App</h2><h3 id="目录结构与文件"><a href="#目录结构与文件" class="headerlink" title="目录结构与文件"></a>目录结构与文件</h3><p>Electron App的目录结构如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">your-app/</div><div class="line">├── package.json</div><div class="line">├── main.js</div><div class="line">└── index.html</div></pre></td></tr></table></figure>
+<p>其中的<code>package.json</code>和Node Modules里表现的一样，而<code>main.js</code>则是启动你App的脚本，它将会开启主进程。<code>package.json</code>的一个例子：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"name"</span>    : <span class="string">"your-app"</span>,</div><div class="line">  <span class="attr">"version"</span> : <span class="string">"0.1.0"</span>,</div><div class="line">  <span class="attr">"main"</span>    : <span class="string">"main.js"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>注：当<code>package.json</code>里不存在<code>main</code>时，Electron将会默认使用<code>index.js</code></p>
+<p><code>main.js</code>应当创建一个窗口并处理系统事件。一个典型的例子如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="meta">'use strict'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> electron = <span class="built_in">require</span>(<span class="string">'electron'</span>);</div><div class="line"><span class="keyword">const</span> app = electron.app;  <span class="comment">// 控制App生命周期的模块</span></div><div class="line"><span class="keyword">const</span> BrowserWindow = electron.BrowserWindow;  <span class="comment">// 创建原生窗口的模块</span></div><div class="line"></div><div class="line"><span class="comment">// 保持对窗口对象的全局引用。如果不这么做的话，JavaScript垃圾回收的时候窗口会自动关闭</span></div><div class="line"><span class="keyword">var</span> mainWindow = <span class="literal">null</span>;</div><div class="line"></div><div class="line"><span class="comment">// 当所有的窗口关闭的时候退出应用</span></div><div class="line">app.on(<span class="string">'window-all-closed'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="comment">// 在 OS X 系统里，除非用户按下Cmd + Q，否则应用和它们的menu bar会保持运行</span></div><div class="line">  <span class="keyword">if</span> (process.platform != <span class="string">'darwin'</span>) &#123;</div><div class="line">    app.quit();</div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 当应用初始化结束后调用这个方法，并渲染浏览器窗口</span></div><div class="line">app.on(<span class="string">'ready'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="comment">// 创建一个窗口</span></div><div class="line">  mainWindow = <span class="keyword">new</span> BrowserWindow(&#123;<span class="attr">width</span>: <span class="number">800</span>, <span class="attr">height</span>: <span class="number">600</span>&#125;);</div><div class="line"></div><div class="line">  <span class="comment">// 加载index.js</span></div><div class="line">  mainWindow.loadURL(<span class="string">'file://'</span> + __dirname + <span class="string">'/index.html'</span>);</div><div class="line"></div><div class="line">  <span class="comment">// 打开 DevTools</span></div><div class="line">  mainWindow.webContents.openDevTools();</div><div class="line"></div><div class="line">  <span class="comment">// 窗口关闭时触发</span></div><div class="line">  mainWindow.on(<span class="string">'closed'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// 如果你的应用允许多个屏幕，那么可以把它存在Array里。</span></div><div class="line">    <span class="comment">// 因此删除的时候可以在这里删掉相应的元素</span></div><div class="line">    mainWindow = <span class="literal">null</span>;</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>最后，<code>index.html</code>是你最终要展示的页面</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">    We are using node <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"><span class="built_in">document</span>.write(process.versions.node)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span>,</div><div class="line">    Chrome <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"><span class="built_in">document</span>.write(process.versions.chrome)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span>,</div><div class="line">    and Electron <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"><span class="built_in">document</span>.write(process.versions.electron)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span>.</div><div class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="运行-amp-生成应用"><a href="#运行-amp-生成应用" class="headerlink" title="运行&amp;生成应用"></a>运行&amp;生成应用</h3><h4 id="通过electron-prebuilt运行"><a href="#通过electron-prebuilt运行" class="headerlink" title="通过electron-prebuilt运行"></a>通过<code>electron-prebuilt</code>运行</h4><p>如果你通过<code>npm</code>全局安装了<code>electron-prebuilt</code>，那么在App文件目录下跑这句就可以运行它：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">electron .</div></pre></td></tr></table></figure>
+<p>如果只是在当前项目下安装了，则要跑：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./node_modules/.bin/electron .</div></pre></td></tr></table></figure>
+<h4 id="通过Electron-Binary运行"><a href="#通过Electron-Binary运行" class="headerlink" title="通过Electron Binary运行"></a>通过Electron Binary运行</h4><p>在这儿下载<a href="https://github.com/electron/electron/releases" target="_blank" rel="external">Electron二进制文件</a></p>
+<p>打开包内的App按照提示操作，或者在该文件夹下运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ./Electron.app/Contents/MacOS/Electron your-app/</div></pre></td></tr></table></figure>
+<p>就可以通过这个包来运行自己的应用了。</p>
+<h4 id="生成应用"><a href="#生成应用" class="headerlink" title="生成应用"></a>生成应用</h4><p>应用写完以后，可以参照<a href="https://github.com/electron/electron/blob/v0.37.8/docs/tutorial/application-distribution.md" target="_blank" rel="external">Application Distribution</a>里的指导进行打包：</p>
+<ol>
+<li>项目文件名应该命名为<code>app</code></li>
+<li>下载Electron资源文件。就是上一步里面的<a href="https://github.com/electron/electron/releases" target="_blank" rel="external">Electron二进制文件</a></li>
+<li>把项目目录放在Electron资源文件夹下</li>
+</ol>
+<p>Mac OS X:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">electron/Electron.app/Contents/Resources/app/</div><div class="line">├── package.json</div><div class="line">├── main.js</div><div class="line">└── index.html</div></pre></td></tr></table></figure>
+<p>Windows &amp; Linux:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">electron/resources/app</div><div class="line">├── package.json</div><div class="line">├── main.js</div><div class="line">└── index.html</div></pre></td></tr></table></figure>
+<p>之后运行<code>Electron.app</code>就能启动应用</p>
+<p>现在，你的应用名称为默认的<code>Electron.app</code>（或<code>Electron.exe</code>），可以通过如下方式修改名称：</p>
+<p><strong>Windows</strong></p>
+<p>直接修改<code>Electron.exe</code>的名称</p>
+<p><strong>OS X</strong></p>
+<ol>
+<li>修改应用<code>Electron.app</code>的名称</li>
+<li>修改文件中的<code>CFBundleDisplayName</code>，<code>CFBundleIdentifier</code>，以及<code>CFBundleName</code>字段。它们的所在位置：</li>
+</ol>
+<ul>
+<li><code>Electron.app/Contents/Info.plist</code></li>
+<li><code>Electron.app/Contents/Frameworks/Electron Helper.app/Contents/Info.plist</code></li>
+</ul>
+<h3 id="应用打包"><a href="#应用打包" class="headerlink" title="应用打包"></a>应用打包</h3><p>使用<code>asar</code>库来替代你的<code>app</code>文件夹，这样可以避免暴露你的源码。</p>
+<h4 id="生成asar包"><a href="#生成asar包" class="headerlink" title="生成asar包"></a>生成<code>asar</code>包</h4><p><code>asar</code>可以把多个文件合并成一个类似于tar的归档文件。</p>
+<ol>
+<li>install</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install -g asar</div></pre></td></tr></table></figure>
+<ol>
+<li>打包 </li>
+</ol>
+<p>切换到含有你项目文件夹的父级文件夹</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># dev/your-app</span></div><div class="line">$ <span class="built_in">cd</span> dev</div></pre></td></tr></table></figure>
+<p>打包项目</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ asar pack your-app/ app.asar</div></pre></td></tr></table></figure>
+<p>将生成的<code>app.asar</code>放在：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">// OS X</div><div class="line">electron/Electron.app/Contents/Resources/</div><div class="line">└── app.asar</div><div class="line"></div><div class="line">// Windows &amp; Linux</div><div class="line">electron/resources/</div><div class="line">└── app.asar</div></pre></td></tr></table></figure>
+<p>这样你就可以不必放入<code>app</code>文件夹，而且你的代码都是封装压缩过的。</p>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p>按照下面步骤来运行官方案例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Clone the repository</span></div><div class="line">$ git <span class="built_in">clone</span> https://github.com/atom/electron-quick-start</div><div class="line"><span class="comment"># Go into the repository</span></div><div class="line">$ <span class="built_in">cd</span> electron-quick-start</div><div class="line"><span class="comment"># Install dependencies and run the app</span></div><div class="line">$ npm install &amp;&amp; npm start</div></pre></td></tr></table></figure>
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Electron【02】–第一个Electron-App"><span class="toc-number">1.</span> <span class="toc-text">Electron【02】–第一个Electron App</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#目录结构与文件"><span class="toc-number">1.1.</span> <span class="toc-text">目录结构与文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运行-amp-生成应用"><span class="toc-number">1.2.</span> <span class="toc-text">运行&生成应用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#通过electron-prebuilt运行"><span class="toc-number">1.2.1.</span> <span class="toc-text">通过electron-prebuilt运行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#通过Electron-Binary运行"><span class="toc-number">1.2.2.</span> <span class="toc-text">通过Electron Binary运行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#生成应用"><span class="toc-number">1.2.3.</span> <span class="toc-text">生成应用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#应用打包"><span class="toc-number">1.3.</span> <span class="toc-text">应用打包</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#生成asar包"><span class="toc-number">1.3.1.</span> <span class="toc-text">生成asar包</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#例子"><span class="toc-number">1.4.</span> <span class="toc-text">例子</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ecmadao.com/2017/01/13/Notes/Electron/Electron【02】--第一个Electron App/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ecmadao.com/2017/01/13/Notes/Electron/Electron【02】--第一个Electron App/&text=Electron【02】--第一个Electron App"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ecmadao.com/2017/01/13/Notes/Electron/Electron【02】--第一个Electron App/&title=Electron【02】--第一个Electron App"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ecmadao.com/2017/01/13/Notes/Electron/Electron【02】--第一个Electron App/&is_video=false&description=Electron【02】--第一个Electron App"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Electron【02】--第一个Electron App&body=Check out this article: http://ecmadao.com/2017/01/13/Notes/Electron/Electron【02】--第一个Electron App/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ecmadao.com/2017/01/13/Notes/Electron/Electron【02】--第一个Electron App/&title=Electron【02】--第一个Electron App"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ecmadao.com/2017/01/13/Notes/Electron/Electron【02】--第一个Electron App/&title=Electron【02】--第一个Electron App"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ecmadao.com/2017/01/13/Notes/Electron/Electron【02】--第一个Electron App/&title=Electron【02】--第一个Electron App"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ecmadao.com/2017/01/13/Notes/Electron/Electron【02】--第一个Electron App/&title=Electron【02】--第一个Electron App"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ecmadao.com/2017/01/13/Notes/Electron/Electron【02】--第一个Electron App/&name=Electron【02】--第一个Electron App&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2017 ecmadao
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    <script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'ecmadao-blog';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
+</body>
+</html>

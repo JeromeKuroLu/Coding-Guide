@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Table of Contents  generated with DocToc
+
+Python3及应用1-基础
+数字、字符串和变量
+列表和元组
+ 列表
+元组
+
+
+字典与集合
+字典
+集合
+
+
+代码结构
+迭代
+for迭代
+enumerate创建迭代器
+zip()
+range(start, end, step)
+map()
+filter()
+reduce()
+
+
+列表推导式
+字典推导式
+集合推导式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python3及应用1-基础">
+<meta property="og:url" content="http://ecmadao.com/2017/01/13/Notes/Python/Python及应用/Python3及应用1-基础/index.html">
+<meta property="og:site_name" content="ecmadao">
+<meta property="og:description" content="Table of Contents  generated with DocToc
+
+Python3及应用1-基础
+数字、字符串和变量
+列表和元组
+ 列表
+元组
+
+
+字典与集合
+字典
+集合
+
+
+代码结构
+迭代
+for迭代
+enumerate创建迭代器
+zip()
+range(start, end, step)
+map()
+filter()
+reduce()
+
+
+列表推导式
+字典推导式
+集合推导式">
+<meta property="og:updated_time" content="2017-01-14T12:11:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python3及应用1-基础">
+<meta name="twitter:description" content="Table of Contents  generated with DocToc
+
+Python3及应用1-基础
+数字、字符串和变量
+列表和元组
+ 列表
+元组
+
+
+字典与集合
+字典
+集合
+
+
+代码结构
+迭代
+for迭代
+enumerate创建迭代器
+zip()
+range(start, end, step)
+map()
+filter()
+reduce()
+
+
+列表推导式
+字典推导式
+集合推导式">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Python3及应用1-基础</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+    <link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    <script src="/lib/jquery/jquery.min.js"></script>
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/01/13/Notes/Python/Python进阶/Magic Python/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/01/13/Notes/Python/Python及应用/Python3及应用2-类:库:对象/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ecmadao.com/2017/01/13/Notes/Python/Python及应用/Python3及应用1-基础/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ecmadao.com/2017/01/13/Notes/Python/Python及应用/Python3及应用1-基础/&text=Python3及应用1-基础"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ecmadao.com/2017/01/13/Notes/Python/Python及应用/Python3及应用1-基础/&title=Python3及应用1-基础"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ecmadao.com/2017/01/13/Notes/Python/Python及应用/Python3及应用1-基础/&is_video=false&description=Python3及应用1-基础"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Python3及应用1-基础&body=Check out this article: http://ecmadao.com/2017/01/13/Notes/Python/Python及应用/Python3及应用1-基础/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ecmadao.com/2017/01/13/Notes/Python/Python及应用/Python3及应用1-基础/&title=Python3及应用1-基础"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ecmadao.com/2017/01/13/Notes/Python/Python及应用/Python3及应用1-基础/&title=Python3及应用1-基础"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ecmadao.com/2017/01/13/Notes/Python/Python及应用/Python3及应用1-基础/&title=Python3及应用1-基础"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ecmadao.com/2017/01/13/Notes/Python/Python及应用/Python3及应用1-基础/&title=Python3及应用1-基础"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ecmadao.com/2017/01/13/Notes/Python/Python及应用/Python3及应用1-基础/&name=Python3及应用1-基础&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Python3及应用1-基础"><span class="toc-number">1.</span> <span class="toc-text">Python3及应用1-基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数字、字符串和变量"><span class="toc-number">1.1.</span> <span class="toc-text">数字、字符串和变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#列表和元组"><span class="toc-number">1.2.</span> <span class="toc-text">列表和元组</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#列表"><span class="toc-number">1.2.1.</span> <span class="toc-text">列表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#元组"><span class="toc-number">1.2.2.</span> <span class="toc-text">元组</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字典与集合"><span class="toc-number">1.3.</span> <span class="toc-text">字典与集合</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#字典"><span class="toc-number">1.3.1.</span> <span class="toc-text">字典</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#集合"><span class="toc-number">1.3.2.</span> <span class="toc-text">集合</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码结构"><span class="toc-number">1.4.</span> <span class="toc-text">代码结构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#迭代"><span class="toc-number">1.4.1.</span> <span class="toc-text">迭代</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#for迭代"><span class="toc-number">1.4.1.1.</span> <span class="toc-text">for迭代</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#enumerate创建迭代器"><span class="toc-number">1.4.1.2.</span> <span class="toc-text">enumerate创建迭代器</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#zip"><span class="toc-number">1.4.1.3.</span> <span class="toc-text">zip()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#range-start-end-step"><span class="toc-number">1.4.1.4.</span> <span class="toc-text">range(start, end, step)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#map"><span class="toc-number">1.4.1.5.</span> <span class="toc-text">map()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#filter"><span class="toc-number">1.4.1.6.</span> <span class="toc-text">filter()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#reduce"><span class="toc-number">1.4.1.7.</span> <span class="toc-text">reduce()</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#列表推导式"><span class="toc-number">1.4.2.</span> <span class="toc-text">列表推导式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#字典推导式"><span class="toc-number">1.4.3.</span> <span class="toc-text">字典推导式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#集合推导式"><span class="toc-number">1.4.4.</span> <span class="toc-text">集合推导式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#条件表达式"><span class="toc-number">1.4.5.</span> <span class="toc-text">条件表达式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#生成器表达式"><span class="toc-number">1.4.6.</span> <span class="toc-text">生成器表达式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#列表推导式-amp-生成器表达式"><span class="toc-number">1.4.7.</span> <span class="toc-text">列表推导式&生成器表达式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#try-except-else-finally"><span class="toc-number">1.4.8.</span> <span class="toc-text">try/except/else/finally</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#any-amp-all"><span class="toc-number">1.4.9.</span> <span class="toc-text">any & all</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数"><span class="toc-number">1.5.</span> <span class="toc-text">函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#使用-收集位置参数"><span class="toc-number">1.5.1.</span> <span class="toc-text">使用*收集位置参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用-收集关键字参数"><span class="toc-number">1.5.2.</span> <span class="toc-text">使用**收集关键字参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#闭包"><span class="toc-number">1.5.3.</span> <span class="toc-text">闭包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#匿名函数lambda"><span class="toc-number">1.5.4.</span> <span class="toc-text">匿名函数lambda()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#装饰器"><span class="toc-number">1.5.5.</span> <span class="toc-text">装饰器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#命名空间和作用域"><span class="toc-number">1.5.6.</span> <span class="toc-text">命名空间和作用域</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自省（introspection）"><span class="toc-number">1.6.</span> <span class="toc-text">自省（introspection）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#dir"><span class="toc-number">1.6.1.</span> <span class="toc-text">dir</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#type"><span class="toc-number">1.6.2.</span> <span class="toc-text">type</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#id"><span class="toc-number">1.6.3.</span> <span class="toc-text">id</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#generator"><span class="toc-number">1.7.</span> <span class="toc-text">generator</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#中文编码"><span class="toc-number">1.8.</span> <span class="toc-text">中文编码</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Python3及应用1-基础
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">ecmadao</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-01-13T05:58:37.000Z" itemprop="datePublished">2017-01-13</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Python/">Python</a>, <a class="tag-link" href="/tags/Python及应用/">Python及应用</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<p><strong>Table of Contents</strong>  <em>generated with <a href="https://github.com/thlorenz/doctoc" target="_blank" rel="external">DocToc</a></em></p>
+<ul>
+<li><a href="#python3%E5%8F%8A%E5%BA%94%E7%94%A81-%E5%9F%BA%E7%A1%80">Python3及应用1-基础</a><ul>
+<li><a href="#%E6%95%B0%E5%AD%97%E3%80%81%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%92%8C%E5%8F%98%E9%87%8F">数字、字符串和变量</a></li>
+<li><a href="#%E5%88%97%E8%A1%A8%E5%92%8C%E5%85%83%E7%BB%84">列表和元组</a><ul>
+<li><a href="#%E5%88%97%E8%A1%A8"> 列表</a></li>
+<li><a href="#%E5%85%83%E7%BB%84">元组</a></li>
+</ul>
+</li>
+<li><a href="#%E5%AD%97%E5%85%B8%E4%B8%8E%E9%9B%86%E5%90%88">字典与集合</a><ul>
+<li><a href="#%E5%AD%97%E5%85%B8">字典</a></li>
+<li><a href="#%E9%9B%86%E5%90%88">集合</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BB%A3%E7%A0%81%E7%BB%93%E6%9E%84">代码结构</a><ul>
+<li><a href="#%E8%BF%AD%E4%BB%A3">迭代</a><ul>
+<li><a href="#for%E8%BF%AD%E4%BB%A3"><code>for</code>迭代</a></li>
+<li><a href="#enumerate%E5%88%9B%E5%BB%BA%E8%BF%AD%E4%BB%A3%E5%99%A8"><code>enumerate</code>创建迭代器</a></li>
+<li><a href="#zip"><code>zip()</code></a></li>
+<li><a href="#rangestart-end-step"><code>range(start, end, step)</code></a></li>
+<li><a href="#map"><code>map()</code></a></li>
+<li><a href="#filter"><code>filter()</code></a></li>
+<li><a href="#reduce"><code>reduce()</code></a></li>
+</ul>
+</li>
+<li><a href="#%E5%88%97%E8%A1%A8%E6%8E%A8%E5%AF%BC%E5%BC%8F">列表推导式</a></li>
+<li><a href="#%E5%AD%97%E5%85%B8%E6%8E%A8%E5%AF%BC%E5%BC%8F">字典推导式</a></li>
+<li><a href="#%E9%9B%86%E5%90%88%E6%8E%A8%E5%AF%BC%E5%BC%8F">集合推导式</a></li>
+<li><a href="#%E6%9D%A1%E4%BB%B6%E8%A1%A8%E8%BE%BE%E5%BC%8F">条件表达式</a></li>
+<li><a href="#%E7%94%9F%E6%88%90%E5%99%A8%E8%A1%A8%E8%BE%BE%E5%BC%8F">生成器表达式</a></li>
+<li><a href="#%E5%88%97%E8%A1%A8%E6%8E%A8%E5%AF%BC%E5%BC%8F&amp;%E7%94%9F%E6%88%90%E5%99%A8%E8%A1%A8%E8%BE%BE%E5%BC%8F">列表推导式&amp;生成器表达式</a></li>
+<li><a href="#tryexceptelsefinally"><code>try/except/else/finally</code></a></li>
+<li><a href="#any-&amp;-all"><code>any</code> &amp; <code>all</code></a></li>
+</ul>
+</li>
+<li><a href="#%E5%87%BD%E6%95%B0">函数</a><ul>
+<li><a href="#%E4%BD%BF%E7%94%A8%E6%94%B6%E9%9B%86%E4%BD%8D%E7%BD%AE%E5%8F%82%E6%95%B0">使用<code>*</code>收集位置参数</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8%E6%94%B6%E9%9B%86%E5%85%B3%E9%94%AE%E5%AD%97%E5%8F%82%E6%95%B0">使用<code>**</code>收集关键字参数</a></li>
+<li><a href="#%E9%97%AD%E5%8C%85">闭包</a></li>
+<li><a href="#%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0lambda">匿名函数<code>lambda()</code></a></li>
+<li><a href="#%E8%A3%85%E9%A5%B0%E5%99%A8">装饰器</a></li>
+<li><a href="#%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E5%92%8C%E4%BD%9C%E7%94%A8%E5%9F%9F">命名空间和作用域</a></li>
+</ul>
+</li>
+<li><a href="#%E8%87%AA%E7%9C%81%EF%BC%88introspection%EF%BC%89">自省（<code>introspection</code>）</a><ul>
+<li><a href="#dir"><code>dir</code></a></li>
+<li><a href="#type"><code>type</code></a></li>
+<li><a href="#id"><code>id</code></a></li>
+</ul>
+</li>
+<li><a href="#generator">generator</a></li>
+<li><a href="#%E4%B8%AD%E6%96%87%E7%BC%96%E7%A0%81">中文编码</a></li>
+</ul>
+</li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<h2 id="Python3及应用1-基础"><a href="#Python3及应用1-基础" class="headerlink" title="Python3及应用1-基础"></a>Python3及应用1-基础</h2><blockquote>
+<p>收录整理了Python中的一些知识点和应用，适合新老手巩固学习。</p>
+</blockquote>
+<h3 id="数字、字符串和变量"><a href="#数字、字符串和变量" class="headerlink" title="数字、字符串和变量"></a>数字、字符串和变量</h3><p><strong>赋值只是对对象的引用而不是对象本身</strong></p>
+<p>强制类型转换：</p>
+<ul>
+<li><code>int(params)</code></li>
+<li><code>float(params)</code></li>
+<li><code>str(params)</code></li>
+</ul>
+<p>判断变量类型：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">isinstance(params, type)</div><div class="line">a = list()</div><div class="line">isinstance(a, list) <span class="comment"># True</span></div></pre></td></tr></table></figure>
+<p>字符串操作：</p>
+<ul>
+<li>使用<code>*</code>进行复制</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">a = <span class="string">'1'</span> * <span class="number">8</span></div><div class="line"><span class="comment"># 11111111</span></div></pre></td></tr></table></figure>
+<ul>
+<li>字符串不可变</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">name = <span class="string">'ecmadao'</span></div><div class="line">name[<span class="number">0</span>] = <span class="string">'m'</span>;</div><div class="line"><span class="comment"># ERROR</span></div></pre></td></tr></table></figure>
+<ul>
+<li>使用<code>[start:end:step]</code>分片<ul>
+<li>右侧end从-1开始依次减小</li>
+<li><code>[0:]</code>和<code>[0: -1]</code>都是提取整个字符串</li>
+<li>设定step为-1可以用于反转字符串</li>
+</ul>
+</li>
+<li><p><code>len(params)</code>获取长度</p>
+</li>
+<li><p><code>str.split(params)</code> 将String通过params进行分割成为列表</p>
+</li>
+<li><code>params.join(list)</code> 将一个list通过params进行连接成为字符串</li>
+</ul>
+<hr>
+<ul>
+<li><code>str.startswith(params)</code> 以..开头</li>
+<li><p><code>str.endswith(params)</code> 以..结尾</p>
+</li>
+<li><p><code>str.find(params)</code> 寻找指定参数第一次出现的位置</p>
+</li>
+<li><p><code>str.rfind(params)</code> 寻找指定参数最后一次出现的位置</p>
+</li>
+<li><p><code>str.count(params)</code> 指定参数在字符串中出现的次数</p>
+</li>
+<li><p><code>str.isalnum()</code> 字符串中的组成元素是否全是数字</p>
+</li>
+<li><p><code>str.strip(params)</code> 删除字符串结尾的指定元素(全部)</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">name = <span class="string">"ecmadao....."</span></div><div class="line">name.strip(<span class="string">'.'</span>)</div><div class="line">print(name) <span class="comment"># ecmadao</span></div></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li><code>str.capitalize()</code> 字符串的首字母变大写</li>
+<li><code>str.title()</code> 字符串中所有单词的首字母都大写</li>
+<li><code>str.upper()</code> 所有字母都大写</li>
+<li><code>str.lower()</code> 所有字母都小写</li>
+<li><p><code>str.swapcase()</code> 字符串大小写调转</p>
+</li>
+<li><p><code>str.replace(target, replace, max)</code> replace字符串中target元素，最多修改max处</p>
+</li>
+<li><p><code>str.strip()</code> 去除string两侧的空格(含tab)</p>
+</li>
+<li><code>str.rstrip()</code> 去除string右侧的空格(含tab)</li>
+<li><code>str.lstrip()</code> 去除string左侧的空格(含tab)</li>
+</ul>
+<h3 id="列表和元组"><a href="#列表和元组" class="headerlink" title="列表和元组"></a>列表和元组</h3><p>列表和元组（tuple）中的元素可以是任意类型的Python数据对象。<br>元组不可变，列表可变</p>
+<h4 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h4><ul>
+<li><code>list()</code> 创建一个空列表</li>
+<li><p><code>list(str)</code> 将string类型的数据转换为列表</p>
+</li>
+<li><p><code>list[start:end:step]</code> 列表切片，不包含位于end-index的元素</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 列表切片不会改变原有列表，而是生成新的列表</span></div><div class="line">old_list = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</div><div class="line"><span class="comment"># list切片</span></div><div class="line">new_list = old_list[<span class="number">0</span>:<span class="number">2</span>] <span class="comment"># [0, 1]</span></div><div class="line">print(old_list) <span class="comment"># [0, 1, 2, 3, 4]</span></div><div class="line"></div><div class="line"><span class="comment"># list逆序排列</span></div><div class="line">new_list = old_list[::<span class="number">-1</span>] <span class="comment"># [4, 3, 2, 1, 0]</span></div><div class="line"></div><div class="line"><span class="comment"># 可以通过切片赋空值的形式达到删除的效果</span></div><div class="line">old_list[<span class="number">0</span>:<span class="number">2</span>] = []</div><div class="line">print(old_list) <span class="comment"># [2, 3, 4]</span></div><div class="line"><span class="comment"># 或者del进行删除</span></div><div class="line"><span class="keyword">del</span> old_list[<span class="number">0</span>:<span class="number">1</span>]</div><div class="line">print(old_list) <span class="comment"># [3, 4]</span></div></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li><code>list.append(params)</code></li>
+<li><code>list.extend(list2)</code> 合并列表</li>
+<li><code>list += list2</code> 合并列表</li>
+</ul>
+<hr>
+<ul>
+<li><code>list.insert(index, params)</code> 在指定位置上插入元素</li>
+<li><code>del list[index]</code> 删除指定位置的元素。当列表中一个元素被删除之后，位于它后面的元素会自动向前补充，列表长度减一</li>
+<li><code>list.remove(params)</code> 删除指定元素</li>
+<li><code>list.pop()</code> 获取并删除指定位置的元素</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># pop(0)返回列表的头元素，pop()或pop(-1)则返回列表的尾元素</span></div><div class="line">old_list = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</div><div class="line">old_list.pop() <span class="comment"># 4</span></div><div class="line">print(old_list) <span class="comment"># [0, 1, 2, 3]</span></div></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li><code>list.index(params)</code> 查询指定元素所在的位置(仅匹配第一个)</li>
+<li><code>params in list</code> 判断元素是否存在于列表中</li>
+<li><code>list.count(params)</code> 记录某个特定值在列表中出现的次数</li>
+</ul>
+<hr>
+<ul>
+<li><code>list.sort()</code> 对列表进行排序，改变原有列表</li>
+<li><code>list.sorted()</code> 返回排好序的列表副本，不改变原有列表</li>
+<li><code>sort(reverse = True)</code> 默认的排序为升序，将reverse设为True则可进行倒序排列</li>
+</ul>
+<p><strong>如果将一个列表赋值给了多个变量，改变其中的任何一处，则会造成其他变量对应的值也被改变</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</div><div class="line">b = a</div><div class="line">a[<span class="number">0</span>] = <span class="number">4</span></div><div class="line">print(b) <span class="comment"># [4, 2, 3]</span></div></pre></td></tr></table></figure></p>
+<p><strong>通过拷贝一份列表，可以避免以上情况</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># old_list.copy()</span></div><div class="line"><span class="comment"># list(old_list)</span></div><div class="line"><span class="comment"># old_list[:]</span></div><div class="line">a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</div><div class="line">b = a.copy()</div><div class="line"><span class="comment"># or b = list(a)</span></div><div class="line"><span class="comment"># or b = a[:]</span></div><div class="line">a[<span class="number">0</span>] = <span class="number">4</span></div><div class="line">print(b) <span class="comment"># [1, 2, 3]</span></div></pre></td></tr></table></figure></p>
+<h4 id="元组"><a href="#元组" class="headerlink" title="元组"></a>元组</h4><ul>
+<li><code>()</code> 创建空元组</li>
+<li><code>a, b = (&#39;example&#39;, &#39;example2&#39;)</code> 解构元组</li>
+<li><code>tuple(list)</code> 将list转换为元组</li>
+</ul>
+<p>创建包含一个或多个元素的元组时，每一个元素后面都需要跟着一个逗号。如果多于一个元素，则最后的那个逗号可以省略。</p>
+<p><strong>创建元组</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 创建空元组</span></div><div class="line">empty_tuple = ()</div><div class="line">empty_tuple = tuple()</div><div class="line"></div><div class="line">example_tuple = <span class="string">'example0'</span>, <span class="string">'example1'</span>, <span class="string">'example2'</span></div><div class="line"></div><div class="line"><span class="comment"># 创建单一元组</span></div><div class="line">sinple_tuple = <span class="string">'example'</span>,</div><div class="line"><span class="comment"># 注：在创建单一元组时，将值放在括号内不会创建元组</span></div><div class="line">sinple_tuple = (<span class="string">'example'</span>)</div><div class="line">print(type(sinple_tuple)) <span class="comment"># str</span></div></pre></td></tr></table></figure>
+<p><strong>解构元组</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">a, b, c = example_tuple <span class="comment"># 将元组里的值赋值给变量 -- 元组解包</span></div><div class="line">a, b, *rest = range(<span class="number">10</span>)</div><div class="line">a <span class="comment"># 0</span></div><div class="line">b <span class="comment"># 1</span></div><div class="line">rest <span class="comment"># [2, 3, 4, 5, 6, 7, 8, 9]</span></div><div class="line"></div><div class="line">first, second, *rest, last = range(<span class="number">10</span>)</div><div class="line">last <span class="comment"># 9</span></div></pre></td></tr></table></figure>
+<p><strong>元组在函数中的运用</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 该函数可以接受任意长度的参数，并在函数内部组建成为元组的形式</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">print_all</span><span class="params">(*args)</span>:</span></div><div class="line">	print(args)</div><div class="line">print_all(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>) <span class="comment"># (1, 2, 3, 4)</span></div><div class="line"></div><div class="line"><span class="comment"># 将元组分散后传入函数</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">print_two</span><span class="params">(a, b)</span>:</span></div><div class="line">	print(a)</div><div class="line">	print(b)</div><div class="line">print_two(*(<span class="number">1</span>, <span class="number">2</span>))</div><div class="line"><span class="comment"># 1</span></div><div class="line"><span class="comment"># 2</span></div><div class="line"></div><div class="line"><span class="comment"># 当函数返回多个参数时。。</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">return_multiply</span><span class="params">()</span>:</span></div><div class="line">	<span class="comment"># do something</span></div><div class="line">	<span class="keyword">return</span> a, b</div><div class="line"><span class="comment"># 返回值是元组的形式</span></div><div class="line"><span class="comment"># example:</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">return_multiply</span><span class="params">(*args)</span>:</span></div><div class="line">	a, b = args</div><div class="line">	<span class="keyword">return</span> a, b</div><div class="line"></div><div class="line">result = return_multiply(<span class="number">1</span>, <span class="number">2</span>)</div><div class="line">print(type(result)) <span class="comment"># &lt;class 'tuple'&gt;</span></div><div class="line">print(result) <span class="comment"># (1, 2)</span></div></pre></td></tr></table></figure>
+<h3 id="字典与集合"><a href="#字典与集合" class="headerlink" title="字典与集合"></a>字典与集合</h3><h4 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h4><ul>
+<li><code>dict()</code> 将包含双值子序列的序列转换为字典<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">example = [(<span class="string">'a'</span>, <span class="string">'b'</span>), (<span class="string">'c'</span>, <span class="string">'d'</span>)]</div><div class="line"><span class="comment"># or (('a', 'b'), ('c', 'd'))</span></div><div class="line">dict(example)</div><div class="line"><span class="comment"># &#123;'a': 'b', 'c': 'd'&#125;</span></div><div class="line"></div><div class="line">example2 = [<span class="string">'ab'</span>, <span class="string">'cd'</span>]</div><div class="line"><span class="comment"># or ('ab', 'cd')</span></div><div class="line">dict(examples)</div><div class="line"><span class="comment"># &#123;'a': 'b', 'c': 'd'&#125;</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<ul>
+<li><code>d1.update(d2)</code> 将字典d2合并到字典d1中，若有重复的键，则新归入字典的值会取代原有的值</li>
+<li><code>d.clear()</code> 删除字典中全部元素</li>
+<li><code>in</code> 判断某个键是否存在于字典中</li>
+<li><code>d.copy()</code> 浅拷贝，只复制字典中的父对象，对子对象采用引用的方法</li>
+<li><code>d.deepcopy()</code> 深拷贝，新字典的改变不会影响原来的字典</li>
+</ul>
+<hr>
+<p>获取字典中的元素</p>
+<ul>
+<li><code>d.[key]</code> </li>
+<li><code>d.get(key, defaultValue)</code> 获取指定key的value，并指定了默认值</li>
+<li><code>d.keys()</code> 获取所有键组成的list</li>
+<li><code>d.values()</code> 获取所有值组成的list</li>
+<li><code>d.items()</code> 获取所有键值对，返回一个list，里面的元素是(键，值)组成的元组</li>
+</ul>
+<p>当使用<code>d.[key]</code>获取字典中不存在的元素时会报错</p>
+<hr>
+<p>字典的格式化字符串</p>
+<p>通过<code>&#39;%(key)s&#39; % dict</code>，可以取出字典中对应key的value</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">dict_example = &#123;</div><div class="line">  <span class="string">'a'</span>: <span class="number">1</span>,</div><div class="line">  <span class="string">'b'</span>: <span class="number">2</span></div><div class="line">&#125;</div><div class="line">print(<span class="string">'a is %(a)s but b is %(b)s'</span> % dict_example)</div><div class="line"><span class="comment"># a is 1 but b is 2</span></div></pre></td></tr></table></figure>
+<h4 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h4><p>类似于舍弃了值，仅剩下键的字典</p>
+<ul>
+<li><code>set()</code> 创建空集合。<strong>不能使用<code>{}</code>创建，它创建的是个空字典</strong></li>
+<li><code>set(str/list/tuple)</code> 将字符串/列表/元组转换为集合，不会包含重复元素</li>
+<li><code>set(dic)</code> 把字典转为集合时，只有键会被使用</li>
+</ul>
+<hr>
+<p>集合的合并</p>
+<p><strong>获取交集</strong><br><code>&amp;</code> or <code>a.intersection(b)</code></p>
+<p><strong>获取并集</strong><br><code>|</code> or <code>a.union(b)</code></p>
+<p><strong>获取差集</strong>(出现在第一个集合而没有在第二个集合中的元素)<br><code>-</code> or <code>a.difference(b)</code> </p>
+<p><strong>判断包含关系</strong><br><code>&lt;=</code> or <code>a.issubset(b)</code> 判断a是否是b的子集<br><code>&gt;=</code> or <code>a.issuperset(b)</code> 判断b是否是a的子集</p>
+<h3 id="代码结构"><a href="#代码结构" class="headerlink" title="代码结构"></a>代码结构</h3><h4 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h4><h5 id="for迭代"><a href="#for迭代" class="headerlink" title="for迭代"></a><code>for</code>迭代</h5><p><strong>列表、字符串、元组、字典、集合都是可迭代对象。</strong></p>
+<p>对一个字典进行迭代将会返回字典中的键。如果想对字典的值进行迭代，可以使用字典的<code>values()</code>函数：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> value <span class="keyword">in</span> example_dict.values():</div></pre></td></tr></table></figure></p>
+<p>而如果想返回<code>(key: value)</code>的元组形式，则可以使用字典的<code>items()</code>函数：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> item <span class="keyword">in</span> example_dict.items():</div><div class="line">	print(item) <span class="comment"># (key: value)</span></div></pre></td></tr></table></figure></p>
+<h5 id="enumerate创建迭代器"><a href="#enumerate创建迭代器" class="headerlink" title="enumerate创建迭代器"></a><code>enumerate</code>创建迭代器</h5><p>对于list，<code>for..in..</code>循环只能迭代value，无法或许index。此时，可以通过<code>enumerate</code>创建一个迭代器：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">example_list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</div><div class="line"><span class="keyword">for</span> index, value <span class="keyword">in</span> enumerate(example_list):</div><div class="line">	print(index, <span class="string">':'</span>, value)</div><div class="line"><span class="comment"># 0 : 1</span></div><div class="line"><span class="comment"># 1 : 2</span></div><div class="line"><span class="comment"># 2 : 3</span></div></pre></td></tr></table></figure>
+<p><code>enumerate</code>还可以接受第二个参数，表示index的起始值：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">example_list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</div><div class="line"><span class="keyword">for</span> index, value <span class="keyword">in</span> enumerate(example_list, <span class="number">1</span>):</div><div class="line">	print(index, <span class="string">':'</span>, value)</div><div class="line"><span class="comment"># 1 : 1</span></div><div class="line"><span class="comment"># 2 : 2</span></div><div class="line"><span class="comment"># 3 : 3</span></div></pre></td></tr></table></figure>
+<h5 id="zip"><a href="#zip" class="headerlink" title="zip()"></a><code>zip()</code></h5><p>该函数可以遍历多个序列，在具有<strong>相同位移</strong>的项之间创建<strong>元组</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">list1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</div><div class="line">tuple1 = [a, b, c, d]</div><div class="line">list(zip(list1, tuple1)) <span class="comment"># [(1, a), (2, b), (3, c), (4, d)]</span></div></pre></td></tr></table></figure>
+<p><code>zip()</code>生成的结果既不是列表也不是元组，而是一个整合在一起的可迭代变量。可通过<code>list()</code>，<code>dict()</code>等方法进一步处理</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">dict(zip(<span class="string">'ab'</span>, range(<span class="number">2</span>))) <span class="comment"># &#123;'a': 0, 'b': 1&#125;</span></div><div class="line"></div><div class="line"><span class="comment"># 压缩与解压缩</span></div><div class="line">tuple_1 = (<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>)</div><div class="line">tuple_2 = (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</div><div class="line"></div><div class="line">zip_1 = zip(tuple_1, tuple_2) <span class="comment"># [('a', 1), ('b', 2), ('c', 1)]</span></div><div class="line">zip_2 = zip(*zip_1) <span class="comment"># [('a', 'b', 'c'), (1, 2, 3)]</span></div><div class="line"></div><div class="line"><span class="comment"># 用zip反转dict</span></div><div class="line">m = &#123;<span class="string">'a'</span>: <span class="number">1</span>, <span class="string">'b'</span>: <span class="number">2</span>, <span class="string">'c'</span>: <span class="number">3</span>, <span class="string">'d'</span>: <span class="number">4</span>&#125;</div><div class="line">m.items() <span class="comment"># [('a', 1), ('c', 3), ('b', 2), ('d', 4)]</span></div><div class="line">zip(m.values(), m.keys()) <span class="comment"># [(1, 'a'), (3, 'c'), (2, 'b'), (4, 'd')]</span></div><div class="line">m_reverse = dict(zip(m.values(), m.keys())) <span class="comment"># &#123;1: 'a', 2: 'b', 3: 'c', 4: 'd'&#125;</span></div></pre></td></tr></table></figure>
+<h5 id="range-start-end-step"><a href="#range-start-end-step" class="headerlink" title="range(start, end, step)"></a><code>range(start, end, step)</code></h5><p>返回在特定区间的自然数序列，生成的是一个可循环对象</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">list(range(<span class="number">2</span>, <span class="number">-1</span>, <span class="number">-1</span>)) <span class="comment"># [2, 1, 0]</span></div><div class="line">list(range(<span class="number">0</span>, <span class="number">11</span>, <span class="number">2</span>)) <span class="comment"># [0, 2, 4, 6, 8, 10]</span></div></pre></td></tr></table></figure>
+<h5 id="map"><a href="#map" class="headerlink" title="map()"></a><code>map()</code></h5><p><code>map(fun, sequence[, sequence...])</code><br>根据提供的函数对指定序列做映射，返回一个可迭代对象</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">x = map(<span class="keyword">lambda</span> x: x * <span class="number">2</span>, [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>])</div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> x:</div><div class="line">	print(i)</div><div class="line"><span class="comment"># 2</span></div><div class="line"><span class="comment"># 4</span></div><div class="line"><span class="comment"># 6</span></div><div class="line"><span class="comment"># 8</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">abc</span><span class="params">(a, b, c)</span>:</span></div><div class="line">	<span class="keyword">return</span> a * <span class="number">100</span> + b * <span class="number">10</span> + c</div><div class="line"></div><div class="line">list1 = [<span class="number">9</span>, <span class="number">8</span>, <span class="number">7</span>]</div><div class="line">list2 = [<span class="number">9</span>, <span class="number">8</span>, <span class="number">7</span>]</div><div class="line">list3 = [<span class="number">9</span>, <span class="number">8</span>, <span class="number">7</span>]</div><div class="line"></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> map(abc, list1, list2, list3):</div><div class="line">	print(i)</div><div class="line"><span class="comment"># 999</span></div><div class="line"><span class="comment"># 888</span></div><div class="line"><span class="comment"># 777</span></div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># map不仅仅可以接受变量参数list，也可以接受函数list</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">multiply</span><span class="params">(x)</span>:</span></div><div class="line">	<span class="keyword">return</span> x * x</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(x)</span>:</span></div><div class="line">	<span class="keyword">return</span> x + x</div><div class="line"></div><div class="line">funs = [multiply, add]</div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>):</div><div class="line">	value = map(<span class="keyword">lambda</span> x: x(i), funs)</div><div class="line">	print(list(value))</div><div class="line"></div><div class="line"><span class="comment"># [0, 0]</span></div><div class="line"><span class="comment"># [1, 2]</span></div><div class="line"><span class="comment"># [4, 4]</span></div><div class="line"><span class="comment"># [9, 6]</span></div><div class="line"><span class="comment"># [16, 8]</span></div></pre></td></tr></table></figure>
+<h5 id="filter"><a href="#filter" class="headerlink" title="filter()"></a><code>filter()</code></h5><p><code>filter(fun, sequence)</code><br>第一个参数为函数，接收一个参数并返回一个布尔值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">larger_than_ten</span><span class="params">(a)</span>:</span></div><div class="line">	<span class="keyword">return</span> a &gt; <span class="number">10</span></div><div class="line">	</div><div class="line">list1 = [<span class="number">10</span>, <span class="number">11</span>, <span class="number">9</span>, <span class="number">8</span>, <span class="number">7</span>]</div><div class="line"></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> filter(larger_than_ten, list1):</div><div class="line">	print(i)</div><div class="line"><span class="comment"># 11</span></div></pre></td></tr></table></figure>
+<p><strong>记一个坑：</strong></p>
+<p><code>filter</code>返回一个filter对象，该对象可以被<code>for</code>迭代，或者通过<code>list()</code>转换为列表</p>
+<h5 id="reduce"><a href="#reduce" class="headerlink" title="reduce()"></a><code>reduce()</code></h5><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> reduce</div><div class="line">reduce(fun, sequence[, initial])</div><div class="line"><span class="comment"># fun是一个接收两个参数的函数</span></div><div class="line"><span class="comment"># 提供initial参数，会以sequence中的第一个元素和initial作为参数调用fun</span></div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> reduce</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(x, y)</span>:</span></div><div class="line">	<span class="keyword">return</span> x + y</div><div class="line">	</div><div class="line">list1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</div><div class="line">result = reduce(add, list1)</div><div class="line">print(result)</div><div class="line"><span class="comment"># 10</span></div><div class="line">result2 = reduce(add, list1, <span class="number">10</span>)</div><div class="line">print(result2)</div><div class="line"><span class="comment"># 20</span></div></pre></td></tr></table></figure>
+<h4 id="列表推导式"><a href="#列表推导式" class="headerlink" title="列表推导式"></a>列表推导式</h4><p><code>[expression for item in iterable if condition]</code></p>
+<p>expression为符合condition条件的列表生成值。e.g.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># example_1</span></div><div class="line">number_list = [number <span class="keyword">for</span> number <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">6</span>) <span class="keyword">if</span> number % <span class="number">2</span> == <span class="number">1</span>]</div><div class="line">print(number_list) <span class="comment"># [1, 3, 5]</span></div><div class="line"></div><div class="line"><span class="comment"># example_2</span></div><div class="line"><span class="comment"># 嵌套列表推导式</span></div><div class="line">rows = range(<span class="number">1</span>, <span class="number">4</span>)</div><div class="line">cols = range(<span class="number">1</span>, <span class="number">3</span>)</div><div class="line">cells = [(row, col) <span class="keyword">for</span> row <span class="keyword">in</span> rows <span class="keyword">for</span> col <span class="keyword">in</span> cols]</div><div class="line"><span class="comment"># by the way, for row...和for col...都可以有自己的if判断</span></div><div class="line">print(cells) <span class="comment"># [(1, 1), (1, 2), (2, 1), (2, 2), (3, 1), (3, 2)]</span></div></pre></td></tr></table></figure>
+<h4 id="字典推导式"><a href="#字典推导式" class="headerlink" title="字典推导式"></a>字典推导式</h4><p><code>{key_expression: value_expression for expression in iterable if condition}</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">word = <span class="string">'letter'</span></div><div class="line">letter_counts = &#123;letter: word.count(letter) <span class="keyword">for</span> letter <span class="keyword">in</span> set(word)&#125;</div><div class="line"><span class="comment"># 在set(word)中遍历，避免了重复元素的遍历</span></div><div class="line">print(letter_counts) <span class="comment"># &#123;'r': 1, 'l': 1, 't': 2, 'e': 2&#125;</span></div></pre></td></tr></table></figure>
+<h4 id="集合推导式"><a href="#集合推导式" class="headerlink" title="集合推导式"></a>集合推导式</h4><p><code>{expression for expression in iterable if condition}</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">new_set = &#123;number <span class="keyword">for</span> number <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">6</span>) <span class="keyword">if</span> number % <span class="number">3</span> == <span class="number">1</span>&#125;</div><div class="line">print(new_set) <span class="comment"># &#123;1, 4&#125;</span></div></pre></td></tr></table></figure>
+<h4 id="条件表达式"><a href="#条件表达式" class="headerlink" title="条件表达式"></a>条件表达式</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">a = x <span class="keyword">if</span> <span class="keyword">True</span> <span class="keyword">else</span> y</div><div class="line"></div><div class="line"><span class="comment"># 一个阶乘函数的递归版本</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">factorial</span><span class="params">(n)</span>:</span></div><div class="line">	<span class="keyword">return</span> <span class="number">1</span> <span class="keyword">if</span> n == <span class="number">0</span> <span class="keyword">else</span> n * factorial(n<span class="number">-1</span>)</div><div class="line"></div><div class="line"><span class="comment"># 用条件表达式处理默认参数</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">fun</span><span class="params">(params=None)</span>:</span></div><div class="line">	params = params <span class="keyword">if</span> params != <span class="keyword">None</span> <span class="keyword">else</span> <span class="number">1</span></div><div class="line">	print(params)</div><div class="line"></div><div class="line">fun() <span class="comment"># 1</span></div></pre></td></tr></table></figure>
+<p>by the way，提一句<code>for...else</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># else 语句块会在循环结束后执行，除非在循环块中执行 break</span></div><div class="line"><span class="comment"># 即如果for循环中break了，则不会执行for后面紧跟的else</span></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> (<span class="number">1</span>, <span class="number">4</span>, <span class="number">5</span>):</div><div class="line">	<span class="keyword">if</span> i % <span class="number">2</span> == <span class="number">0</span>:</div><div class="line">		<span class="keyword">break</span></div><div class="line"><span class="keyword">else</span>:</div><div class="line">	print(<span class="string">"var i is always an odd"</span>)</div></pre></td></tr></table></figure>
+<h4 id="生成器表达式"><a href="#生成器表达式" class="headerlink" title="生成器表达式"></a>生成器表达式</h4><p>生成器表达式与列表推导式类似，但是<strong>使用的是圆括号</strong>，而不是方括号</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">g = (x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">4</span>))</div><div class="line"></div><div class="line">print(next(g)) <span class="comment"># 0</span></div><div class="line">print(next(g)) <span class="comment"># 1</span></div></pre></td></tr></table></figure>
+<h4 id="列表推导式-amp-生成器表达式"><a href="#列表推导式-amp-生成器表达式" class="headerlink" title="列表推导式&amp;生成器表达式"></a>列表推导式&amp;生成器表达式</h4><p>列表推导也可能会有一些负面效应，那就是整个列表必须一次性加载于内存之中。虽然对大多数情况这都不是问题，但是总会达到极限，内存总会被用完。<br>针对上面的问题，生成器能够很好的解决。生成器表达式不会一次将整个列表加载到内存之中，而是生成一个生成器对象(Generator objector)，所以一次只加载一个列表元素</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">num = [<span class="number">1</span>, <span class="number">4</span>, <span class="number">-5</span>, <span class="number">10</span>, <span class="number">-7</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">-1</span>]</div><div class="line">double_result_g = ( x*<span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> num <span class="keyword">if</span> x &gt; <span class="number">0</span> )</div><div class="line">print(double_result_g)</div><div class="line"><span class="comment"># &lt;generator object &lt;genexpr&gt; at 0x00583E18&gt;</span></div><div class="line"> </div><div class="line"><span class="keyword">for</span> item <span class="keyword">in</span> double_result_g:</div><div class="line">	print(item)</div><div class="line"><span class="comment"># 2</span></div><div class="line"><span class="comment"># 8</span></div><div class="line"><span class="comment"># 20</span></div><div class="line"><span class="comment"># 4</span></div><div class="line"><span class="comment"># 6</span></div></pre></td></tr></table></figure>
+<h4 id="try-except-else-finally"><a href="#try-except-else-finally" class="headerlink" title="try/except/else/finally"></a><code>try/except/else/finally</code></h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">example = <span class="number">1</span></div><div class="line"></div><div class="line"><span class="keyword">try</span>:</div><div class="line">	print(<span class="string">'1'</span> + example)</div><div class="line"><span class="keyword">except</span> TypeError <span class="keyword">as</span> e:</div><div class="line">	print(e)</div><div class="line"><span class="keyword">else</span>: </div><div class="line">	<span class="comment"># 当没有catch到except的时候走else</span></div><div class="line">	<span class="comment"># else语句必须在finally之前</span></div><div class="line">	print(<span class="string">'no except'</span>)</div><div class="line"><span class="keyword">finally</span>:</div><div class="line">	print(<span class="string">'finally'</span>)</div></pre></td></tr></table></figure>
+<p>else语句的存在必须以except X或者except语句为前提，如果在没有except语句的try block中使用else语句会引发语法错误</p>
+<h4 id="any-amp-all"><a href="#any-amp-all" class="headerlink" title="any &amp; all"></a><code>any</code> &amp; <code>all</code></h4><ul>
+<li><code>any</code>：接受一个布尔值序列，如果其中有任意一个值为 True 则返回 True</li>
+<li><code>all</code>：如果序列中的每个元素均为 True 才会返回 True</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">has_greater_than_ten = any(i &gt; <span class="number">10</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">11</span>))</div><div class="line">print(has_greater_than_ten) <span class="comment"># False</span></div><div class="line"></div><div class="line">has_greater_than_ten = any(i &gt; <span class="number">10</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">12</span>))</div><div class="line">print(has_greater_than_ten) <span class="comment"># True</span></div></pre></td></tr></table></figure>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><p>定义函数: <code>def fun(params):</code></p>
+<p>对于仅有位置参数的函数<code>fun(p1, p2, p3)</code>，调用的时候需要按照参数顺序进行传值。而通过关键字参数则可避免这个问题：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">fun</span><span class="params">(p0, p1 = <span class="number">1</span>, p2 = <span class="number">0</span>)</span>:</span> <span class="comment"># 第一个位置参数，后两个关键字参数</span></div><div class="line">	<span class="keyword">return</span> p0 - p1 - p2</div><div class="line"></div><div class="line">print(fun(<span class="number">5</span>, p2 = <span class="number">2</span>, p1 = <span class="number">1</span>)) <span class="comment"># 2</span></div></pre></td></tr></table></figure>
+<h4 id="使用-收集位置参数"><a href="#使用-收集位置参数" class="headerlink" title="使用*收集位置参数"></a>使用<code>*</code>收集位置参数</h4><p>当参数被用在函数内部时，<code>*</code>将一组<strong>可变数量的位置参数</strong>集合成参数值的<strong>元组</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">fun</span><span class="params">(p, *args)</span>:</span></div><div class="line">	<span class="keyword">return</span> args</div><div class="line"></div><div class="line">fun(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>) <span class="comment"># (2, 3, 4)</span></div></pre></td></tr></table></figure>
+<h4 id="使用-收集关键字参数"><a href="#使用-收集关键字参数" class="headerlink" title="使用**收集关键字参数"></a>使用<code>**</code>收集关键字参数</h4><p>使用两个星号可以将参数收集到一个字典中，参数名则是字典的键，对应的值是字典的值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">fun</span><span class="params">(**kwargs)</span>:</span></div><div class="line">	<span class="keyword">return</span> kwargs</div><div class="line"></div><div class="line">fun(a = <span class="number">0</span>, b = <span class="number">1</span>, c = <span class="number">2</span>) <span class="comment"># &#123;'c': 2, 'a': 0, 'b': 1&#125;</span></div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">example_fun</span><span class="params">(a, b)</span>:</span></div><div class="line">	print(a)</div><div class="line">	print(b)</div><div class="line">	</div><div class="line"><span class="comment"># 字典的key必须和函数的参数名对应</span></div><div class="line">example_dict = &#123;</div><div class="line">	<span class="string">"a"</span>: <span class="number">1</span>,</div><div class="line">	<span class="string">"b"</span>: <span class="number">2</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">example_fun(**example_dict)</div><div class="line"><span class="comment"># 1</span></div><div class="line"><span class="comment"># 2</span></div></pre></td></tr></table></figure>
+<h4 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h4><p>函数返回一个被动态创建的可以记录外部变量的函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">fun</span><span class="params">(str)</span>:</span></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">say</span><span class="params">()</span>:</span></div><div class="line">		<span class="keyword">return</span> <span class="string">"He said: %s"</span> % str</div><div class="line">	<span class="keyword">return</span> say</div></pre></td></tr></table></figure>
+<h4 id="匿名函数lambda"><a href="#匿名函数lambda" class="headerlink" title="匿名函数lambda()"></a>匿名函数<code>lambda()</code></h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 普通函数</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">print_upstr</span><span class="params">(str, fun)</span>:</span></div><div class="line">	<span class="keyword">for</span> word <span class="keyword">in</span> str:</div><div class="line">		print(fun(word))</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">upstr</span><span class="params">(word)</span>:</span></div><div class="line">	<span class="keyword">return</span> word.capitalize()</div><div class="line"></div><div class="line">print_upstr(<span class="string">'this is a test'</span>, upstr)</div><div class="line"><span class="comment"># This</span></div><div class="line"><span class="comment"># Is </span></div><div class="line"><span class="comment"># A</span></div><div class="line"><span class="comment"># Test</span></div><div class="line"></div><div class="line"><span class="comment"># 匿名函数</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">print_upstr</span><span class="params">(str, fun)</span>:</span></div><div class="line">	<span class="keyword">for</span> word <span class="keyword">in</span> str:</div><div class="line">		print(fun(word))</div><div class="line"></div><div class="line">print_upstr(<span class="string">'this is a test'</span>, <span class="keyword">lambda</span> word: word.capitalize())</div></pre></td></tr></table></figure>
+<h4 id="装饰器"><a href="#装饰器" class="headerlink" title="装饰器"></a>装饰器</h4><p>用于在不改变原函数代码的情况下修改已存在的函数。常见场景是增加一句调试，来查看传入的参数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">decorator_fun</span><span class="params">(fun)</span>:</span></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">new_fun</span><span class="params">(*args, **kwargs)</span>:</span></div><div class="line">		print(<span class="string">'current fun:'</span>, fun.__name__)</div><div class="line">		print(<span class="string">'position arguments:'</span>, args)</div><div class="line">		print(<span class="string">'key arguments:'</span>, **kwargs)</div><div class="line">		result = fun(*args, **kwargs)</div><div class="line">		print(result)</div><div class="line">		<span class="keyword">return</span> result</div><div class="line">	<span class="keyword">return</span> new_fun</div><div class="line">	</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(a, b)</span>:</span></div><div class="line">	<span class="keyword">return</span> a + b</div><div class="line">add(<span class="number">3</span>, <span class="number">2</span>) <span class="comment"># 5</span></div><div class="line"></div><div class="line">new_add = decorator_fun(add)</div><div class="line">new_add(<span class="number">3</span>, <span class="number">2</span>)</div><div class="line"><span class="comment"># current fun: add</span></div><div class="line"><span class="comment"># position arguments: (3, 2)</span></div><div class="line"><span class="comment"># key arguments: &#123;&#125;</span></div><div class="line"><span class="comment"># 5</span></div></pre></td></tr></table></figure>
+<p><em>相对于人工进行装饰器赋值传参的操作过程，可以直接在要装饰的函数前面添加装饰器名称<code>@decorator_name</code>:</em></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">decorator_fun</span><span class="params">(fun)</span>:</span></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">new_fun</span><span class="params">(*args, **kwargs)</span>:</span></div><div class="line">		print(<span class="string">'current fun:'</span>, fun.__name__)</div><div class="line">		print(<span class="string">'position arguments:'</span>, args)</div><div class="line">		print(<span class="string">'key arguments:'</span>, **kwargs)</div><div class="line">		result = fun(*args, **kwargs)</div><div class="line">		print(result)</div><div class="line">		<span class="keyword">return</span> result</div><div class="line">	<span class="keyword">return</span> new_fun</div><div class="line">	</div><div class="line"><span class="meta">@decorator_fun</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(a, b)</span>:</span></div><div class="line">	<span class="keyword">return</span> a + b</div><div class="line"></div><div class="line">add(<span class="number">3</span>, <span class="number">2</span>)</div><div class="line"><span class="comment"># current fun: add</span></div><div class="line"><span class="comment"># position arguments: (3, 2)</span></div><div class="line"><span class="comment"># key arguments: &#123;&#125;</span></div><div class="line"><span class="comment"># 5</span></div></pre></td></tr></table></figure>
+<p><em>一个函数可以有多个装饰器，靠近函数定义的装饰器最先执行，然后依次执行上面的装饰器</em></p>
+<h4 id="命名空间和作用域"><a href="#命名空间和作用域" class="headerlink" title="命名空间和作用域"></a>命名空间和作用域</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">const_value = <span class="string">'const_value'</span></div><div class="line"></div><div class="line"><span class="comment"># example 1</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">fun</span><span class="params">()</span>:</span></div><div class="line">	<span class="keyword">global</span> const_value <span class="comment"># 要使用并修改全局变量前需要显示的通过global进行声明</span></div><div class="line">	print(<span class="string">'before is:'</span>, const_value)</div><div class="line">	const_value = <span class="string">'2'</span></div><div class="line">	print(const_value)</div><div class="line"></div><div class="line">fun() <span class="comment"># 2</span></div><div class="line">print(const_value) <span class="comment"># 2</span></div><div class="line"></div><div class="line"><span class="comment"># example 2</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">fun</span><span class="params">()</span>:</span></div><div class="line">	print(<span class="string">'before is:'</span>, const_value)</div><div class="line">	const_value = <span class="string">'2'</span></div><div class="line">	print(const_value)</div><div class="line"></div><div class="line">fun() </div><div class="line"><span class="comment"># error: local variable 'const_value' referenced before assignment</span></div><div class="line"><span class="comment"># 认为函数中第一次使用的const_value是局部变量，尚未声明</span></div><div class="line"></div><div class="line"><span class="comment"># example 3</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">fun</span><span class="params">()</span>:</span></div><div class="line">	const_value = <span class="string">'2'</span></div><div class="line">	print(const_value)</div><div class="line"></div><div class="line">fun() <span class="comment"># 2</span></div><div class="line">print(const_value) </div><div class="line"><span class="comment"># const_value</span></div><div class="line"><span class="comment"># 函数中使用的const_value为局部变量</span></div></pre></td></tr></table></figure>
+<h3 id="自省（introspection）"><a href="#自省（introspection）" class="headerlink" title="自省（introspection）"></a>自省（<code>introspection</code>）</h3><p>指在运行时来判断一个对象的类型的能力</p>
+<h4 id="dir"><a href="#dir" class="headerlink" title="dir"></a><code>dir</code></h4><p>以某个对象作为参数，返回一个列表，列出了一个对象所拥有的属性和方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">test = <span class="string">'test'</span></div><div class="line">dir(test)</div><div class="line"><span class="comment"># ['__add__', '__class__', '__contains__', '__delattr__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__getitem__', '__getnewargs__', '__gt__', '__hash__', '__init__', '__iter__', '__le__', '__len__', '__lt__', '__mod__', '__mul__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__rmod__', '__rmul__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', 'capitalize', 'casefold', 'center', 'count', 'encode', 'endswith', 'expandtabs', 'find', 'format', 'format_map', 'index', 'isalnum', 'isalpha', 'isdecimal', 'isdigit', 'isidentifier', 'islower', 'isnumeric', 'isprintable', 'isspace', 'istitle', 'isupper', 'join', 'ljust', 'lower', 'lstrip', 'maketrans', 'partition', 'replace', 'rfind', 'rindex', 'rjust', 'rpartition', 'rsplit', 'rstrip', 'split', 'splitlines', 'startswith', 'strip', 'swapcase', 'title', 'translate', 'upper', 'zfill']</span></div></pre></td></tr></table></figure>
+<h4 id="type"><a href="#type" class="headerlink" title="type"></a><code>type</code></h4><p>使用<code>type</code>函数获取对象的类型</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">test = <span class="string">'test'</span></div><div class="line">type(test) <span class="comment"># &lt;class 'str'&gt;</span></div><div class="line">test_list = []</div><div class="line">type(test_list) <span class="comment"># &lt;class 'list'&gt;</span></div></pre></td></tr></table></figure>
+<h4 id="id"><a href="#id" class="headerlink" title="id"></a><code>id</code></h4><p>返回对象的唯一<code>id</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">test = <span class="string">'test'</span></div><div class="line">id(test) <span class="comment"># 43134560 每次运行时 id 都不同</span></div></pre></td></tr></table></figure>
+<h3 id="generator"><a href="#generator" class="headerlink" title="generator"></a>generator</h3><p><a href="http://stackoverflow.com/questions/1756096/understanding-generators-in-python" target="_blank" rel="external">Understanding Generators in Python</a></p>
+<p>generator内部有<code>yield</code>声明，每次调用<code>next()</code>都会使函数在<code>yield</code>处暂停，并由<code>yield</code>抛出一个返回值。<br>当函数调用完全之后再次调用<code>next()</code>会报<code>StopIteration</code>错，但如果是使用<code>for</code>循环调用生成器，则会则生成器完全调用之后自动返回</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">items = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</div><div class="line"><span class="comment"># Get the iterator</span></div><div class="line">it = iter(items) <span class="comment"># Invokes items.__iter__()</span></div><div class="line"><span class="comment"># Run the iterator</span></div><div class="line">next(it) <span class="comment"># Invokes it.__next__()</span></div><div class="line"><span class="comment"># 1</span></div><div class="line">next(it)</div><div class="line"><span class="comment"># 2</span></div><div class="line">next(it)</div><div class="line"><span class="comment"># 3</span></div><div class="line">next(it)</div><div class="line"><span class="comment"># Traceback (most recent call last):</span></div><div class="line"><span class="comment">#     File "&lt;stdin&gt;", line 1, in &lt;module&gt;</span></div><div class="line"><span class="comment"># StopIteration</span></div></pre></td></tr></table></figure>
+<h3 id="中文编码"><a href="#中文编码" class="headerlink" title="中文编码"></a>中文编码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 下面三者等效</span></div><div class="line"><span class="comment"># -*- coding: UTF-8 -*-</span></div><div class="line"><span class="comment"># coding=utf-8</span></div><div class="line"><span class="comment"># coding:utf-8</span></div></pre></td></tr></table></figure>
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Python3及应用1-基础"><span class="toc-number">1.</span> <span class="toc-text">Python3及应用1-基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数字、字符串和变量"><span class="toc-number">1.1.</span> <span class="toc-text">数字、字符串和变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#列表和元组"><span class="toc-number">1.2.</span> <span class="toc-text">列表和元组</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#列表"><span class="toc-number">1.2.1.</span> <span class="toc-text">列表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#元组"><span class="toc-number">1.2.2.</span> <span class="toc-text">元组</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字典与集合"><span class="toc-number">1.3.</span> <span class="toc-text">字典与集合</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#字典"><span class="toc-number">1.3.1.</span> <span class="toc-text">字典</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#集合"><span class="toc-number">1.3.2.</span> <span class="toc-text">集合</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码结构"><span class="toc-number">1.4.</span> <span class="toc-text">代码结构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#迭代"><span class="toc-number">1.4.1.</span> <span class="toc-text">迭代</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#for迭代"><span class="toc-number">1.4.1.1.</span> <span class="toc-text">for迭代</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#enumerate创建迭代器"><span class="toc-number">1.4.1.2.</span> <span class="toc-text">enumerate创建迭代器</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#zip"><span class="toc-number">1.4.1.3.</span> <span class="toc-text">zip()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#range-start-end-step"><span class="toc-number">1.4.1.4.</span> <span class="toc-text">range(start, end, step)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#map"><span class="toc-number">1.4.1.5.</span> <span class="toc-text">map()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#filter"><span class="toc-number">1.4.1.6.</span> <span class="toc-text">filter()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#reduce"><span class="toc-number">1.4.1.7.</span> <span class="toc-text">reduce()</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#列表推导式"><span class="toc-number">1.4.2.</span> <span class="toc-text">列表推导式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#字典推导式"><span class="toc-number">1.4.3.</span> <span class="toc-text">字典推导式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#集合推导式"><span class="toc-number">1.4.4.</span> <span class="toc-text">集合推导式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#条件表达式"><span class="toc-number">1.4.5.</span> <span class="toc-text">条件表达式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#生成器表达式"><span class="toc-number">1.4.6.</span> <span class="toc-text">生成器表达式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#列表推导式-amp-生成器表达式"><span class="toc-number">1.4.7.</span> <span class="toc-text">列表推导式&生成器表达式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#try-except-else-finally"><span class="toc-number">1.4.8.</span> <span class="toc-text">try/except/else/finally</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#any-amp-all"><span class="toc-number">1.4.9.</span> <span class="toc-text">any & all</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数"><span class="toc-number">1.5.</span> <span class="toc-text">函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#使用-收集位置参数"><span class="toc-number">1.5.1.</span> <span class="toc-text">使用*收集位置参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用-收集关键字参数"><span class="toc-number">1.5.2.</span> <span class="toc-text">使用**收集关键字参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#闭包"><span class="toc-number">1.5.3.</span> <span class="toc-text">闭包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#匿名函数lambda"><span class="toc-number">1.5.4.</span> <span class="toc-text">匿名函数lambda()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#装饰器"><span class="toc-number">1.5.5.</span> <span class="toc-text">装饰器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#命名空间和作用域"><span class="toc-number">1.5.6.</span> <span class="toc-text">命名空间和作用域</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自省（introspection）"><span class="toc-number">1.6.</span> <span class="toc-text">自省（introspection）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#dir"><span class="toc-number">1.6.1.</span> <span class="toc-text">dir</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#type"><span class="toc-number">1.6.2.</span> <span class="toc-text">type</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#id"><span class="toc-number">1.6.3.</span> <span class="toc-text">id</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#generator"><span class="toc-number">1.7.</span> <span class="toc-text">generator</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#中文编码"><span class="toc-number">1.8.</span> <span class="toc-text">中文编码</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ecmadao.com/2017/01/13/Notes/Python/Python及应用/Python3及应用1-基础/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ecmadao.com/2017/01/13/Notes/Python/Python及应用/Python3及应用1-基础/&text=Python3及应用1-基础"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ecmadao.com/2017/01/13/Notes/Python/Python及应用/Python3及应用1-基础/&title=Python3及应用1-基础"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ecmadao.com/2017/01/13/Notes/Python/Python及应用/Python3及应用1-基础/&is_video=false&description=Python3及应用1-基础"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Python3及应用1-基础&body=Check out this article: http://ecmadao.com/2017/01/13/Notes/Python/Python及应用/Python3及应用1-基础/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ecmadao.com/2017/01/13/Notes/Python/Python及应用/Python3及应用1-基础/&title=Python3及应用1-基础"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ecmadao.com/2017/01/13/Notes/Python/Python及应用/Python3及应用1-基础/&title=Python3及应用1-基础"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ecmadao.com/2017/01/13/Notes/Python/Python及应用/Python3及应用1-基础/&title=Python3及应用1-基础"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ecmadao.com/2017/01/13/Notes/Python/Python及应用/Python3及应用1-基础/&title=Python3及应用1-基础"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ecmadao.com/2017/01/13/Notes/Python/Python及应用/Python3及应用1-基础/&name=Python3及应用1-基础&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2017 ecmadao
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    <script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'ecmadao-blog';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
+</body>
+</html>

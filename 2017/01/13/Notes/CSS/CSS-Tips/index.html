@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Table of Contents  generated with DocToc
+
+页面变灰
+截断字符串
+box-sizing
+X:nth-child(n)
+让元素不捕获事件
+通过3在元素内部（内部的前面或者后面）动态添加元素
+使用负的nth-child选取元素
+currentColor是color属性的值
+user-select禁止选择文本
+selection可设置文字被选择时的样式
+
+
+页">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS-Tips">
+<meta property="og:url" content="http://ecmadao.com/2017/01/13/Notes/CSS/CSS-Tips/index.html">
+<meta property="og:site_name" content="ecmadao">
+<meta property="og:description" content="Table of Contents  generated with DocToc
+
+页面变灰
+截断字符串
+box-sizing
+X:nth-child(n)
+让元素不捕获事件
+通过3在元素内部（内部的前面或者后面）动态添加元素
+使用负的nth-child选取元素
+currentColor是color属性的值
+user-select禁止选择文本
+selection可设置文字被选择时的样式
+
+
+页">
+<meta property="og:updated_time" content="2017-01-14T12:11:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS-Tips">
+<meta name="twitter:description" content="Table of Contents  generated with DocToc
+
+页面变灰
+截断字符串
+box-sizing
+X:nth-child(n)
+让元素不捕获事件
+通过3在元素内部（内部的前面或者后面）动态添加元素
+使用负的nth-child选取元素
+currentColor是color属性的值
+user-select禁止选择文本
+selection可设置文字被选择时的样式
+
+
+页">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>CSS-Tips</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+    <link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    <script src="/lib/jquery/jquery.min.js"></script>
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/01/13/Notes/NodeJS/NPM 命令备忘/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/01/13/Notes/CSS/PostCSS配置指北/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ecmadao.com/2017/01/13/Notes/CSS/CSS-Tips/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ecmadao.com/2017/01/13/Notes/CSS/CSS-Tips/&text=CSS-Tips"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ecmadao.com/2017/01/13/Notes/CSS/CSS-Tips/&title=CSS-Tips"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ecmadao.com/2017/01/13/Notes/CSS/CSS-Tips/&is_video=false&description=CSS-Tips"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=CSS-Tips&body=Check out this article: http://ecmadao.com/2017/01/13/Notes/CSS/CSS-Tips/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ecmadao.com/2017/01/13/Notes/CSS/CSS-Tips/&title=CSS-Tips"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ecmadao.com/2017/01/13/Notes/CSS/CSS-Tips/&title=CSS-Tips"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ecmadao.com/2017/01/13/Notes/CSS/CSS-Tips/&title=CSS-Tips"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ecmadao.com/2017/01/13/Notes/CSS/CSS-Tips/&title=CSS-Tips"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ecmadao.com/2017/01/13/Notes/CSS/CSS-Tips/&name=CSS-Tips&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#页面变灰"><span class="toc-number">1.</span> <span class="toc-text">页面变灰</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#截断字符串"><span class="toc-number">2.</span> <span class="toc-text">截断字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#box-sizing"><span class="toc-number">3.</span> <span class="toc-text">box-sizing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#X-nth-child-n"><span class="toc-number">4.</span> <span class="toc-text">X:nth-child(n)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#让元素不捕获事件"><span class="toc-number">5.</span> <span class="toc-text">让元素不捕获事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过3在元素内部（内部的前面或者后面）动态添加元素"><span class="toc-number">6.</span> <span class="toc-text">通过3在元素内部（内部的前面或者后面）动态添加元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用负的nth-child选取元素"><span class="toc-number">7.</span> <span class="toc-text">使用负的nth-child选取元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#currentColor是color属性的值"><span class="toc-number">8.</span> <span class="toc-text">currentColor是color属性的值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#user-select禁止选择文本"><span class="toc-number">9.</span> <span class="toc-text">user-select禁止选择文本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#selection可设置文字被选择时的样式"><span class="toc-number">10.</span> <span class="toc-text">selection可设置文字被选择时的样式</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        CSS-Tips
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">ecmadao</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-01-13T05:58:37.000Z" itemprop="datePublished">2017-01-13</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/CSS/">CSS</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<p><strong>Table of Contents</strong>  <em>generated with <a href="https://github.com/thlorenz/doctoc" target="_blank" rel="external">DocToc</a></em></p>
+<ul>
+<li><a href="#%E9%A1%B5%E9%9D%A2%E5%8F%98%E7%81%B0">页面变灰</a></li>
+<li><a href="#%E6%88%AA%E6%96%AD%E5%AD%97%E7%AC%A6%E4%B8%B2">截断字符串</a></li>
+<li><a href="#box-sizing"><code>box-sizing</code></a></li>
+<li><a href="#xnth-childn"><code>X:nth-child(n)</code></a></li>
+<li><a href="#%E8%AE%A9%E5%85%83%E7%B4%A0%E4%B8%8D%E6%8D%95%E8%8E%B7%E4%BA%8B%E4%BB%B6">让元素不捕获事件</a></li>
+<li><a href="#%E9%80%9A%E8%BF%873%E5%9C%A8%E5%85%83%E7%B4%A0%E5%86%85%E9%83%A8%EF%BC%88%E5%86%85%E9%83%A8%E7%9A%84%E5%89%8D%E9%9D%A2%E6%88%96%E8%80%85%E5%90%8E%E9%9D%A2%EF%BC%89%E5%8A%A8%E6%80%81%E6%B7%BB%E5%8A%A0%E5%85%83%E7%B4%A0">通过3在元素内部（内部的前面或者后面）动态添加元素</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8%E8%B4%9F%E7%9A%84nth-child%E9%80%89%E5%8F%96%E5%85%83%E7%B4%A0">使用负的<code>nth-child</code>选取元素</a></li>
+<li><a href="#currentcolor%E6%98%AFcolor%E5%B1%9E%E6%80%A7%E7%9A%84%E5%80%BC">currentColor是color属性的值</a></li>
+<li><a href="#user-select%E7%A6%81%E6%AD%A2%E9%80%89%E6%8B%A9%E6%96%87%E6%9C%AC"><code>user-select</code>禁止选择文本</a></li>
+<li><a href="#selection%E5%8F%AF%E8%AE%BE%E7%BD%AE%E6%96%87%E5%AD%97%E8%A2%AB%E9%80%89%E6%8B%A9%E6%97%B6%E7%9A%84%E6%A0%B7%E5%BC%8F"><code>selection</code>可设置文字被选择时的样式</a></li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<h3 id="页面变灰"><a href="#页面变灰" class="headerlink" title="页面变灰"></a>页面变灰</h3><p>在<code>&lt;body&gt;</code>中加入<code>class=&quot;be-gray&quot;</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">.be-gray&#123;</div><div class="line">	filter: grayscale(100%);//IE浏览器</div><div class="line">	-webkit-filter: grayscale(100%);//谷歌浏览器</div><div class="line">	-moz-filter: grayscale(100%);//火狐</div><div class="line">	-ms-filter: grayscale(100%);</div><div class="line">	-o-filter: grayscale(100%);</div><div class="line">	filter:</div><div class="line">		progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);</div><div class="line"> 	-webkit-filter: grayscale(1);//谷歌浏览器</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="截断字符串"><a href="#截断字符串" class="headerlink" title="截断字符串"></a>截断字符串</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;test&quot;&gt; </div><div class="line">	任意长度的字符串任意长度的字符串 </div><div class="line">	任意长度的字符串任意长度的字符串 </div><div class="line">	任意长度的字符串任意长度的字符串</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">#id&#123;</div><div class="line">  width:300px;</div><div class="line">  </div><div class="line">  //一下三个必须全部加上</div><div class="line">  overflow:hidden;</div><div class="line">  text-overflow:ellipsis;</div><div class="line">  white-space:nowrap;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>text-overflow</code>:</p>
+<ul>
+<li>clip : 修剪文本</li>
+<li>ellipsis : 显示省略符号(…)来代表被修剪的文本</li>
+<li>string : 使用给定的字符串来代表被修剪的文本</li>
+</ul>
+<p><code>white-space</code>:</p>
+<ul>
+<li>normal : 默认值。文本自动处理换行。假如抵达容器边界内容会转到下一行</li>
+<li>pre : 换行和其他空白字符都将受到保护</li>
+<li>nowrap : 强制在同一行内显示所有文本，直到文本结束或者遭遇 br 对象</li>
+</ul>
+<h3 id="box-sizing"><a href="#box-sizing" class="headerlink" title="box-sizing"></a><code>box-sizing</code></h3><p>当一个元素加入了边框属性时，边框会被加在元素宽度的外围。此时，元素的实际宽度将大于设定的<code>width</code>值。<br>为了避免这个问题，可以使用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">box-sizing:border-box;</div></pre></td></tr></table></figure>
+<p>那样的话，边框就会位于元素的内侧，元素的总宽度就不会改变</p>
+<h3 id="X-nth-child-n"><a href="#X-nth-child-n" class="headerlink" title="X:nth-child(n)"></a><code>X:nth-child(n)</code></h3><p>该选择器选择的是，X元素的父元素下，第n个(从1开始计数)子元素</p>
+<p>若该子元素不是X元素，则该选择器无效。只有是X元素时才能被选上</p>
+<h3 id="让元素不捕获事件"><a href="#让元素不捕获事件" class="headerlink" title="让元素不捕获事件"></a>让元素不捕获事件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pointer-events: none;</div></pre></td></tr></table></figure>
+<p><a href="https://www.zhihu.com/question/39817183" target="_blank" rel="external"> 有哪些暖心却鲜为人知的属性？</a></p>
+<h3 id="通过3在元素内部（内部的前面或者后面）动态添加元素"><a href="#通过3在元素内部（内部的前面或者后面）动态添加元素" class="headerlink" title="通过3在元素内部（内部的前面或者后面）动态添加元素"></a>通过3在元素内部（内部的前面或者后面）动态添加元素</h3><ul>
+<li><code>::before</code></li>
+<li><p><code>::after</code></p>
+</li>
+<li><p>作用一</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">//建立一个和父元素大小相同的伪元素</div><div class="line">div::before &#123;</div><div class="line">	content: &apos;&apos;; //添加元素的内容</div><div class="line">	position: absolute;</div><div class="line">	top: 0;</div><div class="line">	bottom: 0;</div><div class="line">	left: 0;</div><div class="line">	right: 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>通过这种形式可以添加一个没有内容的空区域，进行多重的阴影效果布局</p>
+<ul>
+<li>作用二</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">div::after &#123;</div><div class="line">	content: &apos;&apos;;</div><div class="line">	display: block;</div><div class="line">	clear: both;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>当父元素内有浮动子元素，且父元素高度不定，需要被子元素撑起时，通过给<code>::after</code>设置<code>clear: both</code>，可以完美达到效果</p>
+<h3 id="使用负的nth-child选取元素"><a href="#使用负的nth-child选取元素" class="headerlink" title="使用负的nth-child选取元素"></a>使用负的<code>nth-child</code>选取元素</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">//使用负的 nth-child 在 1 到 n 之间选择元素</div><div class="line">li &#123;</div><div class="line">	display: none;</div><div class="line">&#125;</div><div class="line">//选择第1到第3个元素并显示它们</div><div class="line">li:nth-child(-n + 3) &#123;</div><div class="line">	display: block;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="currentColor是color属性的值"><a href="#currentColor是color属性的值" class="headerlink" title="currentColor是color属性的值"></a>currentColor是color属性的值</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">div&#123;</div><div class="line">  width: 200px;</div><div class="line">  height: 200px;</div><div class="line">  color: #343434;</div><div class="line">  border: 1px solid currentColor;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="user-select禁止选择文本"><a href="#user-select禁止选择文本" class="headerlink" title="user-select禁止选择文本"></a><code>user-select</code>禁止选择文本</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">div&#123;</div><div class="line">  -webkit-user-select: none;</div><div class="line">  -moz-user-select: none;</div><div class="line">  user-select: none;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="selection可设置文字被选择时的样式"><a href="#selection可设置文字被选择时的样式" class="headerlink" title="selection可设置文字被选择时的样式"></a><code>selection</code>可设置文字被选择时的样式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&amp;::selection &#123;</div><div class="line">    background: #FE6E66;</div><div class="line">    color: #FFF;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#页面变灰"><span class="toc-number">1.</span> <span class="toc-text">页面变灰</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#截断字符串"><span class="toc-number">2.</span> <span class="toc-text">截断字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#box-sizing"><span class="toc-number">3.</span> <span class="toc-text">box-sizing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#X-nth-child-n"><span class="toc-number">4.</span> <span class="toc-text">X:nth-child(n)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#让元素不捕获事件"><span class="toc-number">5.</span> <span class="toc-text">让元素不捕获事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过3在元素内部（内部的前面或者后面）动态添加元素"><span class="toc-number">6.</span> <span class="toc-text">通过3在元素内部（内部的前面或者后面）动态添加元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用负的nth-child选取元素"><span class="toc-number">7.</span> <span class="toc-text">使用负的nth-child选取元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#currentColor是color属性的值"><span class="toc-number">8.</span> <span class="toc-text">currentColor是color属性的值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#user-select禁止选择文本"><span class="toc-number">9.</span> <span class="toc-text">user-select禁止选择文本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#selection可设置文字被选择时的样式"><span class="toc-number">10.</span> <span class="toc-text">selection可设置文字被选择时的样式</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ecmadao.com/2017/01/13/Notes/CSS/CSS-Tips/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ecmadao.com/2017/01/13/Notes/CSS/CSS-Tips/&text=CSS-Tips"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ecmadao.com/2017/01/13/Notes/CSS/CSS-Tips/&title=CSS-Tips"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ecmadao.com/2017/01/13/Notes/CSS/CSS-Tips/&is_video=false&description=CSS-Tips"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=CSS-Tips&body=Check out this article: http://ecmadao.com/2017/01/13/Notes/CSS/CSS-Tips/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ecmadao.com/2017/01/13/Notes/CSS/CSS-Tips/&title=CSS-Tips"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ecmadao.com/2017/01/13/Notes/CSS/CSS-Tips/&title=CSS-Tips"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ecmadao.com/2017/01/13/Notes/CSS/CSS-Tips/&title=CSS-Tips"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ecmadao.com/2017/01/13/Notes/CSS/CSS-Tips/&title=CSS-Tips"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ecmadao.com/2017/01/13/Notes/CSS/CSS-Tips/&name=CSS-Tips&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2017 ecmadao
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    <script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'ecmadao-blog';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
+</body>
+</html>

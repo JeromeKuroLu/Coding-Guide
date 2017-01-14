@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Table of Contents  generated with DocToc
+
+网页渲染过程
+网页渲染
+减少网页渲染
+提高网页性能的技巧
+通过降低刷新率提高性能
+window.requestAnimationFrame()
+window.requestIdleCallback()
+
+
+
+
+
+title: 网页性能优化date: 2016-03-03 09:07:46
+tags: web-d">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网页性能优化">
+<meta property="og:url" content="http://ecmadao.com/2017/01/13/Notes/前端工程/网页性能优化/index.html">
+<meta property="og:site_name" content="ecmadao">
+<meta property="og:description" content="Table of Contents  generated with DocToc
+
+网页渲染过程
+网页渲染
+减少网页渲染
+提高网页性能的技巧
+通过降低刷新率提高性能
+window.requestAnimationFrame()
+window.requestIdleCallback()
+
+
+
+
+
+title: 网页性能优化date: 2016-03-03 09:07:46
+tags: web-d">
+<meta property="og:image" content="http://ecmadao.com/images/E77BD683E27E61A6FD1B0626C79A18B2.png">
+<meta property="og:updated_time" content="2017-01-14T12:11:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="网页性能优化">
+<meta name="twitter:description" content="Table of Contents  generated with DocToc
+
+网页渲染过程
+网页渲染
+减少网页渲染
+提高网页性能的技巧
+通过降低刷新率提高性能
+window.requestAnimationFrame()
+window.requestIdleCallback()
+
+
+
+
+
+title: 网页性能优化date: 2016-03-03 09:07:46
+tags: web-d">
+<meta name="twitter:image" content="http://ecmadao.com/images/E77BD683E27E61A6FD1B0626C79A18B2.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>网页性能优化</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+    <link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    <script src="/lib/jquery/jquery.min.js"></script>
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/01/13/Notes/前端工程/ubuntu/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/01/13/Notes/ember/Ember初探--Core Concept/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ecmadao.com/2017/01/13/Notes/前端工程/网页性能优化/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ecmadao.com/2017/01/13/Notes/前端工程/网页性能优化/&text=网页性能优化"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ecmadao.com/2017/01/13/Notes/前端工程/网页性能优化/&title=网页性能优化"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ecmadao.com/2017/01/13/Notes/前端工程/网页性能优化/&is_video=false&description=网页性能优化"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=网页性能优化&body=Check out this article: http://ecmadao.com/2017/01/13/Notes/前端工程/网页性能优化/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ecmadao.com/2017/01/13/Notes/前端工程/网页性能优化/&title=网页性能优化"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ecmadao.com/2017/01/13/Notes/前端工程/网页性能优化/&title=网页性能优化"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ecmadao.com/2017/01/13/Notes/前端工程/网页性能优化/&title=网页性能优化"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ecmadao.com/2017/01/13/Notes/前端工程/网页性能优化/&title=网页性能优化"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ecmadao.com/2017/01/13/Notes/前端工程/网页性能优化/&name=网页性能优化&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#tags-web-develop"><span class="toc-number">1.</span> <span class="toc-text">tags: web-develop</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#网页渲染过程"><span class="toc-number">2.</span> <span class="toc-text">网页渲染过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#网页渲染"><span class="toc-number">3.</span> <span class="toc-text">网页渲染</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#减少网页渲染"><span class="toc-number">4.</span> <span class="toc-text">减少网页渲染</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#提高网页性能的技巧"><span class="toc-number">5.</span> <span class="toc-text">提高网页性能的技巧</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过降低刷新率提高性能"><span class="toc-number">6.</span> <span class="toc-text">通过降低刷新率提高性能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#window-requestAnimationFrame"><span class="toc-number">6.1.</span> <span class="toc-text">window.requestAnimationFrame()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#window-requestIdleCallback"><span class="toc-number">6.2.</span> <span class="toc-text">window.requestIdleCallback()</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        网页性能优化
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">ecmadao</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-01-13T05:58:37.000Z" itemprop="datePublished">2017-01-13</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/前端工程/">前端工程</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<p><strong>Table of Contents</strong>  <em>generated with <a href="https://github.com/thlorenz/doctoc" target="_blank" rel="external">DocToc</a></em></p>
+<ul>
+<li><a href="#%E7%BD%91%E9%A1%B5%E6%B8%B2%E6%9F%93%E8%BF%87%E7%A8%8B">网页渲染过程</a></li>
+<li><a href="#%E7%BD%91%E9%A1%B5%E6%B8%B2%E6%9F%93">网页渲染</a></li>
+<li><a href="#%E5%87%8F%E5%B0%91%E7%BD%91%E9%A1%B5%E6%B8%B2%E6%9F%93">减少网页渲染</a></li>
+<li><a href="#%E6%8F%90%E9%AB%98%E7%BD%91%E9%A1%B5%E6%80%A7%E8%83%BD%E7%9A%84%E6%8A%80%E5%B7%A7">提高网页性能的技巧</a></li>
+<li><a href="#%E9%80%9A%E8%BF%87%E9%99%8D%E4%BD%8E%E5%88%B7%E6%96%B0%E7%8E%87%E6%8F%90%E9%AB%98%E6%80%A7%E8%83%BD">通过降低刷新率提高性能</a><ul>
+<li><a href="#windowrequestanimationframe"><code>window.requestAnimationFrame()</code></a></li>
+<li><a href="#windowrequestidlecallback"><code>window.requestIdleCallback()</code></a></li>
+</ul>
+</li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<hr>
+<p>title: 网页性能优化<br>date: 2016-03-03 09:07:46</p>
+<h2 id="tags-web-develop"><a href="#tags-web-develop" class="headerlink" title="tags: web-develop"></a>tags: web-develop</h2><h2 id="网页渲染过程"><a href="#网页渲染过程" class="headerlink" title="网页渲染过程"></a>网页渲染过程</h2><p>网页的生成过程，大致可以分成五步：</p>
+<ul>
+<li>HTML代码转化成DOM</li>
+<li>CSS代码转化成CSSOM（CSS Object Model）</li>
+<li>结合DOM和CSSOM，生成一棵渲染树（包含每个节点的视觉信息）</li>
+<li>生成布局（layout），即将所有渲染树的所有节点进行平面合成</li>
+<li>将布局绘制（paint）在屏幕上</li>
+</ul>
+<p>前三步很快，后两步”生成布局”（flow）和”绘制”（paint），合称为”渲染”（render），渲染速度较慢</p>
+<p><img src="/images/E77BD683E27E61A6FD1B0626C79A18B2.png" alt="_NewImage.png"></p>
+<hr>
+<h2 id="网页渲染"><a href="#网页渲染" class="headerlink" title="网页渲染"></a>网页渲染</h2><p>以下三种情况，会导致网页重新渲染：</p>
+<ul>
+<li>修改DOM</li>
+<li>修改样式表</li>
+<li>用户事件（比如鼠标悬停、页面滚动、输入框键入文字、改变窗口大小等等）</li>
+</ul>
+<p>重新渲染，就需要<strong>重新生成布局</strong>和<strong>重新绘制</strong>。<br>前者叫做”重排”（reflow），后者叫做”重绘”（repaint）</p>
+<p>“重绘”不一定需要”重排”，比如改变某个网页元素的颜色，就只会触发”重绘”，不会触发”重排”，因为布局没有改变。<br>“重排”必然导致”重绘”，比如改变一个网页元素的位置，就会同时触发”重排”和”重绘”，因为布局改变了</p>
+<hr>
+<h2 id="减少网页渲染"><a href="#减少网页渲染" class="headerlink" title="减少网页渲染"></a>减少网页渲染</h2><p>提高网页性能，就是要降低”重排”和”重绘”的频率和成本，尽量少触发重新渲染。</p>
+<p>要点：<br><strong>尽量把所有的变动集中在一起，排成一个队列，然后一次性执行，尽量避免多次重新渲染</strong></p>
+<p>（1）下列代码中，div元素有两个样式变动，但是浏览器只会触发一次重排和重绘</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">div.style.color = <span class="string">'blue'</span>;</div><div class="line">div.style.marginTop = <span class="string">'30px'</span>;</div></pre></td></tr></table></figure>
+<p>（2）下面代码对div元素设置背景色以后，第二行要求浏览器给出该元素的位置，所以浏览器不得不立即重排。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">div.style.color = <span class="string">'blue'</span>;</div><div class="line"><span class="keyword">var</span> margin = <span class="built_in">parseInt</span>(div.style.marginTop);</div><div class="line">div.style.marginTop = (margin + <span class="number">10</span>) + <span class="string">'px'</span>;</div></pre></td></tr></table></figure>
+<p>如果有下面这些属性的读操作，都会引发浏览器立即重新渲染：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">offsetTop/offsetLeft/offsetWidth/offsetHeight</div><div class="line">scrollTop/scrollLeft/scrollWidth/scrollHeight</div><div class="line">clientTop/clientLeft/clientWidth/clientHeight</div><div class="line">getComputedStyle()</div></pre></td></tr></table></figure>
+<p><strong>尽量不要把读操作和写操作，放在一个语句里面</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// bad</span></div><div class="line">div.style.left = div.offsetLeft + <span class="number">10</span> + <span class="string">"px"</span>;</div><div class="line">div.style.top = div.offsetTop + <span class="number">10</span> + <span class="string">"px"</span>;</div><div class="line"></div><div class="line"><span class="comment">// good</span></div><div class="line"><span class="keyword">var</span> left = div.offsetLeft;</div><div class="line"><span class="keyword">var</span> top  = div.offsetTop;</div><div class="line">div.style.left = left + <span class="number">10</span> + <span class="string">"px"</span>;</div><div class="line">div.style.top = top + <span class="number">10</span> + <span class="string">"px"</span>;</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="提高网页性能的技巧"><a href="#提高网页性能的技巧" class="headerlink" title="提高网页性能的技巧"></a>提高网页性能的技巧</h2><ul>
+<li>上一节说到的，DOM 的多个读操作（或多个写操作），应该放在一起。不要两个读操作之间，加入一个写操作。</li>
+<li>如果某个样式是通过重排得到的，那么最好缓存结果。避免下一次用到的时候，浏览器又要重排。</li>
+<li>不要一条条地改变样式，而要通过改变class，或者csstext属性，一次性地改变样式。</li>
+<li>尽量使用离线DOM，而不是真实的网面DOM，来改变元素样式。比如，操作Document Fragment对象，完成后再把这个对象加入DOM。再比如，使用 cloneNode() 方法，在克隆的节点上进行操作，然后再用克隆的节点替换原始节点。</li>
+<li>先将元素设为display: none（需要1次重排和重绘），然后对这个节点进行100次操作，最后再恢复显示（需要1次重排和重绘）。这样一来，你就用两次重新渲染，取代了可能高达100次的重新渲染。</li>
+<li>position属性为absolute或fixed的元素，重排的开销会比较小，因为不用考虑它对其他元素的影响。</li>
+<li>只在必要的时候，才将元素的display属性为可见，因为不可见的元素不影响重排和重绘。另外，visibility : hidden的元素只对重绘有影响，不影响重排。</li>
+<li>使用虚拟DOM的脚本库，比如React等。</li>
+<li>使用 window.requestAnimationFrame()、window.requestIdleCallback() 这两个方法调节重新渲染</li>
+</ul>
+<hr>
+<h2 id="通过降低刷新率提高性能"><a href="#通过降低刷新率提高性能" class="headerlink" title="通过降低刷新率提高性能"></a>通过降低刷新率提高性能</h2><h3 id="window-requestAnimationFrame"><a href="#window-requestAnimationFrame" class="headerlink" title="window.requestAnimationFrame()"></a><code>window.requestAnimationFrame()</code></h3><p>下面的代码使用循环操作，将每个元素的高度都增加一倍。可是，每次循环都是，读操作后面跟着一个写操作。这会在短时间内触发大量的重新渲染</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">doubleHeight</span>(<span class="params">element</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> currentHeight = element.clientHeight;</div><div class="line">  element.style.height = (currentHeight * <span class="number">2</span>) + <span class="string">'px'</span>;</div><div class="line">&#125;</div><div class="line">elements.forEach(doubleHeight);</div></pre></td></tr></table></figure>
+<p>在滚动监听中使用，将渲染推迟到下一次：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(<span class="built_in">window</span>).on(<span class="string">'scroll'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">   <span class="built_in">window</span>.requestAnimationFrame(scrollHandler);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="window-requestIdleCallback"><a href="#window-requestIdleCallback" class="headerlink" title="window.requestIdleCallback()"></a><code>window.requestIdleCallback()</code></h3><p>它指定只有当一帧的末尾有空闲时间，才会执行回调函数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">requestIdleCallback(fn);</div></pre></td></tr></table></figure>
+<p>它可以接受第二个参数，表示指定的毫秒数。如果在指定 的这段时间之内，每一帧都没有空闲时间，那么函数fn将会强制执行</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">requestIdleCallback(fn, <span class="number">5000</span>);</div></pre></td></tr></table></figure>
+<p>摘自：<br><a href="http://www.ruanyifeng.com/blog/2015/09/web-page-performance-in-depth.html" target="_blank" rel="external">阮一峰：网页性能管理详解</a></p>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#tags-web-develop"><span class="toc-number">1.</span> <span class="toc-text">tags: web-develop</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#网页渲染过程"><span class="toc-number">2.</span> <span class="toc-text">网页渲染过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#网页渲染"><span class="toc-number">3.</span> <span class="toc-text">网页渲染</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#减少网页渲染"><span class="toc-number">4.</span> <span class="toc-text">减少网页渲染</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#提高网页性能的技巧"><span class="toc-number">5.</span> <span class="toc-text">提高网页性能的技巧</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过降低刷新率提高性能"><span class="toc-number">6.</span> <span class="toc-text">通过降低刷新率提高性能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#window-requestAnimationFrame"><span class="toc-number">6.1.</span> <span class="toc-text">window.requestAnimationFrame()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#window-requestIdleCallback"><span class="toc-number">6.2.</span> <span class="toc-text">window.requestIdleCallback()</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://ecmadao.com/2017/01/13/Notes/前端工程/网页性能优化/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://ecmadao.com/2017/01/13/Notes/前端工程/网页性能优化/&text=网页性能优化"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://ecmadao.com/2017/01/13/Notes/前端工程/网页性能优化/&title=网页性能优化"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://ecmadao.com/2017/01/13/Notes/前端工程/网页性能优化/&is_video=false&description=网页性能优化"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=网页性能优化&body=Check out this article: http://ecmadao.com/2017/01/13/Notes/前端工程/网页性能优化/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://ecmadao.com/2017/01/13/Notes/前端工程/网页性能优化/&title=网页性能优化"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://ecmadao.com/2017/01/13/Notes/前端工程/网页性能优化/&title=网页性能优化"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://ecmadao.com/2017/01/13/Notes/前端工程/网页性能优化/&title=网页性能优化"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://ecmadao.com/2017/01/13/Notes/前端工程/网页性能优化/&title=网页性能优化"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://ecmadao.com/2017/01/13/Notes/前端工程/网页性能优化/&name=网页性能优化&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2017 ecmadao
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    <script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'ecmadao-blog';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
+</body>
+</html>
