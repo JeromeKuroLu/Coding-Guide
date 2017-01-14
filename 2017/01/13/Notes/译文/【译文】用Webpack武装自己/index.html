@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang=zh>
 <head>
     <!-- so meta -->
     <meta charset="utf-8">
@@ -36,17 +36,17 @@ Webpack是啥?
 
 代码分离（require.ensure）
 再加个组件（CommonChunksPlugin）">
-<meta property="og:image" content="http://ecmadao.com/images/WebpackYourBags/what-is-webpack.png">
-<meta property="og:image" content="http://ecmadao.com/images/WebpackYourBags/What-is-Webpack.gif">
-<meta property="og:image" content="http://ecmadao.com/images/WebpackYourBags/example01.png">
-<meta property="og:image" content="http://ecmadao.com/images/WebpackYourBags/example02.png">
-<meta property="og:image" content="http://ecmadao.com/images/WebpackYourBags/example03.gif">
-<meta property="og:image" content="http://ecmadao.com/images/WebpackYourBags/example04.jpg">
-<meta property="og:image" content="http://ecmadao.com/images/WebpackYourBags/example05.png">
-<meta property="og:image" content="http://ecmadao.com/images/WebpackYourBags/example06.gif">
-<meta property="og:image" content="http://ecmadao.com/images/WebpackYourBags/example07.png">
-<meta property="og:image" content="http://ecmadao.com/images/WebpackYourBags/example08.png">
-<meta property="og:updated_time" content="2017-01-14T12:11:43.000Z">
+<meta property="og:image" content="http://ecmadao.com/Coding-Guide/images/WebpackYourBags/what-is-webpack.png">
+<meta property="og:image" content="http://ecmadao.com/Coding-Guide/images/WebpackYourBags/What-is-Webpack.gif">
+<meta property="og:image" content="http://ecmadao.com/Coding-Guide/images/WebpackYourBags/example01.png">
+<meta property="og:image" content="http://ecmadao.com/Coding-Guide/images/WebpackYourBags/example02.png">
+<meta property="og:image" content="http://ecmadao.com/Coding-Guide/images/WebpackYourBags/example03.gif">
+<meta property="og:image" content="http://ecmadao.com/Coding-Guide/images/WebpackYourBags/example04.jpg">
+<meta property="og:image" content="http://ecmadao.com/Coding-Guide/images/WebpackYourBags/example05.png">
+<meta property="og:image" content="http://ecmadao.com/Coding-Guide/images/WebpackYourBags/example06.gif">
+<meta property="og:image" content="http://ecmadao.com/Coding-Guide/images/WebpackYourBags/example07.png">
+<meta property="og:image" content="http://ecmadao.com/Coding-Guide/images/WebpackYourBags/example08.png">
+<meta property="og:updated_time" content="2017-01-14T13:18:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【译文】用Webpack武装自己">
 <meta name="twitter:description" content="Table of Contents  generated with DocToc
@@ -62,7 +62,7 @@ Webpack是啥?
 
 代码分离（require.ensure）
 再加个组件（CommonChunksPlugin）">
-<meta name="twitter:image" content="http://ecmadao.com/images/WebpackYourBags/what-is-webpack.png">
+<meta name="twitter:image" content="http://ecmadao.com/Coding-Guide/images/WebpackYourBags/what-is-webpack.png">
     
     
         
@@ -111,7 +111,7 @@ Webpack是啥?
          
           <li><a href="/Coding-Guide/archives/">Articles</a></li>
          
-          <li><a href="http://github.com/probberechts">Projects</a></li>
+          <li><a href="http://github.com/ecmadao">Projects</a></li>
         
       </ul>
     </span>
@@ -119,8 +119,10 @@ Webpack是啥?
     <span id="actions">
       <ul>
         
+        <li><a class="icon" href="/Coding-Guide/2017/01/13/Notes/译文/【译文】构建积极友好的 UI/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
         
-        <li><a class="icon" href="/Coding-Guide/2017/01/13/Notes/CSS/PostCSS配置指北/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="/Coding-Guide/2017/01/13/Notes/译文/【译文】网页设计中隐藏在色彩之后的情感和心理学/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
         <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
@@ -216,7 +218,7 @@ Webpack是啥?
 <h2 id="【译文】用Webpack武装自己"><a href="#【译文】用Webpack武装自己" class="headerlink" title="【译文】用Webpack武装自己"></a>【译文】用Webpack武装自己</h2><blockquote>
 <p>译自：<a href="https://blog.madewithlove.be/post/webpack-your-bags/" target="_blank" rel="external">Webpack your bags</a></p>
 </blockquote>
-<p><img src="/images/WebpackYourBags/what-is-webpack.png" alt="what-is-webpack"></p>
+<p><img src="/Coding-Guide/images/WebpackYourBags/what-is-webpack.png" alt="what-is-webpack"></p>
 <p>你可能已经听说过这个酷酷的工具-Webpack。一些人称之为类似于Gulp的工具，还有一些人则认为它类似于Browserify。如果你还没接触过它，那很有可能会因此感到困惑。而Webpack的主页上则认为它是两者的结合，那或许更让你困惑了。</p>
 <p>说实话，一开始的时候，“什么是Webpack”这个话题让我很心烦，也就没有继续研究下去了。直到后来，当我已经构建了几个项目后，才真心的为之痴迷。如果你像我一样紧随Javascript的发展步伐，你很有可能会因为太追随潮流跨度太大而蛋疼。在经历了上面这些之后，我写下这篇文章，以便更加细致的解释Webpack是什么，以及它如此重要的原因。</p>
 <h3 id="Webpack是啥"><a href="#Webpack是啥" class="headerlink" title="Webpack是啥?"></a>Webpack是啥?</h3><p>首先来让我们回答最开始的问题：Webpack是个系统的构建工具，还是打包工具？答案是两者都是–这不代表它做了这两件事（先构建资源，在分别进行打包），而是说它将两者结合在一起了。</p>
@@ -227,7 +229,7 @@ Webpack是啥?
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="comment">// 如果引用了 .ts 文件, 将会触发 Typescript loader</span></div><div class="line">  test: <span class="regexp">/\.ts/</span>,</div><div class="line">  <span class="attr">loader</span>: <span class="string">'typescript'</span>,</div><div class="line">&#125;,</div><div class="line">&#123;</div><div class="line">  <span class="comment">// 如果引用了png|jpg|svg图片,则会用 image-webpack 进行压缩 (wrapper around imagemin)</span></div><div class="line">  <span class="comment">// 并转化成 data64 URL 格式</span></div><div class="line">  test: <span class="regexp">/\.(png|jpg|svg)/</span>,</div><div class="line">  <span class="attr">loaders</span>: [<span class="string">'url'</span>, <span class="string">'image-webpack'</span>],</div><div class="line">&#125;,</div><div class="line">&#123;</div><div class="line">  <span class="comment">// 如果使用了 SCSS files, 则会用 node-sass 解析, 最终返回CSS格式</span></div><div class="line">  test: <span class="regexp">/\.scss/</span>,</div><div class="line">  <span class="attr">loaders</span>: [<span class="string">'css'</span>, <span class="string">'autoprefixer'</span>, <span class="string">'sass'</span>],</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>最终在食物链的最底端，所有的<code>loader</code>都返回<code>string</code>，这样Webpack就可以将它们加入到javascript模块中去。当你的Sass文件被loader转换之后，它的引用实际上是这样的：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="string">'body&#123;font-size:12px&#125;'</span>;</div></pre></td></tr></table></figure>
-<p><img src="/images/WebpackYourBags/What-is-Webpack.gif" alt="What-is-Webpack"></p>
+<p><img src="/Coding-Guide/images/WebpackYourBags/What-is-Webpack.gif" alt="What-is-Webpack"></p>
 <h3 id="究竟为什么要这么做？"><a href="#究竟为什么要这么做？" class="headerlink" title="究竟为什么要这么做？"></a>究竟为什么要这么做？</h3><p>在你理解了Webpack是做什么的之后，第二个问题就接踵而至：使用它有什么好处？“把图片和CSS扔进我的js里？什么鬼？”其实在很久之前，为了减少HTTP request请求，我们都被教育要把所有东西写在一个文件里面。</p>
 <p>到了现在，与之类似的是，很多人把所有东西打包进<code>app.js</code>。这两种方法都有一个很大的负面影响：很多时候人们在下载的是他们用不到的资源。但如果你不这么做吧，你就得手动的在每个页面引用相应的资源，最终会混乱成一坨：哪个页面已经引用了它所依赖的资源？</p>
 <p>这些方法没有绝对的对错。把Webpage当做一个中间件–不仅仅是打包或构建工具，而是个聪明的模块打包系统。只要你设置正确，它会比你还要清楚使用的技术栈，并更好的优化它们。</p>
@@ -270,7 +272,7 @@ Webpack是啥?
 <p>你的<code>Button.js</code>现在处于完全独立的状态，不管何时何地的引用它，都能获取到所有需要的依赖并渲染出来。现在渲染我们的按钮试试：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// src/index.js</span></div><div class="line"><span class="keyword">import</span> Button <span class="keyword">from</span> ‘./Components/Button’;</div><div class="line"></div><div class="line"><span class="keyword">const</span> button = <span class="keyword">new</span> Button(‘google.com’); </div><div class="line">button.render(‘a’);</div></pre></td></tr></table></figure>
 <p>运行Webpack，刷新页面，立刻就能看见我们这个难看的按钮了。</p>
-<p><img src="/images/WebpackYourBags/example01.png" alt="example01"></p>
+<p><img src="/Coding-Guide/images/WebpackYourBags/example01.png" alt="example01"></p>
 <p>现在你已经学习了如何安装loader，以及定义各个依赖配置。看起来好像也没啥。但让我们来深入扩展一下这个例子。</p>
 <h3 id="代码分离（require-ensure）"><a href="#代码分离（require-ensure）" class="headerlink" title="代码分离（require.ensure）"></a>代码分离（<code>require.ensure</code>）</h3><p>上面的例子还不错，但我们并不总是需要这个按钮。或许有的页面没有可以用来渲染按钮的<code>a</code>，我们并不想在这样的页面引用按钮的资源文件。这种时候代码分离就能起到作用了。代码分离是Webpack对于“整块全部打包”vs“难以维护的手动引导”这个问题而给出的解决方案。这需要在你的代码中设定“分离点”：代码可以据此分离成不同区域进行按需加载。它的语法很简单：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> $ <span class="keyword">from</span> <span class="string">'jquery'</span>;</div><div class="line"></div><div class="line"><span class="comment">// 这个是分割点</span></div><div class="line"><span class="built_in">require</span>.ensure([], () =&gt; &#123;</div><div class="line">  <span class="comment">// 在这里import进的代码都会被打包到一个单独的文件里</span></div><div class="line">  <span class="keyword">const</span> library = <span class="built_in">require</span>(<span class="string">'some-big-library'</span>);</div><div class="line">  $(<span class="string">'foo'</span>).click(<span class="function"><span class="params">()</span> =&gt;</span> library.doSomething());</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
@@ -286,7 +288,7 @@ Webpack是啥?
 <p>正如你所见的那样，我们的入口<code>bundle.js</code>值包含了一些逻辑，而其他东西（jQuery，Mustache，Button）都被打包进了<code>1.bundle.js</code>，并且只在需要的时候才会被引用。现在为了能够让Webpack在AJAX的时候找到这些资源，我们需要改下配置里的<code>output</code>：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">path: <span class="string">'builds'</span>,</div><div class="line"><span class="attr">filename</span>: <span class="string">'bundle.js'</span>,</div><div class="line"><span class="attr">publicPath</span>: <span class="string">'builds/'</span>,</div></pre></td></tr></table></figure>
 <p><code>output.publicPath</code>告诉Webpack，从当前页面的位置出发哪里可以找到需要的资源（在这个例子里是<code>/builds/</code>）。当我们加载页面的时候一切正常，而且能够看见Webpack已经根据页面上预留的“锚”加载好了包。</p>
-<p><img src="/images/WebpackYourBags/example02.png" alt="example02"></p>
+<p><img src="/Coding-Guide/images/WebpackYourBags/example02.png" alt="example02"></p>
 <p>如果页面上缺少“锚”(代指link)，那么只会加载<code>bundle.js</code>。通过这种方式，你可以做到在真正需要资源的时候才进行加载，避免让自己的页面变成笨重的一坨。顺带一提，我们可以改变分割点的名字，不使用<code>1.bundle.js</code>而使用更加语义化的名称。通过<code>require.ensure</code>的第三个参数来实现：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">require</span>.ensure([], () =&gt; &#123;</div><div class="line">    <span class="keyword">const</span> Button = <span class="built_in">require</span>(<span class="string">'./Components/Button'</span>).default;</div><div class="line">    <span class="keyword">const</span> button = <span class="keyword">new</span> Button(<span class="string">'google.com'</span>);</div><div class="line"></div><div class="line">    button.render(<span class="string">'a'</span>);</div><div class="line">&#125;, <span class="string">'button'</span>);</div></pre></td></tr></table></figure>
 <p>这样的话就会生成<code>button.bundle.js</code>而不是<code>1.bundle.js</code></p>
@@ -336,7 +338,7 @@ Webpack是啥?
 <p>但是这样下去，Webpack岂不是会将js文件合并成巨大的一坨吗？</p>
 </blockquote>
 <p>是的，在这个小小的应用中是这样没错。但是你需要这么想：你不需要考虑在什么时候合并什么。如果你的包中含有太多的依赖，它们会被移走到异步请求包中而不会被合并起来。反之，如果它们很小，不值得独立加载，那么就会被合并。你只需要建立规则，Webpack会最大化的将其优化。没有人力劳作，不需要思考依赖关系，一切都是自动化的。</p>
-<p><img src="/images/WebpackYourBags/example03.gif" alt="example03"></p>
+<p><img src="/Coding-Guide/images/WebpackYourBags/example03.gif" alt="example03"></p>
 <p>或许你已经注意到了，我没有对HTML或CSS进行压缩。那是因为当<code>debug</code>模式开启的时候，<code>css-loader</code>和<code>html-loader</code>已经帮我们搞好了。这也是为什么Uglify是一个独立插件的原因：在Webpack中没有<code>js-loader</code>这种东西，Webpack自己就是个JS loader。</p>
 <h3 id="抽取（extract-text-webpack-plugin）"><a href="#抽取（extract-text-webpack-plugin）" class="headerlink" title="抽取（extract-text-webpack-plugin）"></a>抽取（<code>extract-text-webpack-plugin</code>）</h3><p>可能你已经注意到了，从这个教程一开始，Webpack打包好之后，我们的样式就直接插在网页页面上，简直不能更难看了。能通过Webpack把打包过的CSS生成独立的文件吗？当然没问题：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install extract-text-webpack-plugin --save-dev</div></pre></td></tr></table></figure>
@@ -350,7 +352,7 @@ Webpack是啥?
 <p>如果你想提取出所有包里的样式，则需要设置<code>ExtractTextPlugin(&#39;bundle.css&#39;, {allChunks: true})</code></p>
 <p>顺带一提，你也可以自定义文件名，就跟之前说的改变js output-file名称一样：<code>ExtractTextPlugin(&#39;[name]-[hash].css&#39;)</code></p>
 <h3 id="使用图片（url-loader-amp-file-loader）"><a href="#使用图片（url-loader-amp-file-loader）" class="headerlink" title="使用图片（url-loader&amp;file-loader）"></a>使用图片（<code>url-loader</code>&amp;<code>file-loader</code>）</h3><p>到目前为止，我们还没处理例如图片、字体这样的资源文件。它们在Webpack中如何工作，我们又该如何优化？接下来，我要在网站的背景里加入图片，看起来一定酷酷的：</p>
-<p><img src="/images/WebpackYourBags/example04.jpg" alt="example04"></p>
+<p><img src="/Coding-Guide/images/WebpackYourBags/example04.jpg" alt="example04"></p>
 <p>把图片保存在<code>img/puppy.jpg</code>，更新下Sass文件：</p>
 <figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// src/styles.scss</span></div><div class="line"><span class="selector-tag">body</span> &#123;</div><div class="line">    <span class="attribute">font-family</span>: sans-serif;</div><div class="line">    <span class="attribute">background</span>: darken(white, <span class="number">0.2</span>);</div><div class="line">    <span class="attribute">background-image</span>: url(<span class="string">'../img/puppy.jpg'</span>);</div><div class="line">    <span class="attribute">background-size</span>: cover;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>如果仅仅是这样，Webpack一定会告诉你：“你特么的想让我对JPG做啥？”，那是因为还没有加入对应的loader。有两种loader可以使用：<code>file-loader</code>和<code>url-loader</code>：</p>
@@ -366,8 +368,8 @@ Webpack是啥?
 <p>来瞅一眼Webpack的输出：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">bundle.js   <span class="number">15</span> kB       <span class="number">0</span>  [emitted]  main</div><div class="line"><span class="number">1</span>-b8256867498f4be01fd7.js  <span class="number">317</span> kB       <span class="number">1</span>  [emitted]</div><div class="line"><span class="number">2</span>-e1bc215a6b91d55a09aa.js  <span class="number">317</span> kB       <span class="number">2</span>  [emitted]</div><div class="line">               bundle.css  <span class="number">2.9</span> kB       <span class="number">0</span>  [emitted]  main</div></pre></td></tr></table></figure>
 <p>输出里面没有JPG图像，那是因为我们的小狗图片比配置里限制的大小要小，因此被加到了行内。访问页面，你就能看见这只可爱的小狗了。</p>
-<p><img src="/images/WebpackYourBags/example05.png" alt="example05"></p>
-<p>这是一个非常强大的功能，它意味着Webpack可以智能的根据资源的大小和HTTP请求占有的比率，采取不同的优化方案。还有一个叫做<a href="/images/-webpack-loader">image-loader</a>的loader，可以在打包前检查所有图片，避免图片的重复压缩。它有一个叫<code>?bypassOnDebug</code>的参数，通过它你可以只在生产环境下启动该插件。</p>
+<p><img src="/Coding-Guide/images/WebpackYourBags/example05.png" alt="example05"></p>
+<p>这是一个非常强大的功能，它意味着Webpack可以智能的根据资源的大小和HTTP请求占有的比率，采取不同的优化方案。还有一个叫做<a href="/Coding-Guide/images/-webpack-loader">image-loader</a>的loader，可以在打包前检查所有图片，避免图片的重复压缩。它有一个叫<code>?bypassOnDebug</code>的参数，通过它你可以只在生产环境下启动该插件。</p>
 <p>还有很多优秀的插件，我强烈建议你使用文末的链接去查看它们。</p>
 <h3 id="来个牛逼的热加载（dev-server）"><a href="#来个牛逼的热加载（dev-server）" class="headerlink" title="来个牛逼的热加载（dev-server）"></a>来个牛逼的热加载（dev-server）</h3><p>我们的生产环境以及整的差不多了，现在应该更多的关心一下本地开发。或许你以及注意到了，当人们提及开发工具的时候，总是会提及热加载：LiveReload，BrowserSync，或者其他的什么鬼东西。但是只有傻瓜才会整页的刷新，我们则使用更高端的热加载。因为Webpack可以确切的知道你依赖树中某一点位置的代码，因此每次的改变都会据此生成一个新的文件。简单的说，就是不需要刷新页面就能将改变展现在屏幕上。</p>
 <p>为了能够使用HMR，我们需要一个server来启动热加载。Webpack提供的<code>dev-server</code>可以完成这个任务：</p>
@@ -375,7 +377,7 @@ Webpack是啥?
 <p>安装下面的命令启动server，不能再简单了：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ webpack-dev-server --inline --hot</div></pre></td></tr></table></figure>
 <p>第一个标记<code>--inline</code>是让Webpack把HMR逻辑直接写入页面上而不是放到iframe里，而第二个标记则开启了HMR。接下来，访问<code>http://localhost:8080/webpack-dev-server/</code>,嗯还是那个正常的页面。试着修改Sass文件，MAGIC！</p>
-<p><img src="/images/WebpackYourBags/example06.gif" alt="example06"></p>
+<p><img src="/Coding-Guide/images/WebpackYourBags/example06.gif" alt="example06"></p>
 <p>你可以把webpack-dev-server作为自己本地的server。如果你打算一直使用HMR，就需要这么配置：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">output: &#123;</div><div class="line">    <span class="attr">path</span>: <span class="string">'builds'</span>,</div><div class="line">    <span class="attr">filename</span>: production ? <span class="string">'[name]-[hash].js'</span> : <span class="string">'bundle.js'</span>,</div><div class="line">    <span class="attr">chunkFilename</span>: <span class="string">'[name]-[chunkhash].js'</span>,</div><div class="line">    <span class="attr">publicPath</span>: <span class="string">'builds/'</span>,</div><div class="line">&#125;,</div><div class="line"><span class="attr">devServer</span>: &#123;</div><div class="line">    <span class="attr">hot</span>: <span class="literal">true</span>,</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
 <p>这样的话，不管我们什么时候运行<code>webpack-dev-server</code>，都会是HMR模式。值得一提的是，我们在这里使用<code>webpack-dev-server</code>对资源进行热加载，但也可以使用在其他地方例如Express server上。Webpack提供了一个中间件，使得你可以把HMR的功能用在其他server上。</p>
@@ -399,10 +401,10 @@ Webpack是啥?
 <h3 id="还没看够？"><a href="#还没看够？" class="headerlink" title="还没看够？"></a>还没看够？</h3><p>现在我们的应用还很小，当它变的庞大的时候，观测依赖树就变的非常有用了，从中可以看出我们做的是对是错，应用的瓶颈在哪里等等。Webpack知晓这一切，不过我们得礼貌的请教它才能知晓答案。为了做到这点，你可以通过下面的命令运行Webpack：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">webpack --profile --json &gt; stats.json</div></pre></td></tr></table></figure>
 <p>第一个标记会让Webpack生成一个profile文件，而第二个则将它转化为JSON格式。最终，讲所有的output都生成了JSON文件。现在有很多网站都可以解析这个JSON文件，不过Webpack官方提供了一个解码的网站<a href="http://webpack.github.io/analyse/" target="_blank" rel="external">Webpack Analyze</a>。将JSON文件导入，进入Modules板块，就可以看见自己依赖树的可视化图像：</p>
-<p><img src="/images/WebpackYourBags/example07.png" alt="example07"></p>
+<p><img src="/Coding-Guide/images/WebpackYourBags/example07.png" alt="example07"></p>
 <p>小圆点越红，则证明在打包的时候越困难。在这个例子中，jQuery作为最大的文件而成为罪魁祸首。再瞅瞅网站上的其他模块。或许你无法从这个小小的例子里学到很多东西，但是这个工具在分析依赖树和包的时候真的非常有用。</p>
 <p>我之前提过，现在有很多服务提供可以对profile文件进行分析。其中一个是<a href="http://chrisbateman.github.io/webpack-visualizer/" target="_blank" rel="external">Webpack Visualizer</a>，它可以以饼状图的形式告知你各个文件占据了多大的比重：</p>
-<p><img src="/images/WebpackYourBags/example08.png" alt="example08"></p>
+<p><img src="/Coding-Guide/images/WebpackYourBags/example08.png" alt="example08"></p>
 <h3 id="就先讲到这儿吧"><a href="#就先讲到这儿吧" class="headerlink" title="就先讲到这儿吧"></a>就先讲到这儿吧</h3><p>对我而言，Webpack已经取代了Grunt或者Gulp：大部分的功能可以使用Webpack替代，其他的则使用NPM脚本就够了。在以前，每个任务中我们都要通过Aglio，把API文档转换为HTML，而现在只需要这么做：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// package.json</span></div><div class="line">&#123;</div><div class="line">  <span class="string">"scripts"</span>: &#123;</div><div class="line">    <span class="string">"build"</span>: <span class="string">"webpack"</span>,</div><div class="line">    <span class="string">"build:api"</span>: <span class="string">"aglio -i docs/api/index.apib -o docs/api/index.html"</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>即便是一些不需要打包和构建的Glup任务，Webpack都贴心的提供了对应的服务。下面是一个将Glup融合进Webpack的例子：</p>
@@ -442,7 +444,7 @@ Webpack是啥?
          
           <li><a href="/Coding-Guide/archives/">Articles</a></li>
          
-          <li><a href="http://github.com/probberechts">Projects</a></li>
+          <li><a href="http://github.com/ecmadao">Projects</a></li>
         
       </ul>
     </div>
@@ -494,7 +496,7 @@ Webpack是啥?
          
           <li><a href="/Coding-Guide/archives/">Articles</a></li>
          
-          <li><a href="http://github.com/probberechts">Projects</a></li>
+          <li><a href="http://github.com/ecmadao">Projects</a></li>
         
       </ul>
     </nav>

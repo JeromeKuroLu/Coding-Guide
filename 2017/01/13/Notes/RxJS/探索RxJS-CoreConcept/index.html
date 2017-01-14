@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang=zh>
 <head>
     <!-- so meta -->
     <meta charset="utf-8">
@@ -42,13 +42,13 @@ Quick Intro
 
 探索 RxJS - Core ConceptSteam in ReactiveX
 ReactiveX，又称 Reacti">
-<meta property="og:image" content="http://ecmadao.com/images/RxJS/Rx.png">
-<meta property="og:image" content="http://ecmadao.com/images/RxJS/everything is a steam.jpg">
-<meta property="og:image" content="http://ecmadao.com/images/RxJS/multiple click steam.png">
-<meta property="og:image" content="http://ecmadao.com/images/RxJS/click steam.png">
-<meta property="og:image" content="http://ecmadao.com/images/RxJS/click steam filtered.png">
-<meta property="og:image" content="http://ecmadao.com/images/RxJS/flatMapLatest.png">
-<meta property="og:updated_time" content="2017-01-14T12:11:43.000Z">
+<meta property="og:image" content="http://ecmadao.com/Coding-Guide/images/RxJS/Rx.png">
+<meta property="og:image" content="http://ecmadao.com/Coding-Guide/images/RxJS/everything is a steam.jpg">
+<meta property="og:image" content="http://ecmadao.com/Coding-Guide/images/RxJS/multiple click steam.png">
+<meta property="og:image" content="http://ecmadao.com/Coding-Guide/images/RxJS/click steam.png">
+<meta property="og:image" content="http://ecmadao.com/Coding-Guide/images/RxJS/click steam filtered.png">
+<meta property="og:image" content="http://ecmadao.com/Coding-Guide/images/RxJS/flatMapLatest.png">
+<meta property="og:updated_time" content="2017-01-14T13:18:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="探索RxJS-CoreConcept">
 <meta name="twitter:description" content="Table of Contents  generated with DocToc
@@ -67,7 +67,7 @@ Quick Intro
 
 探索 RxJS - Core ConceptSteam in ReactiveX
 ReactiveX，又称 Reacti">
-<meta name="twitter:image" content="http://ecmadao.com/images/RxJS/Rx.png">
+<meta name="twitter:image" content="http://ecmadao.com/Coding-Guide/images/RxJS/Rx.png">
     
     
         
@@ -116,7 +116,7 @@ ReactiveX，又称 Reacti">
          
           <li><a href="/Coding-Guide/archives/">Articles</a></li>
          
-          <li><a href="http://github.com/probberechts">Projects</a></li>
+          <li><a href="http://github.com/ecmadao">Projects</a></li>
         
       </ul>
     </span>
@@ -124,10 +124,10 @@ ReactiveX，又称 Reacti">
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/Coding-Guide/2017/01/13/Notes/React/Learn Draft-js/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        <li><a class="icon" href="/Coding-Guide/2017/01/13/Notes/RxJS/探索RxJS-Observable/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
         
         
-        <li><a class="icon" href="/Coding-Guide/2017/01/13/Notes/RxJS/探索RxJS-Observable/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        <li><a class="icon" href="/Coding-Guide/2017/01/13/Notes/RxJS/探索RxJS-做一个github小应用/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
         <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
@@ -209,23 +209,23 @@ ReactiveX，又称 Reacti">
 </li>
 </ul>
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
-<h2 id="探索-RxJS-Core-Concept"><a href="#探索-RxJS-Core-Concept" class="headerlink" title="探索 RxJS - Core Concept"></a>探索 RxJS - Core Concept</h2><h3 id="Steam-in-ReactiveX"><a href="#Steam-in-ReactiveX" class="headerlink" title="Steam in ReactiveX"></a>Steam in ReactiveX</h3><p><img src="/images/RxJS/Rx.png" alt="ReactiveX"></p>
+<h2 id="探索-RxJS-Core-Concept"><a href="#探索-RxJS-Core-Concept" class="headerlink" title="探索 RxJS - Core Concept"></a>探索 RxJS - Core Concept</h2><h3 id="Steam-in-ReactiveX"><a href="#Steam-in-ReactiveX" class="headerlink" title="Steam in ReactiveX"></a>Steam in ReactiveX</h3><p><img src="/Coding-Guide/images/RxJS/Rx.png" alt="ReactiveX"></p>
 <p>ReactiveX，又称 Reactive Extensions（响应式扩展），其中的 X 代表各种语言。因为它实质上只是一个事件流处理库，不需要什么其他依赖。</p>
 <hr>
 <p>讲一讲 ReactiveX 中的 “流”：</p>
 <p>我的理解是，Rx 通过 “流” 的概念，将事件串联成一个个事件流，各个事件流之间还可进行 “并联” 的作用。当某个流上的事件被调用时，就可以触发我们设定好的监听回调。</p>
 <p>那么什么样的事件可以成为流呢？答案是任何事件。无论是异步非阻塞事件（setTimeOut、网络请求等），还是同步可阻塞事件（点击事件、对迭代器的遍历等），一切都是流。此时不得不祭出一张神棍图：</p>
-<p><img src="/images/RxJS/everything is a steam.jpg" alt="everything is a steam"></p>
+<p><img src="/Coding-Guide/images/RxJS/everything is a steam.jpg" alt="everything is a steam"></p>
 <p>事件的串联是流。比方说，用户对一个按钮进行了猛烈的点击，所有的点击事件就是一个流；再或者，并发多个网络请求，它们也是一个流。而 Rx 的主要作用，就是为流的处理提供了一整套的解决方案：将不同的流进行组合，或者监听事件的触发及时给予响应等等。</p>
 <h3 id="Quick-Intro"><a href="#Quick-Intro" class="headerlink" title="Quick Intro"></a>Quick Intro</h3><p>RxJS 的作者曾在 <a href="https://gist.github.com/staltz/868e7e9bc2a7b8c1f754" target="_blank" rel="external">The introduction to Reactive Programming you’ve been missing</a> 一文中详细讲解了 RxJS 的初步使用和流的概念，我们先仅看文中的一幅图来理解 Rx 的概念：</p>
-<p><img src="/images/RxJS/multiple click steam.png" alt="multiple click steam"></p>
+<p><img src="/Coding-Guide/images/RxJS/multiple click steam.png" alt="multiple click steam"></p>
 <p>这是一个多次点击事件形成的事件流，在从左往右的时间线上有很多个点击事件，而每个点击事件的时间间隔各不相同。通过 Rx 我们可以对流上的各个事件进行筛选，并获取到在某一段时间内的连续点击次数。</p>
 <p>作者自己吐槽过那篇文章实在太长，所以又有了后来的这篇 <a href="https://medium.com/@andrestaltz/2-minute-introduction-to-rx-24c8ca793877" target="_blank" rel="external">2 minute introduction to Rx</a> 文章。在文章中有如下解释：</p>
 <p>我们在页面上的点击事件就可以组成流。比如一个记录每次点击时坐标的流。随机点击页面多次之后，可能会产生这样一个流：</p>
-<p><img src="/images/RxJS/click steam.png" alt="click steam"></p>
+<p><img src="/Coding-Guide/images/RxJS/click steam.png" alt="click steam"></p>
 <p>而我们可以通过 RxJS 中的方法对这个流内的各个事件进行筛选，比如选出横坐标 x &lt; 250 的点击：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">filter( (event) -&gt; event.x &lt; <span class="number">250</span> )</div></pre></td></tr></table></figure>
-<p><img src="/images/RxJS/click steam filtered.png" alt="click steam filtered"></p>
+<p><img src="/Coding-Guide/images/RxJS/click steam filtered.png" alt="click steam filtered"></p>
 <p>也就是说，我们可以像对待 JavaScript 中可遍历对象一样，对流上的各个事件进行遍历，选出符合条件的事件。这就是 Rx 的魅力所在。</p>
 <h3 id="主要运用场景"><a href="#主要运用场景" class="headerlink" title="主要运用场景"></a>主要运用场景</h3><p>既然 Rx 是为了流而生的，那么最佳运用场景当然是面对一系列较复杂的事件流时了。</p>
 <h4 id="含有异步请求和事件触发的混合流"><a href="#含有异步请求和事件触发的混合流" class="headerlink" title="含有异步请求和事件触发的混合流"></a>含有异步请求和事件触发的混合流</h4><p>比如，用户在一个 input 内输入文字。每次<code>keyup</code>的时候就会根据输入内容，请求 Wikipedia 的 API 进行搜索：</p>
@@ -241,7 +241,7 @@ ReactiveX，又称 Reacti">
 </ul>
 </li>
 </ul>
-<p><img src="/images/RxJS/flatMapLatest.png" alt="flatMapLatest"></p>
+<p><img src="/Coding-Guide/images/RxJS/flatMapLatest.png" alt="flatMapLatest"></p>
 <ul>
 <li><a href="http://reactivex.io/documentation/operators/subscribe.html" target="_blank" rel="external"><code>subscribe</code></a> 创建对流的监听，并提供了成功和失败的回调</li>
 </ul>
@@ -285,7 +285,7 @@ ReactiveX，又称 Reacti">
          
           <li><a href="/Coding-Guide/archives/">Articles</a></li>
          
-          <li><a href="http://github.com/probberechts">Projects</a></li>
+          <li><a href="http://github.com/ecmadao">Projects</a></li>
         
       </ul>
     </div>
@@ -337,7 +337,7 @@ ReactiveX，又称 Reacti">
          
           <li><a href="/Coding-Guide/archives/">Articles</a></li>
          
-          <li><a href="http://github.com/probberechts">Projects</a></li>
+          <li><a href="http://github.com/ecmadao">Projects</a></li>
         
       </ul>
     </nav>

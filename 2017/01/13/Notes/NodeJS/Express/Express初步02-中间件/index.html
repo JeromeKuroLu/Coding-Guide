@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang=zh>
 <head>
     <!-- so meta -->
     <meta charset="utf-8">
@@ -46,9 +46,9 @@ Express初步02 - 中间件
 
 Express初步02 - 中间件中间件概念
 中间件函数能够访问请求对象 (req)、响应对象 (res) 以及应用程序的请求/响应循环中的下一个中间件函数。下一个中间件">
-<meta property="og:image" content="http://ecmadao.com/images/zhongjianjian.png">
-<meta property="og:image" content="http://ecmadao.com/images/express-options-properties.png">
-<meta property="og:updated_time" content="2017-01-14T12:11:43.000Z">
+<meta property="og:image" content="http://ecmadao.com/Coding-Guide/images/zhongjianjian.png">
+<meta property="og:image" content="http://ecmadao.com/Coding-Guide/images/express-options-properties.png">
+<meta property="og:updated_time" content="2017-01-14T13:18:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Express初步02-中间件">
 <meta name="twitter:description" content="Table of Contents  generated with DocToc
@@ -69,7 +69,7 @@ Express初步02 - 中间件
 
 Express初步02 - 中间件中间件概念
 中间件函数能够访问请求对象 (req)、响应对象 (res) 以及应用程序的请求/响应循环中的下一个中间件函数。下一个中间件">
-<meta name="twitter:image" content="http://ecmadao.com/images/zhongjianjian.png">
+<meta name="twitter:image" content="http://ecmadao.com/Coding-Guide/images/zhongjianjian.png">
     
     
         
@@ -118,7 +118,7 @@ Express初步02 - 中间件中间件概念
          
           <li><a href="/Coding-Guide/archives/">Articles</a></li>
          
-          <li><a href="http://github.com/probberechts">Projects</a></li>
+          <li><a href="http://github.com/ecmadao">Projects</a></li>
         
       </ul>
     </span>
@@ -129,7 +129,7 @@ Express初步02 - 中间件中间件概念
         <li><a class="icon" href="/Coding-Guide/2017/01/13/Notes/NodeJS/Express/Express初步01-了解架构/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
         
         
-        <li><a class="icon" href="/Coding-Guide/2017/01/13/Notes/NodeJS/Express/Express初步04-模板引擎与View层(jade)/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        <li><a class="icon" href="/Coding-Guide/2017/01/13/Notes/NodeJS/Express/Express初步05-MongoDB/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
         <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
@@ -216,7 +216,7 @@ Express初步02 - 中间件中间件概念
 <h2 id="Express初步02-中间件"><a href="#Express初步02-中间件" class="headerlink" title="Express初步02 - 中间件"></a>Express初步02 - 中间件</h2><h3 id="中间件概念"><a href="#中间件概念" class="headerlink" title="中间件概念"></a>中间件概念</h3><blockquote>
 <p>中间件函数能够访问请求对象 (req)、响应对象 (res) 以及应用程序的请求/响应循环中的下一个中间件函数。下一个中间件函数通常由名为 next 的变量来表示</p>
 </blockquote>
-<p><img src="/images/zhongjianjian.png" alt="中间件"></p>
+<p><img src="/Coding-Guide/images/zhongjianjian.png" alt="中间件"></p>
 <p>要装入中间件函数，需调用 app.use() 并指定中间件函数。</p>
 <p>以下代码在根路径 (/) 的路由之前装入 myLogger 中间件函数。应用程序每次收到请求时，会在终端上显示消息“LOGGED”：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</div><div class="line"><span class="keyword">var</span> app = express();</div><div class="line"></div><div class="line"><span class="keyword">var</span> myLogger = <span class="function"><span class="keyword">function</span> (<span class="params">req, res, next</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'LOGGED'</span>);</div><div class="line">  next();</div><div class="line">&#125;;</div><div class="line"></div><div class="line">app.use(myLogger);</div><div class="line"></div><div class="line">app.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</div><div class="line">  res.send(<span class="string">'Hello World!'</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">app.listen(<span class="number">3000</span>);</div></pre></td></tr></table></figure>
@@ -252,7 +252,7 @@ Express初步02 - 中间件中间件概念
 <li>root 自变量指定从其中提供静态资源的根目录</li>
 <li>可选的 options 对象可以具有以下属性:</li>
 </ul>
-<p><img src="/images/express-options-properties.png" alt="options对象属性"></p>
+<p><img src="/Coding-Guide/images/express-options-properties.png" alt="options对象属性"></p>
 <p>options使用实例:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> options = &#123;</div><div class="line">  <span class="attr">dotfiles</span>: <span class="string">'ignore'</span>,</div><div class="line">  <span class="attr">etag</span>: <span class="literal">false</span>,</div><div class="line">  <span class="attr">extensions</span>: [<span class="string">'htm'</span>, <span class="string">'html'</span>],</div><div class="line">  <span class="attr">index</span>: <span class="literal">false</span>,</div><div class="line">  <span class="attr">maxAge</span>: <span class="string">'1d'</span>,</div><div class="line">  <span class="attr">redirect</span>: <span class="literal">false</span>,</div><div class="line">  <span class="attr">setHeaders</span>: <span class="function"><span class="keyword">function</span> (<span class="params">res, path, stat</span>) </span>&#123;</div><div class="line">    res.set(<span class="string">'x-timestamp'</span>, <span class="built_in">Date</span>.now());</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">app.use(express.static(<span class="string">'public'</span>, options));</div></pre></td></tr></table></figure>
 <h4 id="第三方中间件"><a href="#第三方中间件" class="headerlink" title="第三方中间件"></a>第三方中间件</h4><blockquote>
@@ -285,7 +285,7 @@ Express初步02 - 中间件中间件概念
          
           <li><a href="/Coding-Guide/archives/">Articles</a></li>
          
-          <li><a href="http://github.com/probberechts">Projects</a></li>
+          <li><a href="http://github.com/ecmadao">Projects</a></li>
         
       </ul>
     </div>
@@ -337,7 +337,7 @@ Express初步02 - 中间件中间件概念
          
           <li><a href="/Coding-Guide/archives/">Articles</a></li>
          
-          <li><a href="http://github.com/probberechts">Projects</a></li>
+          <li><a href="http://github.com/ecmadao">Projects</a></li>
         
       </ul>
     </nav>

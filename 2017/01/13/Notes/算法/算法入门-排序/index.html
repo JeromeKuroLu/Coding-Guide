@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang=zh>
 <head>
     <!-- so meta -->
     <meta charset="utf-8">
@@ -44,8 +44,8 @@
 
 算法入门-排序冒泡排序以从小到大的排列数组为例，依次比较相邻两个元素的大小，若前一个数字大于后一个数字，则替换两者位置。不断重复直指排列完毕
 12345678910111213">
-<meta property="og:image" content="http://ecmadao.com/images/yuandikuaipai.png">
-<meta property="og:updated_time" content="2017-01-14T12:11:43.000Z">
+<meta property="og:image" content="http://ecmadao.com/Coding-Guide/images/yuandikuaipai.png">
+<meta property="og:updated_time" content="2017-01-14T13:18:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法入门-排序">
 <meta name="twitter:description" content="Table of Contents  generated with DocToc
@@ -65,7 +65,7 @@
 
 算法入门-排序冒泡排序以从小到大的排列数组为例，依次比较相邻两个元素的大小，若前一个数字大于后一个数字，则替换两者位置。不断重复直指排列完毕
 12345678910111213">
-<meta name="twitter:image" content="http://ecmadao.com/images/yuandikuaipai.png">
+<meta name="twitter:image" content="http://ecmadao.com/Coding-Guide/images/yuandikuaipai.png">
     
     
         
@@ -114,7 +114,7 @@
          
           <li><a href="/Coding-Guide/archives/">Articles</a></li>
          
-          <li><a href="http://github.com/probberechts">Projects</a></li>
+          <li><a href="http://github.com/ecmadao">Projects</a></li>
         
       </ul>
     </span>
@@ -125,7 +125,7 @@
         <li><a class="icon" href="/Coding-Guide/2017/01/13/Notes/算法/算法入门-枚举/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
         
         
-        <li><a class="icon" href="/Coding-Guide/2017/01/13/Notes/译文/【译文】扁平化设计成了网页设计的标配了吗？10名设计师的心声/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        <li><a class="icon" href="/Coding-Guide/2017/01/13/Notes/译文/【译文】Material Design 新手？来瞅瞅你需要知道的12条原则/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
         <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
@@ -228,7 +228,7 @@
 <li>单向原地快排</li>
 </ul>
 <p>取最右侧的数字作为基准数（或者任取一个数字作为基准数放在数组的末尾），并以0作为基准数在其他数字遍历排列一次之后的最终storeIndex，从第一位开始，遍历基准数左侧的数字，若数字小于基准数，则将它与storeIndex的数字互换位置，且storeIndex+1</p>
-<p><img src="/images/yuandikuaipai.png" alt="单向原地快排"></p>
+<p><img src="/Coding-Guide/images/yuandikuaipai.png" alt="单向原地快排"></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// javascript的实现</span></div><div class="line">(<span class="function">(<span class="params">list</span>) =&gt;</span> &#123;</div><div class="line">  <span class="keyword">const</span> Sequence = <span class="function">(<span class="params">startIndex, maxIndex</span>) =&gt;</span> &#123;</div><div class="line">    <span class="keyword">if</span>(maxIndex &lt;= startIndex)<span class="keyword">return</span>;</div><div class="line">    <span class="comment">// 取最右侧数字为基准数target，输出化基准数最终的位置storeIndex</span></div><div class="line">    <span class="keyword">let</span> target = list[maxIndex], storeIndex = startIndex;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = startIndex; i &lt; maxIndex; i++) &#123;</div><div class="line">      <span class="comment">// 把小于基准数的数字都排列到左侧，最后再移动基准数的位置</span></div><div class="line">      <span class="keyword">if</span>(list[i] &lt;= target) &#123;</div><div class="line">        <span class="keyword">let</span> temp = list[i];</div><div class="line">        list[i] = list[storeIndex];</div><div class="line">        list[storeIndex] = temp;</div><div class="line">        storeIndex += <span class="number">1</span>;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    list[maxIndex] = list[storeIndex];</div><div class="line">    list[storeIndex] = target;</div><div class="line">    Sequence(startIndex, storeIndex - <span class="number">1</span>);</div><div class="line">    Sequence(storeIndex + <span class="number">1</span>, maxIndex);</div><div class="line">    <span class="built_in">console</span>.log(list);</div><div class="line">  &#125;</div><div class="line">  <span class="comment">// 选取起始index</span></div><div class="line">  <span class="keyword">let</span> startIndex = <span class="number">0</span>, maxIndex = list.length - <span class="number">1</span>;</div><div class="line">  Sequence(startIndex, maxIndex);</div><div class="line">&#125;)([<span class="number">3</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">7</span>, <span class="number">0</span>, <span class="number">11</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">1</span>]);</div></pre></td></tr></table></figure>
 <ul>
 <li>双向原地快排</li>
@@ -261,7 +261,7 @@
          
           <li><a href="/Coding-Guide/archives/">Articles</a></li>
          
-          <li><a href="http://github.com/probberechts">Projects</a></li>
+          <li><a href="http://github.com/ecmadao">Projects</a></li>
         
       </ul>
     </div>
@@ -313,7 +313,7 @@
          
           <li><a href="/Coding-Guide/archives/">Articles</a></li>
          
-          <li><a href="http://github.com/probberechts">Projects</a></li>
+          <li><a href="http://github.com/ecmadao">Projects</a></li>
         
       </ul>
     </nav>

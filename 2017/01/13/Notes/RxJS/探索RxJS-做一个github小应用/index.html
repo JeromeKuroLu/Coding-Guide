@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang=zh>
 <head>
     <!-- so meta -->
     <meta charset="utf-8">
@@ -44,18 +44,18 @@ APIS
 
 
 探索 RxJS - 做一个 github 小应用本文是一篇 RxJS 实战教程，利用 RxJS">
-<meta property="og:image" content="http://ecmadao.com/images/RxJS/search_repos.png">
-<meta property="og:image" content="http://ecmadao.com/images/RxJS/fetch_info.png">
-<meta property="og:image" content="http://ecmadao.com/images/RxJS/flatMap.png">
-<meta property="og:image" content="http://ecmadao.com/images/RxJS/debounce.png">
-<meta property="og:image" content="http://ecmadao.com/images/RxJS/distinctUntilChanged.png">
-<meta property="og:image" content="http://ecmadao.com/images/RxJS/flatMapLatest.png">
-<meta property="og:image" content="http://ecmadao.com/images/RxJS/rxjs-example.png">
-<meta property="og:image" content="http://ecmadao.com/images/RxJS/do.png">
-<meta property="og:image" content="http://ecmadao.com/images/RxJS/userinfo-loading.png">
-<meta property="og:image" content="http://ecmadao.com/images/RxJS/userinfo-info.png">
-<meta property="og:image" content="http://ecmadao.com/images/RxJS/takeWhile.png">
-<meta property="og:updated_time" content="2017-01-14T12:11:43.000Z">
+<meta property="og:image" content="http://ecmadao.com/Coding-Guide/images/RxJS/search_repos.png">
+<meta property="og:image" content="http://ecmadao.com/Coding-Guide/images/RxJS/fetch_info.png">
+<meta property="og:image" content="http://ecmadao.com/Coding-Guide/images/RxJS/flatMap.png">
+<meta property="og:image" content="http://ecmadao.com/Coding-Guide/images/RxJS/debounce.png">
+<meta property="og:image" content="http://ecmadao.com/Coding-Guide/images/RxJS/distinctUntilChanged.png">
+<meta property="og:image" content="http://ecmadao.com/Coding-Guide/images/RxJS/flatMapLatest.png">
+<meta property="og:image" content="http://ecmadao.com/Coding-Guide/images/RxJS/rxjs-example.png">
+<meta property="og:image" content="http://ecmadao.com/Coding-Guide/images/RxJS/do.png">
+<meta property="og:image" content="http://ecmadao.com/Coding-Guide/images/RxJS/userinfo-loading.png">
+<meta property="og:image" content="http://ecmadao.com/Coding-Guide/images/RxJS/userinfo-info.png">
+<meta property="og:image" content="http://ecmadao.com/Coding-Guide/images/RxJS/takeWhile.png">
+<meta property="og:updated_time" content="2017-01-14T13:18:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="探索RxJS-做一个github小应用">
 <meta name="twitter:description" content="Table of Contents  generated with DocToc
@@ -75,7 +75,7 @@ APIS
 
 
 探索 RxJS - 做一个 github 小应用本文是一篇 RxJS 实战教程，利用 RxJS">
-<meta name="twitter:image" content="http://ecmadao.com/images/RxJS/search_repos.png">
+<meta name="twitter:image" content="http://ecmadao.com/Coding-Guide/images/RxJS/search_repos.png">
     
     
         
@@ -124,7 +124,7 @@ APIS
          
           <li><a href="/Coding-Guide/archives/">Articles</a></li>
          
-          <li><a href="http://github.com/probberechts">Projects</a></li>
+          <li><a href="http://github.com/ecmadao">Projects</a></li>
         
       </ul>
     </span>
@@ -132,10 +132,10 @@ APIS
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/Coding-Guide/2017/01/13/Notes/RxJS/探索RxJS-Observable/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        <li><a class="icon" href="/Coding-Guide/2017/01/13/Notes/RxJS/探索RxJS-CoreConcept/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
         
         
-        <li><a class="icon" href="/Coding-Guide/2017/01/13/Notes/UnitTest/UnitTest in React/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        <li><a class="icon" href="/Coding-Guide/2017/01/13/Notes/UnitTest/PhantomJS/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
         <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
@@ -243,11 +243,11 @@ APIS
 <blockquote>
 <p>通过<code>RxJS</code>，在输入过程中实时进行异步搜索：</p>
 </blockquote>
-<p><img src="/images/RxJS/search_repos.png" alt="search_repos"></p>
+<p><img src="/Coding-Guide/images/RxJS/search_repos.png" alt="search_repos"></p>
 <blockquote>
 <p><code>hover</code>到 avator 上之后异步获取用户信息</p>
 </blockquote>
-<p><img src="/images/RxJS/fetch_info.png" alt="fetch_info.png"></p>
+<p><img src="/Coding-Guide/images/RxJS/fetch_info.png" alt="fetch_info.png"></p>
 <p>安装 webpack 配置编译环境，并使用 ES6 语法。安装如下依赖，并配置好 webpack：</p>
 <ul>
 <li>webpack</li>
@@ -277,7 +277,7 @@ APIS
 <li>通过<a href="http://reactivex.io/documentation/operators/flatmap.html" target="_blank" rel="external"><code>flatMap</code></a>将所有的 Observable 扁平化，成为一个新的 Observable</li>
 </ol>
 <p>图解<code>flatMap</code>：</p>
-<p><img src="/images/RxJS/flatMap.png" alt="flatMap"></p>
+<p><img src="/Coding-Guide/images/RxJS/flatMap.png" alt="flatMap"></p>
 <p>而既然需要异步获取数据，那么在上面的第一步时，可以通过<a href="http://reactivex.io/documentation/operators/from.html" target="_blank" rel="external"><code>fromPromise</code></a>来创建一个 Observable：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// src/js/helper.js</span></div><div class="line"><span class="keyword">const</span> SEARCH_REPOS = <span class="string">'https://api.github.com/search/repositories?sort=stars&amp;order=desc&amp;q='</span>;</div><div class="line"></div><div class="line"><span class="comment">// 创建一个 ajax 的 promise</span></div><div class="line"><span class="keyword">const</span> getReposPromise = <span class="function">(<span class="params">query</span>) =&gt;</span> &#123;</div><div class="line">  <span class="keyword">return</span> $.ajax(&#123;</div><div class="line">  	<span class="attr">type</span>: <span class="string">"GET"</span>,</div><div class="line">    <span class="attr">url</span>: <span class="string">`<span class="subst">$&#123;SEARCH_REPOS&#125;</span><span class="subst">$&#123;query&#125;</span>`</span>,</div><div class="line">  &#125;).promise();</div><div class="line">&#125;;</div><div class="line"><span class="comment">// 通过 fromPromise 创建一个 Observable</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> getRepos = <span class="function">(<span class="params">query</span>) =&gt;</span> &#123;</div><div class="line">  <span class="keyword">const</span> promise = getReposPromise(query);</div><div class="line">  <span class="keyword">return</span> Rx.Observable.fromPromise(promise);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// src/js/index.js</span></div><div class="line"><span class="keyword">import</span> &#123;getRepos&#125; <span class="keyword">from</span> <span class="string">'./helper'</span>;</div><div class="line"></div><div class="line"><span class="comment">// ...</span></div><div class="line"><span class="keyword">const</span> observable = Rx.Observable.fromEvent($input, <span class="string">'keyup'</span>)</div><div class="line">  	.map(<span class="function"><span class="params">()</span> =&gt;</span> $input.val())</div><div class="line">    .filter(<span class="function">(<span class="params">text</span>) =&gt;</span> !!text)</div><div class="line">    .do(<span class="function">(<span class="params">value</span>) =&gt;</span> <span class="built_in">console</span>.log(value))</div><div class="line">    <span class="comment">// 调用 getRepos 方法将返回一个 Observable</span></div><div class="line">    <span class="comment">// flatMap 则将所有 Observable 合并，转为一个 Observable</span></div><div class="line">    .flatMap(getRepos);</div><div class="line"><span class="comment">// ...</span></div></pre></td></tr></table></figure>
@@ -294,7 +294,7 @@ APIS
 <p>不断打字时会连续不断触发异步请求，占用资源影响体验</p>
 </blockquote>
 <p>也就是说，当用户在连续打字时，我们不应该继续进行之后的事件处理，而如果打字中断，或者说两次<code>keyup</code>事件的时间间隔足够长时，才应该发送异步请求。针对这点，可以使用 RxJS 的<a href="http://reactivex.io/documentation/operators/debounce.html" target="_blank" rel="external"><code>debounce</code></a>方法：</p>
-<p><img src="/images/RxJS/debounce.png" alt="debounce"></p>
+<p><img src="/Coding-Guide/images/RxJS/debounce.png" alt="debounce"></p>
 <p>如图所示，在一段时间内事件被不断触发时，不会被之后的操作所处理；只有超过指定时间间隔的事件才会留下来：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// src/js/index.js</span></div><div class="line"><span class="comment">// ...</span></div><div class="line"><span class="keyword">const</span> observable = Rx.Observable.fromEvent($input, <span class="string">'keyup'</span>)</div><div class="line">	<span class="comment">// 若 400ms 内连续触发 keyup 事件，则不会继续往下处理</span></div><div class="line">	.debounce(<span class="number">400</span>)</div><div class="line">  	.map(<span class="function"><span class="params">()</span> =&gt;</span> $input.val())</div><div class="line">    .filter(<span class="function">(<span class="params">text</span>) =&gt;</span> !!text)</div><div class="line">    .do(<span class="function">(<span class="params">value</span>) =&gt;</span> <span class="built_in">console</span>.log(value))</div><div class="line">    .flatMap(getRepos);</div><div class="line"><span class="comment">// ...</span></div></pre></td></tr></table></figure>
 <hr>
@@ -302,7 +302,7 @@ APIS
 <p>如果相邻的<code>keyup</code>事件触发时 input 的值一样，也就是说按下了不改变 value 的按键（比如方向键），会重复触发一样的异步事件</p>
 </blockquote>
 <p>也就是说，对于任意相邻的事件，如果它们的返回值一样，则只要取一个（重复事件中的第一个）就好了。可以利用<a href="http://reactivex.io/documentation/operators/distinct.html" target="_blank" rel="external"><code>distinctUntilChanged</code></a>方法：</p>
-<p><img src="/images/RxJS/distinctUntilChanged.png" alt="distinctUntilChanged"></p>
+<p><img src="/Coding-Guide/images/RxJS/distinctUntilChanged.png" alt="distinctUntilChanged"></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// src/js/index.js</span></div><div class="line"><span class="comment">// ...</span></div><div class="line"><span class="keyword">const</span> observable = Rx.Observable.fromEvent($input, <span class="string">'keyup'</span>)</div><div class="line">	.debounce(<span class="number">400</span>)</div><div class="line">  	.map(<span class="function"><span class="params">()</span> =&gt;</span> $input.val())</div><div class="line">    .filter(<span class="function">(<span class="params">text</span>) =&gt;</span> !!text)</div><div class="line">    <span class="comment">// 只取不一样的值进行异步</span></div><div class="line">    .distinctUntilChanged()</div><div class="line">    .do(<span class="function">(<span class="params">value</span>) =&gt;</span> <span class="built_in">console</span>.log(value))</div><div class="line">    .flatMap(getRepos);</div><div class="line"><span class="comment">// ...</span></div></pre></td></tr></table></figure>
 <hr>
 <blockquote>
@@ -311,20 +311,20 @@ APIS
 <p>这个蛋疼的问题我相信大家很可能遇见过。在发送多个异步请求时，因为所用时长不一定，无法保障异步返回的先后顺序，所以，有时候可能<strong>早请求的异步的结果会覆盖后来请求的异步结果</strong>。</p>
 <p>而这种情况的处理方式就是，在连续发出多个异步的时候，既然我们期待的是最后一个异步返回的结果，那么就可以把之前的异步取消掉，不 care 其返回了什么。因此，我们可以使用<a href="http://reactivex.io/documentation/operators/flatmap.html" target="_blank" rel="external"><code>flatMapLatest</code></a> API（类似于 RxJava 中的<code>switchMap</code> API，同时在 RxJS 5.0 中也已经改名为<code>switchMap</code>）</p>
 <p>通过<code>flatMapLatest</code>，当 Observable 触发某个事件，返回新的 Observable 时，将取消之前触发的事件，并且不再关心返回结果的处理，只监视当前这一个。也就是说，发送多个请求时，不关心之前请求的处理，只处理最后一次的请求：</p>
-<p><img src="/images/RxJS/flatMapLatest.png" alt="flatMapLatest"></p>
+<p><img src="/Coding-Guide/images/RxJS/flatMapLatest.png" alt="flatMapLatest"></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// src/js/index.js</span></div><div class="line"><span class="comment">// ...</span></div><div class="line"><span class="keyword">const</span> observable = Rx.Observable.fromEvent($input, <span class="string">'keyup'</span>)</div><div class="line">	.debounce(<span class="number">400</span>)</div><div class="line">  	.map(<span class="function"><span class="params">()</span> =&gt;</span> $input.val())</div><div class="line">    .filter(<span class="function">(<span class="params">text</span>) =&gt;</span> !!text)</div><div class="line">    .distinctUntilChanged()</div><div class="line">    .do(<span class="function">(<span class="params">value</span>) =&gt;</span> <span class="built_in">console</span>.log(value))</div><div class="line">    <span class="comment">// 仅处理最后一次的异步</span></div><div class="line">    .flatMapLatest(getRepos);</div><div class="line"><span class="comment">// ...</span></div></pre></td></tr></table></figure>
 <h3 id="流的监听"><a href="#流的监听" class="headerlink" title="流的监听"></a>流的监听</h3><p>至此，我们对 input <code>keyup</code>以及异步获取数据的整个事件流处理完毕，并进行了一定的优化，避免了过多的请求、异步返回结果错乱等问题。但创建了一个流之后也有对其进行监听：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// src/js/index.js</span></div><div class="line"><span class="comment">// ...</span></div><div class="line"><span class="keyword">const</span> observable = Rx.Observable.fromEvent($input, <span class="string">'keyup'</span>)</div><div class="line">	.debounce(<span class="number">400</span>)</div><div class="line">  	.map(<span class="function"><span class="params">()</span> =&gt;</span> $input.val())</div><div class="line">    .filter(<span class="function">(<span class="params">text</span>) =&gt;</span> !!text)</div><div class="line">    .distinctUntilChanged()</div><div class="line">    .do(<span class="function">(<span class="params">value</span>) =&gt;</span> <span class="built_in">console</span>.log(value))</div><div class="line">    .flatMapLatest(getRepos);</div><div class="line"><span class="comment">// 第一个回调中的 data 代表异步的返回值</span></div><div class="line">observable.subscribe(<span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</div><div class="line">  <span class="comment">// 在 showNewResults 方法中使用返回值渲染 DOM</span></div><div class="line">  showNewResults(data);</div><div class="line">&#125;, (err) =&gt; &#123;</div><div class="line">  <span class="built_in">console</span>.log(err);</div><div class="line">&#125;, () =&gt; &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'completed'</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 异步返回的结果是个 Array，代表搜索到的各个仓库 item</span></div><div class="line"><span class="comment">// 遍历所有 item，转化为 jQuery 对象，最后插入到 content_container 中</span></div><div class="line"><span class="keyword">const</span> showNewResults = <span class="function">(<span class="params">items</span>) =&gt;</span> &#123;</div><div class="line">  <span class="keyword">const</span> repos = items.map(<span class="function">(<span class="params">item, i</span>) =&gt;</span> &#123;</div><div class="line">    <span class="keyword">return</span> reposTemplate(item);</div><div class="line">  &#125;).join(<span class="string">''</span>);</div><div class="line">  $(<span class="string">'.content_container'</span>).html(repos);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <hr>
 <p>这样，一个通过 RxJS 监听事件的流已经完全建立完毕了。整个过程使用图像来表示则如下：</p>
-<p><img src="/images/RxJS/rxjs-example.png" alt="rxjs-example"></p>
+<p><img src="/Coding-Guide/images/RxJS/rxjs-example.png" alt="rxjs-example"></p>
 <p>而如果我们不使用 RxJS，用传统方式监听 input 的话：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// src/js/index.js</span></div><div class="line"><span class="keyword">import</span> &#123;getRepos&#125; <span class="keyword">from</span> <span class="string">'./helper'</span>;</div><div class="line"></div><div class="line">$(() =&gt; &#123;</div><div class="line">  <span class="keyword">const</span> $input = $(<span class="string">'.search'</span>);</div><div class="line">  <span class="keyword">const</span> interval = <span class="number">400</span>;</div><div class="line">  <span class="keyword">var</span> previousValue = <span class="literal">null</span>;</div><div class="line">  <span class="keyword">var</span> fetching = <span class="literal">false</span>;</div><div class="line">  <span class="keyword">var</span> lastKeyUp = <span class="built_in">Date</span>.now() - interval;</div><div class="line">  $input.on(<span class="string">'keyup'</span>, (e) =&gt; &#123;</div><div class="line">    <span class="keyword">const</span> nextValue = $input.val();</div><div class="line">	<span class="keyword">if</span> (!nextValue) &#123;</div><div class="line">      <span class="keyword">return</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> (<span class="built_in">Date</span>.now() - lastKeyUp &lt;= interval) &#123;</div><div class="line">      <span class="keyword">return</span>;</div><div class="line">	&#125;</div><div class="line">	lastKeyUp = <span class="built_in">Date</span>.now();</div><div class="line">	<span class="keyword">if</span> (nextValue === previousValue) &#123;</div><div class="line">      <span class="keyword">return</span>;</div><div class="line">	&#125;</div><div class="line">	previousValue = nextValue;</div><div class="line">    <span class="keyword">if</span> (!fetching) &#123;</div><div class="line">      fetching = <span class="literal">true</span>;</div><div class="line">      getRepos(nextValue).then(<span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</div><div class="line">      	fetching = <span class="literal">false</span>;</div><div class="line">        showNewResults(data);</div><div class="line">      &#125;);</div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <p>挺复杂了吧？而且即便如此，这样的处理还是不够到位。上面仅仅是通过<code>fetching</code>变量来判断是否正在异步，如果正在异步，则不进行新的异步；而我们更希望的是能够取消旧的异步，只处理新的异步请求。</p>
 <h3 id="更加优雅的-Rx-风格"><a href="#更加优雅的-Rx-风格" class="headerlink" title="更加优雅的 Rx 风格"></a>更加优雅的 Rx 风格</h3><p>按照上面的教程，我们在 Observable 中获取到了数据、发送异步请求并拿到了最新一次的返回值。之后，再通过<code>subscribe</code>，在监听的回调中将返回值拼接成 HTML 并插入 DOM。</p>
 <p>但是有一个问题：小应用的另一个功能是，当鼠标<code>hover</code>到头像上时，异步获取并展现用户的信息。可是用户头像是在<code>subscribe</code>回调中动态插入的，又该如何创建事件流呢？当然了，可以在每次插入 DOM 之后在利用<code>fromEvent</code>创建一个基于<code>hover</code>的事件流，但那样总是不太好的，写出来的代码也不够 Rx。或许我们就不应该在<code>.flatMapLatest(getRepos)</code>之后中断流的传递？但那样的话，又该如何把异步的返回值插入 DOM 呢？</p>
 <p>针对这种情况，我们可以使用 RxJS 的<a href="http://reactivex.io/documentation/operators/do.html" target="_blank" rel="external"><code>do</code></a>方法：</p>
-<p><img src="/images/RxJS/do.png" alt="do"></p>
+<p><img src="/Coding-Guide/images/RxJS/do.png" alt="do"></p>
 <p>你想在<code>do</code>的回调内做什么都可以，它不会影响到流内的事件；除此以外，还可以拿到流中各个事件的返回值：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> observable = Rx.Observable.from([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>])</div><div class="line">    .do(<span class="function">(<span class="params">x</span>) =&gt;</span> <span class="built_in">console</span>.log(x))</div><div class="line">    .map(<span class="function">(<span class="params">x</span>) =&gt;</span> x + <span class="number">1</span>);</div><div class="line">observable.subscribe(<span class="function">(<span class="params">x</span>) =&gt;</span> &#123;</div><div class="line">  <span class="built_in">console</span>.log(x);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <p>所以，我们可以利用<code>do</code>来完成 DOM 的渲染：</p>
@@ -334,15 +334,15 @@ APIS
 <blockquote>
 <p>没有数据时展示 loading，同时异步获取数据</p>
 </blockquote>
-<p><img src="/images/RxJS/userinfo-loading.png" alt="userinfo-loading"></p>
+<p><img src="/Coding-Guide/images/RxJS/userinfo-loading.png" alt="userinfo-loading"></p>
 <blockquote>
 <p>异步返回后插入数据。且如果已经有了数据则直接展示</p>
 </blockquote>
-<p><img src="/images/RxJS/userinfo-info.png" alt="userinfo-info"></p>
+<p><img src="/Coding-Guide/images/RxJS/userinfo-info.png" alt="userinfo-info"></p>
 <p>先不管上一个流，我们先创建一个新的事件流：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// src/js/index.js</span></div><div class="line"><span class="comment">// ...</span></div><div class="line"><span class="keyword">const</span> initialUserInfoSteam = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">  <span class="keyword">const</span> $avator = $(<span class="string">'.user_header'</span>);</div><div class="line">  <span class="comment">// 通过头像 $avator 的 hover 事件来创建流</span></div><div class="line">  <span class="keyword">const</span> avatorMouseover = Rx.Observable.fromEvent($avator, <span class="string">'mouseover'</span>)</div><div class="line">    <span class="comment">// 500ms 内重复触发事件则会被忽略</span></div><div class="line">    .debounce(<span class="number">500</span>)</div><div class="line">    <span class="comment">// 只有当满足了下列条件的流才会继续执行，否则将中断</span></div><div class="line">    .takeWhile(<span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</div><div class="line">      <span class="comment">// 异步获取的用户信息被新建到 DOM 里，该 DOM 最外层是 infos_container</span></div><div class="line">      <span class="comment">// 因此，如果已经有了 infos_container，则可以认为我们已经异步获取过数据了，此时 takeWhile 将返回 false，流将会中断</span></div><div class="line">      <span class="keyword">const</span> $infosWrapper = $(e.target).parent().find(<span class="string">'.user_infos_wrapper'</span>);</div><div class="line">      <span class="keyword">return</span> $infosWrapper.find(<span class="string">'.infos_container'</span>).length === <span class="number">0</span>;</div><div class="line">    &#125;)</div><div class="line">    .map(<span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</div><div class="line">      <span class="keyword">const</span> $infosWrapper = $(e.target).parent().find(<span class="string">'.user_infos_wrapper'</span>);</div><div class="line">      <span class="keyword">return</span> &#123;</div><div class="line">        <span class="attr">conatiner</span>: $infosWrapper,</div><div class="line">        <span class="attr">url</span>: $(e.target).attr(<span class="string">'data-api'</span>)</div><div class="line">      &#125;</div><div class="line">    &#125;)</div><div class="line">    .filter(<span class="function">(<span class="params">data</span>) =&gt;</span> !!data.url)</div><div class="line">    <span class="comment">// getUser 来异步获取用户信息</span></div><div class="line">    .flatMapLatest(getUser)</div><div class="line">    .do(<span class="function">(<span class="params">result</span>) =&gt;</span> &#123;</div><div class="line">      <span class="comment">// 将用户信息组建成为 DOM 元素，并插入到页面中。在这之后，该用户对应的 DOM 里就会拥有 infos_container 这个 div，所以 takeWhile 会返回 false。也就是说，之后再 hover 上去，流也不会被触发了</span></div><div class="line">      <span class="keyword">const</span> &#123;data, conatiner&#125; = result;</div><div class="line">      showUserInfo(conatiner, data);</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">  avatorMouseover.subscribe(<span class="function">(<span class="params">result</span>) =&gt;</span> &#123;</div><div class="line">  	<span class="built_in">console</span>.log(<span class="string">'fetch user info succeed'</span>);</div><div class="line">  &#125;, (err) =&gt; &#123;</div><div class="line">    <span class="built_in">console</span>.log(err);</div><div class="line">  &#125;, () =&gt; &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'completed'</span>);</div><div class="line">  &#125;);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <p>上面的代码中有一个 API 需要讲解：<a href="http://reactivex.io/documentation/operators/takewhile.html" target="_blank" rel="external"><code>takeWhile</code></a></p>
-<p><img src="/images/RxJS/takeWhile.png" alt="takeWhile"></p>
+<p><img src="/Coding-Guide/images/RxJS/takeWhile.png" alt="takeWhile"></p>
 <p>由图可知，当<code>takeWhile</code>中的回调返回<code>true</code>时，流可以正常进行；而一旦返回<code>false</code>，则之后的事件不会再发生，流将直接终止：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> source = Rx.Observable.range(<span class="number">1</span>, <span class="number">5</span>)</div><div class="line">    .takeWhile(<span class="function"><span class="keyword">function</span> (<span class="params">x</span>) </span>&#123; <span class="keyword">return</span> x &lt; <span class="number">3</span>; &#125;);</div><div class="line"></div><div class="line"><span class="keyword">var</span> subscription = source.subscribe(</div><div class="line">    <span class="function"><span class="keyword">function</span> (<span class="params">x</span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">'Next: '</span> + x); &#125;,</div><div class="line">    <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">'Error: '</span> + err); &#125;,</div><div class="line">    <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">'Completed'</span>); &#125;);</div><div class="line"><span class="comment">// Next: 0</span></div><div class="line"><span class="comment">// Next: 1</span></div><div class="line"><span class="comment">// Next: 2</span></div><div class="line"><span class="comment">// Completed</span></div></pre></td></tr></table></figure>
 <hr>
@@ -397,7 +397,7 @@ APIS
          
           <li><a href="/Coding-Guide/archives/">Articles</a></li>
          
-          <li><a href="http://github.com/probberechts">Projects</a></li>
+          <li><a href="http://github.com/ecmadao">Projects</a></li>
         
       </ul>
     </div>
@@ -449,7 +449,7 @@ APIS
          
           <li><a href="/Coding-Guide/archives/">Articles</a></li>
          
-          <li><a href="http://github.com/probberechts">Projects</a></li>
+          <li><a href="http://github.com/ecmadao">Projects</a></li>
         
       </ul>
     </nav>

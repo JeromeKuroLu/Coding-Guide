@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang=zh>
 <head>
     <!-- so meta -->
     <meta charset="utf-8">
@@ -60,8 +60,8 @@ learn koa2–认证
 
 sessionsession
 koa">
-<meta property="og:image" content="http://ecmadao.com/images/koa/github_application.png">
-<meta property="og:updated_time" content="2017-01-14T12:11:43.000Z">
+<meta property="og:image" content="http://ecmadao.com/Coding-Guide/images/koa/github_application.png">
+<meta property="og:updated_time" content="2017-01-14T13:18:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="learn koa2--认证">
 <meta name="twitter:description" content="Table of Contents  generated with DocToc
@@ -89,7 +89,7 @@ learn koa2–认证
 
 sessionsession
 koa">
-<meta name="twitter:image" content="http://ecmadao.com/images/koa/github_application.png">
+<meta name="twitter:image" content="http://ecmadao.com/Coding-Guide/images/koa/github_application.png">
     
     
         
@@ -138,7 +138,7 @@ koa">
          
           <li><a href="/Coding-Guide/archives/">Articles</a></li>
          
-          <li><a href="http://github.com/probberechts">Projects</a></li>
+          <li><a href="http://github.com/ecmadao">Projects</a></li>
         
       </ul>
     </span>
@@ -146,10 +146,10 @@ koa">
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/Coding-Guide/2017/01/13/Notes/Python/Django/Django-01-setup&unittest/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        <li><a class="icon" href="/Coding-Guide/2017/01/13/Notes/NodeJS/KOA/learn koa2--tools/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
         
         
-        <li><a class="icon" href="/Coding-Guide/2017/01/13/Notes/Python/Django/Django-02-template/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        <li><a class="icon" href="/Coding-Guide/2017/01/13/Notes/NodeJS/Node基础/Node.js初步-API-FileSystem/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
         <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
@@ -283,7 +283,7 @@ koa">
 <li><code>Authorization callback URL</code>：用户同意github授权之后的回调URL，会在这里通过<code>request body</code>拿到github提供的<code>code</code>，作为获取用户<code>token</code>的条件之一</li>
 </ul>
 <p>我们创建完成之后，如下图所示：</p>
-<p><img src="/images/koa/github_application.png" alt="github_application"></p>
+<p><img src="/Coding-Guide/images/koa/github_application.png" alt="github_application"></p>
 <p>因此之后必然会创建一个<code>/user/login/github/</code>的路由来处理回调。整个流程大致这样：</p>
 <ol>
 <li>用户要通过github进行第三方认证，点击链接跳转到<code>https://github.com/login/oauth/authorize?scope=XXX%20YYY&amp;client_id=XXXXX</code>页面，其中，<code>scope</code>代表我们<a href="https://developer.github.com/v3/oauth/#scopes" target="_blank" rel="external">要获取的权限</a>，<code>client_id</code>则是刚刚新建应用的id</li>
@@ -340,7 +340,7 @@ koa">
          
           <li><a href="/Coding-Guide/archives/">Articles</a></li>
          
-          <li><a href="http://github.com/probberechts">Projects</a></li>
+          <li><a href="http://github.com/ecmadao">Projects</a></li>
         
       </ul>
     </div>
@@ -392,7 +392,7 @@ koa">
          
           <li><a href="/Coding-Guide/archives/">Articles</a></li>
          
-          <li><a href="http://github.com/probberechts">Projects</a></li>
+          <li><a href="http://github.com/ecmadao">Projects</a></li>
         
       </ul>
     </nav>

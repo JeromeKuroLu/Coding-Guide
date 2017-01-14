@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang=zh>
 <head>
     <!-- so meta -->
     <meta charset="utf-8">
@@ -66,9 +66,9 @@ store对象
 查询多条数据
 通过查询参数获取多数据
 通过查">
-<meta property="og:image" content="http://ecmadao.com/images/ember/finding-unloaded-record-step1-diagram.png">
-<meta property="og:image" content="http://ecmadao.com/images/ember/finding-loaded-record-diagram.png">
-<meta property="og:updated_time" content="2017-01-14T12:11:43.000Z">
+<meta property="og:image" content="http://ecmadao.com/Coding-Guide/images/ember/finding-unloaded-record-step1-diagram.png">
+<meta property="og:image" content="http://ecmadao.com/Coding-Guide/images/ember/finding-loaded-record-diagram.png">
+<meta property="og:updated_time" content="2017-01-14T13:18:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ember初步--Model">
 <meta name="twitter:description" content="Table of Contents  generated with DocToc
@@ -99,7 +99,7 @@ store对象
 查询多条数据
 通过查询参数获取多数据
 通过查">
-<meta name="twitter:image" content="http://ecmadao.com/images/ember/finding-unloaded-record-step1-diagram.png">
+<meta name="twitter:image" content="http://ecmadao.com/Coding-Guide/images/ember/finding-unloaded-record-step1-diagram.png">
     
     
         
@@ -148,7 +148,7 @@ store对象
          
           <li><a href="/Coding-Guide/archives/">Articles</a></li>
          
-          <li><a href="http://github.com/probberechts">Projects</a></li>
+          <li><a href="http://github.com/ecmadao">Projects</a></li>
         
       </ul>
     </span>
@@ -159,7 +159,7 @@ store对象
         <li><a class="icon" href="/Coding-Guide/2017/01/13/Notes/ember/Ember初探--Tutorial/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
         
         
-        <li><a class="icon" href="/Coding-Guide/2017/01/13/Notes/ember/Ember初步--Template/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        <li><a class="icon" href="/Coding-Guide/2017/01/13/Notes/ember/Ember初步--Routing/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
         <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
@@ -296,9 +296,9 @@ store对象
 <p>ID通常由server提供，在储存数据的时候自动绑定。</p>
 <h4 id="Adapter"><a href="#Adapter" class="headerlink" title="Adapter"></a>Adapter</h4><p>adapter将Ember的请求（例如：”find the user with an ID of 1”）转化为对server的请求。当应用请求的数据没有被缓存时，就会通过adapter对server进行请求</p>
 <h4 id="Caching"><a href="#Caching" class="headerlink" title="Caching"></a>Caching</h4><p>store会自动缓存record的查询记录，下次查询的时候会先从store拿取数据，以便减少对server的请求。</p>
-<h4 id="架构一览"><a href="#架构一览" class="headerlink" title="架构一览"></a>架构一览</h4><p><img src="/images/ember/finding-unloaded-record-step1-diagram.png" alt=""></p>
+<h4 id="架构一览"><a href="#架构一览" class="headerlink" title="架构一览"></a>架构一览</h4><p><img src="/Coding-Guide/images/ember/finding-unloaded-record-step1-diagram.png" alt=""></p>
 <p>而当数据被缓存时：</p>
-<p><img src="/images/ember/finding-loaded-record-diagram.png" alt=""></p>
+<p><img src="/Coding-Guide/images/ember/finding-loaded-record-diagram.png" alt=""></p>
 <h3 id="定义Model"><a href="#定义Model" class="headerlink" title="定义Model"></a>定义Model</h3><h4 id="创建model"><a href="#创建model" class="headerlink" title="创建model"></a>创建model</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 新建person model</span></div><div class="line">$ ember g model person</div></pre></td></tr></table></figure>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// app/models/person.js</span></div><div class="line"><span class="keyword">import</span> DS <span class="keyword">from</span> <span class="string">'ember-data'</span>;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> DS.Model.extend(&#123;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <h4 id="定义Attributes"><a href="#定义Attributes" class="headerlink" title="定义Attributes"></a>定义Attributes</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> DS <span class="keyword">from</span> <span class="string">'ember-data'</span>;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> DS.Model.extend(&#123;</div><div class="line">  <span class="attr">firstName</span>: DS.attr(),</div><div class="line">  <span class="attr">lastName</span>: DS.attr(),</div><div class="line">  <span class="attr">birthday</span>: DS.attr()</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
@@ -384,7 +384,7 @@ store对象
          
           <li><a href="/Coding-Guide/archives/">Articles</a></li>
          
-          <li><a href="http://github.com/probberechts">Projects</a></li>
+          <li><a href="http://github.com/ecmadao">Projects</a></li>
         
       </ul>
     </div>
@@ -436,7 +436,7 @@ store对象
          
           <li><a href="/Coding-Guide/archives/">Articles</a></li>
          
-          <li><a href="http://github.com/probberechts">Projects</a></li>
+          <li><a href="http://github.com/ecmadao">Projects</a></li>
         
       </ul>
     </nav>

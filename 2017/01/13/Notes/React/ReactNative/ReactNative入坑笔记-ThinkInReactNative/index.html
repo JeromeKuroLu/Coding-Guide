@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang=zh>
 <head>
     <!-- so meta -->
     <meta charset="utf-8">
@@ -52,8 +52,8 @@ Redux
 
 
 ReactNative入坑笔记-ThinkInReactNa">
-<meta property="og:image" content="http://ecmadao.com/images/React-with-Redux.png">
-<meta property="og:updated_time" content="2017-01-14T12:11:43.000Z">
+<meta property="og:image" content="http://ecmadao.com/Coding-Guide/images/React-with-Redux.png">
+<meta property="og:updated_time" content="2017-01-14T13:18:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ReactNative入坑笔记-ThinkInReactNative">
 <meta name="twitter:description" content="Table of Contents  generated with DocToc
@@ -77,7 +77,7 @@ Redux
 
 
 ReactNative入坑笔记-ThinkInReactNa">
-<meta name="twitter:image" content="http://ecmadao.com/images/React-with-Redux.png">
+<meta name="twitter:image" content="http://ecmadao.com/Coding-Guide/images/React-with-Redux.png">
     
     
         
@@ -126,7 +126,7 @@ ReactNative入坑笔记-ThinkInReactNa">
          
           <li><a href="/Coding-Guide/archives/">Articles</a></li>
          
-          <li><a href="http://github.com/probberechts">Projects</a></li>
+          <li><a href="http://github.com/ecmadao">Projects</a></li>
         
       </ul>
     </span>
@@ -134,10 +134,10 @@ ReactNative入坑笔记-ThinkInReactNa">
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/Coding-Guide/2017/01/13/Notes/React/ReactNative/使用ReactNative&Redux构建移动端App/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        <li><a class="icon" href="/Coding-Guide/2017/01/13/Notes/React/ReactNative/ReactNative-自定义组件/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
         
         
-        <li><a class="icon" href="/Coding-Guide/2017/01/13/Notes/React/Redux/Redux入坑笔记-Middleware/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        <li><a class="icon" href="/Coding-Guide/2017/01/13/Notes/React/ReactNative/使用ReactNative&Redux构建移动端App/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
         <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
@@ -239,7 +239,7 @@ ReactNative入坑笔记-ThinkInReactNa">
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// from F8 2016 app</span></div><div class="line"><span class="comment">// F8StyleSheet.js</span></div><div class="line"><span class="keyword">import</span> &#123;StyleSheet, Platform&#125; <span class="keyword">from</span> <span class="string">'react-native'</span>;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">create</span>(<span class="params">styles: Object</span>): </span>&#123;[name: string]: number&#125; &#123;</div><div class="line">  <span class="keyword">const</span> platformStyles = &#123;&#125;;</div><div class="line">  <span class="built_in">Object</span>.keys(styles).forEach(<span class="function">(<span class="params">name</span>) =&gt;</span> &#123;</div><div class="line">    <span class="keyword">let</span> &#123;ios, android, ...style&#125; = &#123;...styles[name]&#125;;</div><div class="line">    <span class="keyword">if</span>(ios &amp;&amp; Platform.OS === <span class="string">'ios'</span>) &#123;</div><div class="line">      style = &#123;...style, ...ios&#125;;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span>(android &amp;&amp; Platform.OS === <span class="string">'android'</span>) &#123;</div><div class="line">      style = &#123;...style, ...android&#125;;</div><div class="line">    &#125;</div><div class="line">    platformStyles[name] = style;</div><div class="line">  &#125;);</div><div class="line">  <span class="keyword">return</span> StyleSheet.create(platformStyles);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// usage, from F8 2016 app</span></div><div class="line"><span class="comment">// F8SegmentedControl.js</span></div><div class="line"><span class="keyword">import</span> F8StyleSheet <span class="keyword">from</span> <span class="string">'./F8StyleSheet'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> styles = F8StyleSheet.create(&#123;</div><div class="line">  <span class="attr">container</span>: &#123;</div><div class="line">    <span class="attr">flexDirection</span>: <span class="string">'row'</span>,</div><div class="line">    <span class="attr">backgroundColor</span>: <span class="string">'transparent'</span>,</div><div class="line">    <span class="attr">ios</span>: &#123;</div><div class="line">      <span class="attr">paddingBottom</span>: <span class="number">6</span>,</div><div class="line">      <span class="attr">justifyContent</span>: <span class="string">'center'</span>,</div><div class="line">      <span class="attr">alignItems</span>: <span class="string">'center'</span>,</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">android</span>: &#123;</div><div class="line">      <span class="attr">paddingLeft</span>: <span class="number">60</span>,</div><div class="line">    &#125;,</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <h4 id="按文件名加载"><a href="#按文件名加载" class="headerlink" title="按文件名加载"></a>按文件名加载</h4><p>有时候，不同的平台有自己独特的插件，如<code>NavigatorIOS</code>,<code>DrawerLayoutAndroid</code>。这种时候我们就不得不把组件文件分离。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// file name</span></div><div class="line">AppContainer.android.js</div><div class="line">AppContainer.ios.js</div><div class="line"></div><div class="line"><span class="comment">// usage</span></div><div class="line"><span class="keyword">import</span> AppContainer <span class="keyword">from</span> <span class="string">'./AppContainer'</span>;</div></pre></td></tr></table></figure>
-<h3 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h3><h4 id="Redux"><a href="#Redux" class="headerlink" title="Redux"></a>Redux</h4><p><img src="/images/React-with-Redux.png" alt="React-with-Redux"></p>
+<h3 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h3><h4 id="Redux"><a href="#Redux" class="headerlink" title="Redux"></a>Redux</h4><p><img src="/Coding-Guide/images/React-with-Redux.png" alt="React-with-Redux"></p>
 <p>戳这里看<a href="../Redux/Redux入坑笔记-ThinkInRedux.md">Redux的入坑笔记</a>和<a href="../Redux/Redux入坑笔记-源码解析">详细解析</a></p>
 <h4 id="数据储存AsyncStorage"><a href="#数据储存AsyncStorage" class="headerlink" title="数据储存AsyncStorage"></a>数据储存<code>AsyncStorage</code></h4><p><code>AsyncStorage</code>是ReactNative中内置的<strong>异步</strong>储存系统。</p>
 <p>它的方法返回一个<code>Promise</code>对象</p>
@@ -300,7 +300,7 @@ ReactNative入坑笔记-ThinkInReactNa">
          
           <li><a href="/Coding-Guide/archives/">Articles</a></li>
          
-          <li><a href="http://github.com/probberechts">Projects</a></li>
+          <li><a href="http://github.com/ecmadao">Projects</a></li>
         
       </ul>
     </div>
@@ -352,7 +352,7 @@ ReactNative入坑笔记-ThinkInReactNa">
          
           <li><a href="/Coding-Guide/archives/">Articles</a></li>
          
-          <li><a href="http://github.com/probberechts">Projects</a></li>
+          <li><a href="http://github.com/ecmadao">Projects</a></li>
         
       </ul>
     </nav>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang=zh>
 <head>
     <!-- so meta -->
     <meta charset="utf-8">
@@ -40,9 +40,9 @@ koa-views
 
 1$ npm install koa-views@next --save
 1234567891011121314151617181920212">
-<meta property="og:image" content="http://ecmadao.com/images/koa/without-koa-onerror.png">
-<meta property="og:image" content="http://ecmadao.com/images/koa/with-koa-onerror.png">
-<meta property="og:updated_time" content="2017-01-14T12:11:43.000Z">
+<meta property="og:image" content="http://ecmadao.com/Coding-Guide/images/koa/without-koa-onerror.png">
+<meta property="og:image" content="http://ecmadao.com/Coding-Guide/images/koa/with-koa-onerror.png">
+<meta property="og:updated_time" content="2017-01-14T13:18:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="learn koa2--tools">
 <meta name="twitter:description" content="Table of Contents  generated with DocToc
@@ -60,7 +60,7 @@ koa-views
 
 1$ npm install koa-views@next --save
 1234567891011121314151617181920212">
-<meta name="twitter:image" content="http://ecmadao.com/images/koa/without-koa-onerror.png">
+<meta name="twitter:image" content="http://ecmadao.com/Coding-Guide/images/koa/without-koa-onerror.png">
     
     
         
@@ -109,7 +109,7 @@ koa-views
          
           <li><a href="/Coding-Guide/archives/">Articles</a></li>
          
-          <li><a href="http://github.com/probberechts">Projects</a></li>
+          <li><a href="http://github.com/ecmadao">Projects</a></li>
         
       </ul>
     </span>
@@ -117,10 +117,10 @@ koa-views
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/Coding-Guide/2017/01/13/Notes/NodeJS/KOA/learn koa2--middleware/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        <li><a class="icon" href="/Coding-Guide/2017/01/13/Notes/NodeJS/KOA/learn koa2--model & mongodb/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
         
         
-        <li><a class="icon" href="/Coding-Guide/2017/01/13/Notes/Python/Django/Django-01-setup&unittest/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        <li><a class="icon" href="/Coding-Guide/2017/01/13/Notes/NodeJS/KOA/learn koa2--认证/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
         <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
@@ -243,9 +243,9 @@ koa-views
 <p>我们刻意的创建一个错误：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">router.get(<span class="string">'/'</span>, <span class="keyword">async</span> (ctx, next) =&gt; &#123;</div><div class="line">    <span class="keyword">await</span> ctx.render(<span class="string">'home/indexx'</span>, &#123;</div><div class="line">        <span class="attr">title</span>: <span class="string">'home page'</span>,</div><div class="line">        <span class="attr">content</span>: <span class="string">'this is home page'</span></div><div class="line">    &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <p>因为并不存在<code>templates/home/indexx.html</code>，所以URL为<code>/</code>时页面在正常情况下报错如下：</p>
-<p><img src="/images/koa/without-koa-onerror.png" alt="without koa-onerror"></p>
+<p><img src="/Coding-Guide/images/koa/without-koa-onerror.png" alt="without koa-onerror"></p>
 <p>而使用了<code>koa-onerror</code>之后则：</p>
-<p><img src="/images/koa/with-koa-onerror.png" alt="with koa-onerror"></p>
+<p><img src="/Coding-Guide/images/koa/with-koa-onerror.png" alt="with koa-onerror"></p>
 <ul>
 <li><a href="https://github.com/koajs/csrf" target="_blank" rel="external">koa-csrf</a></li>
 </ul>
@@ -293,7 +293,7 @@ koa-views
          
           <li><a href="/Coding-Guide/archives/">Articles</a></li>
          
-          <li><a href="http://github.com/probberechts">Projects</a></li>
+          <li><a href="http://github.com/ecmadao">Projects</a></li>
         
       </ul>
     </div>
@@ -345,7 +345,7 @@ koa-views
          
           <li><a href="/Coding-Guide/archives/">Articles</a></li>
          
-          <li><a href="http://github.com/probberechts">Projects</a></li>
+          <li><a href="http://github.com/ecmadao">Projects</a></li>
         
       </ul>
     </nav>
